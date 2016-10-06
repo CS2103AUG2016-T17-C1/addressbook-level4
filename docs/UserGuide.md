@@ -22,8 +22,8 @@
 2. Copy the file to the folder you want to use as the home folder for your To-Do App.
 3. Double-click the file to start the app. The GUI should appear in a few seconds.
 
-<H1><img src="images/add.png" width="600"> </H1>
->>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
+<H1> </H1>
+> <img src="images/add.png" width="600">
 
 4. Type a action in the command box and press <kbd>Enter</kbd> or click on the "+" icon to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> or clicking on the help button will open the help window.
@@ -89,8 +89,7 @@ Format: `delete INDEX`
 #### Completing a task : `complete`
 Strikes off the specified task from the to-do list. Reversible.<br>
 Format: `complete INDEX`
-
-> Deletes the task at the specified `INDEX`.
+Deletes the task at the specified `INDEX`.
 =======
 
 #### Adding a task: `add`
@@ -137,13 +136,10 @@ Format: `delete INDEX`
 Examples:
 * `list`<br>
   `delete 2`<br>
-<<<<<<< HEAD
   Deletes the 2nd task in the to-do list.
-* `find Betsy`<br>
 =======
   Deletes the 2nd task in today's to-do list.
 * `find Dinner`<br>
->>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
 
@@ -151,18 +147,16 @@ Examples:
 Selects the task identified by the index number used in the last task listing.<br>
 Format: `select INDEX`
 
-<<<<<<< HEAD
+
 > Selects the task and loads the Google search page the task at the specified `INDEX`.
 =======
 ><s> Selects the task and loads the Google search page the person at the specified `INDEX`. </s>
->>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
   The index refers to the index number shown in the most recent listing.<br>
   The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 * `list`<br>
   `select 2`<br>
-<<<<<<< HEAD
   Selects the 2nd task in the to-do list.
 * `find Betsy` <br>
   `select 1`<br>
