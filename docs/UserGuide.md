@@ -18,11 +18,18 @@
    > <img src="images/UI.png" width="600">
 =======
 
-1. Download the latest `Never Forget.jar` from the [releases](../../../releases) tab.
-2. Copy the file to the folder you want to use as the home folder for your To-Do App.
-3. Double-click the file to start the app. The GUI should appear in a few seconds.
 
-<H1> </H1>
+
+## Features
+
+> **Command Format**
+> * Words in `UPPER_CASE` are the parameters.
+> * Items in `SQUARE_BRACKETS` are optional.
+> * Items with `...` after them can have multiple instances.
+> * The order of parameters is fixed.
+
+
+
 > <img src="images/add.png" width="600">
 
 4. Type a action in the command box and press <kbd>Enter</kbd> or click on the "+" icon to execute it. <br>
@@ -41,14 +48,6 @@
    * **`exit`** : exits the app
 6. Refer to the [Features](#features) section below for details of each command.<br>
 
-
-## Features
-
-> **Command Format**
-> * Words in `UPPER_CASE` are the parameters.
-> * Items in `SQUARE_BRACKETS` are optional.
-> * Items with `...` after them can have multiple instances.
-> * The order of parameters is fixed.
 
 #### Viewing help : `help`
 Format: `help`
@@ -150,7 +149,7 @@ Examples:
 #### Clearing all entries : `clear`
 Clears all entries from the to-do list.<br>
 Format: `clear`
-=======
+
   Selects the 2nd task in the to-do app.
 * `find milk` <br>
   `select 1`<br>
