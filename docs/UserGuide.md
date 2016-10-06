@@ -55,10 +55,6 @@ Format: `help`
 > Help is also shown if you enter an incorrect command e.g. `abcd`
 <<<<<<< HEAD
 
-#### Listing all tasks : `list`
-Shows a list of all tasks in the to do list.<br>
-Format: `list`
-
 #### Finding all tasks containing any keyword in their name: `find`
 Finds tasks whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
@@ -109,35 +105,6 @@ Format: `complete INDEX`
 Shows a list of all tasks today in Never Forget.<br>
 Format: `list`
 
-#### Finding all tasks containing any keyword : `find`
-Finds tasks which contain any of the given keywords.<br>
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-> * The search is case insensitive. e.g `walk` will match `Walk`
-> * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-> * Only task name is searched.
-> * Only full words will be matched e.g. `Shop` will not match `Shopping`
-> * Tasks matching at least one keyword will be returned (i.e. `OR` search).
-    e.g. `Buy` will match `Buy milk`
-
-Example:
- * `find John`<br>
-  Returns `John Doe` and `john`
-* `find eat out`<br>
-  Returns Any task with `eat` or `out`
-
-
-Examples:
-* `list`<br>
-  `delete 2`<br>
-  Deletes the 2nd task in the to-do list.
-=======
-  Deletes the 2nd task in today's to-do list.
-* `find Dinner`<br>
-  `delete 1`<br>
-  Deletes the 1st task in the results of the `find` command.
-
-
 Examples:
 * `list`<br>
   `select 2`<br>
@@ -145,6 +112,7 @@ Examples:
 * `find Betsy` <br>
   `select 1`<br>
   Selects the 1st task in the results of the `find` command.
+
 
 #### Clearing all entries : `clear`
 Clears all entries from the to-do list.<br>
@@ -158,19 +126,6 @@ Format: `clear`
 #### Checking an entry : `check`
 Checks and marks an entry as completed. <br>
 Format: `check INDEX`
-
-Examples:
-* `list`
-`check 1`
-Checks the 1st task in the to-do app.
-* `find bank`
-`check 2`
-Checks the 2nd task in the results of the `find` command.
-
-#### Clearing all entries : `clear`
-Clears all entries from the to-do app.<br>
-Format: `clear`
-
 
 #### Exiting the program : `exit`
 Exits the program.<br>
@@ -201,11 +156,6 @@ Displays the task listing for that desired time frame<br>
 ## Command Summary
 
 
-
-Command | Format
--------- | :--------
-Add | `add task deadline/date-time venue/place [t/TAG]...`
-=======
 Command | Format
 -------- | :--------
 Add | `add TASK d/DD-MMM-YY t/HHMM v/PLACE [t/TAG]...`
