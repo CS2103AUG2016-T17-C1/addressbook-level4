@@ -36,7 +36,7 @@
    * **`list`** : lists today's tasks
    * **`add`**` Grocery Shopping d/1-Jan-2016 t/1800 v/Hougang NTUC` :
      adds a task `Grocery Shopping` to Never Forget.
->>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
+
    * **`delete`**` 3` : deletes the 3rd task shown in the current list
    * **`exit`** : exits the app
 6. Refer to the [Features](#features) section below for details of each command.<br>
@@ -71,11 +71,25 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 > * tasks matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `Hans` will match `Hans Bo`
 
+
 Examples:
 * `find meeting`<br>
   Returns `meetings` and `Meetings` but not `meet`
 * `find coffe complete homework`<br>
   Returns Any tasks containing names `coffe`, `complete`, or `homwork`
+
+
+#### Adding a task: `add`
+Adds a task to Never Forget<br>
+Format: `add TASK d/SCHEDULED_DATE t/SCHEDULED_TIME v/SCHEDULED_PLACE [t/TAG]...`
+
+> Tasks can have any number of tags (including 0)
+
+Examples:
+* `add Grocery Shopping d/1-Jan-2016 t/1800 v/Hougang NTUC`
+* `add Dinner with JC Friends d/7-Oct-2016 t/1930 v/Clementi Mall t/Budget Meal t/buddies`
+
+
 
 #### Deleting a task : `delete`
 Deletes the specified task from the to-do list. Irreversible.<br>
@@ -89,18 +103,8 @@ Format: `delete INDEX`
 #### Completing a task : `complete`
 Strikes off the specified task from the to-do list. Reversible.<br>
 Format: `complete INDEX`
-Deletes the task at the specified `INDEX`.
-=======
 
-#### Adding a task: `add`
-Adds a task to Never Forget<br>
-Format: `add TASK d/SCHEDULED_DATE t/SCHEDULED_TIME v/SCHEDULED_PLACE [t/TAG]...`
 
-> Tasks can have any number of tags (including 0)
-
-Examples:
-* `add Grocery Shopping d/1-Jan-2016 t/1800 v/Hougang NTUC`
-* `add Dinner with JC Friends d/7-Oct-2016 t/1930 v/Clementi Mall t/Budget Meal t/buddies`
 
 #### Listing all of today's tasks : `list`
 Shows a list of all tasks today in Never Forget.<br>
@@ -123,15 +127,6 @@ Example:
 * `find eat out`<br>
   Returns Any task with `eat` or `out`
 
-#### Deleting a task : `delete`
-Deletes the specified task from the To-Do App. Irreversible.<br>
-Format: `delete INDEX`
-
-> Deletes the task at the specified `INDEX`.
->>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
-  The index refers to the index number shown in the most recent listing.<br>
-  The index **must be a positive integer** 1, 2, 3, ...
-
 
 Examples:
 * `list`<br>
@@ -143,16 +138,6 @@ Examples:
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
 
-#### Select a task : `select`
-Selects the task identified by the index number used in the last task listing.<br>
-Format: `select INDEX`
-
-
-> Selects the task and loads the Google search page the task at the specified `INDEX`.
-=======
-><s> Selects the task and loads the Google search page the person at the specified `INDEX`. </s>
-  The index refers to the index number shown in the most recent listing.<br>
-  The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 * `list`<br>
@@ -186,16 +171,16 @@ Checks the 2nd task in the results of the `find` command.
 #### Clearing all entries : `clear`
 Clears all entries from the to-do app.<br>
 Format: `clear`
->>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
+
 
 #### Exiting the program : `exit`
 Exits the program.<br>
 Format: `exit`
 
-<<<<<<< HEAD
+
 #### Saving the data
 Never Forget data are saved in the hard disk automatically after any command that changes the data.<br>
->>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
+
 There is no need to save manually.
 
 
@@ -216,7 +201,8 @@ Displays the task listing for that desired time frame<br>
 
 ## Command Summary
 
-<<<<<<< HEAD
+
+
 Command | Format
 -------- | :--------
 Add | `add task deadline/date-time venue/place [t/TAG]...`
@@ -224,7 +210,7 @@ Add | `add task deadline/date-time venue/place [t/TAG]...`
 Command | Format
 -------- | :--------
 Add | `add TASK d/DD-MMM-YY t/HHMM v/PLACE [t/TAG]...`
->>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
+
 Clear | `clear`
 Delete | `delete INDEX`
 Complete | `strikethrough the task at the INDEX`
