@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 
 /**
  * The main entry point to the application.
- */
+ */ 	
 public class MainApp extends Application {
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
