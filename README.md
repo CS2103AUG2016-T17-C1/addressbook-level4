@@ -3,7 +3,7 @@
 
 # Address Book (Level 4)
 
-<img src="docs/images/Ui.png" width="600"><br>
+<img src="docs/images/UI.png" width="600"><br>
 
 * This is a desktop To-do List application. It has a GUI but most of the user interactions happen using
   a CLI (Command Line Interface).

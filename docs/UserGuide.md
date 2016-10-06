@@ -15,14 +15,14 @@
 1. Download the latest `neverforgetagain.jar` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your to-do list.
 3. Double-click the file to start the app. The GUI should appear in a few seconds.
-   > <img src="images/Ui.png" width="600">
+   > <img src="images/UI.png" width="600">
 =======
-   
+
 1. Download the latest `Never Forget.jar` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your To-Do App.
-3. Double-click the file to start the app. The GUI should appear in a few seconds. 
+3. Double-click the file to start the app. The GUI should appear in a few seconds.
 
-<H1> Insert Image Here </H1>
+<H1><img src="images/add.png" width="600"> </H1>
 >>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
 
 4. Type a action in the command box and press <kbd>Enter</kbd> or click on the "+" icon to execute it. <br>
@@ -34,7 +34,7 @@
      adds a contact named `John Doe` to the to-do list.
 =======
    * **`list`** : lists today's tasks
-   * **`add`**` Grocery Shopping d/1-Jan-2016 t/1800 v/Hougang NTUC` : 
+   * **`add`**` Grocery Shopping d/1-Jan-2016 t/1800 v/Hougang NTUC` :
      adds a task `Grocery Shopping` to Never Forget.
 >>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
    * **`delete`**` 3` : deletes the 3rd task shown in the current list
@@ -55,16 +55,6 @@ Format: `help`
 
 > Help is also shown if you enter an incorrect command e.g. `abcd`
 <<<<<<< HEAD
-
-#### Adding a task: `add`
-Adds a task to the to-do-list without setting deadlines for it<br>
-Format: `add complete cs2103 homework`
-
-> tasks can have any number of tags (including 0)
-
-Examples:
-* `add complete cs2103 homework deadline/171016-2100` <br> add a task to complete a cs2103 homework and the deadline for it is 17 Oct 2016 9pm
-* `add meet up with yufan starttime/181016-1400 endtime/181016-1500 venue/royals bistro`<br> add a task to meet a guy named yufan that starts on 18 oct 2016, from 2pm to 3pm
 
 #### Listing all tasks : `list`
 Shows a list of all tasks in the to do list.<br>
@@ -102,14 +92,14 @@ Format: `complete INDEX`
 
 > Deletes the task at the specified `INDEX`.
 =======
- 
+
 #### Adding a task: `add`
 Adds a task to Never Forget<br>
-Format: `add TASK d/SCHEDULED_DATE t/SCHEDULED_TIME v/SCHEDULED_PLACE [t/TAG]...` 
+Format: `add TASK d/SCHEDULED_DATE t/SCHEDULED_TIME v/SCHEDULED_PLACE [t/TAG]...`
 
 > Tasks can have any number of tags (including 0)
 
-Examples: 
+Examples:
 * `add Grocery Shopping d/1-Jan-2016 t/1800 v/Hougang NTUC`
 * `add Dinner with JC Friends d/7-Oct-2016 t/1930 v/Clementi Mall t/Budget Meal t/buddies`
 
@@ -122,15 +112,15 @@ Finds tasks which contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 > * The search is case insensitive. e.g `walk` will match `Walk`
-> * <s> The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans` </s>
+> * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 > * Only task name is searched.
 > * Only full words will be matched e.g. `Shop` will not match `Shopping`
 > * Tasks matching at least one keyword will be returned (i.e. `OR` search).
     e.g. `Buy` will match `Buy milk`
 
-Example: 
-<s> * `find John`<br>
-  Returns `John Doe` but not `john` </s>
+Example:
+ * `find John`<br>
+  Returns `John Doe` and `john`
 * `find eat out`<br>
   Returns Any task with `eat` or `out`
 
@@ -138,7 +128,7 @@ Example:
 Deletes the specified task from the To-Do App. Irreversible.<br>
 Format: `delete INDEX`
 
-> Deletes the task at the specified `INDEX`. 
+> Deletes the task at the specified `INDEX`.
 >>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
   The index refers to the index number shown in the most recent listing.<br>
   The index **must be a positive integer** 1, 2, 3, ...
@@ -152,7 +142,7 @@ Examples:
 * `find Betsy`<br>
 =======
   Deletes the 2nd task in today's to-do list.
-* `find Dinner`<br> 
+* `find Dinner`<br>
 >>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
   `delete 1`<br>
   Deletes the 1st task in the results of the `find` command.
@@ -183,13 +173,13 @@ Clears all entries from the to-do list.<br>
 Format: `clear`
 =======
   Selects the 2nd task in the to-do app.
-* `find milk` <br> 
+* `find milk` <br>
   `select 1`<br>
   Selects the 1st task in the results of the `find` command.
 
 #### Checking an entry : `check`
 Checks and marks an entry as completed. <br>
-Format: `check INDEX`  
+Format: `check INDEX`
 
 Examples:
 * `list`
@@ -201,7 +191,7 @@ Checks the 2nd task in the results of the `find` command.
 
 #### Clearing all entries : `clear`
 Clears all entries from the to-do app.<br>
-Format: `clear`  
+Format: `clear`
 >>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
 
 #### Exiting the program : `exit`
@@ -210,9 +200,6 @@ Format: `exit`
 
 <<<<<<< HEAD
 #### Saving the data
-to-do list data are saved in the hard disk automatically after any command that changes the data.<br>
-=======
-#### Saving the data 
 Never Forget data are saved in the hard disk automatically after any command that changes the data.<br>
 >>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
 There is no need to save manually.
@@ -240,8 +227,8 @@ Command | Format
 -------- | :--------
 Add | `add task deadline/date-time venue/place [t/TAG]...`
 =======
-Command | Format  
--------- | :-------- 
+Command | Format
+-------- | :--------
 Add | `add TASK d/DD-MMM-YY t/HHMM v/PLACE [t/TAG]...`
 >>>>>>> 236722856f6eef2e4361749eebcb2e4bd218ee2c
 Clear | `clear`
