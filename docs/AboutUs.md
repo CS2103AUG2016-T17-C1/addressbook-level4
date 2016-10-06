@@ -10,24 +10,30 @@ We are a team of students taking a module CS2103 based in the [School of Computi
 
 -----
 
-#### [SHEN JIAHUI](http://github.com/lejolly)
+#### [SHEN JIAHUI](http://github.com/JIAHUIs)
 <img src="images/SJH.jpg" width="150"><br>
 Role: Developer <br>
 Responsibilities: -
 
 -----
 
-#### [SIN YU FAN](http://github.com/yijinl)
+#### [SIN YU FAN](http://github.com/howitzerg)
 <img src="images/SYF.jpg" width="150"><br>
 Role: Developer <br>
 Responsibilities: -
 
 -----
 
-#### [TAY MING LIANG](http://github.com/m133225)
+#### [TAY MING LIANG](http://github.com/mlteh)
 <img src="images/TML.jpg" width="150"><br>
 Role: Developer <br>
 Responsibilities:-
+
+
+#### [JOEL TAN](http://github.com/Sevreus)
+<img src="images/Tutor.jpg" width="150"><br>
+Role: Tutor
+
 
 -----
 
