@@ -10,13 +10,11 @@
 0. Ensure you have Java version `1.8.0_60` or later installed in your Computer.<br>
    > Having any Java 8 version is not enough. <br>
    This app will not work with earlier versions of Java 8.
-<<<<<<< HEAD
 
 1. Download the latest `neverforgetagain.jar` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your to-do list.
 3. Double-click the file to start the app. The GUI should appear in a few seconds.
    > <img src="images/UI.png" width="600">
-=======
 
 
 
@@ -35,11 +33,10 @@
 4. Type a action in the command box and press <kbd>Enter</kbd> or click on the "+" icon to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> or clicking on the help button will open the help window.
 5. Some example commands you can try:
-<<<<<<< HEAD
    * **`list`** : lists all tasks
    * **`add`**` Buy a cup of coffee` : Add a task to buy a cup of coffee without setting any deadlines for it
      adds a contact named `John Doe` to the to-do list.
-=======
+
    * **`list`** : lists today's tasks
    * **`add`**` Grocery Shopping d/1-Jan-2016 t/1800 v/Hougang NTUC` :
      adds a task `Grocery Shopping` to Never Forget.
@@ -105,6 +102,7 @@ Format: `complete INDEX`
 Shows a list of all tasks today in Never Forget.<br>
 Format: `list`
 
+#### Selecting tasks : `select`
 Examples:
 * `list`<br>
   `select 2`<br>
@@ -118,10 +116,6 @@ Examples:
 Clears all entries from the to-do list.<br>
 Format: `clear`
 
-  Selects the 2nd task in the to-do app.
-* `find milk` <br>
-  `select 1`<br>
-  Selects the 1st task in the results of the `find` command.
 
 #### Checking an entry : `check`
 Checks and marks an entry as completed. <br>
@@ -159,7 +153,6 @@ Displays the task listing for that desired time frame<br>
 Command | Format
 -------- | :--------
 Add | `add TASK d/DD-MMM-YY t/HHMM v/PLACE [t/TAG]...`
-
 Clear | `clear`
 Delete | `delete INDEX`
 Complete | `strikethrough the task at the INDEX`
