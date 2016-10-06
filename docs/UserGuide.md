@@ -125,6 +125,16 @@ Format: `exit`
 to-do list data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.
 
+
+#### Sorting the displayed task list : `click on either Home(which displays everything) Today, Next 7 Days or Month`
+Displays the task listing for that desired time frame<br>
+
+
+> Displays the task listing for that desired time frame
+  Tasks with no deadlines are only displayed in the Home listing where all tasks are displayed<br>
+  User must select any of the tabs, HOME, TODAY, Next 7 Days or Month
+
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
