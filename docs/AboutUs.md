@@ -4,7 +4,7 @@ We are a team of students taking a module CS2103 based in the [School of Computi
 
 ## Project Team
 
-#### [MIHNEA ARION]() <br>
+#### [MIHNEA ARION](https://github.com/Sevreus) 
 <img src="images/MA.jpg" width="150"><br>
 **Role**: Developer
 
@@ -29,10 +29,16 @@ Responsibilities: -
 Role: Developer <br>
 Responsibilities:-
 
+-----
 
-#### [JOEL TAN](http://github.com/Sevreus)
-<img src="images/Tutor.jpg" width="150"><br>
+#### [Joel Tan](https://github.com/JoelT-92)
+<img src="images/Tutor.png" width="150"><br>
 Role: Tutor
 
+-----
+
+#### [Tyson Quek](https://github.com/pixelducky)
+<img src="images/Tutor Tyson.jpg" width="150"><br>
+Role: Tutor
 
 -----
