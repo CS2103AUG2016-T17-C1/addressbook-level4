@@ -16,7 +16,7 @@ import seedu.address.TestApp;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.XmlUtil;
-import seedu.address.model.AddressBook;
+import seedu.address.model.TaskManager;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
@@ -65,15 +65,15 @@ public class TestUtil {
     private static Person[] getSamplePersonData() {
         try {
             return new Person[]{
-                    new Person(new Name("Ali Muster"), new Phone("9482424"), new Email("hans@google.com"), new Address("4th street"), new UniqueTagList()),
-                    new Person(new Name("Boris Mueller"), new Phone("87249245"), new Email("ruth@google.com"), new Address("81th street"), new UniqueTagList()),
-                    new Person(new Name("Carl Kurz"), new Phone("95352563"), new Email("heinz@yahoo.com"), new Address("wall street"), new UniqueTagList()),
-                    new Person(new Name("Daniel Meier"), new Phone("87652533"), new Email("cornelia@google.com"), new Address("10th street"), new UniqueTagList()),
-                    new Person(new Name("Elle Meyer"), new Phone("9482224"), new Email("werner@gmail.com"), new Address("michegan ave"), new UniqueTagList()),
-                    new Person(new Name("Fiona Kunz"), new Phone("9482427"), new Email("lydia@gmail.com"), new Address("little tokyo"), new UniqueTagList()),
-                    new Person(new Name("George Best"), new Phone("9482442"), new Email("anna@google.com"), new Address("4th street"), new UniqueTagList()),
-                    new Person(new Name("Hoon Meier"), new Phone("8482424"), new Email("stefan@mail.com"), new Address("little india"), new UniqueTagList()),
-                    new Person(new Name("Ida Mueller"), new Phone("8482131"), new Email("hans@google.com"), new Address("chicago ave"), new UniqueTagList())
+                    new Person(new Name("Ali Muster"), new Importance("9482424"), new Time("hans@google.com"), new Address("4th street"), new UniqueTagList()),
+                    new Person(new Name("Boris Mueller"), new Importance("87249245"), new Time("ruth@google.com"), new Address("81th street"), new UniqueTagList()),
+                    new Person(new Name("Carl Kurz"), new Importance("95352563"), new Time("heinz@yahoo.com"), new Address("wall street"), new UniqueTagList()),
+                    new Person(new Name("Daniel Meier"), new Importance("87652533"), new Time("cornelia@google.com"), new Address("10th street"), new UniqueTagList()),
+                    new Person(new Name("Elle Meyer"), new Importance("9482224"), new Time("werner@gmail.com"), new Address("michegan ave"), new UniqueTagList()),
+                    new Person(new Name("Fiona Kunz"), new Importance("9482427"), new Time("lydia@gmail.com"), new Address("little tokyo"), new UniqueTagList()),
+                    new Person(new Name("George Best"), new Importance("9482442"), new Time("anna@google.com"), new Address("4th street"), new UniqueTagList()),
+                    new Person(new Name("Hoon Meier"), new Importance("8482424"), new Time("stefan@mail.com"), new Address("little india"), new UniqueTagList()),
+                    new Person(new Name("Ida Mueller"), new Importance("8482131"), new Time("hans@google.com"), new Address("chicago ave"), new UniqueTagList())
             };
         } catch (IllegalValueException e) {
             assert false;
@@ -134,8 +134,8 @@ public class TestUtil {
         createDataFileWithSampleData(TestApp.SAVE_LOCATION_FOR_TESTING);
     }
 
-    public static AddressBook generateEmptyAddressBook() {
-        return new AddressBook(new UniquePersonList(), new UniqueTagList());
+    public static TaskManager generateEmptyAddressBook() {
+        return new TaskManager(new UniqueTaskList(), new UniqueTagList());
     }
 
     public static XmlSerializableAddressBook generateSampleStorageAddressBook() {
@@ -326,7 +326,7 @@ public class TestUtil {
         return list;
     }
 
-    public static boolean compareCardAndPerson(PersonCardHandle card, ReadOnlyPerson person) {
+    public static boolean compareCardAndPerson(PersonCardHandle card, ReadOnlyTask person) {
         return card.isSamePerson(person);
     }
 
