@@ -32,7 +32,7 @@ Responsibilities:-
 -----
 
 #### [Joel Tan](https://github.com/JoelT-92)
-<img src="images/Tutor.png" width="150"><br>
+<img src="images/Tutor Joel.png" width="150"><br>
 Role: Tutor
 
 -----
