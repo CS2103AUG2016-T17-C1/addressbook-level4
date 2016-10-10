@@ -8,10 +8,10 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class Importance {
 
-    public static final String IMPORTANCE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
-    public static final String IMPORTANCE_VALIDATION_REGEX = "\\d+";
+    public static final String MESSAGE_IMPORTANCE_CONSTRAINTS = "Person phone numbers should only contain numbers";
+    public static final String IMPORTANCE_VALIDATION_REGEX = "*";
 
-    public final Boolean important = false;
+    public Boolean important = false;
 
     /**
      * Validates given phone number.
@@ -21,7 +21,7 @@ public class Importance {
     public Importance(String importance) throws IllegalValueException {
         assert importance != null;
         importance = importance.trim();
-        if (!isValidPhone(importance)) {
+        if (!isValidImportance(importance)) {
             throw new IllegalValueException(MESSAGE_IMPORTANCE_CONSTRAINTS);
         }
         if (importance.equals("*")){
@@ -32,8 +32,8 @@ public class Importance {
     /**
      * Returns true if a given string is a valid person phone number.
      */
-    public static boolean isValidPhone(String test) {
-        return test.matches(IMPORTANCE_VALIDATION_REGEX);
+    public static boolean isValidImportance(String test) {
+        return test.equals(IMPORTANCE_VALIDATION_REGEX);
     }
 
     @Override
