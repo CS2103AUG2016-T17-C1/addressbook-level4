@@ -3,7 +3,7 @@ package seedu.task.model.task;
 import seedu.task.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Task's phone number in the address book.
+ * Represents a Task's phone number in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
@@ -28,7 +28,7 @@ public class Phone {
     }
 
     /**
-     * Returns true if a given string is a valid person phone number.
+     * Returns true if a given string is a valid task phone number.
      */
     public static boolean isValidPhone(String test) {
         return test.matches(PHONE_VALIDATION_REGEX);

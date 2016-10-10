@@ -15,7 +15,7 @@ import seedu.task.model.UserPrefs;
 import seedu.task.storage.JsonUserPrefsStorage;
 import seedu.task.storage.Storage;
 import seedu.task.storage.StorageManager;
-import seedu.task.storage.XmlAddressBookStorage;
+import seedu.task.storage.XmlTaskManagerStorage;
 import seedu.address.testutil.EventsCollector;
 
 import java.io.IOException;
@@ -85,7 +85,7 @@ public class StorageManagerTest {
     /**
      * A Stub class to throw an exception when the save method is called
      */
-    class XmlAddressBookStorageExceptionThrowingStub extends XmlAddressBookStorage{
+    class XmlAddressBookStorageExceptionThrowingStub extends XmlTaskManagerStorage{
 
         public XmlAddressBookStorageExceptionThrowingStub(String filePath) {
             super(filePath);

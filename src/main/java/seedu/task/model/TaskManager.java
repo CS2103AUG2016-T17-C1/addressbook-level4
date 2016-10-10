@@ -11,7 +11,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the task-manager level
  * Duplicates are not allowed (by .equals comparison)
  */
 public class TaskManager implements ReadOnlyTaskManager {
@@ -27,14 +27,14 @@ public class TaskManager implements ReadOnlyTaskManager {
     public TaskManager() {}
 
     /**
-     * Persons and Tags are copied into this addressbook
+     * Tasks and Tags are copied into this task manager
      */
     public TaskManager(ReadOnlyTaskManager toBeCopied) {
         this(toBeCopied.getUniqueTaskList(), toBeCopied.getUniqueTagList());
     }
 
     /**
-     * Persons and Tags are copied into this addressbook
+     * Tasks and Tags are copied into this task manager
      */
     public TaskManager(UniqueTaskList persons, UniqueTagList tags) {
         resetData(persons.getInternalList(), tags.getInternalList());
@@ -50,16 +50,16 @@ public class TaskManager implements ReadOnlyTaskManager {
         return tasks.getInternalList();
     }
 
-    public void setPersons(List<Task> persons) {
-        this.tasks.getInternalList().setAll(persons);
+    public void setPersons(List<Task> tasks) {
+        this.tasks.getInternalList().setAll(tasks);
     }
 
     public void setTags(Collection<Tag> tags) {
         this.tags.getInternalList().setAll(tags);
     }
 
-    public void resetData(Collection<? extends ReadOnlyTask> newPersons, Collection<Tag> newTags) {
-        setPersons(newPersons.stream().map(Task::new).collect(Collectors.toList()));
+    public void resetData(Collection<? extends ReadOnlyTask> newTasks, Collection<Tag> newTags) {
+        setPersons(newTasks.stream().map(Task::new).collect(Collectors.toList()));
         setTags(newTags);
     }
 
@@ -70,11 +70,11 @@ public class TaskManager implements ReadOnlyTaskManager {
 //// person-level operations
 
     /**
-     * Adds a person to the address book.
-     * Also checks the new person's tags and updates {@link #tags} with any new tags found,
-     * and updates the Tag objects in the person to point to those in {@link #tags}.
+     * Adds a task to the task manager.
+     * Also checks the new task's tags and updates {@link #tags} with any new tags found,
+     * and updates the Tag objects in the task to point to those in {@link #tags}.
      *
-     * @throws UniqueTaskList.DuplicateTaskException if an equivalent person already exists.
+     * @throws UniqueTaskList.DuplicateTaskException if an equivalent task already exists.
      */
     public void addTask(Task p) throws UniqueTaskList.DuplicateTaskException {
         syncTagsWithMasterList(p);
@@ -82,13 +82,13 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     /**
-     * Ensures that every tag in this person:
+     * Ensures that every tag in this task:
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
      */
-    private void syncTagsWithMasterList(Task person) {
-        final UniqueTagList personTags = person.getTags();
-        tags.mergeFrom(personTags);
+    private void syncTagsWithMasterList(Task task) {
+        final UniqueTagList taskTags = task.getTags();
+        tags.mergeFrom(taskTags);
 
         // Create map with values = tag object references in the master list
         final Map<Tag, Tag> masterTagObjects = new HashMap<>();
@@ -96,12 +96,12 @@ public class TaskManager implements ReadOnlyTaskManager {
             masterTagObjects.put(tag, tag);
         }
 
-        // Rebuild the list of person tags using references from the master list
+        // Rebuild the list of task tags using references from the master list
         final Set<Tag> commonTagReferences = new HashSet<>();
-        for (Tag tag : personTags) {
+        for (Tag tag : taskTags) {
             commonTagReferences.add(masterTagObjects.get(tag));
         }
-        person.setTags(new UniqueTagList(commonTagReferences));
+        task.setTags(new UniqueTagList(commonTagReferences));
     }
 
     public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {

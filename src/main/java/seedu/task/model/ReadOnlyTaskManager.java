@@ -9,7 +9,7 @@ import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.UniqueTaskList;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an Task Manager
  */
 public interface ReadOnlyTaskManager {
 
@@ -18,7 +18,7 @@ public interface ReadOnlyTaskManager {
     UniqueTaskList getUniqueTaskList();
 
     /**
-     * Returns an unmodifiable view of persons list
+     * Returns an unmodifiable view of tasks list
      */
     List<ReadOnlyTask> getTaskList();
 
