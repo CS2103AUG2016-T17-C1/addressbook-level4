@@ -266,30 +266,112 @@ Priority | As a ... | I want to ... | So that I can...
 
 ## Appendix B : Use Cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `To-Do-List` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use case: Delete person
+#### Use Case: Add task
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person <br>
-Use case ends.
+1. User enters task to be added
+2. To-Do-List adds task
+3. To-Do-List shows task is added
+Use case ends
 
 **Extensions**
 
-2a. The list is empty
+1a. Given input is invalid
+1a1. To-Do-List shows an error message and an input example
+Use case resumes at step 1
 
-> Use case ends
+1b. Task has been added before
+1b1. To-Do-List reports that task has been added before
+Use case ends
 
-3a. The given index is invalid
+Note: all subsequent add task use cases are subsets of add task use case above
 
-> 3a1. AddressBook shows an error message <br>
-  Use case resumes at step 2
+#### Use Case: Add task with deadline
 
-{More to be added}
+**MSS**
+
+1. User enters task to be added
+2. To-Do-List adds task
+3. To-Do-List shows task is added
+Use case ends
+
+**Extensions**
+
+1a. Given date input is invalid
+1a1. To-Do-List shows an error message and an input example
+1a2. User enters deadline
+Use case repeats 1a until user enters a valid deadline or chooses to add task without deadline
+Use case resumes at step 2
+
+#### Use Case: Add task with time allocated
+
+**MSS**
+
+User enters task to be added
+To-Do-List adds task
+To-Do-List shows task is added
+	Use case ends
+
+**Extensions**
+
+1a. Proposed allocation time is not available
+1a1. To-Do-List reports that proposed time is not available
+1a2. User enters another time
+Use case repeats 1a until user proposes a suitable time or chooses to add task without allocating time
+Use case resumes at step 2
+
+1b. Given time input is invalid
+1a1. To-Do-List shows an error message and an input example
+1a2. User enters another time
+Use case repeats 1a until user proposes a suitable time or chooses to add task without allocating time
+Use case resumes at step 2
+
+#### Use Case: Add task with priority tagging
+
+**MSS**
+
+1. User enters task to be added
+2. To-Do-List adds task
+3. To-Do-List shows task is added
+Use case ends
+
+**Extensions**
+
+1a. Priority tag input is invalid
+1a1. To-Do-List reports that priority tag input is invalid
+1a2. User enters priority
+Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority
+Use case resumes at step 2
+
+#### Use Case: Add task with tagging
+
+**MSS**
+
+1. User enters task to be added
+2. To-Do-List adds task
+3. To-Do-List shows task is added
+Use case ends
+
+#### Use Case: Edit task
+
+**MSS**
+
+1. User enters task to be added
+2. To-Do-List adds task
+3. To-Do-List shows task is added
+Use case ends
+
+**Extensions**
+
+1a. Priority tag input is invalid
+1a1. To-Do-List reports that priority tag input is invalid
+1a2. User enters priority
+Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority
+Use case resumes at step 2
+
 
 ## Appendix C : Non Functional Requirements
 
