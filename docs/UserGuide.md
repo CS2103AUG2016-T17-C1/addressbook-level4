@@ -34,8 +34,7 @@
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> or clicking on the help button will open the help window.
 5. Some example commands you can try:
    * **`list`** : lists all tasks
-   * **`add`**` Buy a cup of coffee` : Add a task to buy a cup of coffee without setting any deadlines for it
-     adds a contact named `John Doe` to the to-do list.
+   * **`add`**` Buy a cup of coffee` : Add a task to buy a cup of coffee without setting any deadlines for it to the to-do list.
 
    * **`list`** : lists today's tasks
    * **`add`**` Grocery Shopping d/1-Jan-2016 t/1800 v/Hougang NTUC` :
@@ -56,7 +55,7 @@ Format: `help`
 Finds tasks whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-> * The search is case sensitive. e.g `hans` will not match `Hans`
+> * The search is not case sensitive. e.g `hans` will match `Hans`
 > * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 > * Only the name is searched.
 > * Non full words will still be matched e.g. `Han` WILL match `Hans`
@@ -68,7 +67,7 @@ Examples:
 * `find meeting`<br>
   Returns `meetings` and `Meetings` but not `meet`
 * `find coffe complete homework`<br>
-  Returns Any tasks containing names `coffe`, `complete`, or `homwork`
+  Returns Any tasks containing names `coffe`, `complete`, or `homework`
 
 
 #### Adding a task: `add`
@@ -84,7 +83,7 @@ Examples:
 
 
 #### Deleting a task : `delete`
-Deletes the specified task from the to-do list. Irreversible.<br>
+Deletes the specified task from the to-do list. Can be reversed with `undo` command.<br>
 Format: `delete INDEX`
 
 > Deletes the task at the specified `INDEX`.
