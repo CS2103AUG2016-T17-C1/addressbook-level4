@@ -405,9 +405,13 @@ Use case resumes at step 2
 
 > Windows, Linux, Unix, OS-X
 
-##### Private contact detail
+##### Popular app
 
-> A contact detail that is not meant to be shared with others
+> Application that frequently makes it into "Top X" lists published by tech sites for those certain requirements
+
+##### Competing product
+
+> A product which satisfies similar user requirements
 
 ## Appendix E : Product Survey
 
