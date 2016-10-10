@@ -31,7 +31,7 @@ Responsibilities:-
 
 -----
 
-#### [JOEL TAN](https://github.com/JoelT-92)
+#### [Joel Tan](https://github.com/JoelT-92)
 <img src="images/Tutor.png" width="150"><br>
 Role: Tutor
 
