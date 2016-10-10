@@ -17,7 +17,7 @@
 
 #### Acknowledgements
 
-* Some parts of this application were inspired by the excellent [Java FX tutorial](http://code.makery.ch/library/javafx-8-tutorial/) by *Marco Jakob*.
+* The original source of this code is the sample project created by [SE-EDU](https://github.com/se-edu/) initiative.
 * This application was developed under professor Damith C. Rajapakse of the NUS teaching team.
 * Special thanks to our tutor, Joel Tan, for guiding us throughout the development process.
 
