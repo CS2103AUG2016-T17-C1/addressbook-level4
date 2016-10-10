@@ -268,7 +268,8 @@ Priority | As a ... | I want to ... | So that I can...
 
 (For all use cases below, the **System** is the `To-Do-List` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use Case: Add task
+
+### Use Case: Add task
 
 **MSS**
 
@@ -276,6 +277,7 @@ Priority | As a ... | I want to ... | So that I can...
 2. To-Do-List adds task
 3. To-Do-List shows task is added
 Use case ends
+
 
 **Extensions**
 
@@ -289,7 +291,9 @@ Use case ends
 
 Note: all subsequent add task use cases are subsets of add task use case above
 
-#### Use Case: Add task with deadline
+
+
+### Use Case: Add task with deadline
 
 **MSS**
 
@@ -298,6 +302,7 @@ Note: all subsequent add task use cases are subsets of add task use case above
 3. To-Do-List shows task is added
 Use case ends
 
+
 **Extensions**
 
 1a. Given date input is invalid
@@ -305,6 +310,8 @@ Use case ends
 1a2. User enters deadline
 Use case repeats 1a until user enters a valid deadline or chooses to add task without deadline
 Use case resumes at step 2
+
+
 
 #### Use Case: Add task with time allocated
 
@@ -314,6 +321,7 @@ User enters task to be added
 To-Do-List adds task
 To-Do-List shows task is added
 	Use case ends
+
 
 **Extensions**
 
@@ -329,7 +337,9 @@ Use case resumes at step 2
 Use case repeats 1a until user proposes a suitable time or chooses to add task without allocating time
 Use case resumes at step 2
 
-#### Use Case: Add task with priority tagging
+
+
+### Use Case: Add task with priority tagging
 
 **MSS**
 
@@ -337,6 +347,7 @@ Use case resumes at step 2
 2. To-Do-List adds task
 3. To-Do-List shows task is added
 Use case ends
+
 
 **Extensions**
 
@@ -346,7 +357,9 @@ Use case ends
 Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority
 Use case resumes at step 2
 
-#### Use Case: Add task with tagging
+ 
+ 
+### Use Case: Add task with tagging
 
 **MSS**
 
@@ -355,7 +368,9 @@ Use case resumes at step 2
 3. To-Do-List shows task is added
 Use case ends
 
-#### Use Case: Edit task
+
+
+### Use Case: Edit task
 
 **MSS**
 
@@ -363,6 +378,7 @@ Use case ends
 2. To-Do-List adds task
 3. To-Do-List shows task is added
 Use case ends
+
 
 **Extensions**
 
@@ -371,6 +387,7 @@ Use case ends
 1a2. User enters priority
 Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority
 Use case resumes at step 2
+
 
 
 ## Appendix C : Non Functional Requirements
