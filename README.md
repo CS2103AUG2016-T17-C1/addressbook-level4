@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/se-edu/addressbook-level4.svg?branch=master)](https://travis-ci.org/se-edu/addressbook-level4)
 [![Coverage Status](https://coveralls.io/repos/github/se-edu/addressbook-level4/badge.svg?branch=master)](https://coveralls.io/github/se-edu/addressbook-level4?branch=master)
 
-# Address Book (Level 4)
+# Never Forget Me
 
 <img src="docs/images/UI.png" width="600"><br>
 
@@ -17,9 +17,8 @@
 
 #### Acknowledgements
 
-* Some parts of this sample application were inspired by the excellent
-  Orginal source of this application is created by [SE-EDU initiative](http://github.com/se-edu/)
-  [Java FX tutorial](http://code.makery.ch/library/javafx-8-tutorial/) by *Marco Jakob*.
+* Some parts of this sample application were inspired by the excellent [Java FX tutorial](http://code.makery.ch/library/javafx-8-tutorial/) by *Marco Jakob*.
+* 
 
 
 #### Licence : [MIT](LICENSE)
