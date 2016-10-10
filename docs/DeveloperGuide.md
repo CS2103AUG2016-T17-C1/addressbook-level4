@@ -312,5 +312,29 @@ Use case ends.
 
 ## Appendix E : Product Survey
 
-{TODO: Add a summary of competing products}
+Even just a short search on the web brings up very many results which are popular apps for countless users.
+
+#### Widely used competing products
+
+##### Wunderlist
+> This application is cloud-based, and its basic version is free. Extra features, however, are available in a paid version. Interestingly, Wunderlist is not able to save entries as PDF or HTML files. The number of subtasks is also limited in the basic version. Wunderlists's popularity stands as a testimony to its many users. Overall, this is quite a good application for Jim, as it includes keyboard shortcuts for accessing the various commands.
+
+##### Evernote
+> Evernote is a flexible application with a basic version for free and extra features implemented to various degrees through payed versions. There is also on upload limit based on this. Evernote has its own set of shortcuts, which thus makes it a good choice for a user such as Jim.
+
+##### Notes (iOS)
+> The main advantage of Notes is that it is free; however, it is OS-dependent and works in a simple, albeit straightforward manner. In the case of Jim, he might or might not use iOS, so a more flexible app would be better.
+
+##### Google Calendar/Tasks
+> One of the main advantages of this application is its availability for free
+
+##### Google keep
+>
+
+##### MS Onenote
+> An interesting feature of this application is that the user may click anywhere in the window in order to write; however, this is not particularly helpful for Jim, who prefers typing and keyboard command-driven programs.
+
+##### List of other popular competing products
+
+> `Remember the Milk`, `Springpad`, `Colornote`, `Simplenote`, `Notability`, `Penultimate`, `Todoist`, `Clear`, `Swipes`, `Pocket Lists`, `Carrot`, `Everyday`, `Paperless`.
 
