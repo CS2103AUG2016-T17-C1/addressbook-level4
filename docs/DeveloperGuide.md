@@ -298,13 +298,13 @@ Use case ends
 
 **Extensions**
 
-1a. Given input is invalid
-1a1. To-Do-List shows an error message and an input example
-Use case resumes at step 1
+1a. Given input is invalid<br>
+1a1. To-Do-List shows an error message and an input example<br>
+Use case resumes at step 1<br>
 
-1b. Task has been added before
-1b1. To-Do-List reports that task has been added before
-Use case ends
+1b. Task has been added before<br>
+1b1. To-Do-List reports that task has been added before<br>
+Use case ends<br>
 
 Note: all subsequent add task use cases are subsets of add task use case above
 
@@ -322,11 +322,11 @@ Use case ends
 
 **Extensions**
 
-1a. Given date input is invalid
-1a1. To-Do-List shows an error message and an input example
-1a2. User enters deadline
-Use case repeats 1a until user enters a valid deadline or chooses to add task without deadline
-Use case resumes at step 2
+1a. Given date input is invalid<br>
+1a1. To-Do-List shows an error message and an input example<br>
+1a2. User enters deadline<br>
+Use case repeats 1a until user enters a valid deadline or chooses to add task without deadline<br>
+Use case resumes at step 2<br>
 
 
 
@@ -334,25 +334,25 @@ Use case resumes at step 2
 
 **MSS**
 
-User enters task to be added
-To-Do-List adds task
-To-Do-List shows task is added
-	Use case ends
+1. User enters task to be added
+2. To-Do-List adds task
+3. To-Do-List shows task is added
+Use case ends
 
 
 **Extensions**
 
-1a. Proposed allocation time is not available
-1a1. To-Do-List reports that proposed time is not available
-1a2. User enters another time
-Use case repeats 1a until user proposes a suitable time or chooses to add task without allocating time
-Use case resumes at step 2
+1a. Proposed allocation time is not available<br>
+1a1. To-Do-List reports that proposed time is not available<br>
+1a2. User enters another time<br>
+Use case repeats 1a until user proposes a suitable time or chooses to add task without allocating time<br>
+Use case resumes at step 2<br>
 
-1b. Given time input is invalid
-1a1. To-Do-List shows an error message and an input example
-1a2. User enters another time
-Use case repeats 1a until user proposes a suitable time or chooses to add task without allocating time
-Use case resumes at step 2
+1b. Given time input is invalid<br>
+1a1. To-Do-List shows an error message and an input example<br>
+1a2. User enters another time<br>
+Use case repeats 1a until user proposes a suitable time or chooses to add task without allocating time<br>
+Use case resumes at step 2<br>
 
 
 
@@ -368,11 +368,11 @@ Use case ends
 
 **Extensions**
 
-1a. Priority tag input is invalid
-1a1. To-Do-List reports that priority tag input is invalid
-1a2. User enters priority
-Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority
-Use case resumes at step 2
+1a. Priority tag input is invalid<br>
+1a1. To-Do-List reports that priority tag input is invalid<br>
+1a2. User enters priority<br>
+Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority<br>
+Use case resumes at step 2<br>
 
  
  
@@ -399,11 +399,11 @@ Use case ends
 
 **Extensions**
 
-1a. Priority tag input is invalid
-1a1. To-Do-List reports that priority tag input is invalid
-1a2. User enters priority
-Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority
-Use case resumes at step 2
+1a. Priority tag input is invalid<br>
+1a1. To-Do-List reports that priority tag input is invalid<br>
+1a2. User enters priority<br>
+Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority<br>
+Use case resumes at step 2<br>
 
 
 
@@ -414,7 +414,7 @@ Use case resumes at step 2
 3. Should come with automated unit tests and open source code.
 4. Should favor DOS style commands over Unix-style commands.
 
-{More to be added}
+
 
 ## Appendix D : Glossary
 
