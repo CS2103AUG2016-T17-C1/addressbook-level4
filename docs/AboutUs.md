@@ -38,7 +38,7 @@ Role: Tutor
 -----
 
 #### [Tyson Quek](https://github.com/pixelducky)
-<img src="Tutor Tyson.jpg" width="150"><br>
+<img src="images/Tutor Tyson.jpg" width="150"><br>
 Role: Tutor
 
 -----
