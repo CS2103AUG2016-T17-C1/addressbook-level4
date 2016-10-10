@@ -255,14 +255,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (un
 
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
-`* * *` | new user | see usage instructions | refer to instructions when I forget how to use the App
-`* * *` | user | add a new person |
-`* * *` | user | delete a person | remove entries that I no longer need
-`* * *` | user | find a person by name | locate details of persons without having to go through the entire list
-`* *` | user | hide [private contact details](#private-contact-detail) by default | minimize chance of someone else seeing them by accident
-`*` | user with many persons in the address book | sort persons by name | locate a person easily
+`* * *` | new user | view more information about commands available | learn more about commands
+`* * *` | user | add task | record tasks I need to do
+`* * *` | user | set a deadline upon adding task | keep track of due dates
+`* * *` | user | edit tasks | update tasks
+`* * *` | user | undo changes | reverse any mistakes I did
+`* * *` | user | redo changes | reverse the undo command
+`* * *` | user | delete tasks | remove irrelevant tasks
+`* * *` | user | mark completed tasks | indicate task as completed
+`* * *` | user | view upcoming tasks by day/week/month | decide what to do
+`* * *` | user | have shortcuts | use the application more efficiently
+`* * *` | advanced user | customise shortcuts | choose more suitable key combinations
+`* *` | user | prioritise task (urgent/less urgent or important/trivial) | categorise tasks by priority
+`* *` | user | add tags to task | label tasks
+`* *` | user | list tasks with specific label | view tasks from a certain category
+`* *` | user | mark task as recurrent | be able to identify interval-based tasks
+`* *` | user | view recurrent tasks | view tasks that take place on an interval basis
+`* *` | user | list 'general' tasks (without time allocated) | keep track of such tasks
+`* *` | user | list tasks without deadline allocated | keep track of such tasks
+`* *` | user | set reminders for deadlines/time boxed tasks | do tasks on time
+`* *` | user | allocate time to do task upon adding | time box tasks
+`*` | user | add venues to task | know where a task is supposed to take place
+`*` | user | view all available free time | decide which time slot to use to relax or allocate a task
+`*` | user | time myself when doing tasks | keep track of time taken for a task
 
-{More to be added}
+
 
 ## Appendix B : Use Cases
 
