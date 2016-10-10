@@ -326,13 +326,13 @@ Even just a short search on the web brings up very many results which are popula
 > The main advantage of Notes is that it is free; however, it is OS-dependent and works in a simple, albeit straightforward manner. In the case of Jim, he might or might not use iOS, so a more flexible app would be better.
 
 ##### Google Calendar/Tasks
-> One of the main advantages of this application is its availability for free
+> One of the main advantages of this application is its availability for free; also, it presents itself to the user in a clear, straightforward manner (for example: tasks are set on certain dates, at certain times, can be recurring). Keyboard shorcuts can be activated when the user clicks and selects a certain option in the settings. Once the shortcuts have been activated, Jim might be quite interested in using this application.
 
 ##### Google keep
->
+> Google keep is a free note-taking application that is mobile-based; however, it is also available via Chrome as a packaged app. It also implements shortcuts. It can be an attractive option for someone like Jim, as long as he is using the Chrome web browser.
 
 ##### MS Onenote
-> An interesting feature of this application is that the user may click anywhere in the window in order to write; however, this is not particularly helpful for Jim, who prefers typing and keyboard command-driven programs.
+> A free application that is quite flexible. An interesting feature of this application is that the user may click anywhere in the window in order to write; however, this is not particularly helpful for Jim, who prefers typing and keyboard command-driven programs, but it also implements some shortcuts; overall, it is a fair choice for a user like Jim.
 
 ##### List of other popular competing products
 
