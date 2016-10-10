@@ -31,7 +31,7 @@ Responsibilities:-
 
 
 #### [JOEL TAN](http://github.com/Sevreus)
-<img src="images/Tutor.jpg" width="150"><br>
+<img src="images/Tutor.png" width="150"><br>
 Role: Tutor
 
 
