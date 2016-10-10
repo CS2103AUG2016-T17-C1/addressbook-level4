@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import seedu.address.testutil.TypicalTestPersons;
+import seedu.address.testutil.TypicalTestTasks;
 import seedu.task.commons.events.model.TaskManagerChangedEvent;
 import seedu.task.commons.events.storage.DataSavingExceptionEvent;
 import seedu.task.model.TaskManager;
@@ -60,7 +60,7 @@ public class StorageManagerTest {
 
     @Test
     public void addressBookReadSave() throws Exception {
-        TaskManager original = new TypicalTestPersons().getTypicalAddressBook();
+        TaskManager original = new TypicalTestTasks().getTypicalAddressBook();
         storageManager.saveTaskManager(original);
         ReadOnlyTaskManager retrieved = storageManager.readTaskManager().get();
         assertEquals(original, new TaskManager(retrieved));

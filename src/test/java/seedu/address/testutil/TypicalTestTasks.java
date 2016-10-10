@@ -7,11 +7,11 @@ import seedu.task.model.task.*;
 /**
  *
  */
-public class TypicalTestPersons {
+public class TypicalTestTasks {
 
-    public static TestPerson alice, benson, carl, daniel, elle, fiona, george, hoon, ida;
+    public static TestTask alice, benson, carl, daniel, elle, fiona, george, hoon, ida;
 
-    public TypicalTestPersons() {
+    public TypicalTestTasks() {
         try {
             alice =  new PersonBuilder().withName("Alice Pauline").withAddress("123, Jurong West Ave 6, #08-111")
                     .withEmail("alice@gmail.com").withPhone("85355255")
@@ -34,28 +34,28 @@ public class TypicalTestPersons {
         }
     }
 
-    public static void loadAddressBookWithSampleData(TaskManager ab) {
+    public static void loadTaskManagerWithSampleData(TaskManager ab) {
 
         try {
-            ab.addPerson(new Task(alice));
-            ab.addPerson(new Task(benson));
-            ab.addPerson(new Task(carl));
-            ab.addPerson(new Task(daniel));
-            ab.addPerson(new Task(elle));
-            ab.addPerson(new Task(fiona));
-            ab.addPerson(new Task(george));
+            ab.addTask(new Task(alice));
+            ab.addTask(new Task(benson));
+            ab.addTask(new Task(carl));
+            ab.addTask(new Task(daniel));
+            ab.addTask(new Task(elle));
+            ab.addTask(new Task(fiona));
+            ab.addTask(new Task(george));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             assert false : "not possible";
         }
     }
 
-    public TestPerson[] getTypicalPersons() {
-        return new TestPerson[]{alice, benson, carl, daniel, elle, fiona, george};
+    public TestTask[] getTypicalTasks() {
+        return new TestTask[]{alice, benson, carl, daniel, elle, fiona, george};
     }
 
     public TaskManager getTypicalAddressBook(){
         TaskManager ab = new TaskManager();
-        loadAddressBookWithSampleData(ab);
+        loadTaskManagerWithSampleData(ab);
         return ab;
     }
 }

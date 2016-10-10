@@ -76,7 +76,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      *
      * @throws UniqueTaskList.DuplicateTaskException if an equivalent person already exists.
      */
-    public void addPerson(Task p) throws UniqueTaskList.DuplicateTaskException {
+    public void addTask(Task p) throws UniqueTaskList.DuplicateTaskException {
         syncTagsWithMasterList(p);
         tasks.add(p);
     }
@@ -104,7 +104,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         person.setTags(new UniqueTagList(commonTagReferences));
     }
 
-    public boolean removePerson(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
+    public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.remove(key)) {
             return true;
         } else {
