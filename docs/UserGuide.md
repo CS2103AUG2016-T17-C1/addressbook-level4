@@ -46,6 +46,7 @@
 
 
 #### Viewing help : `help`
+View help for commands, including hotkeys.<br>
 Format: `help`
 
 > Help is also shown if you enter an incorrect command e.g. `abcd`
@@ -66,8 +67,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find meeting`<br>
   Returns `meetings` and `Meetings` but not `meet`
-* `find coffe complete homework`<br>
-  Returns Any tasks containing names `coffe`, `complete`, or `homework`
+* `find coffee complete homework`<br>
+  Returns Any tasks containing names `coffee`, `complete`, or `homework`
 
 
 #### Adding a task: `add`
@@ -125,19 +126,30 @@ Exits the program.<br>
 Format: `exit`
 
 
+#### Undo : `undo`
+Undo previous command. <br>
+Format: `undo`
+
+
+#### Redo : `redo`
+Reverse undo command. <br>
+Format: `redo`
+
+
 #### Saving the data
 Never Forget data are saved in the hard disk automatically after any command that changes the data.<br>
-
 There is no need to save manually.
 
 
-#### Sorting the displayed task list : `click on either Home(which displays everything) Today, Next 7 Days or Month`
-Displays the task listing for that desired time frame<br>
+#### Sorting the displayed task list : `select any one of: Home(which displays everything), Today, Next 7 Days or Month`
+Displays the task listing for that desired time frame.<br>
 
 
-> Displays the task listing for that desired time frame
-  Tasks with no deadlines are only displayed in the Home listing where all tasks are displayed<br>
-  User must select any of the tabs, HOME, TODAY, Next 7 Days or Month
+> Displays the task listing for that desired time frame.
+  Tasks with no deadlines are only displayed in the Home listing where all tasks are displayed.<br>
+  User must select any one of the tabs, HOME, TODAY, Next 7 Days or Month.
+  
+ 
 
 
 ## FAQ
@@ -152,11 +164,13 @@ Displays the task listing for that desired time frame<br>
 Command | Format
 -------- | :--------
 Add | `add TASK d/DD-MMM-YY t/HHMM v/PLACE [t/TAG]...`
-Clear | `clear`
-Delete | `delete INDEX`
-Complete | `strikethrough the task at the INDEX`
-Find | `find KEYWORD [MORE_KEYWORDS]`
-List | `list`
-Help | `help`
-Select | `select INDEX`
 Check | `check INDEX`
+Clear | `clear`
+Complete | `strikethrough the task at the INDEX`
+Delete | `delete INDEX`
+Find | `find KEYWORD [MORE_KEYWORDS]`
+Help | `help`
+List | `list`
+Select | `select INDEX`
+Redo | `redo`
+Undo | `undo`
