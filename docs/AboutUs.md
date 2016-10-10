@@ -6,7 +6,7 @@ We are a team of students taking a module CS2103 based in the [School of Computi
 
 #### [MIHNEA ARION](https://github.com/Sevreus) 
 <img src="images/MA.jpg" width="150"><br>
-**Role**: Developer
+**Role**: Developer <br>
 **Responsibilities**: Storage, Documentation
 
 -----
