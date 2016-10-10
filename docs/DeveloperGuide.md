@@ -409,10 +409,11 @@ Use case resumes at step 2<br>
 
 ## Appendix C : Non Functional Requirements
 
-1. Should work on any [mainstream OS](#mainstream-os) as long as it has Java `1.8.0_60` or higher installed.
-2. Should be able to hold up to 1000 persons.
-3. Should come with automated unit tests and open source code.
+1. Should work on any [mainstream OS](#mainstream-os).
+2. Should be able to hold and display at least 30 tasks per day for each day over a period of one month.
+3. Shortcuts should be intuitive and easy to apply by the user i.e. "Home" button on keyboard should transfer the user back to the main window (the "Home") of the app.
 4. Should favor DOS style commands over Unix-style commands.
+5. Should mainly focus on keyboard input rather than clicks (keyboard favoured over "click-to-add" method).
 
 
 
