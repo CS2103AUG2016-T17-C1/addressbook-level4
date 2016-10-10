@@ -17,8 +17,9 @@
 
 #### Acknowledgements
 
-* Some parts of this sample application were inspired by the excellent [Java FX tutorial](http://code.makery.ch/library/javafx-8-tutorial/) by *Marco Jakob*.
-* 
+* Some parts of this application were inspired by the excellent [Java FX tutorial](http://code.makery.ch/library/javafx-8-tutorial/) by *Marco Jakob*.
+* This application was developed under professor Damith C. Rajapakse of the NUS teaching team.
+* Special thanks to our tutor, Joel Tan, for guiding us throughout the development process.
 
 
 #### Licence : [MIT](LICENSE)
