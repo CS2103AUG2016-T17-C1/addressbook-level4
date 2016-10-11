@@ -9,9 +9,9 @@ import seedu.task.commons.exceptions.IllegalValueException;
  */
 public class DueTime {
 
-    public static final String MESSAGE_EMAIL_CONSTRAINTS =
-            "Task emails should be 2 alphanumeric/period strings separated by '@'";
-    public static final String EMAIL_VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
+    public static final String MESSAGE_DUE_TIME_CONSTRAINTS =
+            "Task's due time should be in 24H format HHMM";
+    public static final String DUE_TIME_VALIDATION_REGEX = "(([0-1]?[0-9]|2[0-3])[0-5][0-9]$){0,1}";
 
     public final String value;
 
@@ -24,7 +24,7 @@ public class DueTime {
         assert email != null;
         email = email.trim();
         if (!isValidEmail(email)) {
-            throw new IllegalValueException(MESSAGE_EMAIL_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_DUE_TIME_CONSTRAINTS);
         }
         this.value = email;
     }
@@ -33,7 +33,7 @@ public class DueTime {
      * Returns if a given string is a valid task email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(EMAIL_VALIDATION_REGEX);
+        return test.matches(DUE_TIME_VALIDATION_REGEX);
     }
 
     @Override
