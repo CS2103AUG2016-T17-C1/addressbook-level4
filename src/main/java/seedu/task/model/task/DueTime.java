@@ -7,7 +7,7 @@ import seedu.task.commons.exceptions.IllegalValueException;
  * Represents a Task's phone number in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
-public class Email {
+public class DueTime {
 
     public static final String MESSAGE_EMAIL_CONSTRAINTS =
             "Task emails should be 2 alphanumeric/period strings separated by '@'";
@@ -20,7 +20,7 @@ public class Email {
      *
      * @throws IllegalValueException if given email address string is invalid.
      */
-    public Email(String email) throws IllegalValueException {
+    public DueTime(String email) throws IllegalValueException {
         assert email != null;
         email = email.trim();
         if (!isValidEmail(email)) {
@@ -44,8 +44,8 @@ public class Email {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Email // instanceof handles nulls
-                && this.value.equals(((Email) other).value)); // state check
+                || (other instanceof DueTime // instanceof handles nulls
+                && this.value.equals(((DueTime) other).value)); // state check
     }
 
     @Override

@@ -8,10 +8,10 @@ import seedu.task.model.tag.UniqueTagList;
  */
 public interface ReadOnlyTask {
 
-    Name getName();
-    Phone getPhone();
-    Email getEmail();
-    Address getAddress();
+    TaskName getName();
+    DueDate getPhone();
+    DueTime getEmail();
+    Importance getAddress();
 
     /**
      * The returned TagList is a deep copy of the internal TagList,
@@ -41,11 +41,11 @@ public interface ReadOnlyTask {
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
+                .append(" DueDate: ")
                 .append(getPhone())
-                .append(" Email: ")
+                .append(" DueTime: ")
                 .append(getEmail())
-                .append(" Address: ")
+                .append(" Importance: ")
                 .append(getAddress())
                 .append(" Tags: ");
         getTags().forEach(builder::append);

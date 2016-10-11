@@ -8,50 +8,50 @@ import seedu.task.model.task.*;
  */
 public class TestTask implements ReadOnlyTask {
 
-    private Name name;
-    private Address address;
-    private Email email;
-    private Phone phone;
+    private TaskName taskName;
+    private Importance importance;
+    private DueTime dueTime;
+    private DueDate dueDate;
     private UniqueTagList tags;
 
     public TestTask() {
         tags = new UniqueTagList();
     }
 
-    public void setName(Name name) {
-        this.name = name;
+    public void setName(TaskName taskName) {
+        this.taskName = taskName;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddress(Importance importance) {
+        this.importance = importance;
     }
 
-    public void setEmail(Email email) {
-        this.email = email;
+    public void setEmail(DueTime dueTime) {
+        this.dueTime = dueTime;
     }
 
-    public void setPhone(Phone phone) {
-        this.phone = phone;
-    }
-
-    @Override
-    public Name getName() {
-        return name;
+    public void setPhone(DueDate dueDate) {
+        this.dueDate = dueDate;
     }
 
     @Override
-    public Phone getPhone() {
-        return phone;
+    public TaskName getName() {
+        return taskName;
     }
 
     @Override
-    public Email getEmail() {
-        return email;
+    public DueDate getPhone() {
+        return dueDate;
     }
 
     @Override
-    public Address getAddress() {
-        return address;
+    public DueTime getEmail() {
+        return dueTime;
+    }
+
+    @Override
+    public Importance getAddress() {
+        return importance;
     }
 
     @Override

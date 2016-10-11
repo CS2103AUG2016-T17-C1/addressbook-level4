@@ -59,11 +59,11 @@ public class XmlAdaptedTask {
         for (XmlAdaptedTag tag : tagged) {
             taskTags.add(tag.toModelType());
         }
-        final Name name = new Name(this.name);
-        final Phone phone = new Phone(this.phone);
-        final Email email = new Email(this.email);
-        final Address address = new Address(this.address);
+        final TaskName taskName = new TaskName(this.name);
+        final DueDate dueDate = new DueDate(this.phone);
+        final DueTime dueTime = new DueTime(this.email);
+        final Importance importance = new Importance(this.address);
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        return new Task(name, phone, email, address, tags);
+        return new Task(taskName, dueDate, dueTime, importance, tags);
     }
 }
