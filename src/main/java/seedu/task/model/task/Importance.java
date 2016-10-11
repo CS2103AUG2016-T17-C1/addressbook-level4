@@ -5,12 +5,12 @@ import seedu.task.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a Task's address in the task manager.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidImportance(String)}
  */
 public class Importance {
     
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Task addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String MESSAGE_IMPORTANCE_CONSTRAINTS = "Task importance is denoted by number of *";
+    public static final String IMPORTANCE_VALIDATION_REGEX = "(\\p{Punct})*";
 
     public final String value;
 
@@ -19,19 +19,19 @@ public class Importance {
      *
      * @throws IllegalValueException if given address string is invalid.
      */
-    public Importance(String address) throws IllegalValueException {
-        assert address != null;
-        if (!isValidAddress(address)) {
-            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+    public Importance(String importance) throws IllegalValueException {
+        assert importance != null;
+        if (!isValidImportance(importance)) {
+            throw new IllegalValueException(MESSAGE_IMPORTANCE_CONSTRAINTS);
         }
-        this.value = address;
+        this.value = importance;
     }
 
     /**
      * Returns true if a given string is a valid task email.
      */
-    public static boolean isValidAddress(String test) {
-        return test.matches(ADDRESS_VALIDATION_REGEX);
+    public static boolean isValidImportance(String test) {
+        return test.matches(IMPORTANCE_VALIDATION_REGEX);
     }
 
     @Override

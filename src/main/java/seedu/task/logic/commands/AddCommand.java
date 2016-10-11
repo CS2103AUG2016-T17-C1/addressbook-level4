@@ -16,9 +16,9 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
-            + "Parameters: TASK_NAME [d/END_DATE] [t/END_TIME] [*] [t/TAG]...\n"
+            + "Parameters: TASK_NAME [d/END_DATE] [e/END_TIME] [*] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD
-            + " Buy milk d/15102016 t/1500 *";
+            + " Buy milk d/15102016 e/1500 *";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task is already Never Forgetten";

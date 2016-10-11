@@ -182,13 +182,13 @@ public class LogicManagerTest {
     @Test
     public void execute_add_invalidPersonData() throws Exception {
         assertCommandBehavior(
-                "add []\\[;] p/11125678 e/valid@e.mail a/valid, address", TaskName.MESSAGE_NAME_CONSTRAINTS);
+                "add []\\[;] d/11125678 e/valid@e.mail i/valid, address", TaskName.MESSAGE_NAME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid TaskName p/not_numbers e/valid@e.mail a/valid, address", DueDate.MESSAGE_DUE_DATE_CONSTRAINTS);
+                "add Valid TaskName d/not_numbers e/valid@e.mail i/valid, address", DueDate.MESSAGE_DUE_DATE_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid TaskName p/31125678 e/notAnEmail a/valid, address", DueTime.MESSAGE_DUE_TIME_CONSTRAINTS);
+                "add Valid TaskName d/31125678 e/notAnEmail i/valid, address", DueTime.MESSAGE_DUE_TIME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid TaskName p/11115678 e/valid@e.mail a/valid, address t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
+                "add Valid TaskName d/11115678 e/valid@e.mail i/valid, address t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
 
     }
 
@@ -406,11 +406,11 @@ public class LogicManagerTest {
             TaskName taskName = new TaskName("Adam Brown");
             DueDate privatePhone = new DueDate("11112111");
             DueTime dueTime = new DueTime("2359");
-            Importance privateAddress = new Importance("111, alpha street");
+            Importance importance = new Importance("**");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(taskName, privatePhone, dueTime, privateAddress, tags);
+            return new Task(taskName, privatePhone, dueTime, importance, tags);
         }
 
         /**
@@ -419,12 +419,11 @@ public class LogicManagerTest {
         
         Task floating() throws Exception {
             TaskName taskName = new TaskName("Floater");
-            DueDate privatePhone = new DueDate("");
+            DueDate dueDate = new DueDate("");
             DueTime dueTime = new DueTime("");
-            Importance privateAddress = new Importance("");
-            Tag tag1 = new Tag("");
-            UniqueTagList tags = new UniqueTagList(tag1);
-            return new Task(taskName, privatePhone, dueTime, privateAddress, tags);
+            Importance importance = new Importance("");
+            UniqueTagList tags = new UniqueTagList();
+            return new Task(taskName, dueDate, dueTime, importance, tags);
         }
 
         /**
@@ -439,7 +438,7 @@ public class LogicManagerTest {
                     new TaskName("Task " + seed),
                     new DueDate("" + (31129999 - Math.abs(seed))),
                     new DueTime("" + (Math.abs(seed) + 1200)),
-                    new Importance("House of " + seed),
+                    new Importance(new String(new char[seed]).replace("\0", "*")),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
@@ -451,9 +450,9 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getName().toString());
-            cmd.append(" p/").append(p.getPhone());
-            cmd.append(" e/").append(p.getEmail());
-            cmd.append(" a/").append(p.getAddress());
+            cmd.append(" d/").append(p.getDueDate());
+            cmd.append(" e/").append(p.getDueTime());
+            cmd.append(" i/").append(p.getImportance());
 
             UniqueTagList tags = p.getTags();
             for(Tag t: tags){
@@ -538,7 +537,7 @@ public class LogicManagerTest {
                     new TaskName(name),
                     new DueDate("25125678"),
                     new DueTime("0000"),
-                    new Importance("House of 1"),
+                    new Importance("**"),
                     new UniqueTagList(new Tag("tag"))
             );
         }
