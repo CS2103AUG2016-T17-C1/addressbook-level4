@@ -182,11 +182,11 @@ public class MainWindow extends UiPart {
         raise(new ExitAppRequestEvent());
     }
 
-    public PersonListPanel getPersonListPanel() {
+    public PersonListPanel getTaskListPanel() {
         return this.personListPanel;
     }
 
-    public void loadPersonPage(ReadOnlyTask person) {
+    public void loadTaskPage(ReadOnlyTask person) {
         browserPanel.loadTaskPage(person);
     }
 
