@@ -16,14 +16,14 @@ public class AddCommandTest extends TaskManagerGuiTest {
     public void add() {
         //add one person
         TestTask[] currentList = td.getTypicalTasks();
-        TestTask personToAdd = td.hoon;
-        assertAddSuccess(personToAdd, currentList);
-        currentList = TestUtil.addTasksToList(currentList, personToAdd);
+        TestTask taskToAdd = td.hoon;
+        assertAddSuccess(taskToAdd, currentList);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
         //add another person
-        personToAdd = td.ida;
-        assertAddSuccess(personToAdd, currentList);
-        currentList = TestUtil.addTasksToList(currentList, personToAdd);
+        taskToAdd = td.ida;
+        assertAddSuccess(taskToAdd, currentList);
+        currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
         //add duplicate person
         commandBox.runCommand(td.hoon.getAddCommand());
@@ -39,15 +39,15 @@ public class AddCommandTest extends TaskManagerGuiTest {
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
-    private void assertAddSuccess(TestTask personToAdd, TestTask... currentList) {
-        commandBox.runCommand(personToAdd.getAddCommand());
+    private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
+        commandBox.runCommand(taskToAdd.getAddCommand());
 
         //confirm the new card contains the right data
-        TaskCardHandle addedCard = taskListPanel.navigateToPerson(personToAdd.getName().fullName);
-        assertMatching(personToAdd, addedCard);
+        TaskCardHandle addedCard = taskListPanel.navigateToTask(taskToAdd.getName().fullName);
+        assertMatching(taskToAdd, addedCard);
 
         //confirm the list now contains all previous persons plus the new person
-        TestTask[] expectedList = TestUtil.addTasksToList(currentList, personToAdd);
+        TestTask[] expectedList = TestUtil.addTasksToList(currentList, taskToAdd);
         assertTrue(taskListPanel.isListMatching(expectedList));
     }
 
