@@ -32,7 +32,11 @@ public interface ReadOnlyTask {
     }
 
     /**
+<<<<<<< HEAD
      * Formats the task as text, showing all details.
+=======
+     * Formats the task as text, showing all contact details.
+>>>>>>> Refactor
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
