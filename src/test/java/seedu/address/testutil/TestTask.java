@@ -22,15 +22,15 @@ public class TestTask implements ReadOnlyTask {
         this.taskName = taskName;
     }
 
-    public void setAddress(Importance importance) {
+    public void setImportance(Importance importance) {
         this.importance = importance;
     }
 
-    public void setEmail(DueTime dueTime) {
+    public void setDueTime(DueTime dueTime) {
         this.dueTime = dueTime;
     }
 
-    public void setPhone(DueDate dueDate) {
+    public void setDueDate(DueDate dueDate) {
         this.dueDate = dueDate;
     }
 

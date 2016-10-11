@@ -65,15 +65,15 @@ public class TestUtil {
     private static Task[] getSampleTaskData() {
         try {
             return new Task[]{
-                    new Task(new TaskName("Ali Muster"), new DueDate("9482424"), new DueTime("hans@google.com"), new Importance("4th street"), new UniqueTagList()),
-                    new Task(new TaskName("Boris Mueller"), new DueDate("87249245"), new DueTime("ruth@google.com"), new Importance("81th street"), new UniqueTagList()),
-                    new Task(new TaskName("Carl Kurz"), new DueDate("95352563"), new DueTime("heinz@yahoo.com"), new Importance("wall street"), new UniqueTagList()),
-                    new Task(new TaskName("Daniel Meier"), new DueDate("87652533"), new DueTime("cornelia@google.com"), new Importance("10th street"), new UniqueTagList()),
-                    new Task(new TaskName("Elle Meyer"), new DueDate("9482224"), new DueTime("werner@gmail.com"), new Importance("michegan ave"), new UniqueTagList()),
-                    new Task(new TaskName("Fiona Kunz"), new DueDate("9482427"), new DueTime("lydia@gmail.com"), new Importance("little tokyo"), new UniqueTagList()),
-                    new Task(new TaskName("George Best"), new DueDate("9482442"), new DueTime("anna@google.com"), new Importance("4th street"), new UniqueTagList()),
-                    new Task(new TaskName("Hoon Meier"), new DueDate("8482424"), new DueTime("stefan@mail.com"), new Importance("little india"), new UniqueTagList()),
-                    new Task(new TaskName("Ida Mueller"), new DueDate("8482131"), new DueTime("hans@google.com"), new Importance("chicago ave"), new UniqueTagList())
+                    new Task(new TaskName("Ali Muster"), new DueDate("13102016"), new DueTime("1300"), new Importance("**"), new UniqueTagList()),
+                    new Task(new TaskName("Boris Mueller"), new DueDate("13102016"), new DueTime("1500"), new Importance("*"), new UniqueTagList()),
+                    new Task(new TaskName("Carl Kurz"), new DueDate("13102016"), new DueTime("1700"), new Importance("*"), new UniqueTagList()),
+                    new Task(new TaskName("Daniel Meier"), new DueDate("13102016"), new DueTime("1800"), new Importance("***"), new UniqueTagList()),
+                    new Task(new TaskName("Elle Meyer"), new DueDate("13102016"), new DueTime("1759"), new Importance("**"), new UniqueTagList()),
+                    new Task(new TaskName("Fiona Kunz"), new DueDate("13102016"), new DueTime("2359"), new Importance("*"), new UniqueTagList()),
+                    new Task(new TaskName("George Best"), new DueDate("13102016"), new DueTime("1012"), new Importance("*"), new UniqueTagList()),
+                    new Task(new TaskName("Hoon Meier"), new DueDate("13102016"), new DueTime("0001"), new Importance("**"), new UniqueTagList()),
+                    new Task(new TaskName("Ida Mueller"), new DueDate("13102016"), new DueTime("0606"), new Importance("**"), new UniqueTagList())
             };
         } catch (IllegalValueException e) {
             assert false;
