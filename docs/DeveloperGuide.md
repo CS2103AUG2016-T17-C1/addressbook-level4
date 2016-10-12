@@ -204,13 +204,13 @@ We have two types of tests:
   
 2. **Non-GUI Tests** - These are tests not involving the GUI. They include,
    1. _Unit tests_ targeting the lowest level methods/classes. <br>
-      e.g. `seedu.task.commons.UrlUtilTest`
+      e.g. `seedu.address.commons.UrlUtilTest`
    2. _Integration tests_ that are checking the integration of multiple code units 
      (those code units are assumed to be working).<br>
-      e.g. `seedu.task.storage.StorageManagerTest`
+      e.g. `seedu.address.storage.StorageManagerTest`
    3. Hybrids of unit and integration tests. These test are checking multiple code units as well as 
       how the are connected together.<br>
-      e.g. `seedu.task.logic.LogicManagerTest`
+      e.g. `seedu.address.logic.LogicManagerTest`
   
 **Headless GUI Testing** :
 Thanks to the [TestFX](https://github.com/TestFX/TestFX) library we use,
@@ -255,50 +255,167 @@ Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (un
 
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
-`* * *` | new user | see usage instructions | refer to instructions when I forget how to use the App
-`* * *` | user | add a new person |
-`* * *` | user | delete a person | remove entries that I no longer need
-`* * *` | user | find a person by name | locate details of persons without having to go through the entire list
-`* *` | user | hide [private contact details](#private-contact-detail) by default | minimize chance of someone else seeing them by accident
-`*` | user with many persons in the address book | sort persons by name | locate a person easily
+`* * *` | new user | view more information about commands available | learn more about commands
+`* * *` | user | add task | record tasks I need to do
+`* * *` | user | set a deadline upon adding task | keep track of due dates
+`* * *` | user | edit tasks | update tasks
+`* * *` | user | undo changes | reverse any mistakes I did
+`* * *` | user | redo changes | reverse the undo command
+`* * *` | user | delete tasks | remove irrelevant tasks
+`* * *` | user | mark completed tasks | indicate task as completed
+`* * *` | user | view upcoming tasks by day/week/month | decide what to do
+`* * *` | user | have shortcuts | use the application more efficiently
+`* * *` | advanced user | customise shortcuts | choose more suitable key combinations
+`* *` | user | prioritise task (urgent/less urgent or important/trivial) | categorise tasks by priority
+`* *` | user | add tags to task | label tasks
+`* *` | user | list tasks with specific label | view tasks from a certain category
+`* *` | user | mark task as recurrent | be able to identify interval-based tasks
+`* *` | user | view recurrent tasks | view tasks that take place on an interval basis
+`* *` | user | list 'general' tasks (without time allocated) | keep track of such tasks
+`* *` | user | list tasks without deadline allocated | keep track of such tasks
+`* *` | user | set reminders for deadlines/time boxed tasks | do tasks on time
+`* *` | user | allocate time to do task upon adding | time box tasks
+`*` | user | add venues to task | know where a task is supposed to take place
+`*` | user | view all available free time | decide which time slot to use to relax or allocate a task
+`*` | user | time myself when doing tasks | keep track of time taken for a task
 
-{More to be added}
+
 
 ## Appendix B : Use Cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `To-Do-List` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use case: Delete person
+
+### Use Case: Add task
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person <br>
-Use case ends.
+1. User enters task to be added
+2. To-Do-List adds task
+3. To-Do-List shows task is added
+Use case ends
+
 
 **Extensions**
 
-2a. The list is empty
+1a. Given input is invalid<br>
+1a1. To-Do-List shows an error message and an input example<br>
+Use case resumes at step 1<br>
 
-> Use case ends
+1b. Task has been added before<br>
+1b1. To-Do-List reports that task has been added before<br>
+Use case ends<br>
 
-3a. The given index is invalid
+Note: all subsequent add task use cases are subsets of add task use case above
 
-> 3a1. AddressBook shows an error message <br>
-  Use case resumes at step 2
 
-{More to be added}
+
+### Use Case: Add task with deadline
+
+**MSS**
+
+1. User enters task to be added
+2. To-Do-List adds task
+3. To-Do-List shows task is added
+Use case ends
+
+
+**Extensions**
+
+1a. Given date input is invalid<br>
+1a1. To-Do-List shows an error message and an input example<br>
+1a2. User enters deadline<br>
+Use case repeats 1a until user enters a valid deadline or chooses to add task without deadline<br>
+Use case resumes at step 2<br>
+
+
+
+#### Use Case: Add task with time allocated
+
+**MSS**
+
+1. User enters task to be added
+2. To-Do-List adds task
+3. To-Do-List shows task is added
+Use case ends
+
+
+**Extensions**
+
+1a. Proposed allocation time is not available<br>
+1a1. To-Do-List reports that proposed time is not available<br>
+1a2. User enters another time<br>
+Use case repeats 1a until user proposes a suitable time or chooses to add task without allocating time<br>
+Use case resumes at step 2<br>
+
+1b. Given time input is invalid<br>
+1a1. To-Do-List shows an error message and an input example<br>
+1a2. User enters another time<br>
+Use case repeats 1a until user proposes a suitable time or chooses to add task without allocating time<br>
+Use case resumes at step 2<br>
+
+
+
+### Use Case: Add task with priority tagging
+
+**MSS**
+
+1. User enters task to be added
+2. To-Do-List adds task
+3. To-Do-List shows task is added
+Use case ends
+
+
+**Extensions**
+
+1a. Priority tag input is invalid<br>
+1a1. To-Do-List reports that priority tag input is invalid<br>
+1a2. User enters priority<br>
+Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority<br>
+Use case resumes at step 2<br>
+
+ 
+ 
+### Use Case: Add task with tagging
+
+**MSS**
+
+1. User enters task to be added
+2. To-Do-List adds task
+3. To-Do-List shows task is added
+Use case ends
+
+
+
+### Use Case: Edit task
+
+**MSS**
+
+1. User enters task to be added
+2. To-Do-List adds task
+3. To-Do-List shows task is added
+Use case ends
+
+
+**Extensions**
+
+1a. Priority tag input is invalid<br>
+1a1. To-Do-List reports that priority tag input is invalid<br>
+1a2. User enters priority<br>
+Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority<br>
+Use case resumes at step 2<br>
+
+
 
 ## Appendix C : Non Functional Requirements
 
-1. Should work on any [mainstream OS](#mainstream-os) as long as it has Java `1.8.0_60` or higher installed.
-2. Should be able to hold up to 1000 persons.
-3. Should come with automated unit tests and open source code.
+1. Should work on any [mainstream OS](#mainstream-os).
+2. Should be able to hold and display at least 30 tasks per day for each day over a period of one month.
+3. Shortcuts should be intuitive and easy to apply by the user i.e. "Home" button on keyboard should transfer the user back to the main window (the "Home") of the app.
 4. Should favor DOS style commands over Unix-style commands.
+5. Should mainly focus on keyboard input rather than clicks (keyboard favoured over "click-to-add" method).
 
-{More to be added}
+
 
 ## Appendix D : Glossary
 
@@ -306,11 +423,39 @@ Use case ends.
 
 > Windows, Linux, Unix, OS-X
 
-##### Private contact detail
+##### Popular app
 
-> A contact detail that is not meant to be shared with others
+> Application that frequently makes it into "Top X" lists published by tech sites for those certain requirements
+
+##### Competing product
+
+> A product which satisfies similar user requirements
 
 ## Appendix E : Product Survey
 
-{TODO: Add a summary of competing products}
+Even just a short search on the web brings up very many results which are popular apps for countless users.
+
+#### Widely used competing products
+
+##### Wunderlist
+> This application is cloud-based, and its basic version is free. Extra features, however, are available in a paid version. Interestingly, Wunderlist is not able to save entries as PDF or HTML files. The number of subtasks is also limited in the basic version. Wunderlists's popularity stands as a testimony to its many users. Overall, this is quite a good application for Jim, as it includes keyboard shortcuts for accessing the various commands.
+
+##### Evernote
+> Evernote is a flexible application with a basic version for free and extra features implemented to various degrees through payed versions. There is also on upload limit based on this. Evernote has its own set of shortcuts, which thus makes it a good choice for a user such as Jim.
+
+##### Notes (iOS)
+> The main advantage of Notes is that it is free; however, it is OS-dependent and works in a simple, albeit straightforward manner. In the case of Jim, he might or might not use iOS, so a more flexible app would be better.
+
+##### Google Calendar/Tasks
+> One of the main advantages of this application is its availability for free; also, it presents itself to the user in a clear, straightforward manner (for example: tasks are set on certain dates, at certain times, can be recurring). Keyboard shorcuts can be activated when the user clicks and selects a certain option in the settings. Once the shortcuts have been activated, Jim might be quite interested in using this application.
+
+##### Google keep
+> Google keep is a free note-taking application that is mobile-based; however, it is also available via Chrome as a packaged app. It also implements shortcuts. It can be an attractive option for someone like Jim, as long as he is using the Chrome web browser.
+
+##### MS Onenote
+> A free application that is quite flexible. An interesting feature of this application is that the user may click anywhere in the window in order to write; however, this is not particularly helpful for Jim, who prefers typing and keyboard command-driven programs, but it also implements some shortcuts; overall, it is a fair choice for a user like Jim.
+
+##### List of other popular competing products
+
+> `Remember the Milk`, `Springpad`, `Colornote`, `Simplenote`, `Notability`, `Penultimate`, `Todoist`, `Clear`, `Swipes`, `Pocket Lists`, `Carrot`, `Everyday`, `Paperless`.
 
