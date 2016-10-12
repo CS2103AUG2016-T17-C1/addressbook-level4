@@ -34,8 +34,7 @@
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> or clicking on the help button will open the help window.
 5. Some example commands you can try:
    * **`list`** : lists all tasks
-   * **`add`**` Buy a cup of coffee` : Add a task to buy a cup of coffee without setting any deadlines for it
-     adds a contact named `John Doe` to the to-do list.
+   * **`add`**` Buy a cup of coffee` : Add a task to buy a cup of coffee without setting any deadlines for it to the to-do list.
 
    * **`list`** : lists today's tasks
    * **`add`**` Grocery Shopping d/1-Jan-2016 t/1800 v/Hougang NTUC` :
@@ -47,6 +46,7 @@
 
 
 #### Viewing help : `help`
+View help for commands, including hotkeys.<br>
 Format: `help`
 
 > Help is also shown if you enter an incorrect command e.g. `abcd`
@@ -56,7 +56,7 @@ Format: `help`
 Finds tasks whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-> * The search is case sensitive. e.g `hans` will not match `Hans`
+> * The search is not case sensitive. e.g `hans` will match `Hans`
 > * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 > * Only the name is searched.
 > * Non full words will still be matched e.g. `Han` WILL match `Hans`
@@ -67,8 +67,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find meeting`<br>
   Returns `meetings` and `Meetings` but not `meet`
-* `find coffe complete homework`<br>
-  Returns Any tasks containing names `coffe`, `complete`, or `homwork`
+* `find coffee complete homework`<br>
+  Returns Any tasks containing names `coffee`, `complete`, or `homework`
 
 
 #### Adding a task: `add`
@@ -84,7 +84,7 @@ Examples:
 
 
 #### Deleting a task : `delete`
-Deletes the specified task from the to-do list. Irreversible.<br>
+Deletes the specified task from the to-do list. Can be reversed with `undo` command.<br>
 Format: `delete INDEX`
 
 > Deletes the task at the specified `INDEX`.
@@ -126,19 +126,30 @@ Exits the program.<br>
 Format: `exit`
 
 
+#### Undo : `undo`
+Undo previous command. <br>
+Format: `undo`
+
+
+#### Redo : `redo`
+Reverse undo command. <br>
+Format: `redo`
+
+
 #### Saving the data
 Never Forget data are saved in the hard disk automatically after any command that changes the data.<br>
-
 There is no need to save manually.
 
 
-#### Sorting the displayed task list : `click on either Home(which displays everything) Today, Next 7 Days or Month`
-Displays the task listing for that desired time frame<br>
+#### Sorting the displayed task list : `select any one of: Home(which displays everything), Today, Next 7 Days or Month`
+Displays the task listing for that desired time frame.<br>
 
 
-> Displays the task listing for that desired time frame
-  Tasks with no deadlines are only displayed in the Home listing where all tasks are displayed<br>
-  User must select any of the tabs, HOME, TODAY, Next 7 Days or Month
+> Displays the task listing for that desired time frame.
+  Tasks with no deadlines are only displayed in the Home listing where all tasks are displayed.<br>
+  User must select any one of the tabs, HOME, TODAY, Next 7 Days or Month.
+  
+ 
 
 
 ## FAQ
@@ -153,11 +164,13 @@ Displays the task listing for that desired time frame<br>
 Command | Format
 -------- | :--------
 Add | `add TASK d/DD-MMM-YY t/HHMM v/PLACE [t/TAG]...`
-Clear | `clear`
-Delete | `delete INDEX`
-Complete | `strikethrough the task at the INDEX`
-Find | `find KEYWORD [MORE_KEYWORDS]`
-List | `list`
-Help | `help`
-Select | `select INDEX`
 Check | `check INDEX`
+Clear | `clear`
+Complete | `strikethrough the task at the INDEX`
+Delete | `delete INDEX`
+Find | `find KEYWORD [MORE_KEYWORDS]`
+Help | `help`
+List | `list`
+Select | `select INDEX`
+Redo | `redo`
+Undo | `undo`
