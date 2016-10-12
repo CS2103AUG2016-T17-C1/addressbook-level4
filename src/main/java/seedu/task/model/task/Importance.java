@@ -8,7 +8,7 @@ import seedu.task.commons.exceptions.IllegalValueException;
  * Guarantees: immutable; is valid as declared in {@link #isValidImportance(String)}
  */
 public class Importance {
-    
+
     public static final String MESSAGE_IMPORTANCE_CONSTRAINTS = "Task importance is denoted by number of *";
     public static final String IMPORTANCE_VALIDATION_REGEX = "(\\p{Punct})*";
 
@@ -20,11 +20,15 @@ public class Importance {
      * @throws IllegalValueException if given address string is invalid.
      */
     public Importance(String importance) throws IllegalValueException {
-        assert importance != null;
+    	 if (importance == null)
+         	importance = "*";
+         this.value = importance;
+
         if (!isValidImportance(importance)) {
             throw new IllegalValueException(MESSAGE_IMPORTANCE_CONSTRAINTS);
         }
-        this.value = importance;
+
+
     }
 
     /**

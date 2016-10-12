@@ -20,9 +20,10 @@ public class DueDate {
      *             if given due date string is invalid.
      */
     public DueDate(String dueDate) throws IllegalValueException {
-        assert dueDate != null;
-        dueDate = dueDate.trim();
-        if (!isValidDueDate(dueDate)) {
+        if(dueDate == null)
+        	dueDate = " ";
+    	dueDate = dueDate.trim();
+        if (!isValidDueDate(dueDate) ) {
             throw new IllegalValueException(MESSAGE_DUE_DATE_CONSTRAINTS);
         }
         this.value = dueDate;

@@ -21,7 +21,8 @@ public class DueTime {
      * @throws IllegalValueException if given email address string is invalid.
      */
     public DueTime(String email) throws IllegalValueException {
-        assert email != null;
+        if (email == null)
+        	email = " ";
         email = email.trim();
         if (!isValidEmail(email)) {
             throw new IllegalValueException(MESSAGE_DUE_TIME_CONSTRAINTS);
