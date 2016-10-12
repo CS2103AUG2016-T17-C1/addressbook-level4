@@ -1,52 +1,44 @@
 # About Us
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a team of students taking a module CS2103 based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## Project Team
 
-#### [Damith C. Rajapakse](http://www.comp.nus.edu.sg/~damithch) <br>
-<img src="images/DamithRajapakse.jpg" width="150"><br>
-**Role**: Project Advisor
+#### [MIHNEA ARION](https://github.com/Sevreus) 
+<img src="images/MA.jpg" width="150"><br>
+**Role**: Developer
 
 -----
 
-#### [Joshua Lee](http://github.com/lejolly)
-<img src="images/JoshuaLee.jpg" width="150"><br>
-Role: Developer <br>  
-Responsibilities: UI
+#### [SHEN JIAHUI](http://github.com/JIAHUIs)
+<img src="images/SJH.jpg" width="150"><br>
+Role: Developer <br>
+Responsibilities: -
 
 -----
 
-#### [Leow Yijin](http://github.com/yijinl) 
-<img src="images/LeowYijin.jpg" width="150"><br>
-Role: Developer <br>  
-Responsibilities: Data
+#### [SIN YU FAN](http://github.com/howitzerg)
+<img src="images/SYF.jpg" width="150"><br>
+Role: Developer <br>
+Responsibilities: -
 
 -----
 
-#### [Martin Choo](http://github.com/m133225)
-<img src="images/MartinChoo.jpg" width="150"><br>
-Role: Developer <br>  
-Responsibilities: Dev Ops
+#### [TAY MING LIANG](http://github.com/mlteh)
+<img src="images/TML.jpg" width="150"><br>
+Role: Developer <br>
+Responsibilities:-
 
 -----
 
-#### [Thien Nguyen](https://github.com/ndt93)
- Role: Developer <br>  
- Responsibilities: Threading
- 
- -----
+#### [Joel Tan](https://github.com/JoelT-92)
+<img src="images/Tutor.png" width="150"><br>
+Role: Tutor
 
-#### [You Liang](http://github.com/yl-coder) 
-<img src="images/YouLiang.jpg" width="150"><br>
- Role: Developer <br>  
- Responsibilities: UI
- 
- -----
+-----
 
-# Contributors
+#### [Tyson Quek](https://github.com/pixelducky)
+<img src="images/Tutor Tyson.jpg" width="150"><br>
+Role: Tutor
 
-We welcome contributions. See [Contact Us](ContactUs.md) page for more info.
-
-* [Akshay Narayan](https://github.com/se-edu/addressbook-level4/pulls?q=is%3Apr+author%3Aokkhoy)
-* [Sam Yong](https://github.com/se-edu/addressbook-level4/pulls?q=is%3Apr+author%3Amauris)
+-----
