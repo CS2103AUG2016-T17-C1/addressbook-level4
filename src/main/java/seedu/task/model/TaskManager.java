@@ -112,6 +112,14 @@ public class TaskManager implements ReadOnlyTaskManager {
         }
     }
 
+    public boolean editTask(ReadOnlyTask key, Task newTask) throws UniqueTaskList.TaskNotFoundException {
+        if (tasks.edit(key, newTask)) {
+            return true;
+        } else {
+            throw new UniqueTaskList.TaskNotFoundException();
+        }
+    }
+
 //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {

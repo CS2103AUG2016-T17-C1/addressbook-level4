@@ -74,6 +74,27 @@ public class UniqueTaskList implements Iterable<Task> {
         return taskFoundAndDeleted;
     }
 
+    /**
+     * Edits the equivalent task from the list.
+     *
+     * @throws TaskNotFoundException if no such task could be found in the list.
+     */
+    public boolean edit(ReadOnlyTask toEdit, Task task) throws TaskNotFoundException {
+        assert toEdit != null;
+        //final boolean taskFoundAndEdited = internalList.set(1,toEdit);
+        int indexDel = internalList.indexOf(toEdit);
+        if (indexDel == -1 ) {
+            throw new TaskNotFoundException();
+        }
+
+        internalList.set(indexDel,task);
+        return true;
+    }
+
+
+
+
+
     public ObservableList<Task> getInternalList() {
         return internalList;
     }

@@ -6,6 +6,7 @@ import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
 
 /**
  * The API of the Model component.
@@ -23,6 +24,9 @@ public interface Model {
     /** Adds the given task */
     void addTask(Task task) throws UniqueTaskList.DuplicateTaskException;
 
+    /** Edits the given task. */
+    void editTask(ReadOnlyTask target, Task task ) throws UniqueTaskList.TaskNotFoundException;
+
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
@@ -31,5 +35,7 @@ public interface Model {
 
     /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
+
+
 
 }

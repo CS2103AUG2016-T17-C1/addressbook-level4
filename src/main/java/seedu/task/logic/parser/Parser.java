@@ -33,6 +33,14 @@ public class Parser {
                     + "( i/(?<importance>[^/]*)){0,1}"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
+    private static final Pattern EDIT_TASK_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
+            Pattern.compile("(?<targetIndex>\\d+)"
+                    + "(?<taskName>[^/]+){0,1}"
+                    + "( d/(?<dueDate>[^/]*)){0,1}"
+                    + "( e/(?<dueTime>[^/]*)){0,1}"
+                    + "( i/(?<importance>[^/]*)){0,1}"
+                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+
     public Parser() {}
 
     /**
@@ -53,6 +61,9 @@ public class Parser {
 
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
+
+        case EditCommand.COMMAND_WORD:
+            return prepareEdit(arguments);
 
         case SelectCommand.COMMAND_WORD:
             return prepareSelect(arguments);
@@ -136,6 +147,46 @@ public class Parser {
         return new DeleteCommand(index.get());
     }
 
+
+
+    /**
+     * Parses arguments in the context of the delete task command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareEdit(String args) {
+
+/*        Optional<Integer> index = parseIndex(args);
+        if(!index.isPresent()){
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+
+
+
+
+        return new EditCommand(index.get());*/
+
+        final Matcher matcher = EDIT_TASK_DATA_ARGS_FORMAT.matcher(args.trim());
+        // Validate arg string format
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+        try {
+            return new EditCommand(
+                    matcher.group("targetIndex"),
+                    matcher.group("taskName"),
+                    matcher.group("dueDate"),
+                    matcher.group("dueTime"),
+                    matcher.group("importance"),
+                    getTagsFromArgs(matcher.group("tagArguments"))
+            );
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
+        }
+    }
+
     /**
      * Parses arguments in the context of the select task command.
      *
@@ -151,6 +202,8 @@ public class Parser {
 
         return new SelectCommand(index.get());
     }
+
+
 
     /**
      * Returns the specified index in the {@code command} IF a positive unsigned integer is given as the index.
