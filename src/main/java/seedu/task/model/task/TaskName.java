@@ -19,9 +19,10 @@ public class TaskName {
      * @throws IllegalValueException if given name string is invalid.
      */
     public TaskName(String name) throws IllegalValueException {
-        assert name != null;
-        name = name.trim();
-        if (!isValidName(name)) {
+        assert name != null ;
+        if (name != null)
+            name = name.trim();
+        if (name == null || !isValidName(name)) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
         this.fullName = name;
