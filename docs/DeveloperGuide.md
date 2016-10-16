@@ -441,7 +441,7 @@ Even just a short search on the web brings up very many results which are popula
 > This application is cloud-based, and its basic version is free. Extra features, however, are available in a paid version. Interestingly, Wunderlist is not able to save entries as PDF or HTML files. The number of subtasks is also limited in the basic version. Wunderlists's popularity stands as a testimony to its many users. Overall, this is quite a good application for Jim, as it includes keyboard shortcuts for accessing the various commands.
 
 ##### Evernote
-> Evernote is a flexible application with a basic version for free and extra features implemented to various degrees through payed versions. There is also on upload limit based on this. Evernote has its own set of shortcuts, which thus makes it a good choice for a user such as Jim.
+> Evernote is a flexible application with a basic version for free and extra features implemented to various degrees through payed versions. There is also an upload limit based on this. Evernote has its own set of shortcuts, which thus makes it a good choice for a user such as Jim.
 
 ##### Notes (iOS)
 > The main advantage of Notes is that it is free; however, it is OS-dependent and works in a simple, albeit straightforward manner. In the case of Jim, he might or might not use iOS, so a more flexible app would be better.
