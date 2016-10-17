@@ -308,8 +308,67 @@ Use case resumes at step 1<br>
 1b1. To-Do-List reports that task has been added before<br>
 <br>
 
-Note: all subsequent add task use cases are subsets of add task use case above
 
+### Use Case: Edit task
+
+**MSS**
+
+1. User enters task to be edited
+2. To-Do-List edits task
+3. To-Do-List shows the updated task<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. Given input is invalid<br>
+1a1. To-Do-List shows an error message and an input example<br>
+Use case resumes at step 1<br>
+
+1b. Task has not been added before<br>
+1b1. To-Do-List reports that task is not present<br>
+
+
+### Use Case: Delete task
+
+**MSS**
+
+1. User enters task to be deleted
+2. To-Do-List deletes task
+3. To-Do-List no longer shows task<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. Given input is invalid<br>
+1a1. To-Do-List shows an error message and an input example<br>
+Use case resumes at step 1<br>
+
+1b. Task has not been added before<br>
+1b1. To-Do-List reports that task is not present<br>
+
+
+### Use Case: Help command
+
+**MSSS**
+
+1. User enters help command
+2. To-Do-List displays the required help<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. Given input is invalid<br>
+1a1. To-Do-List shows an error message and an input example<br>
+Use case resumes at step 1<br>
+
+
+Note: all subsequent add task use cases are subsets of the first add task use case
 
 
 ### Use Case: Add task with deadline
@@ -391,45 +450,6 @@ Use case resumes at step 2<br>
 <br>
 -----Use case ends-----
 
-
-
-### Use Case: Edit task
-
-**MSS**
-
-1. User enters task to be edited
-2. To-Do-List edits task
-3. To-Do-List shows the updated task<br>
-<br>
------Use case ends-----
-
-
-**Extensions**
-
-1a. Priority tag input is invalid<br>
-1a1. To-Do-List reports that priority tag input is invalid<br>
-1a2. User enters priority<br>
-Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority<br>
-Use case resumes at step 2<br>
-
-### Use Case: Delete task
-
-**MSS**
-
-1. User enters task to be deleted
-2. To-Do-List deletes task
-3. To-Do-List no longer shows task<br>
-<br>
------Use case ends-----
-
-
-**Extensions**
-
-1a. Priority tag input is invalid<br>
-1a1. To-Do-List reports that priority tag input is invalid<br>
-1a2. User enters priority<br>
-Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority<br>
-Use case resumes at step 2<br>
 
 
 
