@@ -295,7 +295,6 @@ Priority | As a ... | I want to ... | So that I can...
 2. To-Do-List adds task
 3. To-Do-List shows task is added<br>
 <br>
-
 -----Use case ends-----
 
 
@@ -317,11 +316,10 @@ Note: all subsequent add task use cases are subsets of add task use case above
 
 **MSS**
 
-1. User enters task to be added
-2. To-Do-List adds task
+1. User enters task to be added and specifies the deadline
+2. To-Do-List adds task with deadline
 3. To-Do-List shows task is added<br>
 <br>
-
 -----Use case ends-----
 
 
@@ -335,12 +333,12 @@ Use case resumes at step 2<br>
 
 
 
-#### Use Case: Add task with time allocated
+### Use Case: Add task with time allocated
 
 **MSS**
 
-1. User enters task to be added
-2. To-Do-List adds task
+1. User enters task to be added and specifies its given time
+2. To-Do-List adds task with allocated time
 3. To-Do-List shows task is added<br>
 <br>
 -----Use case ends-----
@@ -366,8 +364,8 @@ Use case resumes at step 2<br>
 
 **MSS**
 
-1. User enters task to be added
-2. To-Do-List adds task
+1. User enters task to be added with specified priority
+2. To-Do-List adds task with tagged priority
 3. To-Do-List shows task is added<br>
 <br>
 -----Use case ends-----
@@ -399,9 +397,28 @@ Use case resumes at step 2<br>
 
 **MSS**
 
-1. User enters task to be added
-2. To-Do-List adds task
-3. To-Do-List shows task is added<br>
+1. User enters task to be edited
+2. To-Do-List edits task
+3. To-Do-List shows the updated task<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. Priority tag input is invalid<br>
+1a1. To-Do-List reports that priority tag input is invalid<br>
+1a2. User enters priority<br>
+Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority<br>
+Use case resumes at step 2<br>
+
+### Use Case: Delete task
+
+**MSS**
+
+1. User enters task to be deleted
+2. To-Do-List deletes task
+3. To-Do-List no longer shows task<br>
 <br>
 -----Use case ends-----
 
