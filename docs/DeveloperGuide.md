@@ -415,6 +415,8 @@ Use case resumes at step 2<br>
 3. Shortcuts should be intuitive and easy to apply by the user i.e. "Home" button on keyboard should transfer the user back to the main window (the "Home") of the app.
 4. Should favor DOS style commands over Unix-style commands.
 5. Should mainly focus on keyboard input rather than clicks (keyboard favoured over "click-to-add" method).
+6. An average computer user (i.e. any person able to do office work on the machine) should be able to utilise the program to its fullest extent.
+7. The program should be very responsive (i.e. worst case scenario would be a wait of ~300ms).
 
 
 
