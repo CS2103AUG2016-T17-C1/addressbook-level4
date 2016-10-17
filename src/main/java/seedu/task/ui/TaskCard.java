@@ -41,11 +41,11 @@ public class TaskCard extends UiPart{
 
     @FXML
     public void initialize() {
-        name.setText(task.getName().fullName);
+        name.setText("Task: "+ task.getName().fullName);
         id.setText(displayedIndex + ". ");
-        phone.setText(task.getDueDate().value);
-        address.setText(task.getImportance().value);
-        email.setText(task.getDueTime().value);
+        phone.setText("To be completed on Date: "+ task.getDueDate().value);
+        address.setText("Importance: " + task.getImportance().value);
+        email.setText("To be completed by "+task.getDueTime().value+"hours");
         tags.setText(task.tagsString());
     }
 

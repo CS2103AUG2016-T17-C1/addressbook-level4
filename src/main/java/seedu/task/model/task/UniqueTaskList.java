@@ -33,6 +33,7 @@ public class UniqueTaskList implements Iterable<Task> {
     public static class TaskNotFoundException extends Exception {}
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
+    private final ArrayList<ObservableList<Task>> savedList = new ArrayList<ObservableList<Task>>();
 
     /**
      * Constructs empty TaskList.
@@ -57,7 +58,12 @@ public class UniqueTaskList implements Iterable<Task> {
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
         }
+        savedList.add(internalList);
         internalList.add(toAdd);
+
+        System.out.println("updated savedlist"+ savedList);
+        System.out.println("savedList size" + savedList.size());
+
     }
 
     /**
@@ -67,7 +73,11 @@ public class UniqueTaskList implements Iterable<Task> {
      */
     public boolean remove(ReadOnlyTask toRemove) throws TaskNotFoundException {
         assert toRemove != null;
+        savedList.add(internalList);
         final boolean taskFoundAndDeleted = internalList.remove(toRemove);
+
+        System.out.println("updated savedlist"+ savedList);
+        System.out.println("savedList size" + savedList.size());
         if (!taskFoundAndDeleted) {
             throw new TaskNotFoundException();
         }
@@ -83,11 +93,32 @@ public class UniqueTaskList implements Iterable<Task> {
         assert toEdit != null;
         //final boolean taskFoundAndEdited = internalList.set(1,toEdit);
         int indexDel = internalList.indexOf(toEdit);
+        savedList.add(internalList);
         if (indexDel == -1 ) {
             throw new TaskNotFoundException();
         }
 
         internalList.set(indexDel,task);
+        return true;
+    }
+
+
+    /**
+     * Edits the equivalent task from the list.
+     *
+     * @throws TaskNotFoundException if no such task could be found in the list.
+     */
+    public boolean undo(){
+        System.out.println("trying to undo");
+        System.out.println("savedList size" + savedList.size());
+        System.out.println("to be removed"+ savedList.get(savedList.size() - 1));
+        savedList.remove(savedList.size() - 1);
+        ObservableList<Task> previousList = savedList.get(0);
+        System.out.println("to be placed back"+ savedList);
+
+        System.out.println("lol"+ internalList);
+        FXCollections.observableArrayList().setAll(0);
+
         return true;
     }
 
