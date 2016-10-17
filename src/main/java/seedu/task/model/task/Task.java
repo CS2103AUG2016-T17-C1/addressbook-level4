@@ -37,6 +37,15 @@ public class Task implements ReadOnlyTask {
         this(source.getName(), source.getDueDate(), source.getDueTime(), source.getImportance(), source.getTags());
     }
 
+    public Task(DueDate dueDate2, DueTime dueTime2, Importance importance2, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(taskName, dueDate, dueTime, importance, tags);
+        this.dueDate = dueDate2;
+        this.dueTime = dueTime2;
+        this.importance = importance2;
+        this.tags = new UniqueTagList(tags);
+        // TODO Auto-generated constructor stub
+    }
+
     @Override
     public TaskName getName() {
         return taskName;
@@ -55,6 +64,23 @@ public class Task implements ReadOnlyTask {
     @Override
     public Importance getImportance() {
         return importance;
+    }
+
+
+    public void setName(TaskName name) {
+        this.taskName = name;
+    }
+
+    public void setDueDate(DueDate dueDate2) {
+        this.dueDate = dueDate2;
+    }
+
+    public void setDueTime(DueTime dueTime2) {
+        this.dueTime = dueTime2;
+    }
+
+    public void setImportance(Importance importance2) {
+        this.importance = importance2;
     }
 
     @Override
@@ -86,5 +112,8 @@ public class Task implements ReadOnlyTask {
     public String toString() {
         return getAsText();
     }
+
+
+
 
 }

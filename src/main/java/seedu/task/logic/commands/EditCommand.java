@@ -20,35 +20,43 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": edits the task identified by the index number used in the last task listing.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
 
     public final int targetIndex;
     private final Task toEdit;
 
-    public EditCommand(String string, String taskName, String dueDate, String dueTime, String importance, Set<String> tags) throws IllegalValueException {
-        System.out.println("Target index"+string);
+    public EditCommand(String string, String taskName, String dueDate, String dueTime, String importance,
+            Set<String> tags) throws IllegalValueException {
+        System.out.println("Target index" + string);
         this.targetIndex = Integer.parseInt(string);
 
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        this.toEdit = new Task(
-                new TaskName(taskName),
-                new DueDate(dueDate),
-                new DueTime(dueTime),
-                new Importance(importance),
-                new UniqueTagList(tagSet)
-        );
-    }
 
+        if (taskName == null) {
+
+            this.toEdit = new Task(
+                    new DueDate(dueDate),
+                    new DueTime(dueTime), new
+                    Importance(importance),
+                    new UniqueTagList(tagSet));
+        }
+
+        else {
+            this.toEdit = new Task(
+                    new TaskName(taskName),
+                    new DueDate(dueDate),
+                    new DueTime(dueTime),
+                    new Importance(importance),
+                    new UniqueTagList(tagSet));
+        }
+    }
 
     @Override
     public CommandResult execute() {
@@ -62,15 +70,42 @@ public class EditCommand extends Command {
 
         ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
 
-
         try {
-            model.editTask(taskToEdit,this.toEdit);
+
+            System.out.println("_"+this.toEdit.getDueDate()+"_");
+            System.out.println("tasktoedit importance"+ taskToEdit.getImportance());
+
+            if (this.toEdit.getName()==null){
+                this.toEdit.setName(taskToEdit.getName());
+
+            }
+            if (this.toEdit.getDueDate().toString().equals("")){
+                this.toEdit.setDueDate(taskToEdit.getDueDate());
+                System.out.println("tasktoedit"+ taskToEdit.getDueDate());
+            }
+            if (this.toEdit.getDueTime().toString().equals("")){
+                this.toEdit.setDueTime(taskToEdit.getDueTime());
+                System.out.println("tasktoedit"+ taskToEdit.getDueTime());
+            }
+            if (this.toEdit.getTags()==null){
+                this.toEdit.setTags(taskToEdit.getTags());
+                System.out.println("tasktoedit"+ taskToEdit.getTags());
+            }
+            if (this.toEdit.getImportance().toString().equals("")){
+                this.toEdit.setImportance(taskToEdit.getImportance());
+
+            }
+
+            System.out.println("edited task"+this.toEdit);
+
+            model.editTask(taskToEdit, this.toEdit);
+
+
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target task cannot be missing";
         }
 
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
-
 
 }

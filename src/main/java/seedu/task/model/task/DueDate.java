@@ -21,7 +21,7 @@ public class DueDate {
      */
     public DueDate(String dueDate) throws IllegalValueException {
         if(dueDate == null)
-        	dueDate = " ";
+        	dueDate = "";
     	dueDate = dueDate.trim();
         if (!isValidDueDate(dueDate) ) {
             throw new IllegalValueException(MESSAGE_DUE_DATE_CONSTRAINTS);
