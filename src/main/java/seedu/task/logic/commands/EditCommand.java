@@ -91,8 +91,8 @@ public class EditCommand extends Command {
                 this.toEdit.setTags(taskToEdit.getTags());
                 System.out.println("tasktoedit"+ taskToEdit.getTags());
             }
-            if (this.toEdit.getImportance().toString().equals("")){
-                this.toEdit.setImportance(taskToEdit.getImportance());
+            if (this.toEdit.getImportance().toString().equals(" ")){
+                this.toEdit.setImportance(null);
 
             }
 
