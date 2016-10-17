@@ -257,15 +257,16 @@ Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
 `* * *` | new user | view more information about commands available | learn more about commands
 `* * *` | user | add task | record tasks I need to do
+`* * *` | user | have shortcuts | use the application more efficiently
 `* * *` | user | set a deadline upon adding task | keep track of due dates
 `* * *` | user | edit tasks | update tasks
+`* * *` | user | delete tasks | remove irrelevant tasks
+`* * *` | advanced user | customise shortcuts | choose more suitable key combinations
 `* * *` | user | undo changes | reverse any mistakes I did
 `* * *` | user | redo changes | reverse the undo command
 `* * *` | user | delete tasks | remove irrelevant tasks
 `* * *` | user | mark completed tasks | indicate task as completed
 `* * *` | user | view upcoming tasks by day/week/month | decide what to do
-`* * *` | user | have shortcuts | use the application more efficiently
-`* * *` | advanced user | customise shortcuts | choose more suitable key combinations
 `* *` | user | prioritise task (urgent/less urgent or important/trivial) | categorise tasks by priority
 `* *` | user | add tags to task | label tasks
 `* *` | user | list tasks with specific label | view tasks from a certain category
