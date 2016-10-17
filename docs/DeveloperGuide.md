@@ -330,6 +330,7 @@ Use case resumes at step 1<br>
 1b1. To-Do-List reports that task is not present<br>
 
 
+
 ### Use Case: Delete task
 
 **MSS**
@@ -351,6 +352,7 @@ Use case resumes at step 1<br>
 1b1. To-Do-List reports that task is not present<br>
 
 
+
 ### Use Case: Help command
 
 **MSSS**
@@ -369,6 +371,7 @@ Use case resumes at step 1<br>
 
 
 Note: all subsequent add task use cases are subsets of the first add task use case
+
 
 
 ### Use Case: Add task with deadline
@@ -449,6 +452,7 @@ Use case resumes at step 2<br>
 3. To-Do-List shows task is added<br>
 <br>
 -----Use case ends-----
+
 
 
 
