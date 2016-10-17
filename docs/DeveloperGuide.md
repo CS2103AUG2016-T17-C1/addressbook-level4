@@ -328,7 +328,7 @@ Use case resumes at step 1<br>
 
 1b. Task has not been added before<br>
 1b1. To-Do-List reports that task is not present<br>
-
+<br>
 
 
 ### Use Case: Delete task
@@ -350,7 +350,7 @@ Use case resumes at step 1<br>
 
 1b. Task has not been added before<br>
 1b1. To-Do-List reports that task is not present<br>
-
+<br>
 
 
 ### Use Case: Help command
@@ -368,12 +368,12 @@ Use case resumes at step 1<br>
 1a. Given input is invalid<br>
 1a1. To-Do-List shows an error message and an input example<br>
 Use case resumes at step 1<br>
-
+<br>
 
 Note: all subsequent add task use cases are subsets of the first add task use case
 
 
-
+<br>
 ### Use Case: Add task with deadline
 
 **MSS**
@@ -392,7 +392,7 @@ Note: all subsequent add task use cases are subsets of the first add task use ca
 1a2. User enters deadline<br>
 Use case repeats 1a until user enters a valid deadline or chooses to add task without deadline<br>
 Use case resumes at step 2<br>
-
+<br>
 
 
 ### Use Case: Add task with time allocated
@@ -419,7 +419,7 @@ Use case resumes at step 2<br>
 1a2. User enters another time<br>
 Use case repeats 1a until user proposes a suitable time or chooses to add task without allocating time<br>
 Use case resumes at step 2<br>
-
+<br>
 
 
 ### Use Case: Add task with priority tagging
@@ -440,7 +440,8 @@ Use case resumes at step 2<br>
 1a2. User enters priority<br>
 Use case repeats 1a until user proposes a valid tag or chooses to add task without setting priority<br>
 Use case resumes at step 2<br>
-
+<br>
+
  
  
 ### Use Case: Add task with tagging
@@ -452,7 +453,8 @@ Use case resumes at step 2<br>
 3. To-Do-List shows task is added<br>
 <br>
 -----Use case ends-----
-
+<br>
+<br>
 
 
 
