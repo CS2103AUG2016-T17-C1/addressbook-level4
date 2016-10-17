@@ -295,6 +295,7 @@ Priority | As a ... | I want to ... | So that I can...
 2. To-Do-List adds task
 3. To-Do-List shows task is added<br>
 <br>
+
 -----Use case ends-----
 
 
@@ -307,7 +308,6 @@ Use case resumes at step 1<br>
 1b. Task has been added before<br>
 1b1. To-Do-List reports that task has been added before<br>
 <br>
------Use case ends-----
 
 Note: all subsequent add task use cases are subsets of add task use case above
 
@@ -321,6 +321,7 @@ Note: all subsequent add task use cases are subsets of add task use case above
 2. To-Do-List adds task
 3. To-Do-List shows task is added<br>
 <br>
+
 -----Use case ends-----
 
 
