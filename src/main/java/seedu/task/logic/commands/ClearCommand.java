@@ -26,7 +26,7 @@ public class ClearCommand extends Command {
         if (model != null) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Clear all tasks");
-            alert.setHeaderText("Are you sure you want to clear ALL TASKS in the task manager?");
+            alert.setHeaderText("Are you sure you want to clear all tasks in the task manager?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 model.resetData(TaskManager.getEmptyTaskManager());
