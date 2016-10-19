@@ -69,7 +69,6 @@ public class UniqueTaskList implements Iterable<Task> {
         saveCurrentTaskList();
         internalList.add(toAdd);
 
-
     }
 
     /**
@@ -131,15 +130,12 @@ public class UniqueTaskList implements Iterable<Task> {
         return false;
     }
 
-
-    public void saveCurrentTaskList(){
+    public void saveCurrentTaskList() {
         ArrayList<Task> tempArrayList = new ArrayList<Task>();
         for (Task t : internalList) {
             tempArrayList.add(t);
         }
         savedList.add(tempArrayList);
-
-
         System.out.println("updated savedlist" + savedList);
         System.out.println("savedList size" + savedList.size());
 
@@ -148,7 +144,6 @@ public class UniqueTaskList implements Iterable<Task> {
     public ObservableList<Task> getInternalList() {
         return internalList;
     }
-
 
     @Override
     public Iterator<Task> iterator() {
