@@ -56,7 +56,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     @Override
     public void undoTask() {
-
+        taskManager.undo();
+        indicateTaskManagerChanged();
     }
 
     @Override
