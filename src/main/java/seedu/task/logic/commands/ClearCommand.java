@@ -35,7 +35,7 @@ public class ClearCommand extends Command {
             } else {
                 return new CommandResult(MESSAGE_FAILURE);
             }
-        } catch (ExceptionInInitializerError e) {
+        } catch (ExceptionInInitializerError | IllegalStateException e) {
             model.resetData(TaskManager.getEmptyTaskManager());
             return new CommandResult(MESSAGE_SUCCESS);
         }
