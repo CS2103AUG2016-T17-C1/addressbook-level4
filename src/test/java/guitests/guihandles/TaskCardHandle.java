@@ -10,8 +10,8 @@ import seedu.task.model.task.ReadOnlyTask;
  */
 public class TaskCardHandle extends GuiHandle {
     private static final String TASK_NAME_FIELD_ID = "#name";
-    private static final String DUE_DATE_FIELD_ID = "#date";
-    private static final String DUE_TIME_FIELD_ID = "#time";
+    private static final String DUE_DATE_FIELD_ID = "#dueDate";
+    private static final String DUE_TIME_FIELD_ID = "#dueTime";
     private static final String IMPORTANCE_FIELD_ID = "#importance";
 
     private Node node;

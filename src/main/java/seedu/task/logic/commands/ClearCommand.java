@@ -23,7 +23,8 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute() {
         assert model != null;
-        if (model != null) {
+
+        try {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Clear all tasks");
             alert.setHeaderText("Are you sure you want to clear all tasks in the task manager?");
@@ -34,8 +35,10 @@ public class ClearCommand extends Command {
             } else {
                 return new CommandResult(MESSAGE_FAILURE);
             }
+        } catch (ExceptionInInitializerError e) {
+            model.resetData(TaskManager.getEmptyTaskManager());
+            return new CommandResult(MESSAGE_SUCCESS);
         }
-        else return new CommandResult(MESSAGE_NO_TASKS);
 
     }
 }
