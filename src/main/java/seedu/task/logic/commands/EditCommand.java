@@ -41,20 +41,13 @@ public class EditCommand extends Command {
 
         if (taskName == null) {
 
-            this.toEdit = new Task(
-                    new DueDate(dueDate),
-                    new DueTime(dueTime), new
-                    Importance(importance),
+            this.toEdit = new Task(new DueDate(dueDate), new DueTime(dueTime), new Importance(importance),
                     new UniqueTagList(tagSet));
         }
 
         else {
-            this.toEdit = new Task(
-                    new TaskName(taskName),
-                    new DueDate(dueDate),
-                    new DueTime(dueTime),
-                    new Importance(importance),
-                    new UniqueTagList(tagSet));
+            this.toEdit = new Task(new TaskName(taskName), new DueDate(dueDate), new DueTime(dueTime),
+                    new Importance(importance), new UniqueTagList(tagSet));
         }
     }
 
@@ -72,34 +65,30 @@ public class EditCommand extends Command {
 
         try {
 
-            System.out.println("_"+this.toEdit.getDueDate()+"_");
-            System.out.println("tasktoedit importance"+ taskToEdit.getImportance());
+            System.out.println("_" + this.toEdit.getDueDate() + "_");
+            System.out.println("tasktoedit importance" + taskToEdit.getImportance());
 
-            if (this.toEdit.getName()==null){
+            if (this.toEdit.getName() == null) {
                 this.toEdit.setName(taskToEdit.getName());
 
             }
-            if (this.toEdit.getDueDate().toString().equals("")){
+            if (this.toEdit.getDueDate().toString().equals("")) {
                 this.toEdit.setDueDate(taskToEdit.getDueDate());
-                System.out.println("tasktoedit"+ taskToEdit.getDueDate());
+                System.out.println("tasktoedit" + taskToEdit.getDueDate());
             }
-            if (this.toEdit.getDueTime().toString().equals("")){
+            if (this.toEdit.getDueTime().toString().equals("")) {
                 this.toEdit.setDueTime(taskToEdit.getDueTime());
-                System.out.println("tasktoedit"+ taskToEdit.getDueTime());
+                System.out.println("tasktoedit" + taskToEdit.getDueTime());
             }
-            if (this.toEdit.getTags()==null){
+            if (this.toEdit.getTags() == null) {
                 this.toEdit.setTags(taskToEdit.getTags());
-                System.out.println("tasktoedit"+ taskToEdit.getTags());
+                System.out.println("tasktoedit" + taskToEdit.getTags());
             }
-            if (this.toEdit.getImportance().toString().equals("")){
+            if (this.toEdit.getImportance().toString().equals("")) {
                 this.toEdit.setImportance(taskToEdit.getImportance());
-
             }
-
-            System.out.println("edited task"+this.toEdit);
-
+            System.out.println("edited task" + this.toEdit);
             model.editTask(taskToEdit, this.toEdit);
-
 
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target task cannot be missing";
