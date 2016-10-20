@@ -40,6 +40,11 @@
                   <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Options">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Shortcuts" />
+               </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="Help">
                <items>
                   <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
@@ -81,6 +86,8 @@
                   </SplitPane>
                </content></Tab>
           <Tab text="Daily" />
+            <Tab text="Weekly" />
+            <Tab text="Monthly" />
         </tabs>
       </TabPane>
    </children>

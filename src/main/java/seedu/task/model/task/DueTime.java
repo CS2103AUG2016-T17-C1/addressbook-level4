@@ -22,7 +22,7 @@ public class DueTime {
      */
     public DueTime(String email) throws IllegalValueException {
         if (email == null)
-        	email = " ";
+        	email = "";
         email = email.trim();
         if (!isValidEmail(email)) {
             throw new IllegalValueException(MESSAGE_DUE_TIME_CONSTRAINTS);

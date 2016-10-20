@@ -63,7 +63,13 @@ public class TaskManager implements ReadOnlyTaskManager {
         setTags(newTags);
     }
 
+    public boolean undo(){
+        System.out.println("undo at TaskManager");
+        return this.tasks.undo();
+    }
+
     public void resetData(ReadOnlyTaskManager newData) {
+        this.tasks.saveCurrentTaskList();
         resetData(newData.getTaskList(), newData.getTagList());
     }
 

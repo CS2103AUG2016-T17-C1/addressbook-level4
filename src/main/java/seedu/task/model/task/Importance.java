@@ -21,7 +21,7 @@ public class Importance {
      */
     public Importance(String importance) throws IllegalValueException {
     	 if (importance == null)
-         	importance = "*";
+         	importance = "";
          this.value = importance;
 
         if (!isValidImportance(importance)) {
@@ -35,7 +35,9 @@ public class Importance {
      * Returns true if a given string is a valid task email.
      */
     public static boolean isValidImportance(String test) {
-        return test.matches(IMPORTANCE_VALIDATION_REGEX);
+       if ( test.equals("") || test.matches(IMPORTANCE_VALIDATION_REGEX))
+           return true;
+       return false;
     }
 
     @Override

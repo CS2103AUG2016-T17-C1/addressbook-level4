@@ -55,6 +55,14 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public boolean undoTask() {
+
+        boolean success = taskManager.undo();
+        indicateTaskManagerChanged();
+        return success;
+    }
+
+    @Override
     public ReadOnlyTaskManager getTaskManager() {
         return taskManager;
     }
@@ -157,5 +165,7 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
+
+
 
 }

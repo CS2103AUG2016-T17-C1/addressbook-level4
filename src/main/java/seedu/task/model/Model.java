@@ -27,6 +27,11 @@ public interface Model {
     /** Edits the given task. */
     void editTask(ReadOnlyTask target, Task task ) throws UniqueTaskList.TaskNotFoundException;
 
+
+    /** Undo changes made to the Task List
+     * @return */
+    boolean undoTask();
+
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
@@ -35,6 +40,7 @@ public interface Model {
 
     /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
+
 
 
 

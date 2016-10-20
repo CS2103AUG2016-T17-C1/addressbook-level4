@@ -79,6 +79,7 @@ public class XmlAddressBookStorageTest {
         readBack = xmlTaskManagerStorage.readTaskManager(filePath).get();
         assertEquals(original, new TaskManager(readBack));
 
+        
         //Save and read without specifying file path
         original.addTask(new Task(TypicalTestTasks.ida));
         xmlTaskManagerStorage.saveTaskManager(original); //file path not specified

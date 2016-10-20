@@ -9,7 +9,8 @@ import seedu.task.model.task.*;
  */
 public class TypicalTestTasks {
 
-    public static TestTask alice, benson, carl, daniel, elle, fiona, george, hoon, ida;
+    public static TestTask alice, benson, carl, daniel, elle, fiona, george, hoon;
+    public static TestTask ida;
 
     public TypicalTestTasks() {
         try {

@@ -9,6 +9,7 @@ import seedu.task.commons.exceptions.IllegalValueException;
 public class TaskName {
 
     public static final String MESSAGE_NAME_CONSTRAINTS = "Task names should be spaces or alphanumeric characters";
+    //public static final String MESSAGE_NAME_EMPTY = "Task names should be spaces or alphanumeric characters";
     public static final String NAME_VALIDATION_REGEX = "[\\p{Alnum} ]+";
 
     public final String fullName;
@@ -19,19 +20,23 @@ public class TaskName {
      * @throws IllegalValueException if given name string is invalid.
      */
     public TaskName(String name) throws IllegalValueException {
-        assert name != null ;
-        if (name != null)
+        assert name != null;
+        if (name!=null) {
             name = name.trim();
-        if (name == null || !isValidName(name)) {
+        }
+        if (!isValidName(name) ) {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
+
         this.fullName = name;
+
     }
 
     /**
      * Returns true if a given string is a valid task name.
      */
     public static boolean isValidName(String test) {
+
         return test.matches(NAME_VALIDATION_REGEX);
     }
 
