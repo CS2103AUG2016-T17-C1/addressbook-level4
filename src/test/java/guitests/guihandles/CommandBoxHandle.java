@@ -30,7 +30,7 @@ public class CommandBoxHandle extends GuiHandle{
         pressEnter();
         if (command.equals("clear")) // any commands that has an alert dialog that pops out
             pressEnter();
-        guiRobot.sleep(1000); //Give time for the command to take effect
+        guiRobot.sleep(2000); //Give time for the command to take effect
     }
 
     public HelpWindowHandle runHelpCommand() {
