@@ -1,6 +1,10 @@
 package seedu.task.logic.commands;
 
-import seedu.task.alerts.Alerts;
+import java.util.Optional;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import seedu.task.model.TaskManager;
 
 /**
@@ -19,12 +23,22 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute() {
         assert model != null;
-        if (Alerts.ClearCommandAlert()) {
+
+        try {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Clear all tasks");
+            alert.setHeaderText("Are you sure you want to clear all tasks in the task manager?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                model.resetData(TaskManager.getEmptyTaskManager());
+                return new CommandResult(MESSAGE_SUCCESS);
+            } else {
+                return new CommandResult(MESSAGE_FAILURE);
+            }
+        } catch (ExceptionInInitializerError | IllegalStateException e) {
             model.resetData(TaskManager.getEmptyTaskManager());
             return new CommandResult(MESSAGE_SUCCESS);
         }
-        else
-            return new CommandResult(MESSAGE_FAILURE);
 
     }
 }
