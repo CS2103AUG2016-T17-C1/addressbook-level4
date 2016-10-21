@@ -340,17 +340,17 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_find_onlyMatchesFullWordsInNames() throws Exception {
+    public void execute_find_canMatchPartialWordsInNames() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Task pTarget1 = helper.generateTaskWithName("bla bla KEY bla");
-        Task pTarget2 = helper.generateTaskWithName("bla KEY bla bceofeia");
-        Task p1 = helper.generateTaskWithName("KE Y");
-        Task p2 = helper.generateTaskWithName("KEYKEYKEY sduauo");
+        Task tFull1 = helper.generateTaskWithName("bla bla KEY bla");
+        Task tFull2 = helper.generateTaskWithName("bla KEY bla bceofeia");
+        Task tNotPartial = helper.generateTaskWithName("KE Y");
+        Task tPartial = helper.generateTaskWithName("KEYKEYKEY sduauo");
 
-        List<Task> fourPersons = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
-        TaskManager expectedAB = helper.generateTaskManager(fourPersons);
-        List<Task> expectedList = helper.generateTaskList(pTarget1, pTarget2);
-        helper.addToModel(model, fourPersons);
+        List<Task> fourTasks = helper.generateTaskList(tNotPartial, tFull1, tPartial, tFull2);
+        TaskManager expectedAB = helper.generateTaskManager(fourTasks);
+        List<Task> expectedList = helper.generateTaskList(tFull1, tPartial, tFull2);
+        helper.addToModel(model, fourTasks);
 
         assertCommandBehavior("find KEY",
                 Command.getMessageForTaskListShownSummary(expectedList.size()),
