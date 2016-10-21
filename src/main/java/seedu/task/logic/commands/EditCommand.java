@@ -80,7 +80,8 @@ public class EditCommand extends Command {
                 this.toEdit.setDueTime(taskToEdit.getDueTime());
                 System.out.println("tasktoedit" + taskToEdit.getDueTime());
             }
-            if (this.toEdit.getTags() == null) {
+            System.out.println("{"+this.toEdit.getTags().toString()+"}");
+            if (this.toEdit.getTags().toString() == null) {
                 this.toEdit.setTags(taskToEdit.getTags());
                 System.out.println("tasktoedit" + taskToEdit.getTags());
             }
