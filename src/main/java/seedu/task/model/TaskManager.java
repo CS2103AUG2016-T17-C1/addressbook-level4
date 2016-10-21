@@ -64,8 +64,11 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     public boolean undo(){
-        System.out.println("undo at TaskManager");
         return this.tasks.undo();
+    }
+
+    public boolean redo() {
+        return this.tasks.redo();
     }
 
     public void resetData(ReadOnlyTaskManager newData) {
@@ -174,4 +177,6 @@ public class TaskManager implements ReadOnlyTaskManager {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(tasks, tags);
     }
+
+
 }

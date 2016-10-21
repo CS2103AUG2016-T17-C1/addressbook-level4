@@ -40,7 +40,7 @@ public class Parser {
                     + "( e/(?<dueTime>[^/]*)){0,1}"
                     + "( i/(?<importance>[^/]*)){0,1}"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
-    
+
     public Parser() {}
 
     /**
@@ -87,6 +87,8 @@ public class Parser {
             return new HelpCommand();
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -36,7 +36,9 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
-    private final ArrayList<ArrayList<Task>> savedList = new ArrayList<ArrayList<Task>>();
+    private final ArrayList<ArrayList<Task>> savedUndoList = new ArrayList<ArrayList<Task>>();
+    private final ArrayList<ArrayList<Task>> savedRedoList = new ArrayList<ArrayList<Task>>();
+
 
     /**
      * Constructs empty TaskList.
@@ -67,6 +69,7 @@ public class UniqueTaskList implements Iterable<Task> {
         }
 
         saveCurrentTaskList();
+        clearRedoList();
         internalList.add(toAdd);
 
     }
@@ -80,10 +83,8 @@ public class UniqueTaskList implements Iterable<Task> {
     public boolean remove(ReadOnlyTask toRemove) throws TaskNotFoundException {
         assert toRemove != null;
         saveCurrentTaskList();
+        clearRedoList();
         final boolean taskFoundAndDeleted = internalList.remove(toRemove);
-
-        System.out.println("updated savedlist" + savedList);
-        System.out.println("savedList size" + savedList.size());
         if (!taskFoundAndDeleted) {
             throw new TaskNotFoundException();
         }
@@ -98,13 +99,12 @@ public class UniqueTaskList implements Iterable<Task> {
      */
     public boolean edit(ReadOnlyTask toEdit, Task task) throws TaskNotFoundException {
         assert toEdit != null;
-        // final boolean taskFoundAndEdited = internalList.set(1,toEdit);
         int indexDel = internalList.indexOf(toEdit);
-        // savedList.add(internalList);
         if (indexDel == -1) {
             throw new TaskNotFoundException();
         }
         saveCurrentTaskList();
+        clearRedoList();
         internalList.set(indexDel, task);
         return true;
     }
@@ -117,17 +117,46 @@ public class UniqueTaskList implements Iterable<Task> {
      */
     public boolean undo() {
 
-        if (savedList.size() >= 1) {
+        if (savedUndoList.size() >= 1) {
+            saveTaskListForRedo();
             internalList.clear();
-            ArrayList<Task> restoredList = savedList.get(savedList.size() - 1);
+            ArrayList<Task> restoredList = savedUndoList.get(savedUndoList.size() - 1);
             for (Task t : restoredList) {
                 internalList.add(t);
             }
-            savedList.remove(savedList.size() - 1);
+            savedUndoList.remove(savedUndoList.size() - 1);
             return true;
         }
 
         return false;
+    }
+
+
+    private void saveTaskListForRedo() {
+        ArrayList<Task> tempArrayList = new ArrayList<Task>();
+        for (Task t : internalList) {
+            tempArrayList.add(t);
+        }
+        savedRedoList.add(tempArrayList);
+    }
+
+    public boolean redo() {
+        if (savedRedoList.size() >= 1) {
+            saveCurrentTaskList();
+            internalList.clear();
+            ArrayList<Task> restoredList = savedRedoList.get(savedRedoList.size() - 1);
+            for (Task t : restoredList) {
+                internalList.add(t);
+            }
+            savedRedoList.remove(savedRedoList.size() - 1);
+            return true;
+        }
+
+        return false;
+    }
+
+    public void clearRedoList(){
+        savedRedoList.clear();
     }
 
     public void saveCurrentTaskList() {
@@ -135,10 +164,7 @@ public class UniqueTaskList implements Iterable<Task> {
         for (Task t : internalList) {
             tempArrayList.add(t);
         }
-        savedList.add(tempArrayList);
-        System.out.println("updated savedlist" + savedList);
-        System.out.println("savedList size" + savedList.size());
-
+        savedUndoList.add(tempArrayList);
     }
 
     public ObservableList<Task> getInternalList() {
@@ -161,4 +187,6 @@ public class UniqueTaskList implements Iterable<Task> {
     public int hashCode() {
         return internalList.hashCode();
     }
+
+
 }

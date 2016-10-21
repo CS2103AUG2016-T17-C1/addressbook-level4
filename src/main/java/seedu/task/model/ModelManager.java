@@ -61,6 +61,13 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
         return success;
     }
+    
+    @Override
+    public boolean redoTask() {
+        boolean success = taskManager.redo();
+        indicateTaskManagerChanged();
+        return success;
+    }
 
     @Override
     public ReadOnlyTaskManager getTaskManager() {
