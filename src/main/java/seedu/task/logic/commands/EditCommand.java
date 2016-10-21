@@ -19,7 +19,8 @@ import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
-
+    public static final String EMPTY_TASK_OBJECT_STRING = "";
+    public static final String EMPTY_TAG_OBJECT_STRING = "[]";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": edits the task identified by the index number used in the last task listing.\n"
             + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1";
@@ -64,31 +65,21 @@ public class EditCommand extends Command {
         ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
 
         try {
-
-            System.out.println("_" + this.toEdit.getDueDate() + "_");
-            System.out.println("tasktoedit importance" + taskToEdit.getImportance());
-
             if (this.toEdit.getName() == null) {
                 this.toEdit.setName(taskToEdit.getName());
-
             }
-            if (this.toEdit.getDueDate().toString().equals("")) {
+            if (this.toEdit.getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setDueDate(taskToEdit.getDueDate());
-                System.out.println("tasktoedit" + taskToEdit.getDueDate());
             }
-            if (this.toEdit.getDueTime().toString().equals("")) {
+            if (this.toEdit.getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setDueTime(taskToEdit.getDueTime());
-                System.out.println("tasktoedit" + taskToEdit.getDueTime());
             }
-            System.out.println("{"+this.toEdit.getTags().toString()+"}");
-            if (this.toEdit.getTags().toString() == null) {
+            if (this.toEdit.getTags().getInternalList().toString().equals(EMPTY_TAG_OBJECT_STRING)) {
                 this.toEdit.setTags(taskToEdit.getTags());
-                System.out.println("tasktoedit" + taskToEdit.getTags());
             }
-            if (this.toEdit.getImportance().toString().equals("")) {
+            if (this.toEdit.getImportance().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setImportance(taskToEdit.getImportance());
             }
-            System.out.println("edited task" + this.toEdit);
             model.editTask(taskToEdit, this.toEdit);
 
         } catch (TaskNotFoundException pnfe) {

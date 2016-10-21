@@ -85,7 +85,7 @@ public class Task implements ReadOnlyTask {
 
     @Override
     public UniqueTagList getTags() {
-        return new UniqueTagList(tags);
+        return tags;
     }
 
     /**
