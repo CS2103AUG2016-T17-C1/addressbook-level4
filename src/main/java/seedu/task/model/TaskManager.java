@@ -73,6 +73,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     public void resetData(ReadOnlyTaskManager newData) {
         this.tasks.saveCurrentTaskList();
+        this.tasks.clearRedoList();
         resetData(newData.getTaskList(), newData.getTagList());
     }
 
