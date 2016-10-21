@@ -37,7 +37,7 @@
    * **`add`**` Buy a cup of coffee` : Add a task to buy a cup of coffee without setting any deadlines for it to the to-do list.
 
    * **`list`** : lists today's tasks
-   * **`add`**` Grocery Shopping d/1-Jan-2016 t/1800 v/Hougang NTUC` :
+   * **`add`**` Grocery Shopping d/01012016 t/1800 i/* NTUC` :
      adds a task `Grocery Shopping` to Never Forget.
 
    * **`delete`**` 3` : deletes the 3rd task shown in the current list
@@ -78,8 +78,8 @@ Format: `add TASK d/SCHEDULED_DATE t/SCHEDULED_TIME v/SCHEDULED_PLACE [t/TAG]...
 > Tasks can have any number of tags (including 0)
 
 Examples:
-* `add Grocery Shopping d/1-Jan-2016 t/1800 v/Hougang NTUC`
-* `add Dinner with JC Friends d/7-Oct-2016 t/1930 v/Clementi Mall t/Budget Meal t/buddies`
+* `add Grocery Shopping d/01012016 t/1800 v/*`
+* `add Dinner with JC Friends d/07102016 t/1930 i/** t/Budget Meal t/buddies`
 
 
 
@@ -163,10 +163,10 @@ Displays the task listing for that desired time frame.<br>
 
 Command | Format
 -------- | :--------
-Add | `add TASK d/DD-MMM-YY t/HHMM v/PLACE [t/TAG]...`
+Add | `add TASK d/DDMMYYYY t/HHMM i/*[*]... [t/TAG]...`
 Check | `check INDEX`
 Clear | `clear`
-Complete | `strikethrough the task at the INDEX`
+Done | `done INDEX`
 Delete | `delete INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Help | `help`
