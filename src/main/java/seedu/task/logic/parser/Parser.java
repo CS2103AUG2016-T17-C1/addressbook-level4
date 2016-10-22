@@ -24,7 +24,7 @@ public class Parser {
     private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
     private static final Pattern KEYWORDS_ARGS_FORMAT =
-            Pattern.compile("(?<keywords>\\S[^(\\p{Punct})]+(?:\\s+\\S+[^(\\p{Punct})])*)"); // one or more keywords separated by whitespace
+            Pattern.compile("(?<keywords>\\w+(?:\\s+\\w+)*)"); // one or more keywords separated by whitespace
 
     private static final Pattern TASK_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<taskName>[^/]+)"
