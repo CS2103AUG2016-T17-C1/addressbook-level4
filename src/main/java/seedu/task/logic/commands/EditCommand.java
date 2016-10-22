@@ -39,6 +39,10 @@ public class EditCommand extends Command {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+        
+        if ((dueDate == null || dueDate.isEmpty()) && dueTime != null) {
+            dueDate = "01012000";
+        }
 
         if (taskName == null) {
             this.toEdit = new Task(
@@ -67,12 +71,18 @@ public class EditCommand extends Command {
         }
 
         ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
+        
+        if (taskToEdit.getDeadLine().getDueDate().toString().isEmpty()
+                && this.toEdit.getDeadLine().getDueDate().toString().equals("01012000")) {
+            return new CommandResult(DeadLine.MESSAGE_DEADLINE_CONSTRAINTS);
+        }
 
         try {
             if (this.toEdit.getName() == null) {
                 this.toEdit.setName(taskToEdit.getName());
             }
-            if (this.toEdit.getDeadLine().getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
+            if (this.toEdit.getDeadLine().getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
+                    || this.toEdit.getDeadLine().getDueDate().toString().equals("01012000")) {
                 this.toEdit.setDueDate(taskToEdit.getDeadLine().getDueDate());
             }
             if (this.toEdit.getDeadLine().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
