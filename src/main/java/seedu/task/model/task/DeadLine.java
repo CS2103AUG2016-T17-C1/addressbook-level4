@@ -10,9 +10,10 @@ public class DeadLine {
     private DueTime dueTime;
     
 
-    public DeadLine(DueDate dueDate, DueTime dueTime) throws IllegalValueException {
-        if (dueDate.toString() == "" && dueTime.toString() != "")
-            throw new IllegalValueException("MESSAGE_DEADLINE_CONSTRAINTS");
+    public DeadLine(DueDate dueDate, DueTime dueTime) throws IllegalValueException {       
+        if (dueDate.getDueDate().isEmpty() && !(dueTime.toString().isEmpty())) {
+            throw new IllegalValueException(MESSAGE_DEADLINE_CONSTRAINTS);
+        }
         this.dueDate = dueDate;
         this.dueTime = dueTime;
         // TODO Auto-generated constructor stub
