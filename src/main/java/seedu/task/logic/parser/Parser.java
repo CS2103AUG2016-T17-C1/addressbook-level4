@@ -28,7 +28,7 @@ public class Parser {
 
     private static final Pattern TASK_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<taskName>[^/]+)"
-                    + "( d/(?<dueDate>[^/]\\d{8})( e/(?<dueTime>[^/]*)){0,1}){0,1}"
+                    + "(( d/(?<dueDate>[^/]*))( e/(?<dueTime>[^/]*)){0,1}){0,1}"
                     + "( i/(?<importance>[^/]*)){0,1}"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
@@ -84,10 +84,13 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+            
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
+            
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
+            
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }

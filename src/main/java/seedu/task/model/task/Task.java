@@ -12,8 +12,7 @@ import seedu.task.model.tag.UniqueTagList;
 public class Task implements ReadOnlyTask {
 
     private TaskName taskName;
-    private DueDate dueDate;
-    private DueTime dueTime;
+    private DeadLine deadLine;
     private Importance importance;
 
     private UniqueTagList tags;
@@ -21,11 +20,10 @@ public class Task implements ReadOnlyTask {
     /**
      * Every field must be present and not null.
      */
-    public Task(TaskName taskName, DueDate dueDate, DueTime dueTime, Importance importance, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(taskName, dueDate, dueTime, importance, tags);
+    public Task(TaskName taskName, DeadLine deadLine, Importance importance, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(taskName, deadLine.getDueDate(), deadLine.getDueTime(), importance, tags);
         this.taskName = taskName;
-        this.dueDate = dueDate;
-        this.dueTime = dueTime;
+        this.deadLine = deadLine;
         this.importance = importance;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
@@ -34,14 +32,13 @@ public class Task implements ReadOnlyTask {
      * Copy constructor.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getDueDate(), source.getDueTime(), source.getImportance(), source.getTags());
+        this(source.getName(), source.getDeadLine(), source.getImportance(), source.getTags());
     }
 
-    public Task(DueDate dueDate2, DueTime dueTime2, Importance importance2, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(taskName, dueDate, dueTime, importance, tags);
-        this.dueDate = dueDate2;
-        this.dueTime = dueTime2;
-        this.importance = importance2;
+    public Task(DeadLine deadLine, Importance importance, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(deadLine.getDueDate(), deadLine.getDueTime(), importance, tags);
+        this.deadLine = deadLine;
+        this.importance = importance;
         this.tags = new UniqueTagList(tags);
         // TODO Auto-generated constructor stub
     }
@@ -50,16 +47,16 @@ public class Task implements ReadOnlyTask {
     public TaskName getName() {
         return taskName;
     }
-
-    @Override
-    public DueDate getDueDate() {
-        return dueDate;
-    }
-
-    @Override
-    public DueTime getDueTime() {
-        return dueTime;
-    }
+//
+//    @Override
+//    public DueDate getDueDate() {
+//        return getDeadLine().getDueDate();
+//    }
+//
+//    @Override
+//    public DueTime getDueTime() {
+//        return getDeadLine().getDueTime();
+//    }
 
     @Override
     public Importance getImportance() {
@@ -71,16 +68,16 @@ public class Task implements ReadOnlyTask {
         this.taskName = name;
     }
 
-    public void setDueDate(DueDate dueDate2) {
-        this.dueDate = dueDate2;
+    public void setDueDate(DueDate dueDate) {
+        this.getDeadLine().setDueDate(dueDate);
     }
 
-    public void setDueTime(DueTime dueTime2) {
-        this.dueTime = dueTime2;
+    public void setDueTime(DueTime dueTime) {
+        this.getDeadLine().setDueTime(dueTime);
     }
 
-    public void setImportance(Importance importance2) {
-        this.importance = importance2;
+    public void setImportance(Importance importance) {
+        this.importance = importance;
     }
 
     @Override
@@ -105,7 +102,7 @@ public class Task implements ReadOnlyTask {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(taskName, dueDate, dueTime, importance, tags);
+        return Objects.hash(taskName, getDeadLine(), importance, tags);
     }
 
     @Override
@@ -113,7 +110,12 @@ public class Task implements ReadOnlyTask {
         return getAsText();
     }
 
+    public DeadLine getDeadLine() {
+        return deadLine;
+    }
 
-
+    public void setDeadLine(DeadLine deadLine) {
+        this.deadLine = deadLine;
+    }
 
 }

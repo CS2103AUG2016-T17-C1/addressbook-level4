@@ -404,13 +404,14 @@ public class LogicManagerTest {
 
         Task adam() throws Exception {
             TaskName taskName = new TaskName("Adam Brown");
-            DueDate privatePhone = new DueDate("11112111");
+            DueDate dueDate = new DueDate("11112111");
             DueTime dueTime = new DueTime("2359");
+            DeadLine deadLine = new DeadLine(dueDate, dueTime);
             Importance importance = new Importance("**");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(taskName, privatePhone, dueTime, importance, tags);
+            return new Task(taskName, deadLine, importance, tags);
         }
 
         /**
@@ -421,9 +422,10 @@ public class LogicManagerTest {
             TaskName taskName = new TaskName("Floater");
             DueDate dueDate = new DueDate("");
             DueTime dueTime = new DueTime("");
+            DeadLine deadLine = new DeadLine(dueDate, dueTime);            
             Importance importance = new Importance("");
             UniqueTagList tags = new UniqueTagList();
-            return new Task(taskName, dueDate, dueTime, importance, tags);
+            return new Task(taskName, deadLine, importance, tags);
         }
 
         /**
@@ -436,8 +438,8 @@ public class LogicManagerTest {
         Task generateTask(int seed) throws Exception {
             return new Task(
                     new TaskName("Task " + seed),
-                    new DueDate("" + (31129999 - Math.abs(seed))),
-                    new DueTime("" + (Math.abs(seed) + 1200)),
+                    new DeadLine(new DueDate("" + (31129999 - Math.abs(seed))),
+                                 new DueTime("" + (Math.abs(seed) + 1200))),
                     new Importance(new String(new char[seed]).replace("\0", "*")),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
@@ -450,8 +452,8 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getName().toString());
-            cmd.append(" d/").append(p.getDueDate());
-            cmd.append(" e/").append(p.getDueTime());
+            cmd.append(" d/").append(p.getDeadLine().getDueDate().getDueDate());
+            cmd.append(" e/").append(p.getDeadLine().getDueTime().toString());
             cmd.append(" i/").append(p.getImportance());
 
             UniqueTagList tags = p.getTags();
@@ -535,8 +537,7 @@ public class LogicManagerTest {
         Task generateTaskWithName(String name) throws Exception {
             return new Task(
                     new TaskName(name),
-                    new DueDate("25125678"),
-                    new DueTime("0000"),
+                    new DeadLine(new DueDate("25125678"), new DueTime("0000")),
                     new Importance("**"),
                     new UniqueTagList(new Tag("tag"))
             );

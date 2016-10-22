@@ -10,8 +10,7 @@ public class TestTask implements ReadOnlyTask {
 
     private TaskName taskName;
     private Importance importance;
-    private DueTime dueTime;
-    private DueDate dueDate;
+    private DeadLine deadLine;
     private UniqueTagList tags;
 
     public TestTask() {
@@ -26,28 +25,28 @@ public class TestTask implements ReadOnlyTask {
         this.importance = importance;
     }
 
-    public void setDueTime(DueTime dueTime) {
-        this.dueTime = dueTime;
-    }
-
-    public void setDueDate(DueDate dueDate) {
-        this.dueDate = dueDate;
-    }
+//    public void setDueTime(DueTime dueTime) {
+//        this.deadLine.setDueTime(dueTime);
+//    }
+//
+//    public void setDueDate(DueDate dueDate) {
+//        this.deadLine.setDueDate(dueDate);
+//    }
 
     @Override
     public TaskName getName() {
         return taskName;
     }
 
-    @Override
-    public DueDate getDueDate() {
-        return dueDate;
-    }
-
-    @Override
-    public DueTime getDueTime() {
-        return dueTime;
-    }
+//    @Override
+//    public DueDate getDueDate() {
+//        return dueDate;
+//    }
+//
+//    @Override
+//    public DueTime getDueTime() {
+//        return dueTime;
+//    }
 
     @Override
     public Importance getImportance() {
@@ -67,10 +66,19 @@ public class TestTask implements ReadOnlyTask {
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
         sb.append("add " + this.getName().fullName + " ");
-        sb.append("d/" + this.getDueDate().value + " ");
-        sb.append("e/" + this.getDueTime().value + " ");
+        sb.append("d/" + this.getDeadLine().getDueDate().getDueDate() + " ");
+        sb.append("e/" + this.getDeadLine().getDueTime().value + " ");
         sb.append("i/" + this.getImportance().value + " ");
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
+    }
+
+    @Override
+    public DeadLine getDeadLine() {
+        return this.deadLine;
+    }
+
+    public void setDeadLine(DeadLine deadLine) {
+        this.deadLine = deadLine;
     }
 }

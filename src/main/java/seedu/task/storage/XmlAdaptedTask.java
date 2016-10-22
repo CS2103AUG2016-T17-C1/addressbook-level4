@@ -16,13 +16,13 @@ import java.util.List;
 public class XmlAdaptedTask {
 
     @XmlElement(required = true)
-    private String name;
+    private String taskName;
     @XmlElement(required = true)
-    private String phone;
+    private String dueDate;
     @XmlElement(required = true)
-    private String email;
+    private String dueTime;
     @XmlElement(required = true)
-    private String address;
+    private String importance;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -39,10 +39,10 @@ public class XmlAdaptedTask {
      * @param source future changes to this will not affect the created XmlAdaptedTask
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
-        name = source.getName().fullName;
-        phone = source.getDueDate().value;
-        email = source.getDueTime().value;
-        address = source.getImportance().value;
+        taskName = source.getName().fullName;
+        dueDate = source.getDeadLine().getDueDate().getDueDate();
+        dueTime = source.getDeadLine().getDueTime().value;
+        importance = source.getImportance().value;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -59,11 +59,12 @@ public class XmlAdaptedTask {
         for (XmlAdaptedTag tag : tagged) {
             taskTags.add(tag.toModelType());
         }
-        final TaskName taskName = new TaskName(this.name);
-        final DueDate dueDate = new DueDate(this.phone);
-        final DueTime dueTime = new DueTime(this.email);
-        final Importance importance = new Importance(this.address);
+        final TaskName taskName = new TaskName(this.taskName);
+        final DueDate dueDate = new DueDate(this.dueDate);
+        final DueTime dueTime = new DueTime(this.dueTime);
+        final DeadLine deadLine = new DeadLine(dueDate, dueTime);
+        final Importance importance = new Importance(this.importance);
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        return new Task(taskName, dueDate, dueTime, importance, tags);
+        return new Task(taskName, deadLine, importance, tags);
     }
 }

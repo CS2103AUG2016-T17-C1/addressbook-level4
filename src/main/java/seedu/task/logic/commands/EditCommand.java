@@ -8,6 +8,7 @@ import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
+import seedu.task.model.task.DeadLine;
 import seedu.task.model.task.DueDate;
 import seedu.task.model.task.DueTime;
 import seedu.task.model.task.Importance;
@@ -40,14 +41,18 @@ public class EditCommand extends Command {
         }
 
         if (taskName == null) {
-
-            this.toEdit = new Task(new DueDate(dueDate), new DueTime(dueTime), new Importance(importance),
+            this.toEdit = new Task(
+                    new DeadLine(new DueDate(dueDate), new DueTime(dueTime)),
+                    new Importance(importance),
                     new UniqueTagList(tagSet));
         }
 
         else {
-            this.toEdit = new Task(new TaskName(taskName), new DueDate(dueDate), new DueTime(dueTime),
-                    new Importance(importance), new UniqueTagList(tagSet));
+            this.toEdit = new Task(
+                    new TaskName(taskName),
+                    new DeadLine(new DueDate(dueDate), new DueTime(dueTime)),
+                    new Importance(importance),
+                    new UniqueTagList(tagSet));
         }
     }
 
@@ -67,11 +72,11 @@ public class EditCommand extends Command {
             if (this.toEdit.getName() == null) {
                 this.toEdit.setName(taskToEdit.getName());
             }
-            if (this.toEdit.getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
-                this.toEdit.setDueDate(taskToEdit.getDueDate());
+            if (this.toEdit.getDeadLine().getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
+                this.toEdit.setDueDate(taskToEdit.getDeadLine().getDueDate());
             }
-            if (this.toEdit.getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
-                this.toEdit.setDueTime(taskToEdit.getDueTime());
+            if (this.toEdit.getDeadLine().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
+                this.toEdit.setDueTime(taskToEdit.getDeadLine().getDueTime());
             }
             if (this.toEdit.getTags().getInternalList().toString().equals(EMPTY_TAG_OBJECT_STRING)) {
                 this.toEdit.setTags(taskToEdit.getTags());

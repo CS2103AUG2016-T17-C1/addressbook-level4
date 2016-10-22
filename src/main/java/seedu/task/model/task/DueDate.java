@@ -11,7 +11,7 @@ public class DueDate {
     public static final String MESSAGE_DUE_DATE_CONSTRAINTS = "Task's due date should be in DDMMYYYY format";
     public static final String DUE_DATE_VALIDATION_REGEX = "((0[1-9]|([1-2][0-9])|3[01])(0[1-9]|1[0-2])([2-9]\\d{3})$){0,1}";
 
-    public final String value;
+    private final String dueDate;
 
     /**
      * Validates given due date number.
@@ -26,7 +26,7 @@ public class DueDate {
         if (!isValidDueDate(dueDate) ) {
             throw new IllegalValueException(MESSAGE_DUE_DATE_CONSTRAINTS);
         }
-        this.value = dueDate;
+        this.dueDate = dueDate;
     }
 
     /**
@@ -38,20 +38,24 @@ public class DueDate {
 
     @Override
     public String toString() {
-        return value;
+        return getDueDate();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DueDate // instanceof handles nulls
-                        && this.value.equals(((DueDate) other).value)); // state
+                        && this.getDueDate().equals(((DueDate) other).getDueDate())); // state
                                                                         // check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return getDueDate().hashCode();
+    }
+
+    public String getDueDate() {
+        return dueDate;
     }
 
 }

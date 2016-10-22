@@ -32,18 +32,13 @@ public class TaskBuilder {
         return this;
     }
 
-    public TaskBuilder withDueDate(String dueDate) throws IllegalValueException {
-        this.task.setDueDate(new DueDate(dueDate));
-        return this;
-    }
-
-    public TaskBuilder withDueTime(String dueTime) throws IllegalValueException {
-        this.task.setDueTime(new DueTime(dueTime));
-        return this;
-    }
-
     public TestTask build() {
         return this.task;
+    }
+
+    public TaskBuilder withDeadLine(String dueDate, String dueTime) throws IllegalValueException {
+        this.task.setDeadLine(new DeadLine(new DueDate(dueDate), new DueTime(dueTime)));
+        return this;
     }
 
 }

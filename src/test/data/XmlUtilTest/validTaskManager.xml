@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <taskmanager>
     <tasks>
-        <name>Hans Muster</name>
-        <phone isPrivate="false">9482424</phone>
-        <email isPrivate="false">hans@google.com</email>
-        <address isPrivate="false">4th street</address>
+        <taskName>Hans Muster</taskName>
+        <dueDate>11112111</dueDate>
+        <dueTime>0000</dueTime>
+        <importance>*</importance>
     </tasks>
     <tasks>
-        <name>Ruth Mueller</name>
-        <phone isPrivate="false">87249245</phone>
-        <email isPrivate="false">ruth@google.com</email>
-        <address isPrivate="false">81th street</address>
+        <taskName>Ruth Mueller</taskName>
+        <dueDate>11112111</dueDate>
+        <dueTime>0000</dueTime>
+        <importance>**</importance>
     </tasks>
     <tasks>
-        <name>Heinz Kurz</name>
-        <phone isPrivate="false">95352563</phone>
-        <email isPrivate="false">heinz@yahoo.com</email>
-        <address isPrivate="false">wall street</address>
+        <taskName>Heinz Kurz</taskName>
+        <dueDate>11112111</dueDate>
+        <dueTime>0000</dueTime>
+        <importance>***</importance>
     </tasks>
     <tasks>
-        <name>Cornelia Meier</name>
-        <phone isPrivate="false">87652533</phone>
-        <email isPrivate="false">cornelia@google.com</email>
-        <address isPrivate="false">10th street</address>
+        <taskName>Cornelia Meier</taskName>
+        <dueDate>11112111</dueDate>
+        <dueTime>0000</dueTime>
+        <importance>*</importance>
     </tasks>
     <tasks>
-        <name>Werner Meyer</name>
-        <phone isPrivate="false">9482224</phone>
-        <email isPrivate="false">werner@gmail.com</email>
-        <address isPrivate="false">michegan ave</address>
+        <taskName>Werner Meyer</taskName>
+        <dueDate>11112111</dueDate>
+        <dueTime>0000</dueTime>
+        <importance>**</importance>
     </tasks>
     <tasks>
-        <name>Lydia Kunz</name>
-        <phone isPrivate="false">9482427</phone>
-        <email isPrivate="false">lydia@gmail.com</email>
-        <address isPrivate="false">little tokyo</address>
+        <taskName>Lydia Kunz</taskName>
+        <dueDate>11112111</dueDate>
+        <dueTime>0000</dueTime>
+        <importance>*</importance>
     </tasks>
     <tasks>
-        <name>Anna Best</name>
-        <phone isPrivate="false">9482442</phone>
-        <email isPrivate="false">anna@google.com</email>
-        <address isPrivate="false">4th street</address>
+        <taskName>Anna Best</taskName>
+        <dueDate>11112111</dueDate>
+        <dueTime>2359</dueTime>
+        <importance>***</importance>
     </tasks>
     <tasks>
-        <name>Stefan Meier</name>
-        <phone isPrivate="false">8482424</phone>
-        <email isPrivate="false">stefan@mail.com</email>
-        <address isPrivate="false">little india</address>
+        <taskName>Stefan Meier</taskName>
+        <dueDate>11112111</dueDate>
+        <dueTime>0000</dueTime>
+        <importance>**</importance>
     </tasks>
     <tasks>
-        <name>Martin Mueller</name>
-        <phone isPrivate="false">8482131</phone>
-        <email isPrivate="false">hans@google.com</email>
-        <address isPrivate="false">chicago ave</address>
+        <taskName>Martin Mueller</taskName>
+        <dueDate>11112111</dueDate>
+        <dueTime>0000</dueTime>
+        <importance>***</importance>
     </tasks>
 </taskmanager>
