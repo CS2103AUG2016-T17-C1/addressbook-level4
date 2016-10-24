@@ -9,7 +9,7 @@ import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.*;
 
 /**
- * Adds a task to the address book.
+ * Adds a task to the task manager.
  */
 public class AddCommand extends Command {
 
