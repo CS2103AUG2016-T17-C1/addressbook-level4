@@ -9,9 +9,9 @@ import seedu.task.model.tag.UniqueTagList;
 public interface ReadOnlyTask {
 
     TaskName getName();
-    DeadLine getDeadLine();
+    Deadline getDeadLine();
     Importance getImportance();
-    
+
 
     /**
      * The returned TagList is a deep copy of the internal TagList,

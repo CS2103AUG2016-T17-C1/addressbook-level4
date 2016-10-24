@@ -47,7 +47,7 @@ public class TaskCardHandle extends GuiHandle {
 //        System.out.println(task.getDueDate().value+task.getDueDate()+"fulldatexists");
 //        System.out.println(task.getImportance().value+task.getImportance()+"fullimportanceexists");
         return getFullName().equals(task.getName().fullName) && getDueTime().equals(task.getDeadLine().getDueTime().value)
-                && getImportance().equals(task.getImportance().value) && getDueDate().equals(task.getDeadLine().getDueDate().getDueDate());
+                && getImportance().equals(task.getImportance().value) && getDueDate().equals(task.getDeadLine().getDueDate().toString());
     }
 
     @Override

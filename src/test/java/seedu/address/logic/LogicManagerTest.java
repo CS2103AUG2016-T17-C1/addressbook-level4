@@ -170,7 +170,7 @@ public class LogicManagerTest {
       Task toBeAdded = helper.floating();
       TaskManager expectedAB = new TaskManager();
       expectedAB.addTask(toBeAdded);
-      
+
       // execute command and verify result
       assertCommandBehavior(helper.generateAddCommand(toBeAdded),
               String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
@@ -178,7 +178,7 @@ public class LogicManagerTest {
               expectedAB.getTaskList());
 
   }
-    
+
     @Test
     public void execute_add_invalidPersonData() throws Exception {
         assertCommandBehavior(
@@ -406,26 +406,26 @@ public class LogicManagerTest {
             TaskName taskName = new TaskName("Adam Brown");
             DueDate dueDate = new DueDate("11112111");
             DueTime dueTime = new DueTime("2359");
-            DeadLine deadLine = new DeadLine(dueDate, dueTime);
+            Deadline deadline = new Deadline(dueDate, dueTime);
             Importance importance = new Importance("**");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(taskName, deadLine, importance, tags);
+            return new Task(taskName, deadline, importance, tags);
         }
 
         /**
          * @return a floating task.
          */
-        
+
         Task floating() throws Exception {
             TaskName taskName = new TaskName("Floater");
             DueDate dueDate = new DueDate("");
             DueTime dueTime = new DueTime("");
-            DeadLine deadLine = new DeadLine(dueDate, dueTime);            
+            Deadline deadline = new Deadline(dueDate, dueTime);
             Importance importance = new Importance("");
             UniqueTagList tags = new UniqueTagList();
-            return new Task(taskName, deadLine, importance, tags);
+            return new Task(taskName, deadline, importance, tags);
         }
 
         /**
@@ -438,7 +438,7 @@ public class LogicManagerTest {
         Task generateTask(int seed) throws Exception {
             return new Task(
                     new TaskName("Task " + seed),
-                    new DeadLine(new DueDate("" + (31129999 - Math.abs(seed))),
+                    new Deadline(new DueDate("" + (31129999 - Math.abs(seed))),
                                  new DueTime("" + (Math.abs(seed) + 1200))),
                     new Importance(new String(new char[seed]).replace("\0", "*")),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
@@ -452,7 +452,7 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getName().toString());
-            cmd.append(" d/").append(p.getDeadLine().getDueDate().getDueDate());
+            cmd.append(" d/").append(p.getDeadLine().getDueDate().toString());
             cmd.append(" e/").append(p.getDeadLine().getDueTime().toString());
             cmd.append(" i/").append(p.getImportance());
 
@@ -537,7 +537,7 @@ public class LogicManagerTest {
         Task generateTaskWithName(String name) throws Exception {
             return new Task(
                     new TaskName(name),
-                    new DeadLine(new DueDate("25125678"), new DueTime("0000")),
+                    new Deadline(new DueDate("25125678"), new DueTime("0000")),
                     new Importance("**"),
                     new UniqueTagList(new Tag("tag"))
             );

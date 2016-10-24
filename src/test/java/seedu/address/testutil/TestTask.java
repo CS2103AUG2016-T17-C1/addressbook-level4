@@ -10,7 +10,7 @@ public class TestTask implements ReadOnlyTask {
 
     private TaskName taskName;
     private Importance importance;
-    private DeadLine deadLine;
+    private Deadline deadline;
     private UniqueTagList tags;
 
     public TestTask() {
@@ -66,7 +66,7 @@ public class TestTask implements ReadOnlyTask {
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
         sb.append("add " + this.getName().fullName + " ");
-        sb.append("d/" + this.getDeadLine().getDueDate().getDueDate() + " ");
+        sb.append("d/" + this.getDeadLine().getDueDate().toString() + " ");
         sb.append("e/" + this.getDeadLine().getDueTime().value + " ");
         sb.append("i/" + this.getImportance().value + " ");
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
@@ -74,11 +74,11 @@ public class TestTask implements ReadOnlyTask {
     }
 
     @Override
-    public DeadLine getDeadLine() {
-        return this.deadLine;
+    public Deadline getDeadLine() {
+        return this.deadline;
     }
 
-    public void setDeadLine(DeadLine deadLine) {
-        this.deadLine = deadLine;
+    public void setDeadLine(Deadline deadline) {
+        this.deadline = deadline;
     }
 }

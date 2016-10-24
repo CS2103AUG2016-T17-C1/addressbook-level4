@@ -2,15 +2,15 @@ package seedu.task.model.task;
 
 import seedu.task.commons.exceptions.IllegalValueException;
 
-public class DeadLine {
-    
+public class Deadline {
+
     public static final String MESSAGE_DEADLINE_CONSTRAINTS = "Task's deadline cannot have due time only";
-    
+
     private DueDate dueDate;
     private DueTime dueTime;
-    
 
-    public DeadLine(DueDate dueDate, DueTime dueTime) throws IllegalValueException {       
+
+    public Deadline(DueDate dueDate, DueTime dueTime) throws IllegalValueException {
         if (dueDate.getDueDate().isEmpty() && !(dueTime.toString().isEmpty())) {
             throw new IllegalValueException(MESSAGE_DEADLINE_CONSTRAINTS);
         }

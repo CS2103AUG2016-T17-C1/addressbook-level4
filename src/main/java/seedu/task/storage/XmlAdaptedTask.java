@@ -40,7 +40,7 @@ public class XmlAdaptedTask {
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
         taskName = source.getName().fullName;
-        dueDate = source.getDeadLine().getDueDate().getDueDate();
+        dueDate = source.getDeadLine().getDueDate().toString();
         dueTime = source.getDeadLine().getDueTime().value;
         importance = source.getImportance().value;
         tagged = new ArrayList<>();
@@ -62,9 +62,9 @@ public class XmlAdaptedTask {
         final TaskName taskName = new TaskName(this.taskName);
         final DueDate dueDate = new DueDate(this.dueDate);
         final DueTime dueTime = new DueTime(this.dueTime);
-        final DeadLine deadLine = new DeadLine(dueDate, dueTime);
+        final Deadline deadline = new Deadline(dueDate, dueTime);
         final Importance importance = new Importance(this.importance);
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        return new Task(taskName, deadLine, importance, tags);
+        return new Task(taskName, deadline, importance, tags);
     }
 }

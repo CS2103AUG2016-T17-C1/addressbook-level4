@@ -12,7 +12,7 @@ import seedu.task.model.tag.UniqueTagList;
 public class Task implements ReadOnlyTask {
 
     private TaskName taskName;
-    private DeadLine deadLine;
+    private Deadline deadline;
     private Importance importance;
 
     private UniqueTagList tags;
@@ -20,10 +20,10 @@ public class Task implements ReadOnlyTask {
     /**
      * Every field must be present and not null.
      */
-    public Task(TaskName taskName, DeadLine deadLine, Importance importance, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(taskName, deadLine.getDueDate(), deadLine.getDueTime(), importance, tags);
+    public Task(TaskName taskName, Deadline deadline, Importance importance, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(taskName, deadline.getDueDate(), deadline.getDueTime(), importance, tags);
         this.taskName = taskName;
-        this.deadLine = deadLine;
+        this.deadline = deadline;
         this.importance = importance;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
@@ -35,9 +35,9 @@ public class Task implements ReadOnlyTask {
         this(source.getName(), source.getDeadLine(), source.getImportance(), source.getTags());
     }
 
-    public Task(DeadLine deadLine, Importance importance, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(deadLine.getDueDate(), deadLine.getDueTime(), importance, tags);
-        this.deadLine = deadLine;
+    public Task(Deadline deadline, Importance importance, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(deadline.getDueDate(), deadline.getDueTime(), importance, tags);
+        this.deadline = deadline;
         this.importance = importance;
         this.tags = new UniqueTagList(tags);
         // TODO Auto-generated constructor stub
@@ -110,12 +110,12 @@ public class Task implements ReadOnlyTask {
         return getAsText();
     }
 
-    public DeadLine getDeadLine() {
-        return deadLine;
+    public Deadline getDeadLine() {
+        return deadline;
     }
 
-    public void setDeadLine(DeadLine deadLine) {
-        this.deadLine = deadLine;
+    public void setDeadLine(Deadline deadline) {
+        this.deadline = deadline;
     }
 
 }

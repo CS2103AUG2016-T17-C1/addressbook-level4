@@ -8,7 +8,7 @@ import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
-import seedu.task.model.task.DeadLine;
+import seedu.task.model.task.Deadline;
 import seedu.task.model.task.DueDate;
 import seedu.task.model.task.DueTime;
 import seedu.task.model.task.Importance;
@@ -46,7 +46,7 @@ public class EditCommand extends Command {
 
         if (taskName == null) {
             this.toEdit = new Task(
-                    new DeadLine(new DueDate(dueDate), new DueTime(dueTime)),
+                    new Deadline(new DueDate(dueDate), new DueTime(dueTime)),
                     new Importance(importance),
                     new UniqueTagList(tagSet));
         }
@@ -54,7 +54,7 @@ public class EditCommand extends Command {
         else {
             this.toEdit = new Task(
                     new TaskName(taskName),
-                    new DeadLine(new DueDate(dueDate), new DueTime(dueTime)),
+                    new Deadline(new DueDate(dueDate), new DueTime(dueTime)),
                     new Importance(importance),
                     new UniqueTagList(tagSet));
         }
@@ -74,7 +74,7 @@ public class EditCommand extends Command {
         
         if (taskToEdit.getDeadLine().getDueDate().toString().isEmpty()
                 && this.toEdit.getDeadLine().getDueDate().toString().equals("01012000")) {
-            return new CommandResult(DeadLine.MESSAGE_DEADLINE_CONSTRAINTS);
+            return new CommandResult(Deadline.MESSAGE_DEADLINE_CONSTRAINTS);
         }
 
         try {
