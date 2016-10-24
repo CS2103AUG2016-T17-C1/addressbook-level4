@@ -9,6 +9,7 @@ import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.Deadline;
+import seedu.task.model.task.EventStart;
 import seedu.task.model.task.Date;
 import seedu.task.model.task.Time;
 import seedu.task.model.task.Importance;
@@ -30,7 +31,7 @@ public class EditCommand extends Command {
     public final int targetIndex;
     private final Task toEdit;
 
-    public EditCommand(String string, String taskName, String dueDate, String dueTime, String importance,
+    public EditCommand(String string, String taskName,String startDate,String startTime, String dueDate, String dueTime, String importance,
             Set<String> tags) throws IllegalValueException {
         System.out.println("Target index" + string);
         this.targetIndex = Integer.parseInt(string);
@@ -39,7 +40,7 @@ public class EditCommand extends Command {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        
+
         if ((dueDate == null || dueDate.isEmpty()) && dueTime != null) {
             dueDate = "01012000";
         }
@@ -54,6 +55,7 @@ public class EditCommand extends Command {
         else {
             this.toEdit = new Task(
                     new TaskName(taskName),
+                    new EventStart(new Date(startDate), new Time(startTime)),
                     new Deadline(new Date(dueDate), new Time(dueTime)),
                     new Importance(importance),
                     new UniqueTagList(tagSet));
@@ -71,7 +73,7 @@ public class EditCommand extends Command {
         }
 
         ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
-        
+
         if (taskToEdit.getDeadLine().getDueDate().toString().isEmpty()
                 && this.toEdit.getDeadLine().getDueDate().toString().equals("01012000")) {
             return new CommandResult(Deadline.MESSAGE_DEADLINE_CONSTRAINTS);
@@ -87,6 +89,13 @@ public class EditCommand extends Command {
             }
             if (this.toEdit.getDeadLine().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setDueTime(taskToEdit.getDeadLine().getDueTime());
+            }
+            if (this.toEdit.getEventStart().getStartDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
+                    || this.toEdit.getEventStart().getStartDate().toString().equals("01012000")) {
+                this.toEdit.setStartDate(taskToEdit.getEventStart().getStartDate());
+            }
+            if (this.toEdit.getEventStart().getStartTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
+                this.toEdit.setStartTime(taskToEdit.getEventStart().getStartTime());
             }
             if (this.toEdit.getTags().getInternalList().toString().equals(EMPTY_TAG_OBJECT_STRING)) {
                 this.toEdit.setTags(taskToEdit.getTags());

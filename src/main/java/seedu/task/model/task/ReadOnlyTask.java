@@ -10,6 +10,7 @@ public interface ReadOnlyTask {
 
     TaskName getName();
     Deadline getDeadLine();
+    EventStart getEventStart();
     Importance getImportance();
 
 
@@ -28,6 +29,8 @@ public interface ReadOnlyTask {
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getDeadLine().getDueDate().equals(this.getDeadLine().getDueDate())
                 && other.getDeadLine().getDueTime().equals(this.getDeadLine().getDueTime())
+                && other.getEventStart().getStartDate().equals(this.getEventStart().getStartDate())
+                && other.getEventStart().getStartTime().equals(this.getEventStart().getStartTime())
                 && other.getImportance().equals(this.getImportance()));
     }
 
@@ -37,9 +40,13 @@ public interface ReadOnlyTask {
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Date: ")
+                .append(" Start Date: ")
+                .append(getEventStart().getStartDate())
+                .append(" Start Time: ")
+                .append(getEventStart().getStartTime())
+                .append(" End Date: ")
                 .append(getDeadLine().getDueDate())
-                .append(" Time: ")
+                .append(" End Time: ")
                 .append(getDeadLine().getDueTime())
                 .append(" Importance: ")
                 .append(getImportance())

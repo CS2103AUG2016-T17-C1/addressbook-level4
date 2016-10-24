@@ -22,6 +22,10 @@ public class XmlAdaptedTask {
     @XmlElement(required = true)
     private String dueTime;
     @XmlElement(required = true)
+    private String startDate;
+    @XmlElement(required = true)
+    private String startTime;
+    @XmlElement(required = true)
     private String importance;
 
     @XmlElement
@@ -42,6 +46,8 @@ public class XmlAdaptedTask {
         taskName = source.getName().fullName;
         dueDate = source.getDeadLine().getDueDate().toString();
         dueTime = source.getDeadLine().getDueTime().value;
+        startDate = source.getEventStart().getStartDate().toString();
+        startTime = source.getEventStart().getStartTime().value;
         importance = source.getImportance().value;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
@@ -63,8 +69,9 @@ public class XmlAdaptedTask {
         final Date date = new Date(this.dueDate);
         final Time time = new Time(this.dueTime);
         final Deadline deadline = new Deadline(date, time);
+        final EventStart eventStart = new EventStart (date,time);
         final Importance importance = new Importance(this.importance);
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        return new Task(taskName, deadline, importance, tags);
+        return new Task(taskName,eventStart, deadline, importance, tags);
     }
 }

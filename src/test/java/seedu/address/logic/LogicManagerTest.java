@@ -406,12 +406,13 @@ public class LogicManagerTest {
             TaskName taskName = new TaskName("Adam Brown");
             Date date = new Date("11112111");
             Time time = new Time("2359");
+            EventStart eventStart = new EventStart(date, time);
             Deadline deadline = new Deadline(date, time);
             Importance importance = new Importance("**");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(taskName, deadline, importance, tags);
+            return new Task(taskName,eventStart, deadline, importance, tags);
         }
 
         /**
@@ -422,10 +423,11 @@ public class LogicManagerTest {
             TaskName taskName = new TaskName("Floater");
             Date date = new Date("");
             Time time = new Time("");
+            EventStart eventStart = new EventStart(date,time);
             Deadline deadline = new Deadline(date, time);
             Importance importance = new Importance("");
             UniqueTagList tags = new UniqueTagList();
-            return new Task(taskName, deadline, importance, tags);
+            return new Task(taskName,eventStart, deadline, importance, tags);
         }
 
         /**
@@ -438,6 +440,8 @@ public class LogicManagerTest {
         Task generateTask(int seed) throws Exception {
             return new Task(
                     new TaskName("Task " + seed),
+                    new EventStart(new Date("" + (31129989 - Math.abs(seed))),
+                            new Time("" + (Math.abs(seed) + 1200))),
                     new Deadline(new Date("" + (31129999 - Math.abs(seed))),
                                  new Time("" + (Math.abs(seed) + 1200))),
                     new Importance(new String(new char[seed]).replace("\0", "*")),
@@ -537,6 +541,7 @@ public class LogicManagerTest {
         Task generateTaskWithName(String name) throws Exception {
             return new Task(
                     new TaskName(name),
+                    new EventStart(new Date("25124678"), new Time("0000")),
                     new Deadline(new Date("25125678"), new Time("0000")),
                     new Importance("**"),
                     new UniqueTagList(new Tag("tag"))

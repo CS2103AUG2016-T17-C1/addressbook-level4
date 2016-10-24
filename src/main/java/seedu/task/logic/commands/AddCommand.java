@@ -16,7 +16,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
-            + "Parameters: TASK_NAME [d/END_DATE] [e/END_TIME] [*] [t/TAG]...\n"
+            + "Parameters: TASK_NAME [sd/START_DATE] [st/START_TIME] [d/END_DATE] [e/END_TIME] [*] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD
             + " Buy milk d/15102016 e/1500 *";
 
@@ -30,7 +30,7 @@ public class AddCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    public AddCommand(String taskName, String dueDate, String dueTime, String importance, Set<String> tags)
+    public AddCommand(String taskName, String startDate,String startTime,String dueDate, String dueTime, String importance, Set<String> tags)
             throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
@@ -38,6 +38,7 @@ public class AddCommand extends Command {
         }
         this.toAdd = new Task(
                 new TaskName(taskName),
+                new EventStart(new Date(startDate), new Time(startTime)),
                 new Deadline(new Date(dueDate), new Time(dueTime)),
                 new Importance(importance),
                 new UniqueTagList(tagSet)

@@ -12,8 +12,8 @@ import seedu.task.model.tag.UniqueTagList;
 public class Task implements ReadOnlyTask {
 
     private TaskName taskName;
-    //private EventStart eventStart;
     private Deadline deadline;
+    private EventStart eventStart;
     private Importance importance;
 
     private UniqueTagList tags;
@@ -21,9 +21,10 @@ public class Task implements ReadOnlyTask {
     /**
      * Every field must be present and not null.
      */
-    public Task(TaskName taskName, Deadline deadline, Importance importance, UniqueTagList tags) {
+    public Task(TaskName taskName, EventStart eventStart,Deadline deadline, Importance importance, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(taskName, deadline.getDueDate(), deadline.getDueTime(), importance, tags);
         this.taskName = taskName;
+        this.eventStart = eventStart;
         this.deadline = deadline;
         this.importance = importance;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
@@ -33,7 +34,7 @@ public class Task implements ReadOnlyTask {
      * Copy constructor.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getDeadLine(), source.getImportance(), source.getTags());
+        this(source.getName(),source.getEventStart(), source.getDeadLine(), source.getImportance(), source.getTags());
     }
 
     public Task(Deadline deadline, Importance importance, UniqueTagList tags) {
@@ -43,6 +44,7 @@ public class Task implements ReadOnlyTask {
         this.tags = new UniqueTagList(tags);
         // TODO Auto-generated constructor stub
     }
+
 
     @Override
     public TaskName getName() {
@@ -115,8 +117,24 @@ public class Task implements ReadOnlyTask {
         return deadline;
     }
 
+    public EventStart getEventStart() {
+        return eventStart;
+    }
+
+    public void setEventStart(EventStart eventStart) {
+        this.eventStart = eventStart;
+    }
+
     public void setDeadLine(Deadline deadline) {
         this.deadline = deadline;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.getEventStart().setStartDate(startDate);
+    }
+
+    public void setStartTime(Time startTime) {
+        this.getEventStart().setStartTime(startTime);
     }
 
 }

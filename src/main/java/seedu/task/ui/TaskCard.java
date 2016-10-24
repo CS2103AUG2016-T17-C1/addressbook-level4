@@ -43,9 +43,9 @@ public class TaskCard extends UiPart{
     public void initialize() {
         name.setText("Task: "+ task.getName().fullName);
         id.setText(displayedIndex + ". ");
-        dueDate.setText("To be completed on Date: "+ task.getDeadLine().getDueDate().toString());
+        dueDate.setText("Task to be started on date" + task.getEventStart().getStartDate().toString() + " and to be completed on Date: "+ task.getDeadLine().getDueDate().toString());
         importance.setText("Importance: " + task.getImportance().value);
-        dueTime.setText("To be completed by "+task.getDeadLine().getDueTime().value+"hours");
+        dueTime.setText("Task starts on time" + task.getEventStart().getStartTime().value + " and to be completed by "+task.getDeadLine().getDueTime().value+"hours");
         tags.setText(task.tagsString());
     }
 

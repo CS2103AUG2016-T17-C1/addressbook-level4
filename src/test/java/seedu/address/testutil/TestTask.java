@@ -10,6 +10,7 @@ public class TestTask implements ReadOnlyTask {
 
     private TaskName taskName;
     private Importance importance;
+    private EventStart eventStart;
     private Deadline deadline;
     private UniqueTagList tags;
 
@@ -80,5 +81,14 @@ public class TestTask implements ReadOnlyTask {
 
     public void setDeadLine(Deadline deadline) {
         this.deadline = deadline;
+    }
+
+    @Override
+    public EventStart getEventStart() {
+        return this.eventStart;
+    }
+
+    public void setEventStart(EventStart eventStart) {
+        this.eventStart = eventStart;
     }
 }
