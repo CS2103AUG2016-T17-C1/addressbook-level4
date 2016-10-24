@@ -15,7 +15,6 @@ public class Task implements ReadOnlyTask {
     private Deadline deadline;
     private EventStart eventStart;
     private Importance importance;
-
     private UniqueTagList tags;
 
     /**
@@ -37,14 +36,14 @@ public class Task implements ReadOnlyTask {
         this(source.getName(),source.getEventStart(), source.getDeadLine(), source.getImportance(), source.getTags());
     }
 
-    public Task(Deadline deadline, Importance importance, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(deadline.getDueDate(), deadline.getDueTime(), importance, tags);
+    public Task(EventStart eventStart, Deadline deadline, Importance importance, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(eventStart.getStartDate(), eventStart.getStartTime(),deadline.getDueDate(), deadline.getDueTime(), importance, tags);
+        this.eventStart = eventStart;
         this.deadline = deadline;
         this.importance = importance;
         this.tags = new UniqueTagList(tags);
         // TODO Auto-generated constructor stub
     }
-
 
     @Override
     public TaskName getName() {

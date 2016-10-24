@@ -47,6 +47,7 @@ public class EditCommand extends Command {
 
         if (taskName == null) {
             this.toEdit = new Task(
+                    new EventStart(new Date(startDate), new Time(startTime)),
                     new Deadline(new Date(dueDate), new Time(dueTime)),
                     new Importance(importance),
                     new UniqueTagList(tagSet));
@@ -90,7 +91,7 @@ public class EditCommand extends Command {
             if (this.toEdit.getDeadLine().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setDueTime(taskToEdit.getDeadLine().getDueTime());
             }
-            if (this.toEdit.getEventStart().getStartDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
+            if (this.toEdit.getEventStart().getStartDate().equals(EMPTY_TASK_OBJECT_STRING)
                     || this.toEdit.getEventStart().getStartDate().toString().equals("01012000")) {
                 this.toEdit.setStartDate(taskToEdit.getEventStart().getStartDate());
             }
