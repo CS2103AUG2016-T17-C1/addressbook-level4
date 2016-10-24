@@ -27,7 +27,7 @@ public class EditCommandTest extends TaskManagerGuiTest{
         assertEditSuccess(taskToEdit, 3 ,currentList);
         
         //edit empty list
-        commandBox.runcommand("clear");
+        commandBox.runCommand("clear");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
         
         //invalid index
