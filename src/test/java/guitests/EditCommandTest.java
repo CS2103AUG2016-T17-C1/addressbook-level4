@@ -36,7 +36,7 @@ public class EditCommandTest extends TaskManagerGuiTest{
         
         //incomplete parameters
         commandBox.runCommand("edit 1");
-        assertResultMessage(Messages.MESSAGE_INVALID_COMMAND_FORMAT));
+        assertResultMessage(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
 	}
 	
     
