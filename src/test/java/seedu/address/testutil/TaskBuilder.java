@@ -41,4 +41,9 @@ public class TaskBuilder {
         return this;
     }
 
+    public TaskBuilder withEventStart(String startDate, String startTime) throws IllegalValueException {
+        this.task.setEventStart(new EventStart(new Date(startDate), new Time(startTime)));
+        return this;
+    }
+
 }

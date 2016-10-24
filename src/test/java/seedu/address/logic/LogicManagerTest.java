@@ -406,7 +406,7 @@ public class LogicManagerTest {
             TaskName taskName = new TaskName("Adam Brown");
             Date date = new Date("11112111");
             Time time = new Time("2359");
-            EventStart eventStart = new EventStart(date, time);
+            EventStart eventStart = new EventStart(new Date(""), new Time(""));
             Deadline deadline = new Deadline(date, time);
             Importance importance = new Importance("**");
             Tag tag1 = new Tag("tag1");

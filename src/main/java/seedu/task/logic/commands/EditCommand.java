@@ -45,6 +45,10 @@ public class EditCommand extends Command {
             dueDate = "01012000";
         }
 
+        if ((startDate == null || startDate.isEmpty()) && startTime != null) {
+            startDate = "01012000";
+        }
+
         if (taskName == null) {
             this.toEdit = new Task(
                     new EventStart(new Date(startDate), new Time(startTime)),
@@ -80,6 +84,10 @@ public class EditCommand extends Command {
             return new CommandResult(Deadline.MESSAGE_DEADLINE_CONSTRAINTS);
         }
 
+        if (taskToEdit.getEventStart().getStartDate().toString().isEmpty()
+                && this.toEdit.getEventStart().getStartDate().toString().equals("01012000")) {
+            return new CommandResult(EventStart.MESSAGE_EVENT_START_CONSTRAINTS);
+        }
         try {
             if (this.toEdit.getName() == null) {
                 this.toEdit.setName(taskToEdit.getName());
