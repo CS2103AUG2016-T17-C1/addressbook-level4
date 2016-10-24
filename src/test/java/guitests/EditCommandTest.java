@@ -28,7 +28,7 @@ public class EditCommandTest extends TaskManagerGuiTest{
         
         //invalid index
         commandBox.runCommand("edit x");
-        assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
+        assertResultMessage(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         
         //invalid command
         commandBox.runCommand("edits 1");
@@ -36,7 +36,7 @@ public class EditCommandTest extends TaskManagerGuiTest{
         
         //incomplete parameters
         commandBox.runCommand("edit 1");
-        assertResultMessage(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        assertResultMessage(Messages.MESSAGE_INVALID_COMMAND_FORMAT));
 	}
 	
     
@@ -51,9 +51,7 @@ public class EditCommandTest extends TaskManagerGuiTest{
         //confirm the list now contains all previous tasks plus the new edited task
         TestTask[] expectedList = TestUtil.addTasksToListAtIndex(currentList, index -1);
         assertTrue(taskListPanel.isListMatching(expectedList));
-        
-        //confirm the result message is correct
-        assertResultMessage(String.format(MESSAGE_EDIT_TASK_SUCCESS, itemToEdit));
+
     }
 
 }
