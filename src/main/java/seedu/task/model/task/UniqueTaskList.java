@@ -8,7 +8,8 @@ import seedu.task.commons.util.CollectionUtil;
 import java.util.*;
 
 /**
- * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
+ * A list of tasks that enforces uniqueness between its elements and does not
+ * allow nulls.
  *
  * Supports a minimal set of list operations.
  *
@@ -18,7 +19,8 @@ import java.util.*;
 public class UniqueTaskList implements Iterable<Task> {
 
     /**
-     * Signals that an operation would have violated the 'no duplicates' property of the list.
+     * Signals that an operation would have violated the 'no duplicates'
+     * property of the list.
      */
     public static class DuplicateTaskException extends DuplicateDataException {
         protected DuplicateTaskException() {
@@ -27,21 +29,24 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Signals that an operation targeting a specified task in the list would fail because
-     * there is no such matching person in the list.
+     * Signals that an operation targeting a specified task in the list would
+     * fail because there is no such matching person in the list.
      */
-    public static class TaskNotFoundException extends Exception {}
+    public static class TaskNotFoundException extends Exception {
+    }
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
-    private final ArrayList<ObservableList<Task>> savedList = new ArrayList<ObservableList<Task>>();
+    private final ArrayList<ArrayList<Task>> savedList = new ArrayList<ArrayList<Task>>();
 
     /**
      * Constructs empty TaskList.
      */
-    public UniqueTaskList() {}
+    public UniqueTaskList() {
+    }
 
     /**
-     * Returns true if the list contains an equivalent task as the given argument.
+     * Returns true if the list contains an equivalent task as the given
+     * argument.
      */
     public boolean contains(ReadOnlyTask toCheck) {
         assert toCheck != null;
@@ -51,32 +56,33 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Adds a task to the list.
      *
-     * @throws DuplicateTaskException if the task to add is a duplicate of an existing task in the list.
+     * @throws DuplicateTaskException
+     *             if the task to add is a duplicate of an existing task in the
+     *             list.
      */
     public void add(Task toAdd) throws DuplicateTaskException {
         assert toAdd != null;
         if (contains(toAdd)) {
             throw new DuplicateTaskException();
         }
-        savedList.add(internalList);
-        internalList.add(toAdd);
 
-        System.out.println("updated savedlist"+ savedList);
-        System.out.println("savedList size" + savedList.size());
+        saveCurrentTaskList();
+        internalList.add(toAdd);
 
     }
 
     /**
      * Removes the equivalent task from the list.
      *
-     * @throws TaskNotFoundException if no such task could be found in the list.
+     * @throws TaskNotFoundException
+     *             if no such task could be found in the list.
      */
     public boolean remove(ReadOnlyTask toRemove) throws TaskNotFoundException {
         assert toRemove != null;
-        savedList.add(internalList);
+        saveCurrentTaskList();
         final boolean taskFoundAndDeleted = internalList.remove(toRemove);
 
-        System.out.println("updated savedlist"+ savedList);
+        System.out.println("updated savedlist" + savedList);
         System.out.println("savedList size" + savedList.size());
         if (!taskFoundAndDeleted) {
             throw new TaskNotFoundException();
@@ -87,44 +93,53 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Edits the equivalent task from the list.
      *
-     * @throws TaskNotFoundException if no such task could be found in the list.
+     * @throws TaskNotFoundException
+     *             if no such task could be found in the list.
      */
     public boolean edit(ReadOnlyTask toEdit, Task task) throws TaskNotFoundException {
         assert toEdit != null;
-        //final boolean taskFoundAndEdited = internalList.set(1,toEdit);
+        // final boolean taskFoundAndEdited = internalList.set(1,toEdit);
         int indexDel = internalList.indexOf(toEdit);
-        savedList.add(internalList);
-        if (indexDel == -1 ) {
+        // savedList.add(internalList);
+        if (indexDel == -1) {
             throw new TaskNotFoundException();
         }
-
-        internalList.set(indexDel,task);
+        saveCurrentTaskList();
+        internalList.set(indexDel, task);
         return true;
     }
-
 
     /**
-     * Edits the equivalent task from the list.
+     * Undo the previous edit made to the task list.
      *
-     * @throws TaskNotFoundException if no such task could be found in the list.
+     * @throws TaskNotFoundException
+     *             if no such task could be found in the list.
      */
-    public boolean undo(){
-        System.out.println("trying to undo");
-        System.out.println("savedList size" + savedList.size());
-        System.out.println("to be removed"+ savedList.get(savedList.size() - 1));
-        savedList.remove(savedList.size() - 1);
-        ObservableList<Task> previousList = savedList.get(0);
-        System.out.println("to be placed back"+ savedList);
+    public boolean undo() {
 
-        System.out.println("lol"+ internalList);
-        FXCollections.observableArrayList().setAll(0);
+        if (savedList.size() >= 1) {
+            internalList.clear();
+            ArrayList<Task> restoredList = savedList.get(savedList.size() - 1);
+            for (Task t : restoredList) {
+                internalList.add(t);
+            }
+            savedList.remove(savedList.size() - 1);
+            return true;
+        }
 
-        return true;
+        return false;
     }
 
+    public void saveCurrentTaskList() {
+        ArrayList<Task> tempArrayList = new ArrayList<Task>();
+        for (Task t : internalList) {
+            tempArrayList.add(t);
+        }
+        savedList.add(tempArrayList);
+        System.out.println("updated savedlist" + savedList);
+        System.out.println("savedList size" + savedList.size());
 
-
-
+    }
 
     public ObservableList<Task> getInternalList() {
         return internalList;
@@ -139,8 +154,7 @@ public class UniqueTaskList implements Iterable<Task> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueTaskList // instanceof handles nulls
-                && this.internalList.equals(
-                ((UniqueTaskList) other).internalList));
+                        && this.internalList.equals(((UniqueTaskList) other).internalList));
     }
 
     @Override

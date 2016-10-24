@@ -47,7 +47,7 @@ public class TaskListPanelHandle extends GuiHandle {
     public boolean isListMatching(ReadOnlyTask... tasks) {
         return this.isListMatching(0, tasks);
     }
-    
+
     /**
      * Clicks on the ListView.
      */
@@ -92,6 +92,9 @@ public class TaskListPanelHandle extends GuiHandle {
             final int scrollTo = i + startPosition;
             guiRobot.interact(() -> getListView().scrollTo(scrollTo));
             guiRobot.sleep(200);
+            if(getTaskCardHandle(startPosition + i)!=null)
+                System.out.println("value of i"+i);
+                System.out.println("task card is NOT null");
             if (!TestUtil.compareCardAndTask(getTaskCardHandle(startPosition + i), tasks[i])) {
                 return false;
             }
@@ -107,13 +110,13 @@ public class TaskListPanelHandle extends GuiHandle {
             throw new IllegalStateException("TaskName not found: " + name);
         }
 
-        return navigateToPerson(task.get());
+        return navigateToTask(task.get());
     }
 
     /**
-     * Navigates the listview to display and select the person.
+     * Navigates the listview to display and select the task.
      */
-    public TaskCardHandle navigateToPerson(ReadOnlyTask task) {
+    public TaskCardHandle navigateToTask(ReadOnlyTask task) {
         int index = getTaskIndex(task);
 
         guiRobot.interact(() -> {
