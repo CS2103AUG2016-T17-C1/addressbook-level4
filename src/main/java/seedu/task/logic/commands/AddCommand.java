@@ -38,7 +38,7 @@ public class AddCommand extends Command {
         }
         this.toAdd = new Task(
                 new TaskName(taskName),
-                new Deadline(new DueDate(dueDate), new DueTime(dueTime)),
+                new Deadline(new Date(dueDate), new Time(dueTime)),
                 new Importance(importance),
                 new UniqueTagList(tagSet)
         );

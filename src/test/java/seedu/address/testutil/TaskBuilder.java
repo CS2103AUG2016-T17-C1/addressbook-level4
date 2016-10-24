@@ -37,7 +37,7 @@ public class TaskBuilder {
     }
 
     public TaskBuilder withDeadLine(String dueDate, String dueTime) throws IllegalValueException {
-        this.task.setDeadLine(new Deadline(new DueDate(dueDate), new DueTime(dueTime)));
+        this.task.setDeadLine(new Deadline(new Date(dueDate), new Time(dueTime)));
         return this;
     }
 

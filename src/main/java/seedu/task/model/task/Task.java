@@ -12,6 +12,7 @@ import seedu.task.model.tag.UniqueTagList;
 public class Task implements ReadOnlyTask {
 
     private TaskName taskName;
+    //private EventStart eventStart;
     private Deadline deadline;
     private Importance importance;
 
@@ -49,12 +50,12 @@ public class Task implements ReadOnlyTask {
     }
 //
 //    @Override
-//    public DueDate getDueDate() {
+//    public Date getDueDate() {
 //        return getDeadLine().getDueDate();
 //    }
 //
 //    @Override
-//    public DueTime getDueTime() {
+//    public Time getDueTime() {
 //        return getDeadLine().getDueTime();
 //    }
 
@@ -68,12 +69,12 @@ public class Task implements ReadOnlyTask {
         this.taskName = name;
     }
 
-    public void setDueDate(DueDate dueDate) {
-        this.getDeadLine().setDueDate(dueDate);
+    public void setDueDate(Date date) {
+        this.getDeadLine().setDueDate(date);
     }
 
-    public void setDueTime(DueTime dueTime) {
-        this.getDeadLine().setDueTime(dueTime);
+    public void setDueTime(Time time) {
+        this.getDeadLine().setDueTime(time);
     }
 
     public void setImportance(Importance importance) {

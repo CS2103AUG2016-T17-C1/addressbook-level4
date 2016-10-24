@@ -184,9 +184,9 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add []\\[;] d/11125678 e/valid@e.mail i/valid, address", TaskName.MESSAGE_NAME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid TaskName d/not_numbers e/valid@e.mail i/valid, address", DueDate.MESSAGE_DUE_DATE_CONSTRAINTS);
+                "add Valid TaskName d/not_numbers e/valid@e.mail i/valid, address", Date.MESSAGE_DATE_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid TaskName d/31125678 e/notAnEmail i/valid, address", DueTime.MESSAGE_DUE_TIME_CONSTRAINTS);
+                "add Valid TaskName d/31125678 e/notAnEmail i/valid, address", Time.MESSAGE_TIME_CONSTRAINTS);
         assertCommandBehavior(
                 "add Valid TaskName d/11115678 e/valid@e.mail i/valid, address t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
 
@@ -404,9 +404,9 @@ public class LogicManagerTest {
 
         Task adam() throws Exception {
             TaskName taskName = new TaskName("Adam Brown");
-            DueDate dueDate = new DueDate("11112111");
-            DueTime dueTime = new DueTime("2359");
-            Deadline deadline = new Deadline(dueDate, dueTime);
+            Date date = new Date("11112111");
+            Time time = new Time("2359");
+            Deadline deadline = new Deadline(date, time);
             Importance importance = new Importance("**");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
@@ -420,9 +420,9 @@ public class LogicManagerTest {
 
         Task floating() throws Exception {
             TaskName taskName = new TaskName("Floater");
-            DueDate dueDate = new DueDate("");
-            DueTime dueTime = new DueTime("");
-            Deadline deadline = new Deadline(dueDate, dueTime);
+            Date date = new Date("");
+            Time time = new Time("");
+            Deadline deadline = new Deadline(date, time);
             Importance importance = new Importance("");
             UniqueTagList tags = new UniqueTagList();
             return new Task(taskName, deadline, importance, tags);
@@ -438,8 +438,8 @@ public class LogicManagerTest {
         Task generateTask(int seed) throws Exception {
             return new Task(
                     new TaskName("Task " + seed),
-                    new Deadline(new DueDate("" + (31129999 - Math.abs(seed))),
-                                 new DueTime("" + (Math.abs(seed) + 1200))),
+                    new Deadline(new Date("" + (31129999 - Math.abs(seed))),
+                                 new Time("" + (Math.abs(seed) + 1200))),
                     new Importance(new String(new char[seed]).replace("\0", "*")),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
@@ -537,7 +537,7 @@ public class LogicManagerTest {
         Task generateTaskWithName(String name) throws Exception {
             return new Task(
                     new TaskName(name),
-                    new Deadline(new DueDate("25125678"), new DueTime("0000")),
+                    new Deadline(new Date("25125678"), new Time("0000")),
                     new Importance("**"),
                     new UniqueTagList(new Tag("tag"))
             );

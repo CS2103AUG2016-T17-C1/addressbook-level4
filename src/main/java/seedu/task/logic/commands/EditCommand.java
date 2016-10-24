@@ -9,8 +9,8 @@ import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.Deadline;
-import seedu.task.model.task.DueDate;
-import seedu.task.model.task.DueTime;
+import seedu.task.model.task.Date;
+import seedu.task.model.task.Time;
 import seedu.task.model.task.Importance;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
@@ -46,7 +46,7 @@ public class EditCommand extends Command {
 
         if (taskName == null) {
             this.toEdit = new Task(
-                    new Deadline(new DueDate(dueDate), new DueTime(dueTime)),
+                    new Deadline(new Date(dueDate), new Time(dueTime)),
                     new Importance(importance),
                     new UniqueTagList(tagSet));
         }
@@ -54,7 +54,7 @@ public class EditCommand extends Command {
         else {
             this.toEdit = new Task(
                     new TaskName(taskName),
-                    new Deadline(new DueDate(dueDate), new DueTime(dueTime)),
+                    new Deadline(new Date(dueDate), new Time(dueTime)),
                     new Importance(importance),
                     new UniqueTagList(tagSet));
         }

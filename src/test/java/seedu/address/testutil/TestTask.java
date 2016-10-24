@@ -25,11 +25,11 @@ public class TestTask implements ReadOnlyTask {
         this.importance = importance;
     }
 
-//    public void setDueTime(DueTime dueTime) {
+//    public void setDueTime(Time dueTime) {
 //        this.deadLine.setDueTime(dueTime);
 //    }
 //
-//    public void setDueDate(DueDate dueDate) {
+//    public void setDueDate(Date dueDate) {
 //        this.deadLine.setDueDate(dueDate);
 //    }
 
@@ -39,12 +39,12 @@ public class TestTask implements ReadOnlyTask {
     }
 
 //    @Override
-//    public DueDate getDueDate() {
+//    public Date getDueDate() {
 //        return dueDate;
 //    }
 //
 //    @Override
-//    public DueTime getDueTime() {
+//    public Time getDueTime() {
 //        return dueTime;
 //    }
 

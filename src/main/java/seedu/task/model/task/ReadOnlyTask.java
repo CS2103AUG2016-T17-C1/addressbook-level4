@@ -37,9 +37,9 @@ public interface ReadOnlyTask {
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" DueDate: ")
+                .append(" Date: ")
                 .append(getDeadLine().getDueDate())
-                .append(" DueTime: ")
+                .append(" Time: ")
                 .append(getDeadLine().getDueTime())
                 .append(" Importance: ")
                 .append(getImportance())

@@ -6,37 +6,37 @@ public class Deadline {
 
     public static final String MESSAGE_DEADLINE_CONSTRAINTS = "Task's deadline cannot have due time only";
 
-    private DueDate dueDate;
-    private DueTime dueTime;
+    private Date date;
+    private Time time;
 
 
-    public Deadline(DueDate dueDate, DueTime dueTime) throws IllegalValueException {
-        if (dueDate.getDueDate().isEmpty() && !(dueTime.toString().isEmpty())) {
+    public Deadline(Date date, Time time) throws IllegalValueException {
+        if (date.getDate().isEmpty() && !(time.toString().isEmpty())) {
             throw new IllegalValueException(MESSAGE_DEADLINE_CONSTRAINTS);
         }
-        this.dueDate = dueDate;
-        this.dueTime = dueTime;
+        this.date = date;
+        this.time = time;
         // TODO Auto-generated constructor stub
     }
 
 
-    public DueDate getDueDate() {
-        return dueDate;
+    public Date getDueDate() {
+        return date;
     }
 
 
-    public void setDueDate(DueDate dueDate) {
-        this.dueDate = dueDate;
+    public void setDueDate(Date date) {
+        this.date = date;
     }
 
 
-    public DueTime getDueTime() {
-        return dueTime;
+    public Time getDueTime() {
+        return time;
     }
 
 
-    public void setDueTime(DueTime dueTime) {
-        this.dueTime = dueTime;
+    public void setDueTime(Time time) {
+        this.time = time;
     }
 
 }
