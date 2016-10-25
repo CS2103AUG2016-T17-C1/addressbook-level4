@@ -107,7 +107,7 @@ Examples:
 * `list`<br>
   `select 2`<br>
   Selects the 2nd task in the to-do list.
-* `find Betsy` <br>
+* `find Buy bread` <br>
   `select 1`<br>
   Selects the 1st task in the results of the `find` command.
 
