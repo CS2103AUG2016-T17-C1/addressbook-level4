@@ -9,7 +9,6 @@ public class Deadline {
     private Date date;
     private Time time;
 
-
     public Deadline(Date date, Time time) throws IllegalValueException {
         if (date.getDate().isEmpty() && !(time.toString().isEmpty())) {
             throw new IllegalValueException(MESSAGE_DEADLINE_CONSTRAINTS);
@@ -19,21 +18,17 @@ public class Deadline {
         // TODO Auto-generated constructor stub
     }
 
-
     public Date getDueDate() {
         return date;
     }
-
 
     public void setDueDate(Date date) {
         this.date = date;
     }
 
-
     public Time getDueTime() {
         return time;
     }
-
 
     public void setDueTime(Time time) {
         this.time = time;

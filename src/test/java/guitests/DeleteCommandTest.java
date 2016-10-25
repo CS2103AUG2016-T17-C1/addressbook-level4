@@ -25,9 +25,6 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
         //delete from the middle of the list
         currentList = TestUtil.removeTaskFromList(currentList, targetIndex);
         targetIndex = currentList.length/2;
-
-
-        //System.out.println("t"+ targetIndex);
         assertDeleteSuccess(targetIndex, currentList);
 
         //invalid index
@@ -49,7 +46,7 @@ public class DeleteCommandTest extends TaskManagerGuiTest {
         commandBox.runCommand("delete " + targetIndexOneIndexed);
 
         //confirm the result message is correct
-        System.out.println("targetindex again"+ taskToDelete);
+//        System.out.println("targetindex again"+ taskToDelete);
         assertResultMessage(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
 
 

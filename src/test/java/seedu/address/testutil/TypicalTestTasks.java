@@ -14,18 +14,20 @@ public class TypicalTestTasks {
 
     public TypicalTestTasks() {
         try {
-            alice =  new TaskBuilder().withName("Alice Pauline").withImportance("*")
-                    .withEventStart("11112111","1107")
-                    .withDeadLine("11112111", "1107").withTags("friends").build();
-            benson = new TaskBuilder().withName("Benson Meier").withImportance("**")
-                    .withEventStart("11112000","0900")
-                    .withDeadLine("26122000", "1000")
-                    .withTags("owesMoney", "friends").build();
-            carl = new TaskBuilder().withName("Carl Kurzs").withEventStart("11112200","0900").withDeadLine("11102016", "2300").withImportance("**").build();
-            daniel = new TaskBuilder().withName("Daniel Meier").withEventStart("11112200","1000").withDeadLine("11102016", "0019").withImportance("*").build();
-            elle = new TaskBuilder().withName("Elle Meyer").withEventStart("11112200","1000").withDeadLine("11102016", "0900").withImportance("**").build();
-            fiona = new TaskBuilder().withName("Fiona Kunz").withEventStart("11112200","1000").withDeadLine("11102016", "1000").withImportance("***").build();
-            george = new TaskBuilder().withName("George Best").withEventStart("11102016","2359").withDeadLine("11102016", "2359").withImportance("**").build();
+            alice = new TaskBuilder().withName("Alice Pauline").withEventStart("11112222", "0000")
+                    .withDeadLine("11112111", "1107").withImportance("*").withTags("friends").build();
+            benson = new TaskBuilder().withName("Benson Meier").withEventStart("11112000", "0900")
+                    .withDeadLine("26122000", "1000").withImportance("**").withTags("owesMoney", "friends").build();
+            carl = new TaskBuilder().withName("Carl Kurzs").withEventStart("11112200", "0900")
+                    .withDeadLine("11102016", "2300").withImportance("**").build();
+            daniel = new TaskBuilder().withName("Daniel Meier").withEventStart("11112200", "1000")
+                    .withDeadLine("11102016", "0019").withImportance("*").build();
+            elle = new TaskBuilder().withName("Elle Meyer").withEventStart("11112200", "1000")
+                    .withDeadLine("11102016", "0900").withImportance("**").build();
+            fiona = new TaskBuilder().withName("Fiona Kunz").withEventStart("11112200", "1000")
+                    .withDeadLine("11102016", "1000").withImportance("***").build();
+            george = new TaskBuilder().withName("George Best").withEventStart("12102016", "0000")
+                    .withDeadLine("11102016", "2359").withImportance("**").build();
 
             //Manually added
             hoon = new TaskBuilder().withName("Hoon Meier").withEventStart("11112100","0100").withDeadLine("11102016", "1100").withImportance("*").build();
