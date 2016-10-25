@@ -49,8 +49,8 @@ public class TestTask implements ReadOnlyTask {
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
         sb.append("add " + this.getName().fullName + " ");
-        sb.append("d/" + this.getEventStart().getStartDate().toString() + " ");
-        sb.append("e/" + this.getEventStart().getStartTime().value + " ");
+        sb.append("sd/" + this.getEventStart().getStartDate().toString() + " ");
+        sb.append("st/" + this.getEventStart().getStartTime().value + " ");
         sb.append("d/" + this.getDeadLine().getDueDate().toString() + " ");
         sb.append("e/" + this.getDeadLine().getDueTime().value + " ");
         sb.append("i/" + this.getImportance().value + " ");
