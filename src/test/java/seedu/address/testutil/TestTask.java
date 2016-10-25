@@ -26,28 +26,10 @@ public class TestTask implements ReadOnlyTask {
         this.importance = importance;
     }
 
-//    public void setDueTime(Time dueTime) {
-//        this.deadLine.setDueTime(dueTime);
-//    }
-//
-//    public void setDueDate(Date dueDate) {
-//        this.deadLine.setDueDate(dueDate);
-//    }
-
     @Override
     public TaskName getName() {
         return taskName;
     }
-
-//    @Override
-//    public Date getDueDate() {
-//        return dueDate;
-//    }
-//
-//    @Override
-//    public Time getDueTime() {
-//        return dueTime;
-//    }
 
     @Override
     public Importance getImportance() {
@@ -67,6 +49,8 @@ public class TestTask implements ReadOnlyTask {
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
         sb.append("add " + this.getName().fullName + " ");
+        sb.append("d/" + this.getEventStart().getStartDate().toString() + " ");
+        sb.append("e/" + this.getEventStart().getStartTime().value + " ");
         sb.append("d/" + this.getDeadLine().getDueDate().toString() + " ");
         sb.append("e/" + this.getDeadLine().getDueTime().value + " ");
         sb.append("i/" + this.getImportance().value + " ");

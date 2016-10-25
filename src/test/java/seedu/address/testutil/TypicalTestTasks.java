@@ -21,7 +21,7 @@ public class TypicalTestTasks {
                     .withEventStart("11112000","0900")
                     .withDeadLine("26122000", "1000")
                     .withTags("owesMoney", "friends").build();
-            carl = new TaskBuilder().withName("Carl Kurz").withEventStart("11112200","1000").withDeadLine("11102016", "2300").withImportance("**").build();
+            carl = new TaskBuilder().withName("Carl Kurzs").withEventStart("11112200","0900").withDeadLine("11102016", "2300").withImportance("**").build();
             daniel = new TaskBuilder().withName("Daniel Meier").withEventStart("11112200","1000").withDeadLine("11102016", "0019").withImportance("*").build();
             elle = new TaskBuilder().withName("Elle Meyer").withEventStart("11112200","1000").withDeadLine("11102016", "0900").withImportance("**").build();
             fiona = new TaskBuilder().withName("Fiona Kunz").withEventStart("11112200","1000").withDeadLine("11102016", "1000").withImportance("***").build();

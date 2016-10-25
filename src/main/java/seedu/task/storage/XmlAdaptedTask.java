@@ -66,10 +66,12 @@ public class XmlAdaptedTask {
             taskTags.add(tag.toModelType());
         }
         final TaskName taskName = new TaskName(this.taskName);
-        final Date date = new Date(this.dueDate);
-        final Time time = new Time(this.dueTime);
-        final Deadline deadline = new Deadline(date, time);
-        final EventStart eventStart = new EventStart (date,time);
+        final Date dueDate = new Date(this.dueDate);
+        final Time dueTime = new Time(this.dueTime);
+        final Date startDate = new Date (this.startDate);
+        final Time startTime = new Time (this.startTime);
+        final Deadline deadline = new Deadline(dueDate, dueTime);
+        final EventStart eventStart = new EventStart (startDate,startTime);
         final Importance importance = new Importance(this.importance);
         final UniqueTagList tags = new UniqueTagList(taskTags);
         return new Task(taskName,eventStart, deadline, importance, tags);
