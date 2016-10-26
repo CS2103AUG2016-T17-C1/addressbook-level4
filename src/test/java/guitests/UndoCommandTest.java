@@ -10,15 +10,17 @@ import seedu.task.logic.commands.AddCommand;
 
 import static org.junit.Assert.assertTrue;
 
-public class AddCommandTest extends TaskManagerGuiTest {
+public class UndoCommandTest extends TaskManagerGuiTest {
 
     @Test
-    public void add() {
+    public void undo() {
         //add one person
         TestTask[] currentList = td.getTypicalTasks();
         TestTask taskToAdd = td.hoon;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+        
+        //commandBox.runCommand("undo");
 
         //add another person
         taskToAdd = td.ida;
@@ -28,14 +30,18 @@ public class AddCommandTest extends TaskManagerGuiTest {
         //add duplicate person
         commandBox.runCommand(td.hoon.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
+        
         assertTrue(taskListPanel.isListMatching(currentList));
 
         //add to empty list
         commandBox.runCommand("clear");
+        //commandBox.runCommand("undo");
         assertAddSuccess(td.alice);
+        
+        commandBox.runCommand("undo");
 
         //invalid command
-        commandBox.runCommand("adds Yoga class");
+        commandBox.runCommand("adds Festival");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
