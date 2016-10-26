@@ -121,10 +121,11 @@ public class MainWindow extends UiPart {
         commandBox = CommandBox.load(primaryStage, getCommandBoxPlaceholder(), resultDisplay, logic);
     }
 
+  //@@Shen Jiahui A0127720M
     private AnchorPane getMarkedTaskListPlaceholder() {
     	return this.markedTaskListPanelPlaceholder;
 	}
-
+  //@@Shen Jiahui
 	private AnchorPane getCommandBoxPlaceholder() {
         return commandBoxPlaceholder;
     }

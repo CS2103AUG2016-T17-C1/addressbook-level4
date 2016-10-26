@@ -27,12 +27,13 @@ public interface ReadOnlyTaskManager {
      * Returns an unmodifiable view of tags list
      */
     List<Tag> getTagList();
-
+    
+    //@@Shen Jiahui A0127720M
 	UniqueMarkedTaskList getUniqueMarkedList();
 	
 	/**
      * Returns an unmodifiable view of unmarked tasks list
      */
     List<ReadOnlyTask> getMarkedTaskList();
-
+    //@@Shen Jiahui
 }

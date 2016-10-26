@@ -104,10 +104,12 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     
+  //@@Shen Jiahui A0127720M
     public void mark(ReadOnlyTask taskToMark) throws DuplicateTaskException, TaskNotFoundException {
 		tasks.remove(taskToMark);
 		markedTasks.add((Task) taskToMark);
 	}
+  //@@Shen Jiahui
     
     /**
      * Ensures that every tag in this task:
@@ -182,6 +184,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         return this.tags;
     }
     
+    //@@Shen Jiahui A0127720M
     @Override
     public List<ReadOnlyTask> getMarkedTaskList() {
     	return Collections.unmodifiableList(markedTasks.getInternalList());
@@ -191,7 +194,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     public UniqueMarkedTaskList getUniqueMarkedList() {
     	return this.markedTasks;
     }
-
+    //@@Shen Jiahui
 
     @Override
     public boolean equals(Object other) {

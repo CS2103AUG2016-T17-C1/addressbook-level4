@@ -98,13 +98,15 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
     
+    //@@Shen Jiahui A0127720M
+    
     @Override
 	public void markTask(ReadOnlyTask taskToMark) throws TaskNotFoundException, DuplicateTaskException {
 		//mark a task 
     	taskManager.mark(taskToMark);
     	indicateTaskManagerChanged();
 	}
-
+    //@@Shen Jiahui
     //=========== Filtered Task List Accessors ===============================================================
 
     @Override
@@ -112,12 +114,14 @@ public class ModelManager extends ComponentManager implements Model {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
     
-
+    //@@Shen Jiahui A0127720M
 	@Override
 	public ObservableList<ReadOnlyTask> getFilteredMarkedTaskList() {
 		return new UnmodifiableObservableList<>(filteredMarkedTasks);
 	}
-
+	//@@Shen Jiahui
+	
+	
     @Override
     public void updateFilteredListToShowAll() {
         filteredTasks.setPredicate(null);

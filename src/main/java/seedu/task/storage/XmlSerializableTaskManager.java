@@ -91,6 +91,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
         return Collections.unmodifiableList(tags);
     }
 
+  //@@Shen Jiahui A0127720M
 	@Override
 	public UniqueMarkedTaskList getUniqueMarkedList() {
         UniqueMarkedTaskList lists = new UniqueMarkedTaskList();

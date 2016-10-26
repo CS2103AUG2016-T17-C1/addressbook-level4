@@ -16,8 +16,11 @@ import seedu.task.model.task.ReadOnlyTask;
 
 import java.util.logging.Logger;
 
+
+//@@Shen Jiahui A0127720M
+
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of marked tasks.
  */
 public class MarkedTaskListPanel extends UiPart {
     private final Logger logger = LogsCenter.getLogger(MarkedTaskListPanel.class);
