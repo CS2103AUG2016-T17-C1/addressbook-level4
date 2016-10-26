@@ -31,9 +31,10 @@
                                 <Label fx:id="tags" styleClass="cell_small_label" text="\$tags" />
                             </children>
                         </HBox>
-                        <Label fx:id="dueDate" styleClass="cell_small_label" text="\$dueDate" />
+                        <Label fx:id="start" styleClass="cell_small_label" text="\$start" />
+                        <Label fx:id="end" styleClass="cell_small_label" text="\$end" />
                         <Label fx:id="importance" styleClass="cell_small_label" text="\$importance" />
-                        <Label fx:id="dueTime" styleClass="cell_small_label" text="\$dueTime" />
+                        
                     </children>
                 </VBox>
             </children>

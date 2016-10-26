@@ -5,7 +5,7 @@ import seedu.task.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a Task's phone number in the task manager.
- * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
 public class Time {
 
@@ -24,7 +24,7 @@ public class Time {
         if (time == null)
         	time = "";
         time = time.trim();
-        if (!isValidEmail(time)) {
+        if (!isValidTime(time)) {
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
         }
         this.value = time;
@@ -33,13 +33,16 @@ public class Time {
     /**
      * Returns if a given string is a valid task email.
      */
-    public static boolean isValidEmail(String test) {
+    public static boolean isValidTime(String test) {
         return test.matches(TIME_VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return value;
+        if (!isValidTime(value)) {
+            return "";
+        }
+        return value + "Hrs ";
     }
 
     @Override

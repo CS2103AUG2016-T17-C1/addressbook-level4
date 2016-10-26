@@ -33,5 +33,19 @@ public class Deadline {
     public void setDueTime(Time time) {
         this.time = time;
     }
+    
+    //@@author A0139284X
+    /** Return concatenated date and time;
+     * 
+     */
+    
+    public String toString() {
+        StringBuffer end = new StringBuffer();
+        
+        end.append(getDueTime().toString());
+        end.append(getDueDate().toString());
+        
+        return end.toString();
+    }
 
 }

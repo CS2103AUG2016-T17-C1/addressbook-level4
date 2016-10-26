@@ -9,7 +9,7 @@ import seedu.task.model.tag.UniqueTagList;
 public interface ReadOnlyTask {
 
     TaskName getName();
-    Deadline getDeadLine();
+    Deadline getDeadline();
     EventStart getEventStart();
     Importance getImportance();
 
@@ -27,8 +27,8 @@ public interface ReadOnlyTask {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName()) // state checks here onwards
-                && other.getDeadLine().getDueDate().equals(this.getDeadLine().getDueDate())
-                && other.getDeadLine().getDueTime().equals(this.getDeadLine().getDueTime())
+                && other.getDeadline().getDueDate().equals(this.getDeadline().getDueDate())
+                && other.getDeadline().getDueTime().equals(this.getDeadline().getDueTime())
                 && other.getEventStart().getStartDate().equals(this.getEventStart().getStartDate())
                 && other.getEventStart().getStartTime().equals(this.getEventStart().getStartTime())
                 && other.getImportance().equals(this.getImportance()));
@@ -45,9 +45,9 @@ public interface ReadOnlyTask {
                 .append(" Start Time: ")
                 .append(getEventStart().getStartTime())
                 .append(" End Date: ")
-                .append(getDeadLine().getDueDate())
+                .append(getDeadline().getDueDate())
                 .append(" End Time: ")
-                .append(getDeadLine().getDueTime())
+                .append(getDeadline().getDueTime())
                 .append(" Importance: ")
                 .append(getImportance())
                 .append(" Tags: ");

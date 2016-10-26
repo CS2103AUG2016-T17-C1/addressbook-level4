@@ -79,8 +79,8 @@ public class EditCommand extends Command {
 
         ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
 
-        if (taskToEdit.getDeadLine().getDueDate().toString().isEmpty()
-                && this.toEdit.getDeadLine().getDueDate().toString().equals("01012000")) {
+        if (taskToEdit.getDeadline().getDueDate().toString().isEmpty()
+                && this.toEdit.getDeadline().getDueDate().toString().equals("01012000")) {
             return new CommandResult(Deadline.MESSAGE_DEADLINE_CONSTRAINTS);
         }
 
@@ -92,12 +92,12 @@ public class EditCommand extends Command {
             if (this.toEdit.getName() == null) {
                 this.toEdit.setName(taskToEdit.getName());
             }
-            if (this.toEdit.getDeadLine().getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
-                    || this.toEdit.getDeadLine().getDueDate().toString().equals("01012000")) {
-                this.toEdit.setDueDate(taskToEdit.getDeadLine().getDueDate());
+            if (this.toEdit.getDeadline().getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
+                    || this.toEdit.getDeadline().getDueDate().toString().equals("01012000")) {
+                this.toEdit.setDueDate(taskToEdit.getDeadline().getDueDate());
             }
-            if (this.toEdit.getDeadLine().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
-                this.toEdit.setDueTime(taskToEdit.getDeadLine().getDueTime());
+            if (this.toEdit.getDeadline().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
+                this.toEdit.setDueTime(taskToEdit.getDeadline().getDueTime());
             }
             if (this.toEdit.getEventStart().getStartDate().equals(EMPTY_TASK_OBJECT_STRING)
                     || this.toEdit.getEventStart().getStartDate().toString().equals("01012000")) {

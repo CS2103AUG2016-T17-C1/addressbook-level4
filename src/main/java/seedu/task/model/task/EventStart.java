@@ -38,5 +38,19 @@ public class EventStart {
     public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
+    
+    //@@author A0139284X
+    /** Return formatted concatenated date and time;
+     * 
+     */
+    
+    public String toString() {
+        StringBuffer start = new StringBuffer();
+        
+        start.append(getStartTime().toString());
+        start.append(getStartDate().toString());
+        
+        return start.toString();
+    }
 
 }

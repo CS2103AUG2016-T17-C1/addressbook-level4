@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import seedu.task.model.task.ReadOnlyTask;
 
-public class TaskCard extends UiPart{
+public class TaskCard extends UiPart {
 
     private static final String FXML = "TaskListCard.fxml";
 
@@ -17,22 +17,22 @@ public class TaskCard extends UiPart{
     @FXML
     private Label id;
     @FXML
-    private Label dueDate;
+    private Label start;
     @FXML
     private Label importance;
     @FXML
-    private Label dueTime;
+    private Label end;
     @FXML
     private Label tags;
 
     private ReadOnlyTask task;
     private int displayedIndex;
 
-    public TaskCard(){
+    public TaskCard() {
 
     }
 
-    public static TaskCard load(ReadOnlyTask task, int displayedIndex){
+    public static TaskCard load(ReadOnlyTask task, int displayedIndex) {
         TaskCard card = new TaskCard();
         card.task = task;
         card.displayedIndex = displayedIndex;
@@ -41,11 +41,11 @@ public class TaskCard extends UiPart{
 
     @FXML
     public void initialize() {
-        name.setText("Task: "+ task.getName().fullName);
+        name.setText("Task: " + task.getName().fullName);
         id.setText(displayedIndex + ". ");
-        dueDate.setText("Task to be started on date" + task.getEventStart().getStartDate().toString() + " and to be completed on Date: "+ task.getDeadLine().getDueDate().toString());
+        start.setText("Start: " + task.getEventStart().toString());
+        end.setText("End: " + task.getDeadline().toString());
         importance.setText("Importance: " + task.getImportance().value);
-        dueTime.setText("Task starts on time" + task.getEventStart().getStartTime().value + " and to be completed by "+task.getDeadLine().getDueTime().value+"hours");
         tags.setText(task.tagsString());
     }
 
@@ -55,7 +55,7 @@ public class TaskCard extends UiPart{
 
     @Override
     public void setNode(Node node) {
-        cardPane = (HBox)node;
+        cardPane = (HBox) node;
     }
 
     @Override
