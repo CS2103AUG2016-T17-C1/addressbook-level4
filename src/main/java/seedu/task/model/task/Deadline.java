@@ -15,7 +15,6 @@ public class Deadline {
         }
         this.date = date;
         this.time = time;
-        // TODO Auto-generated constructor stub
     }
 
     public Date getDueDate() {

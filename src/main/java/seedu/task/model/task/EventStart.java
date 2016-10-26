@@ -16,7 +16,6 @@ public class EventStart {
         }
         this.startDate = startDate;
         this.startTime = startTime;
-        // TODO Auto-generated constructor stub
     }
 
 

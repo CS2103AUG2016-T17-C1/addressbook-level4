@@ -7,8 +7,8 @@ package seedu.task.logic.commands;
 public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
-    public static final String MESSAGE_SUCCESS = "redo successful";
-    public static final String MESSAGE_FAIL = "redo unsuccessful";
+    public static final String MESSAGE_SUCCESS = "Redo Successful";
+    public static final String MESSAGE_FAIL = "Redo Unsuccessful";
 
 
     public RedoCommand() {}
