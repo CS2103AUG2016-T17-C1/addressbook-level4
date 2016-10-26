@@ -1,6 +1,7 @@
 package seedu.task.ui;
 
 import javafx.fxml.FXML;
+import seedu.task.ui.CheckTaskAttributes;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -42,34 +43,44 @@ public class TaskCard extends UiPart {
 
     @FXML
     public void initialize() {
+
+        CheckTaskAttributes checkTask = new CheckTaskAttributes(task);
+
         name.setText("Task: " + task.getName().fullName);
         id.setText(displayedIndex + ". ");
 
         //Checks if task has a start date or an end date and displays the appropriate text output on the card
-        if (!task.getEventStart().getStartDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
-                && !task.getDeadLine().getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
+        if (checkTask.startDateExists() && checkTask.endDateExists()) {
             dueDate.setManaged(true);
             dueDate.setText("Starts on " + task.getEventStart().getStartDate().toString() + " and to be completed by "
                     + task.getDeadLine().getDueDate().toString());
 
-        } else if (!task.getDeadLine().getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
+        } else if (checkTask.endDateExists()) {
             dueDate.setManaged(true);
             dueDate.setText("Task to be completed by Date: " + task.getDeadLine().getDueDate().toString());
+
+        } else if (checkTask.startDateExists()){
+            dueDate.setManaged(true);
+            dueDate.setText("Task to start on Date: " + task.getEventStart().getStartDate().toString());
 
         } else
             dueDate.setManaged(false);
 
         //Checks if task has a start or an end time and displays the appropriate text output on the card
-        if (!task.getEventStart().getStartTime().toString().equals(EMPTY_TASK_OBJECT_STRING)
-                && !task.getDeadLine().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
+        if (checkTask.startTimeExists() && checkTask.endTimeExists()) {
             dueTime.setManaged(true);
             dueTime.setText("Starts at time " + task.getEventStart().getStartTime().value + " and ends at time "
                     + task.getDeadLine().getDueTime().value + "hours");
         }
 
-        else if (!task.getDeadLine().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
+        else if (checkTask.endTimeExists()) {
             dueTime.setManaged(true);
             dueTime.setText("Ends at time " + task.getDeadLine().getDueTime().value + "hours");
+        }
+
+        else if (checkTask.startTimeExists()) {
+            dueTime.setManaged(true);
+            dueTime.setText("Starts at time " + task.getEventStart().getStartTime().value + "hours");
         }
 
         else
