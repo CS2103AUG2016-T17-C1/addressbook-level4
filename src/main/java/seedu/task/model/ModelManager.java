@@ -1,5 +1,6 @@
 package seedu.task.model;
 
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.task.commons.core.ComponentManager;
 import seedu.task.commons.core.LogsCenter;
@@ -8,8 +9,9 @@ import seedu.task.commons.events.model.TaskManagerChangedEvent;
 import seedu.task.commons.util.StringUtil;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
-import seedu.task.model.task.UniqueTaskList;
-import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
+import seedu.task.model.task.UniqueUnmarkedTaskList;
+import seedu.task.model.task.UniqueUnmarkedTaskList.DuplicateTaskException;
+import seedu.task.model.task.UniqueUnmarkedTaskList.TaskNotFoundException;
 
 import java.util.Set;
 import java.util.logging.Logger;
@@ -23,6 +25,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final TaskManager taskManager;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> filteredMarkedTasks;
 
     /**
      * Initializes a ModelManager with the given TaskManager
@@ -37,6 +40,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         taskManager = new TaskManager(src);
         filteredTasks = new FilteredList<>(taskManager.getTasks());
+        filteredMarkedTasks = new FilteredList<>(taskManager.getMarkedTasks());
     }
 
     public ModelManager() {
@@ -46,6 +50,7 @@ public class ModelManager extends ComponentManager implements Model {
     public ModelManager(ReadOnlyTaskManager initialData, UserPrefs userPrefs) {
         taskManager = new TaskManager(initialData);
         filteredTasks = new FilteredList<>(taskManager.getTasks());
+        filteredMarkedTasks = new FilteredList<>(taskManager.getMarkedTasks());
     }
 
     @Override
@@ -79,7 +84,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void addTask(Task task) throws UniqueTaskList.DuplicateTaskException {
+    public synchronized void addTask(Task task) throws UniqueUnmarkedTaskList.DuplicateTaskException {
         taskManager.addTask(task);
         updateFilteredListToShowAll();
         indicateTaskManagerChanged();
@@ -87,11 +92,18 @@ public class ModelManager extends ComponentManager implements Model {
 
 
     @Override
-    public synchronized void editTask(ReadOnlyTask target, Task newTask) throws UniqueTaskList.TaskNotFoundException {
+    public synchronized void editTask(ReadOnlyTask target, Task newTask) throws UniqueUnmarkedTaskList.TaskNotFoundException {
         //TODO: EDIT TASK
         taskManager.editTask(target, newTask);
         indicateTaskManagerChanged();
     }
+    
+    @Override
+	public void markTask(ReadOnlyTask taskToMark) throws TaskNotFoundException, DuplicateTaskException {
+		//mark a task 
+    	taskManager.mark(taskToMark);
+    	indicateTaskManagerChanged();
+	}
 
     //=========== Filtered Task List Accessors ===============================================================
 
@@ -99,6 +111,12 @@ public class ModelManager extends ComponentManager implements Model {
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
+    
+
+	@Override
+	public ObservableList<ReadOnlyTask> getFilteredMarkedTaskList() {
+		return new UnmodifiableObservableList<>(filteredMarkedTasks);
+	}
 
     @Override
     public void updateFilteredListToShowAll() {
@@ -165,6 +183,9 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
+
+
+	
 
 
 

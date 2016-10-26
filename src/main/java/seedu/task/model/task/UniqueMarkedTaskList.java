@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.task.commons.exceptions.DuplicateDataException;
 import seedu.task.commons.util.CollectionUtil;
+import seedu.task.model.task.UniqueUnmarkedTaskList.DuplicateTaskException;
+import seedu.task.model.task.UniqueUnmarkedTaskList.TaskNotFoundException;
 
 import java.util.*;
 
@@ -16,24 +18,7 @@ import java.util.*;
  * @see Task#equals(Object)
  * @see CollectionUtil#elementsAreUnique(Collection)
  */
-public class UniqueTaskList implements Iterable<Task> {
-
-    /**
-     * Signals that an operation would have violated the 'no duplicates'
-     * property of the list.
-     */
-    public static class DuplicateTaskException extends DuplicateDataException {
-        protected DuplicateTaskException() {
-            super("Operation would result in duplicate tasks");
-        }
-    }
-
-    /**
-     * Signals that an operation targeting a specified task in the list would
-     * fail because there is no such matching person in the list.
-     */
-    public static class TaskNotFoundException extends Exception {
-    }
+public class UniqueMarkedTaskList implements Iterable<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ArrayList<ArrayList<Task>> savedList = new ArrayList<ArrayList<Task>>();
@@ -41,11 +26,11 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Constructs empty TaskList.
      */
-    public UniqueTaskList() {
+    public UniqueMarkedTaskList() {
     }
 
     /**
-     * Returns true if the list contains an equivalent task as the given
+     * Returns true if the list contains an equivalent umarked task as the given
      * argument.
      */
     public boolean contains(ReadOnlyTask toCheck) {
@@ -82,31 +67,10 @@ public class UniqueTaskList implements Iterable<Task> {
         saveCurrentTaskList();
         final boolean taskFoundAndDeleted = internalList.remove(toRemove);
 
-        System.out.println("updated savedlist" + savedList);
-        System.out.println("savedList size" + savedList.size());
         if (!taskFoundAndDeleted) {
             throw new TaskNotFoundException();
         }
         return taskFoundAndDeleted;
-    }
-
-    /**
-     * Edits the equivalent task from the list.
-     *
-     * @throws TaskNotFoundException
-     *             if no such task could be found in the list.
-     */
-    public boolean edit(ReadOnlyTask toEdit, Task task) throws TaskNotFoundException {
-        assert toEdit != null;
-        // final boolean taskFoundAndEdited = internalList.set(1,toEdit);
-        int indexDel = internalList.indexOf(toEdit);
-        // savedList.add(internalList);
-        if (indexDel == -1) {
-            throw new TaskNotFoundException();
-        }
-        saveCurrentTaskList();
-        internalList.set(indexDel, task);
-        return true;
     }
 
     /**
@@ -136,8 +100,6 @@ public class UniqueTaskList implements Iterable<Task> {
             tempArrayList.add(t);
         }
         savedList.add(tempArrayList);
-        System.out.println("updated savedlist" + savedList);
-        System.out.println("savedList size" + savedList.size());
 
     }
 
@@ -153,8 +115,8 @@ public class UniqueTaskList implements Iterable<Task> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueTaskList // instanceof handles nulls
-                        && this.internalList.equals(((UniqueTaskList) other).internalList));
+                || (other instanceof UniqueMarkedTaskList // instanceof handles nulls
+                        && this.internalList.equals(((UniqueMarkedTaskList) other).internalList));
     }
 
     @Override

@@ -31,6 +31,7 @@ public class MainWindow extends UiPart {
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
     private TaskListPanel taskListPanel;
+    private MarkedTaskListPanel markedTaskListPanel;
     private ResultDisplay resultDisplay;
     private StatusBarFooter statusBarFooter;
     private CommandBox commandBox;
@@ -44,7 +45,7 @@ public class MainWindow extends UiPart {
     private String taskManagerName;
 
     @FXML
-    private AnchorPane browserPlaceholder;
+    private AnchorPane markedTaskListPlaceholder;
 
     @FXML
     private AnchorPane commandBoxPlaceholder;
@@ -54,12 +55,17 @@ public class MainWindow extends UiPart {
 
     @FXML
     private AnchorPane taskListPanelPlaceholder;
+    
+    @FXML
+    private AnchorPane markedTaskListPanelPlaceholder;
 
     @FXML
     private AnchorPane resultDisplayPlaceholder;
 
     @FXML
     private AnchorPane statusbarPlaceholder;
+    
+    
 
 
     public MainWindow() {
@@ -108,14 +114,18 @@ public class MainWindow extends UiPart {
     }
 
     void fillInnerParts() {
-        browserPanel = BrowserPanel.load(browserPlaceholder);
+        markedTaskListPanel = MarkedTaskListPanel.load(primaryStage, getMarkedTaskListPlaceholder(), logic.getFilteredMarkedTaskList());
         taskListPanel = TaskListPanel.load(primaryStage, getTaskListPlaceholder(), logic.getFilteredTaskList());
         resultDisplay = ResultDisplay.load(primaryStage, getResultDisplayPlaceholder());
         statusBarFooter = StatusBarFooter.load(primaryStage, getStatusbarPlaceholder(), config.getTaskManagerFilePath());
         commandBox = CommandBox.load(primaryStage, getCommandBoxPlaceholder(), resultDisplay, logic);
     }
 
-    private AnchorPane getCommandBoxPlaceholder() {
+    private AnchorPane getMarkedTaskListPlaceholder() {
+    	return this.markedTaskListPanelPlaceholder;
+	}
+
+	private AnchorPane getCommandBoxPlaceholder() {
         return commandBoxPlaceholder;
     }
 

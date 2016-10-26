@@ -5,7 +5,10 @@ import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
-import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueMarkedTaskList;
+import seedu.task.model.task.UniqueUnmarkedTaskList;
+import seedu.task.model.task.UniqueUnmarkedTaskList.DuplicateTaskException;
+import seedu.task.model.task.UniqueUnmarkedTaskList.TaskNotFoundException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -16,12 +19,14 @@ import java.util.stream.Collectors;
  */
 public class TaskManager implements ReadOnlyTaskManager {
 
-    private final UniqueTaskList tasks;
+    private final UniqueUnmarkedTaskList tasks;
+    private final UniqueMarkedTaskList markedTasks;
     private final UniqueTagList tags;
 
     {
-        tasks = new UniqueTaskList();
+        tasks = new UniqueUnmarkedTaskList();
         tags = new UniqueTagList();
+        markedTasks = new UniqueMarkedTaskList();
     }
 
     public TaskManager() {}
@@ -30,14 +35,14 @@ public class TaskManager implements ReadOnlyTaskManager {
      * Tasks and Tags are copied into this task manager
      */
     public TaskManager(ReadOnlyTaskManager toBeCopied) {
-        this(toBeCopied.getUniqueTaskList(), toBeCopied.getUniqueTagList());
+        this(toBeCopied.getUniqueTaskList(), toBeCopied.getUniqueTagList(), toBeCopied.getUniqueMarkedList());
     }
 
     /**
      * Tasks and Tags are copied into this task manager
      */
-    public TaskManager(UniqueTaskList persons, UniqueTagList tags) {
-        resetData(persons.getInternalList(), tags.getInternalList());
+    public TaskManager(UniqueUnmarkedTaskList persons, UniqueTagList tags, UniqueMarkedTaskList incompletedTasks) {
+        resetData(persons.getInternalList(), tags.getInternalList(), incompletedTasks.getInternalList());
     }
 
     public static ReadOnlyTaskManager getEmptyTaskManager() {
@@ -49,8 +54,12 @@ public class TaskManager implements ReadOnlyTaskManager {
     public ObservableList<Task> getTasks() {
         return tasks.getInternalList();
     }
+    
+    public ObservableList<Task> getMarkedTasks() {
+        return markedTasks.getInternalList();
+    }
 
-    public void setPersons(List<Task> tasks) {
+    public void setTasks(List<Task> tasks) {
         this.tasks.getInternalList().setAll(tasks);
     }
 
@@ -58,20 +67,27 @@ public class TaskManager implements ReadOnlyTaskManager {
         this.tags.getInternalList().setAll(tags);
     }
 
-    public void resetData(Collection<? extends ReadOnlyTask> newTasks, Collection<Tag> newTags) {
-        setPersons(newTasks.stream().map(Task::new).collect(Collectors.toList()));
+    public void resetData(Collection<? extends ReadOnlyTask> newTasks, Collection<Tag> newTags, Collection<? extends ReadOnlyTask> newMarkedTasks) {
+        setTasks(newTasks.stream().map(Task::new).collect(Collectors.toList()));
+        setMarkedTasks(newMarkedTasks.stream().map(Task::new).collect(Collectors.toList()));
         setTags(newTags);
     }
 
-    public boolean undo(){
+    private void setMarkedTasks(List<Task> markedTasks) {
+    	this.markedTasks.getInternalList().setAll(markedTasks);
+	}
+
+	public boolean undo(){
         System.out.println("undo at TaskManager");
-        return this.tasks.undo();
+        return this.tasks.undo() && this.markedTasks.undo();
     }
 
     public void resetData(ReadOnlyTaskManager newData) {
         this.tasks.saveCurrentTaskList();
-        resetData(newData.getTaskList(), newData.getTagList());
+        resetData(newData.getTaskList(), newData.getTagList(), newData.getMarkedTaskList());
     }
+    
+    
 
 //// person-level operations
 
@@ -80,13 +96,19 @@ public class TaskManager implements ReadOnlyTaskManager {
      * Also checks the new task's tags and updates {@link #tags} with any new tags found,
      * and updates the Tag objects in the task to point to those in {@link #tags}.
      *
-     * @throws UniqueTaskList.DuplicateTaskException if an equivalent task already exists.
+     * @throws UniqueUnmarkedTaskList.DuplicateTaskException if an equivalent task already exists.
      */
-    public void addTask(Task p) throws UniqueTaskList.DuplicateTaskException {
+    public void addTask(Task p) throws UniqueUnmarkedTaskList.DuplicateTaskException {
         syncTagsWithMasterList(p);
         tasks.add(p);
     }
 
+    
+    public void mark(ReadOnlyTask taskToMark) throws DuplicateTaskException, TaskNotFoundException {
+		tasks.remove(taskToMark);
+		markedTasks.add((Task) taskToMark);
+	}
+    
     /**
      * Ensures that every tag in this task:
      *  - exists in the master list {@link #tags}
@@ -110,19 +132,19 @@ public class TaskManager implements ReadOnlyTaskManager {
         task.setTags(new UniqueTagList(commonTagReferences));
     }
 
-    public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
+    public boolean removeTask(ReadOnlyTask key) throws UniqueUnmarkedTaskList.TaskNotFoundException {
         if (tasks.remove(key)) {
             return true;
         } else {
-            throw new UniqueTaskList.TaskNotFoundException();
+            throw new UniqueUnmarkedTaskList.TaskNotFoundException();
         }
     }
 
-    public boolean editTask(ReadOnlyTask key, Task newTask) throws UniqueTaskList.TaskNotFoundException {
+    public boolean editTask(ReadOnlyTask key, Task newTask) throws UniqueUnmarkedTaskList.TaskNotFoundException {
         if (tasks.edit(key, newTask)) {
             return true;
         } else {
-            throw new UniqueTaskList.TaskNotFoundException();
+            throw new UniqueUnmarkedTaskList.TaskNotFoundException();
         }
     }
 
@@ -151,13 +173,23 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     @Override
-    public UniqueTaskList getUniqueTaskList() {
+    public UniqueUnmarkedTaskList getUniqueTaskList() {
         return this.tasks;
     }
 
     @Override
     public UniqueTagList getUniqueTagList() {
         return this.tags;
+    }
+    
+    @Override
+    public List<ReadOnlyTask> getMarkedTaskList() {
+    	return Collections.unmodifiableList(markedTasks.getInternalList());
+    }
+    
+    @Override 
+    public UniqueMarkedTaskList getUniqueMarkedList() {
+    	return this.markedTasks;
     }
 
 
@@ -174,4 +206,6 @@ public class TaskManager implements ReadOnlyTaskManager {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(tasks, tags);
     }
+
+	
 }
