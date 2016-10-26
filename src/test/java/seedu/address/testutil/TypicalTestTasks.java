@@ -14,21 +14,29 @@ public class TypicalTestTasks {
 
     public TypicalTestTasks() {
         try {
-            alice =  new TaskBuilder().withName("Alice Pauline").withImportance("*")
-                    .withDueTime("2359").withDueDate("11112111")
-                    .withTags("friends").build();
-            benson = new TaskBuilder().withName("Benson Meier").withImportance("**")
-                    .withDueTime("0000").withDueDate("26122000")
-                    .withTags("owesMoney", "friends").build();
-            carl = new TaskBuilder().withName("Carl Kurz").withDueDate("11102016").withDueTime("2300").withImportance("**").build();
-            daniel = new TaskBuilder().withName("Daniel Meier").withDueDate("11102016").withDueTime("0019").withImportance("*").build();
-            elle = new TaskBuilder().withName("Elle Meyer").withDueDate("11102016").withDueTime("0900").withImportance("**").build();
-            fiona = new TaskBuilder().withName("Fiona Kunz").withDueDate("11102016").withDueTime("1000").withImportance("***").build();
-            george = new TaskBuilder().withName("George Best").withDueDate("11102016").withDueTime("2359").withImportance("**").build();
+            alice = new TaskBuilder().withName("Call Alice").withEventStart("11112222", "0000")
+                    .withDeadLine("11112111", "1107").withImportance("*").withTags("friends").build();
+            benson = new TaskBuilder().withName("Buy Bread").withEventStart("11112000", "0900")
+                    .withDeadLine("26122000", "1000").withImportance("**").withTags("wholeGrain", "toast").build();
+            carl = new TaskBuilder().withName("Call Mom").withEventStart("11112200", "0900")
+                    .withDeadLine("11102016", "2300").withImportance("**").build();
+            
+            daniel = new TaskBuilder().withName("Buy gifts").withEventStart("11112200", "2000")
+                    .withDeadLine("11102016", "0000").withImportance("*").build();
+            elle = new TaskBuilder().withName("Join Barbecue").withEventStart("11112200", "1000")
+                    .withDeadLine("11102016", "0900").withImportance("**").build();
+//            daniel = new TaskBuilder().withName("Join Barbecue").withEventStart("11112200", "2000")
+//                    .withDeadLine("11102016", "0000").withImportance("*").build();
+//            elle = new TaskBuilder().withName("Buy gifts").withEventStart("11112200", "1000")
+//                    .withDeadLine("11102016", "0900").withImportance("**").build();
+            fiona = new TaskBuilder().withName("Reply to emails").withEventStart("11112200", "1000")
+                    .withDeadLine("11102016", "1000").withImportance("***").build();
+            george = new TaskBuilder().withName("Send best wishes to George").withEventStart("12102016", "0000")
+                    .withDeadLine("11102016", "2359").withImportance("**").build();
 
             //Manually added
-            hoon = new TaskBuilder().withName("Hoon Meier").withDueDate("11102016").withDueTime("1100").withImportance("*").build();
-            ida = new TaskBuilder().withName("Ida Mueller").withDueDate("11102016").withDueTime("1200").withImportance("**").build();
+            hoon = new TaskBuilder().withName("Meet supervisor").withEventStart("11112100","1000").withDeadLine("11102016", "1100").withImportance("*").build();
+            ida = new TaskBuilder().withName("Reserve seats").withEventStart("11112015","1000").withDeadLine("11102016", "1400").withImportance("**").build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";
