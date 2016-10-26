@@ -102,8 +102,9 @@ public class EditCommand extends Command {
             if (this.toEdit.getDeadLine().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setDueTime(taskToEdit.getDeadLine().getDueTime());
             }
-            if (this.toEdit.getEventStart().getStartDate().equals(EMPTY_TASK_OBJECT_STRING)
+            if (this.toEdit.getEventStart().getStartDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
                     || this.toEdit.getEventStart().getStartDate().toString().equals(DEFAULT_DATE_STRING)) {
+                System.out.println("true!");
                 this.toEdit.setStartDate(taskToEdit.getEventStart().getStartDate());
             }
             if (this.toEdit.getEventStart().getStartTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
