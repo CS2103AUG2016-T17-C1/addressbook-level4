@@ -32,9 +32,10 @@ public class EditCommand extends Command {
 
     public final int targetIndex;
     private final Task toEdit;
-  //@@author A0142360U
-    public EditCommand(String string, String taskName,String startDate,String startTime, String dueDate, String dueTime, String importance,
-            Set<String> tags) throws IllegalValueException {
+
+    // @@author A0142360U
+    public EditCommand(String string, String taskName, String startDate, String startTime, String dueDate,
+            String dueTime, String importance, Set<String> tags) throws IllegalValueException {
         System.out.println("Target index" + string);
         this.targetIndex = Integer.parseInt(string);
 
@@ -52,25 +53,20 @@ public class EditCommand extends Command {
         }
 
         if (taskName == null) {
-            this.toEdit = new Task(
-                    new EventStart(new Date(startDate), new Time(startTime)),
-                    new Deadline(new Date(dueDate), new Time(dueTime)),
-                    new Importance(importance),
+            this.toEdit = new Task(new EventStart(new Date(startDate), new Time(startTime)),
+                    new Deadline(new Date(dueDate), new Time(dueTime)), new Importance(importance),
                     new UniqueTagList(tagSet));
         }
 
         else {
-            this.toEdit = new Task(
-                    new TaskName(taskName),
-                    new EventStart(new Date(startDate), new Time(startTime)),
-                    new Deadline(new Date(dueDate), new Time(dueTime)),
-                    new Importance(importance),
+            this.toEdit = new Task(new TaskName(taskName), new EventStart(new Date(startDate), new Time(startTime)),
+                    new Deadline(new Date(dueDate), new Time(dueTime)), new Importance(importance),
                     new UniqueTagList(tagSet));
         }
     }
 
     @Override
-    //@@author A0142360U
+    // @@author A0142360U
     public CommandResult execute() {
 
         UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
@@ -104,7 +100,6 @@ public class EditCommand extends Command {
             }
             if (this.toEdit.getEventStart().getStartDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
                     || this.toEdit.getEventStart().getStartDate().toString().equals(DEFAULT_DATE_STRING)) {
-                System.out.println("true!");
                 this.toEdit.setStartDate(taskToEdit.getEventStart().getStartDate());
             }
             if (this.toEdit.getEventStart().getStartTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
