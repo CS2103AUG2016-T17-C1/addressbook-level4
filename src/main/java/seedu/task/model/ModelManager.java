@@ -9,9 +9,9 @@ import seedu.task.commons.events.model.TaskManagerChangedEvent;
 import seedu.task.commons.util.StringUtil;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
-import seedu.task.model.task.UniqueUnmarkedTaskList;
-import seedu.task.model.task.UniqueUnmarkedTaskList.DuplicateTaskException;
-import seedu.task.model.task.UniqueUnmarkedTaskList.TaskNotFoundException;
+import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
+import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 import java.util.Set;
 import java.util.logging.Logger;
@@ -84,7 +84,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void addTask(Task task) throws UniqueUnmarkedTaskList.DuplicateTaskException {
+    public synchronized void addTask(Task task) throws UniqueTaskList.DuplicateTaskException {
         taskManager.addTask(task);
         updateFilteredListToShowAll();
         indicateTaskManagerChanged();
@@ -92,7 +92,7 @@ public class ModelManager extends ComponentManager implements Model {
 
 
     @Override
-    public synchronized void editTask(ReadOnlyTask target, Task newTask) throws UniqueUnmarkedTaskList.TaskNotFoundException {
+    public synchronized void editTask(ReadOnlyTask target, Task newTask) throws UniqueTaskList.TaskNotFoundException {
         //TODO: EDIT TASK
         taskManager.editTask(target, newTask);
         indicateTaskManagerChanged();

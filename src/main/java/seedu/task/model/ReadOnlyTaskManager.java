@@ -7,7 +7,7 @@ import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.UniqueMarkedTaskList;
-import seedu.task.model.task.UniqueUnmarkedTaskList;
+import seedu.task.model.task.UniqueTaskList;
 
 /**
  * Unmodifiable view of an Task Manager
@@ -16,7 +16,7 @@ public interface ReadOnlyTaskManager {
 
     UniqueTagList getUniqueTagList();
 
-    UniqueUnmarkedTaskList getUniqueTaskList();
+    UniqueTaskList getUniqueTaskList();
 
     /**
      * Returns an unmodifiable view of tasks list

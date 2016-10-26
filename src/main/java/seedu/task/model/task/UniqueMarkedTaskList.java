@@ -4,8 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.task.commons.exceptions.DuplicateDataException;
 import seedu.task.commons.util.CollectionUtil;
-import seedu.task.model.task.UniqueUnmarkedTaskList.DuplicateTaskException;
-import seedu.task.model.task.UniqueUnmarkedTaskList.TaskNotFoundException;
+import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
+import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 import java.util.*;
 

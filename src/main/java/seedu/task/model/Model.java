@@ -6,9 +6,9 @@ import javafx.collections.ObservableList;
 import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
-import seedu.task.model.task.UniqueUnmarkedTaskList;
-import seedu.task.model.task.UniqueUnmarkedTaskList.DuplicateTaskException;
-import seedu.task.model.task.UniqueUnmarkedTaskList.TaskNotFoundException;
+import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
+import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 /**
  * The API of the Model component.
@@ -21,13 +21,13 @@ public interface Model {
     ReadOnlyTaskManager getTaskManager();
 
     /** Deletes the given task. */
-    void deleteTask(ReadOnlyTask target) throws UniqueUnmarkedTaskList.TaskNotFoundException;
+    void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
 
     /** Adds the given task */
-    void addTask(Task task) throws UniqueUnmarkedTaskList.DuplicateTaskException;
+    void addTask(Task task) throws UniqueTaskList.DuplicateTaskException;
 
     /** Edits the given task. */
-    void editTask(ReadOnlyTask target, Task task ) throws UniqueUnmarkedTaskList.TaskNotFoundException;
+    void editTask(ReadOnlyTask target, Task task ) throws UniqueTaskList.TaskNotFoundException;
 
 
     /** Undo changes made to the Task List

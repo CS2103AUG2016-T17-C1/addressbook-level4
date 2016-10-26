@@ -14,7 +14,7 @@ import seedu.task.model.task.Importance;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.TaskName;
-import seedu.task.model.task.UniqueUnmarkedTaskList.TaskNotFoundException;
+import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 public class EditCommand extends Command {
 

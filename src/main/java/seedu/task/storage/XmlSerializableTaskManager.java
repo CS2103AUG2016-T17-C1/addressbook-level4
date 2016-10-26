@@ -9,7 +9,7 @@ import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.UniqueMarkedTaskList;
-import seedu.task.model.task.UniqueUnmarkedTaskList;
+import seedu.task.model.task.UniqueTaskList;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -61,8 +61,8 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
     }
 
     @Override
-    public UniqueUnmarkedTaskList getUniqueTaskList() {
-        UniqueUnmarkedTaskList lists = new UniqueUnmarkedTaskList();
+    public UniqueTaskList getUniqueTaskList() {
+        UniqueTaskList lists = new UniqueTaskList();
         for (XmlAdaptedTask p : tasks) {
             try {
                 lists.add(p.toModelType());

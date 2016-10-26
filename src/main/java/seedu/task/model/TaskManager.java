@@ -6,9 +6,9 @@ import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueMarkedTaskList;
-import seedu.task.model.task.UniqueUnmarkedTaskList;
-import seedu.task.model.task.UniqueUnmarkedTaskList.DuplicateTaskException;
-import seedu.task.model.task.UniqueUnmarkedTaskList.TaskNotFoundException;
+import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
+import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
  */
 public class TaskManager implements ReadOnlyTaskManager {
 
-    private final UniqueUnmarkedTaskList tasks;
+    private final UniqueTaskList tasks;
     private final UniqueMarkedTaskList markedTasks;
     private final UniqueTagList tags;
 
     {
-        tasks = new UniqueUnmarkedTaskList();
+        tasks = new UniqueTaskList();
         tags = new UniqueTagList();
         markedTasks = new UniqueMarkedTaskList();
     }
@@ -41,7 +41,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     /**
      * Tasks and Tags are copied into this task manager
      */
-    public TaskManager(UniqueUnmarkedTaskList persons, UniqueTagList tags, UniqueMarkedTaskList incompletedTasks) {
+    public TaskManager(UniqueTaskList persons, UniqueTagList tags, UniqueMarkedTaskList incompletedTasks) {
         resetData(persons.getInternalList(), tags.getInternalList(), incompletedTasks.getInternalList());
     }
 
@@ -96,9 +96,9 @@ public class TaskManager implements ReadOnlyTaskManager {
      * Also checks the new task's tags and updates {@link #tags} with any new tags found,
      * and updates the Tag objects in the task to point to those in {@link #tags}.
      *
-     * @throws UniqueUnmarkedTaskList.DuplicateTaskException if an equivalent task already exists.
+     * @throws UniqueTaskList.DuplicateTaskException if an equivalent task already exists.
      */
-    public void addTask(Task p) throws UniqueUnmarkedTaskList.DuplicateTaskException {
+    public void addTask(Task p) throws UniqueTaskList.DuplicateTaskException {
         syncTagsWithMasterList(p);
         tasks.add(p);
     }
@@ -132,19 +132,19 @@ public class TaskManager implements ReadOnlyTaskManager {
         task.setTags(new UniqueTagList(commonTagReferences));
     }
 
-    public boolean removeTask(ReadOnlyTask key) throws UniqueUnmarkedTaskList.TaskNotFoundException {
+    public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.remove(key)) {
             return true;
         } else {
-            throw new UniqueUnmarkedTaskList.TaskNotFoundException();
+            throw new UniqueTaskList.TaskNotFoundException();
         }
     }
 
-    public boolean editTask(ReadOnlyTask key, Task newTask) throws UniqueUnmarkedTaskList.TaskNotFoundException {
+    public boolean editTask(ReadOnlyTask key, Task newTask) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.edit(key, newTask)) {
             return true;
         } else {
-            throw new UniqueUnmarkedTaskList.TaskNotFoundException();
+            throw new UniqueTaskList.TaskNotFoundException();
         }
     }
 
@@ -173,7 +173,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     @Override
-    public UniqueUnmarkedTaskList getUniqueTaskList() {
+    public UniqueTaskList getUniqueTaskList() {
         return this.tasks;
     }
 
