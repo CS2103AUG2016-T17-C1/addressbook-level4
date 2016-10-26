@@ -15,6 +15,7 @@ public class Task implements ReadOnlyTask {
     private DueDate dueDate;
     private DueTime dueTime;
     private Importance importance;
+    private boolean isTaskCompleted;
 
     private UniqueTagList tags;
 
@@ -27,6 +28,7 @@ public class Task implements ReadOnlyTask {
         this.dueDate = dueDate;
         this.dueTime = dueTime;
         this.importance = importance;
+        this.isTaskCompleted = false;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
@@ -45,7 +47,14 @@ public class Task implements ReadOnlyTask {
         this.tags = new UniqueTagList(tags);
         // TODO Auto-generated constructor stub
     }
-
+    
+    //@@Shen Jiahui A0127720M
+    public void markAsCompleted() {
+    	this.isTaskCompleted = true;
+    }
+    //@@Shen Jiahui
+    
+    
     @Override
     public TaskName getName() {
         return taskName;

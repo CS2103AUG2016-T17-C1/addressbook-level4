@@ -6,6 +6,7 @@ import java.util.List;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.ReadOnlyTask;
+import seedu.task.model.task.UniqueMarkedTaskList;
 import seedu.task.model.task.UniqueTaskList;
 
 /**
@@ -26,5 +27,13 @@ public interface ReadOnlyTaskManager {
      * Returns an unmodifiable view of tags list
      */
     List<Tag> getTagList();
-
+    
+    //@@Shen Jiahui A0127720M
+	UniqueMarkedTaskList getUniqueMarkedList();
+	
+	/**
+     * Returns an unmodifiable view of unmarked tasks list
+     */
+    List<ReadOnlyTask> getMarkedTaskList();
+    //@@Shen Jiahui
 }
