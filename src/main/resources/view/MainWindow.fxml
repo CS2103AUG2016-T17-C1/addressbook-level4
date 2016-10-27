@@ -62,7 +62,7 @@
                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
            </padding>
        </AnchorPane>
-      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="744.0" prefWidth="692.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="11111.0">
+      <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="744.0" prefWidth="692.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="11111.0">
         <tabs>
           <Tab text="Home">
                <content>
