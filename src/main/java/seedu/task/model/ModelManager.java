@@ -1,5 +1,6 @@
 package seedu.task.model;
 
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.task.commons.core.ComponentManager;
 import seedu.task.commons.core.LogsCenter;
@@ -9,6 +10,7 @@ import seedu.task.commons.util.StringUtil;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
+import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 import java.util.Set;
@@ -23,6 +25,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final TaskManager taskManager;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> filteredMarkedTasks;
 
     /**
      * Initializes a ModelManager with the given TaskManager
@@ -37,6 +40,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         taskManager = new TaskManager(src);
         filteredTasks = new FilteredList<>(taskManager.getTasks());
+        filteredMarkedTasks = new FilteredList<>(taskManager.getMarkedTasks());
     }
 
     public ModelManager() {
@@ -46,6 +50,7 @@ public class ModelManager extends ComponentManager implements Model {
     public ModelManager(ReadOnlyTaskManager initialData, UserPrefs userPrefs) {
         taskManager = new TaskManager(initialData);
         filteredTasks = new FilteredList<>(taskManager.getTasks());
+        filteredMarkedTasks = new FilteredList<>(taskManager.getMarkedTasks());
     }
 
     @Override
@@ -99,14 +104,31 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.editTask(target, newTask);
         indicateTaskManagerChanged();
     }
-
+    
+    //@@author A0127720M
+    
+    @Override
+	public void markTask(ReadOnlyTask taskToMark) throws TaskNotFoundException, DuplicateTaskException {
+		//mark a task 
+    	taskManager.mark(taskToMark);
+    	indicateTaskManagerChanged();
+	}
+    //@@author
     //=========== Filtered Task List Accessors ===============================================================
 
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
-
+    
+    //@@author A0127720M
+	@Override
+	public ObservableList<ReadOnlyTask> getFilteredMarkedTaskList() {
+		return new UnmodifiableObservableList<>(filteredMarkedTasks);
+	}
+	//@@author
+	
+	
     @Override
     public void updateFilteredListToShowAll() {
         filteredTasks.setPredicate(null);
@@ -172,6 +194,9 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
+
+
+	
 
 
 
