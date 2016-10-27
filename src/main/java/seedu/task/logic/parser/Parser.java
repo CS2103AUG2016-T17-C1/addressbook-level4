@@ -24,10 +24,12 @@ public class Parser {
     private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
     private static final Pattern KEYWORDS_ARGS_FORMAT =
-            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+            Pattern.compile("(?<keywords>\\w+(?:\\s+\\w+)*)"); // one or more keywords separated by whitespace
 
     private static final Pattern TASK_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<taskName>[^/]+)"
+                    + "( sd/(?<startDate>[^/]*)){0,1}"
+                    + "( st/(?<startTime>[^/]*)){0,1}"
                     + "( d/(?<dueDate>[^/]*)){0,1}"
                     + "( e/(?<dueTime>[^/]*)){0,1}"
                     + "( i/(?<importance>[^/]*)){0,1}"
@@ -36,6 +38,8 @@ public class Parser {
     private static final Pattern EDIT_TASK_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<targetIndex>\\d+)"
                     + "(?<taskName>[^/]+){0,1}"
+                    + "( sd/(?<startDate>[^/]*)){0,1}"
+                    + "( st/(?<startTime>[^/]*)){0,1}"
                     + "( d/(?<dueDate>[^/]*)){0,1}"
                     + "( e/(?<dueTime>[^/]*)){0,1}"
                     + "( i/(?<importance>[^/]*)){0,1}"
@@ -73,7 +77,12 @@ public class Parser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
+        
+          //@@author A0127720M
+        case MarkCommand.COMMAND_WORD:
+            return prepareMark(arguments);
+          //@@author
+            
         case FindCommand.COMMAND_WORD:
             return prepareFind(arguments);
 
@@ -85,14 +94,21 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
-    /**
+    
+
+	/**
      * Parses arguments in the context of the add task command.
      *
      * @param args full command args string
@@ -107,6 +123,8 @@ public class Parser {
         try {
             return new AddCommand(
                     matcher.group("taskName"),
+                    matcher.group("startDate"),
+                    matcher.group("startTime"),
                     matcher.group("dueDate"),
                     matcher.group("dueTime"),
                     matcher.group("importance"),
@@ -178,6 +196,8 @@ public class Parser {
             return new EditCommand(
                     matcher.group("targetIndex"),
                     matcher.group("taskName"),
+                    matcher.group("startDate"),
+                    matcher.group("startTime"),
                     matcher.group("dueDate"),
                     matcher.group("dueTime"),
                     matcher.group("importance"),
@@ -203,8 +223,17 @@ public class Parser {
 
         return new SelectCommand(index.get());
     }
+  //@@author A0127720M
+    private Command prepareMark(String arguments) {
+    	Optional<Integer> index = parseIndex(arguments);
+        if(!index.isPresent()){
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
+        }
 
-
+        return new MarkCommand(index.get());
+	}
+  //@@author
 
     /**
      * Returns the specified index in the {@code command} IF a positive unsigned integer is given as the index.

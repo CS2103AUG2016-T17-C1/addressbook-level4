@@ -65,15 +65,15 @@ public class TestUtil {
     private static Task[] getSampleTaskData() {
         try {
             return new Task[]{
-                    new Task(new TaskName("Ali Muster"), new DueDate("13102016"), new DueTime("1300"), new Importance("**"), new UniqueTagList()),
-                    new Task(new TaskName("Boris Mueller"), new DueDate("13102016"), new DueTime("1500"), new Importance("*"), new UniqueTagList()),
-                    new Task(new TaskName("Carl Kurz"), new DueDate("13102016"), new DueTime("1700"), new Importance("*"), new UniqueTagList()),
-                    new Task(new TaskName("Daniel Meier"), new DueDate("13102016"), new DueTime("1800"), new Importance("***"), new UniqueTagList()),
-                    new Task(new TaskName("Elle Meyer"), new DueDate("13102016"), new DueTime("1759"), new Importance("**"), new UniqueTagList()),
-                    new Task(new TaskName("Fiona Kunz"), new DueDate("13102016"), new DueTime("2359"), new Importance("*"), new UniqueTagList()),
-                    new Task(new TaskName("George Best"), new DueDate("13102016"), new DueTime("1012"), new Importance("*"), new UniqueTagList()),
-                    new Task(new TaskName("Hoon Meier"), new DueDate("13102016"), new DueTime("0001"), new Importance("**"), new UniqueTagList()),
-                    new Task(new TaskName("Ida Mueller"), new DueDate("13102016"), new DueTime("0606"), new Importance("**"), new UniqueTagList())
+                    new Task(new TaskName("Ali Muster"), new EventStart(new Date("13102016"), new Time("1200")), new Deadline(new Date("13102016"), new Time("1300")), new Importance("**"), new UniqueTagList()),
+                    new Task(new TaskName("Boris Mueller"),new EventStart(new Date("13102016"), new Time("0800")), new Deadline(new Date("13102016"), new Time("1500")), new Importance("*"), new UniqueTagList()),
+                    new Task(new TaskName("Carl Kurz"),new EventStart(new Date("13102016"), new Time("1200")), new Deadline(new Date("13102016"), new Time("1700")), new Importance("*"), new UniqueTagList()),
+                    new Task(new TaskName("Daniel Meier"),new EventStart(new Date("13102016"), new Time("1200")), new Deadline(new Date("13102016"), new Time("1800")), new Importance("***"), new UniqueTagList()),
+                    new Task(new TaskName("Elle Meyer"),new EventStart(new Date("13102016"), new Time("1200")), new Deadline(new Date("13102016"), new Time("1759")), new Importance("**"), new UniqueTagList()),
+                    new Task(new TaskName("Fiona Kunz"),new EventStart(new Date("13102016"), new Time("1200")), new Deadline(new Date("13102016"), new Time("2359")), new Importance("*"), new UniqueTagList()),
+                    new Task(new TaskName("George Best"),new EventStart(new Date("13102016"), new Time("1200")), new Deadline(new Date("13102016"), new Time("1012")), new Importance("*"), new UniqueTagList()),
+                    new Task(new TaskName("Hoon Meier"),new EventStart(new Date("13102016"), new Time("1200")), new Deadline(new Date("13102016"), new Time("0001")), new Importance("**"), new UniqueTagList()),
+                    new Task(new TaskName("Ida Mueller"),new EventStart(new Date("13102016"), new Time("1200")), new Deadline(new Date("13102016"), new Time("0606")), new Importance("**"), new UniqueTagList())
             };
         } catch (IllegalValueException e) {
             assert false;
@@ -135,7 +135,7 @@ public class TestUtil {
     }
 
     public static TaskManager generateEmptyTaskManager() {
-        return new TaskManager(new UniqueTaskList(), new UniqueTagList());
+        return new TaskManager(new UniqueTaskList(), new UniqueTagList(), new UniqueMarkedTaskList());
     }
 
     public static XmlSerializableTaskManager generateSampleStorageTaskManager() {

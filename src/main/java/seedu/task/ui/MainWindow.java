@@ -1,9 +1,16 @@
 package seedu.task.ui;
 
+import com.sun.javafx.scene.control.behavior.TabPaneBehavior;
+import com.sun.javafx.scene.control.skin.BehaviorSkinBase;
+import com.sun.javafx.scene.control.skin.TabPaneSkin;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -16,8 +23,8 @@ import seedu.task.model.UserPrefs;
 import seedu.task.model.task.ReadOnlyTask;
 
 /**
- * The Main Window. Provides the basic application layout containing
- * a menu bar and space where other JavaFX elements can be placed.
+ * The Main Window. Provides the basic application layout containing a menu bar
+ * and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart {
 
@@ -31,6 +38,7 @@ public class MainWindow extends UiPart {
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
     private TaskListPanel taskListPanel;
+    private MarkedTaskListPanel markedTaskListPanel;
     private ResultDisplay resultDisplay;
     private StatusBarFooter statusBarFooter;
     private CommandBox commandBox;
@@ -44,7 +52,7 @@ public class MainWindow extends UiPart {
     private String taskManagerName;
 
     @FXML
-    private AnchorPane browserPlaceholder;
+    private AnchorPane markedTaskListPlaceholder;
 
     @FXML
     private AnchorPane commandBoxPlaceholder;
@@ -54,13 +62,20 @@ public class MainWindow extends UiPart {
 
     @FXML
     private AnchorPane taskListPanelPlaceholder;
+    
+    @FXML
+    private AnchorPane markedTaskListPanelPlaceholder;
 
     @FXML
     private AnchorPane resultDisplayPlaceholder;
 
     @FXML
     private AnchorPane statusbarPlaceholder;
+    
+    
 
+    @FXML
+    private TabPane tabPane;
 
     public MainWindow() {
         super();
@@ -83,16 +98,15 @@ public class MainWindow extends UiPart {
         return mainWindow;
     }
 
-    private void configure(String appTitle, String taskManagerName, Config config, UserPrefs prefs,
-                           Logic logic) {
+    private void configure(String appTitle, String taskManagerName, Config config, UserPrefs prefs, Logic logic) {
 
-        //Set dependencies
+        // Set dependencies
         this.logic = logic;
         this.taskManagerName = taskManagerName;
         this.config = config;
         this.userPrefs = prefs;
 
-        //Configure the UI
+        // Configure the UI
         setTitle(appTitle);
         setIcon(ICON);
         setWindowMinSize();
@@ -103,19 +117,70 @@ public class MainWindow extends UiPart {
         setAccelerators();
     }
 
+    // @@author A0139284X
+    /**
+     * Cycle forward and backward through tabs using CTRL+TAB or CTRL+SHIFT+TAB
+     * 
+     */
+
+    public void changeTabs() {
+        KeyCombination combination = new KeyCodeCombination(KeyCode.TAB, KeyCodeCombination.CONTROL_DOWN,
+                KeyCodeCombination.SHIFT_ANY);
+
+        commandBox.getCommandTextField().setOnKeyPressed(event -> {
+            
+            int size = tabPane.getTabs().size();
+            
+            BehaviorSkinBase skin = (BehaviorSkinBase) tabPane.getSkin();
+            TabPaneBehavior tabPaneBehavior = (TabPaneBehavior) skin.getBehavior();
+
+            int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
+
+            if (combination.match(event)) {
+
+                if (!event.isShiftDown()) {
+                    if (selectedIndex < size - 1) {
+                        tabPaneBehavior.selectNextTab();
+                    } else {
+                        tabPaneBehavior.selectTab(tabPane.getTabs().get(0));
+                    }
+                } else {
+                    if (selectedIndex > 0) {
+                        tabPaneBehavior.selectPreviousTab();
+                    } else {
+                        tabPaneBehavior.selectTab(tabPane.getTabs().get(size - 1));
+                    }
+                }
+            }
+
+        });
+
+        scene.setOnKeyReleased(event -> {
+                commandBox.requestFocus();
+        });
+    }
+
+    // @@author
     private void setAccelerators() {
         helpMenuItem.setAccelerator(KeyCombination.valueOf("F1"));
     }
 
     void fillInnerParts() {
-        browserPanel = BrowserPanel.load(browserPlaceholder);
+        markedTaskListPanel = MarkedTaskListPanel.load(primaryStage, getMarkedTaskListPlaceholder(), logic.getFilteredMarkedTaskList());
         taskListPanel = TaskListPanel.load(primaryStage, getTaskListPlaceholder(), logic.getFilteredTaskList());
         resultDisplay = ResultDisplay.load(primaryStage, getResultDisplayPlaceholder());
-        statusBarFooter = StatusBarFooter.load(primaryStage, getStatusbarPlaceholder(), config.getTaskManagerFilePath());
+        statusBarFooter = StatusBarFooter.load(primaryStage, getStatusbarPlaceholder(),
+                config.getTaskManagerFilePath());
         commandBox = CommandBox.load(primaryStage, getCommandBoxPlaceholder(), resultDisplay, logic);
+        this.changeTabs();
     }
 
-    private AnchorPane getCommandBoxPlaceholder() {
+  //@@Shen Jiahui A0127720M
+    private AnchorPane getMarkedTaskListPlaceholder() {
+    	return this.markedTaskListPanelPlaceholder;
+	}
+  //@@Shen Jiahui
+	private AnchorPane getCommandBoxPlaceholder() {
         return commandBoxPlaceholder;
     }
 
@@ -160,8 +225,8 @@ public class MainWindow extends UiPart {
      * Returns the current size and the position of the main Window.
      */
     public GuiSettings getCurrentGuiSetting() {
-        return new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+        return new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(), (int) primaryStage.getX(),
+                (int) primaryStage.getY());
     }
 
     @FXML
@@ -193,4 +258,5 @@ public class MainWindow extends UiPart {
     public void releaseResources() {
         browserPanel.freeResources();
     }
+
 }

@@ -9,9 +9,10 @@ import seedu.task.model.tag.UniqueTagList;
 public interface ReadOnlyTask {
 
     TaskName getName();
-    DueDate getDueDate();
-    DueTime getDueTime();
+    Deadline getDeadline();
+    EventStart getEventStart();
     Importance getImportance();
+
 
     /**
      * The returned TagList is a deep copy of the internal TagList,
@@ -26,25 +27,27 @@ public interface ReadOnlyTask {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
                 && other.getName().equals(this.getName()) // state checks here onwards
-                && other.getDueDate().equals(this.getDueDate())
-                && other.getDueTime().equals(this.getDueTime())
+                && other.getDeadline().getDueDate().equals(this.getDeadline().getDueDate())
+                && other.getDeadline().getDueTime().equals(this.getDeadline().getDueTime())
+                && other.getEventStart().getStartDate().equals(this.getEventStart().getStartDate())
+                && other.getEventStart().getStartTime().equals(this.getEventStart().getStartTime())
                 && other.getImportance().equals(this.getImportance()));
     }
 
     /**
-<<<<<<< HEAD
      * Formats the task as text, showing all details.
-=======
-     * Formats the task as text, showing all contact details.
->>>>>>> Refactor
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" DueDate: ")
-                .append(getDueDate())
-                .append(" DueTime: ")
-                .append(getDueTime())
+                .append(" Start Date: ")
+                .append(getEventStart().getStartDate())
+                .append(" Start Time: ")
+                .append(getEventStart().getStartTime())
+                .append(" End Date: ")
+                .append(getDeadline().getDueDate())
+                .append(" End Time: ")
+                .append(getDeadline().getDueTime())
                 .append(" Importance: ")
                 .append(getImportance())
                 .append(" Tags: ");

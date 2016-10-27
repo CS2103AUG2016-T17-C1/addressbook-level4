@@ -10,7 +10,7 @@ import seedu.task.commons.exceptions.IllegalValueException;
 public class Importance {
 
     public static final String MESSAGE_IMPORTANCE_CONSTRAINTS = "Task importance is denoted by number of *";
-    public static final String IMPORTANCE_VALIDATION_REGEX = "(\\p{Punct})*";
+    public static final String IMPORTANCE_VALIDATION_REGEX = "[*]{0,3}";
 
     public final String value;
 

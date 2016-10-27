@@ -12,21 +12,24 @@ import seedu.task.model.tag.UniqueTagList;
 public class Task implements ReadOnlyTask {
 
     private TaskName taskName;
-    private DueDate dueDate;
-    private DueTime dueTime;
+    private Deadline deadline;
+    private EventStart eventStart;
     private Importance importance;
+
+    private boolean isTaskCompleted;
 
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(TaskName taskName, DueDate dueDate, DueTime dueTime, Importance importance, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(taskName, dueDate, dueTime, importance, tags);
+    public Task(TaskName taskName, EventStart eventStart,Deadline deadline, Importance importance, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(taskName,eventStart.getStartDate(),eventStart.getStartTime(), deadline.getDueDate(), deadline.getDueTime(), importance, tags);
         this.taskName = taskName;
-        this.dueDate = dueDate;
-        this.dueTime = dueTime;
+        this.eventStart = eventStart;
+        this.deadline = deadline;
         this.importance = importance;
+        this.isTaskCompleted = false;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
@@ -34,32 +37,39 @@ public class Task implements ReadOnlyTask {
      * Copy constructor.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getDueDate(), source.getDueTime(), source.getImportance(), source.getTags());
+        this(source.getName(),source.getEventStart(), source.getDeadline(), source.getImportance(), source.getTags());
     }
 
-    public Task(DueDate dueDate2, DueTime dueTime2, Importance importance2, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(taskName, dueDate, dueTime, importance, tags);
-        this.dueDate = dueDate2;
-        this.dueTime = dueTime2;
-        this.importance = importance2;
+    public Task(EventStart eventStart, Deadline deadline, Importance importance, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(eventStart.getStartDate(), eventStart.getStartTime(),deadline.getDueDate(), deadline.getDueTime(), importance, tags);
+        this.eventStart = eventStart;
+        this.deadline = deadline;
+        this.importance = importance;
         this.tags = new UniqueTagList(tags);
         // TODO Auto-generated constructor stub
     }
-
+    
+    //@@author A0127720M
+    public void markAsCompleted() {
+    	this.isTaskCompleted = true;
+    }
+    //@@author
+    
+    
     @Override
     public TaskName getName() {
         return taskName;
     }
-
-    @Override
-    public DueDate getDueDate() {
-        return dueDate;
-    }
-
-    @Override
-    public DueTime getDueTime() {
-        return dueTime;
-    }
+//
+//    @Override
+//    public Date getDueDate() {
+//        return getDeadLine().getDueDate();
+//    }
+//
+//    @Override
+//    public Time getDueTime() {
+//        return getDeadLine().getDueTime();
+//    }
 
     @Override
     public Importance getImportance() {
@@ -71,21 +81,21 @@ public class Task implements ReadOnlyTask {
         this.taskName = name;
     }
 
-    public void setDueDate(DueDate dueDate2) {
-        this.dueDate = dueDate2;
+    public void setDueDate(Date date) {
+        this.getDeadline().setDueDate(date);
     }
 
-    public void setDueTime(DueTime dueTime2) {
-        this.dueTime = dueTime2;
+    public void setDueTime(Time time) {
+        this.getDeadline().setDueTime(time);
     }
 
-    public void setImportance(Importance importance2) {
-        this.importance = importance2;
+    public void setImportance(Importance importance) {
+        this.importance = importance;
     }
 
     @Override
     public UniqueTagList getTags() {
-        return new UniqueTagList(tags);
+        return tags;
     }
 
     /**
@@ -105,7 +115,7 @@ public class Task implements ReadOnlyTask {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(taskName, dueDate, dueTime, importance, tags);
+        return Objects.hash(taskName, getDeadline(), importance, tags);
     }
 
     @Override
@@ -113,7 +123,28 @@ public class Task implements ReadOnlyTask {
         return getAsText();
     }
 
+    public Deadline getDeadline() {
+        return deadline;
+    }
 
+    public EventStart getEventStart() {
+        return eventStart;
+    }
 
+    public void setEventStart(EventStart eventStart) {
+        this.eventStart = eventStart;
+    }
+
+    public void setDeadLine(Deadline deadline) {
+        this.deadline = deadline;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.getEventStart().setStartDate(startDate);
+    }
+
+    public void setStartTime(Time startTime) {
+        this.getEventStart().setStartTime(startTime);
+    }
 
 }

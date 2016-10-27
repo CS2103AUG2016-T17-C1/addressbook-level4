@@ -28,9 +28,11 @@ public class CommandBoxHandle extends GuiHandle{
     public void runCommand(String command) {
         enterCommand(command);
         pressEnter();
-        if (command.equals("clear")) // any commands that has an alert dialog that pops out
+        guiRobot.sleep(10);
+        if (command.equals("clear")) { // any commands that has an alert dialog that pops out
             pressEnter();
-        guiRobot.sleep(2000); //Give time for the command to take effect
+            guiRobot.sleep(100);
+        } // Give time for the command to take effect
     }
 
     public HelpWindowHandle runHelpCommand() {

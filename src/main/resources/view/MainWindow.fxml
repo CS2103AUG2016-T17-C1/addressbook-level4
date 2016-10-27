@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seedu.task.ui.MainWindow">
+<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seedu.task.ui.MainWindow">
    <stylesheets>
       <URL value="@DarkTheme.css" />
       <URL value="@Extensions.css" />
@@ -62,7 +62,7 @@
                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
            </padding>
        </AnchorPane>
-      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="744.0" prefWidth="692.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="11111.0">
+      <TabPane fx:id="tabPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="744.0" prefWidth="692.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="11111.0">
         <tabs>
           <Tab text="Home">
                <content>
@@ -77,11 +77,16 @@
                               <AnchorPane fx:id="statusbarPlaceholder" />
                            </children>
                         </VBox>
-                        <AnchorPane fx:id="browserPlaceholder">
-                            <padding>
-                                <Insets bottom="10" left="10" right="10" top="10" />
-                            </padding>
-                        </AnchorPane>
+                    <!-- @@author A0127720M -->
+                        <VBox fx:id="markedTaskList" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <AnchorPane fx:id="markedTaskListPanelPlaceholder" VBox.vgrow="ALWAYS">
+                                  <padding>
+                                      <Insets bottom="10" left="10" right="10" top="10" />
+                                  </padding>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
                      </items>
                   </SplitPane>
                </content></Tab>

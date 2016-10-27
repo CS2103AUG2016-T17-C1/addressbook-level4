@@ -2,8 +2,9 @@ package seedu.task.logic.commands;
 
 
 /**
- * Lists all tasks in the address book to the user.
+ * Lists all tasks in the task manager to the user.
  */
+//@@author A0142360U
 public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
