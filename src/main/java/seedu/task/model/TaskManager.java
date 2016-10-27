@@ -73,6 +73,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         setTags(newTags);
     }
 
+
     private void setMarkedTasks(List<Task> markedTasks) {
     	this.markedTasks.getInternalList().setAll(markedTasks);
 	}
@@ -82,9 +83,14 @@ public class TaskManager implements ReadOnlyTaskManager {
         return this.tasks.undo() && this.markedTasks.undo();
     }
 
+    public boolean redo() {
+        return this.tasks.redo();
+    }
+
     public void resetData(ReadOnlyTaskManager newData) {
         this.tasks.saveCurrentTaskList();
         resetData(newData.getTaskList(), newData.getTagList(), newData.getMarkedTaskList());
+
     }
     
     
@@ -209,6 +215,4 @@ public class TaskManager implements ReadOnlyTaskManager {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(tasks, tags);
     }
-
-	
 }

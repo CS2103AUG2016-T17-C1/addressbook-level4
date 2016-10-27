@@ -170,7 +170,7 @@ public class LogicManagerTest {
       Task toBeAdded = helper.floating();
       TaskManager expectedAB = new TaskManager();
       expectedAB.addTask(toBeAdded);
-      
+
       // execute command and verify result
       assertCommandBehavior(helper.generateAddCommand(toBeAdded),
               String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
@@ -178,15 +178,15 @@ public class LogicManagerTest {
               expectedAB.getTaskList());
 
   }
-    
+
     @Test
     public void execute_add_invalidPersonData() throws Exception {
         assertCommandBehavior(
                 "add []\\[;] d/11125678 e/valid@e.mail i/valid, address", TaskName.MESSAGE_NAME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid TaskName d/not_numbers e/valid@e.mail i/valid, address", DueDate.MESSAGE_DUE_DATE_CONSTRAINTS);
+                "add Valid TaskName d/not_numbers e/valid@e.mail i/valid, address", Date.MESSAGE_DATE_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid TaskName d/31125678 e/notAnEmail i/valid, address", DueTime.MESSAGE_DUE_TIME_CONSTRAINTS);
+                "add Valid TaskName d/31125678 e/notAnEmail i/valid, address", Time.MESSAGE_TIME_CONSTRAINTS);
         assertCommandBehavior(
                 "add Valid TaskName d/11115678 e/valid@e.mail i/valid, address t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
 
@@ -340,17 +340,17 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_find_onlyMatchesFullWordsInNames() throws Exception {
+    public void execute_find_canMatchPartialWordsInNames() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Task pTarget1 = helper.generateTaskWithName("bla bla KEY bla");
-        Task pTarget2 = helper.generateTaskWithName("bla KEY bla bceofeia");
-        Task p1 = helper.generateTaskWithName("KE Y");
-        Task p2 = helper.generateTaskWithName("KEYKEYKEY sduauo");
+        Task tFull1 = helper.generateTaskWithName("bla bla KEY bla");
+        Task tFull2 = helper.generateTaskWithName("bla KEY bla bceofeia");
+        Task tNotPartial = helper.generateTaskWithName("KE Y");
+        Task tPartial = helper.generateTaskWithName("KEYKEYKEY sduauo");
 
-        List<Task> fourPersons = helper.generateTaskList(p1, pTarget1, p2, pTarget2);
-        TaskManager expectedAB = helper.generateTaskManager(fourPersons);
-        List<Task> expectedList = helper.generateTaskList(pTarget1, pTarget2);
-        helper.addToModel(model, fourPersons);
+        List<Task> fourTasks = helper.generateTaskList(tNotPartial, tFull1, tPartial, tFull2);
+        TaskManager expectedAB = helper.generateTaskManager(fourTasks);
+        List<Task> expectedList = helper.generateTaskList(tFull1, tPartial, tFull2);
+        helper.addToModel(model, fourTasks);
 
         assertCommandBehavior("find KEY",
                 Command.getMessageForTaskListShownSummary(expectedList.size()),
@@ -404,26 +404,30 @@ public class LogicManagerTest {
 
         Task adam() throws Exception {
             TaskName taskName = new TaskName("Adam Brown");
-            DueDate privatePhone = new DueDate("11112111");
-            DueTime dueTime = new DueTime("2359");
+            Date date = new Date("11112111");
+            Time time = new Time("2359");
+            EventStart eventStart = new EventStart(new Date(""), new Time(""));
+            Deadline deadline = new Deadline(date, time);
             Importance importance = new Importance("**");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(taskName, privatePhone, dueTime, importance, tags);
+            return new Task(taskName,eventStart, deadline, importance, tags);
         }
 
         /**
          * @return a floating task.
          */
-        
+
         Task floating() throws Exception {
             TaskName taskName = new TaskName("Floater");
-            DueDate dueDate = new DueDate("");
-            DueTime dueTime = new DueTime("");
+            Date date = new Date("");
+            Time time = new Time("");
+            EventStart eventStart = new EventStart(date,time);
+            Deadline deadline = new Deadline(date, time);
             Importance importance = new Importance("");
             UniqueTagList tags = new UniqueTagList();
-            return new Task(taskName, dueDate, dueTime, importance, tags);
+            return new Task(taskName,eventStart, deadline, importance, tags);
         }
 
         /**
@@ -436,8 +440,10 @@ public class LogicManagerTest {
         Task generateTask(int seed) throws Exception {
             return new Task(
                     new TaskName("Task " + seed),
-                    new DueDate("" + (31129999 - Math.abs(seed))),
-                    new DueTime("" + (Math.abs(seed) + 1200)),
+                    new EventStart(new Date("" + (31129989 - Math.abs(seed))),
+                            new Time("" + (Math.abs(seed) + 1200))),
+                    new Deadline(new Date("" + (31129999 - Math.abs(seed))),
+                                 new Time("" + (Math.abs(seed) + 1200))),
                     new Importance(new String(new char[seed]).replace("\0", "*")),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
@@ -450,8 +456,8 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getName().toString());
-            cmd.append(" d/").append(p.getDueDate());
-            cmd.append(" e/").append(p.getDueTime());
+            cmd.append(" d/").append(p.getDeadLine().getDueDate().toString());
+            cmd.append(" e/").append(p.getDeadLine().getDueTime().toString());
             cmd.append(" i/").append(p.getImportance());
 
             UniqueTagList tags = p.getTags();
@@ -535,8 +541,8 @@ public class LogicManagerTest {
         Task generateTaskWithName(String name) throws Exception {
             return new Task(
                     new TaskName(name),
-                    new DueDate("25125678"),
-                    new DueTime("0000"),
+                    new EventStart(new Date("25124678"), new Time("0000")),
+                    new Deadline(new Date("25125678"), new Time("0000")),
                     new Importance("**"),
                     new UniqueTagList(new Tag("tag"))
             );

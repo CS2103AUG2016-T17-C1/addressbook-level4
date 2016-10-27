@@ -92,9 +92,9 @@ public class TaskListPanelHandle extends GuiHandle {
             final int scrollTo = i + startPosition;
             guiRobot.interact(() -> getListView().scrollTo(scrollTo));
             guiRobot.sleep(200);
-            if(getTaskCardHandle(startPosition + i)!=null)
+/*            if(getTaskCardHandle(startPosition + i)!=null)
                 System.out.println("value of i"+i);
-                System.out.println("task card is NOT null");
+                System.out.println("task card is NOT null");*/
             if (!TestUtil.compareCardAndTask(getTaskCardHandle(startPosition + i), tasks[i])) {
                 return false;
             }

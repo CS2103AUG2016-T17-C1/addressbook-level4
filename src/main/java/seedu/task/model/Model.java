@@ -34,6 +34,11 @@ public interface Model {
      * @return */
     boolean undoTask();
 
+
+    /** Re-do changes made to the Task List
+     * @return */
+    boolean redoTask();
+
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
     
@@ -51,6 +56,7 @@ public interface Model {
 	void markTask(ReadOnlyTask taskToMark) throws TaskNotFoundException, DuplicateTaskException;
   //@@author	
 	
+
 
 
 
