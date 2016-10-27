@@ -111,9 +111,7 @@ public class UniqueTaskList implements Iterable<Task> {
 
     /**
      * Undo the previous edit made to the task list.
-     *
-     * @throws TaskNotFoundException
-     *             if no such task could be found in the list.
+     * Returns false if restoredList is empty
      */
     public boolean undo() {
 
@@ -140,6 +138,10 @@ public class UniqueTaskList implements Iterable<Task> {
         savedRedoList.add(tempArrayList);
     }
 
+    /**
+     * Reverse the precious undo action made to the task list.
+     * Returns false if restoredList is empty
+     */
     public boolean redo() {
         if (savedRedoList.size() >= 1) {
             saveCurrentTaskList();

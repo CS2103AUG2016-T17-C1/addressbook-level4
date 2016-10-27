@@ -16,9 +16,9 @@ public class Time {
     public final String value;
 
     /**
-     * Validates given email.
+     * Validates given time.
      *
-     * @throws IllegalValueException if given email address string is invalid.
+     * @throws IllegalValueException if given time string is invalid.
      */
     public Time(String time) throws IllegalValueException {
         if (time == null)
@@ -31,10 +31,10 @@ public class Time {
     }
 
     /**
-     * Returns if a given string is a valid task email.
+     * Returns if a given string is a valid Time.
      */
-    public static boolean isValidEmail(String test) {
-        return test.matches(TIME_VALIDATION_REGEX);
+    public static boolean isValidEmail(String time) {
+        return time.matches(TIME_VALIDATION_REGEX);
     }
 
     @Override
