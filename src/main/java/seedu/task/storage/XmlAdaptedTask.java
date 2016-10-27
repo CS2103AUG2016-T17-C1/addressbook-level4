@@ -44,8 +44,8 @@ public class XmlAdaptedTask {
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
         taskName = source.getName().fullName;
-        dueDate = source.getDeadLine().getDueDate().toString();
-        dueTime = source.getDeadLine().getDueTime().value;
+        dueDate = source.getDeadline().getDueDate().toString();
+        dueTime = source.getDeadline().getDueTime().value;
         startDate = source.getEventStart().getStartDate().toString();
         startTime = source.getEventStart().getStartTime().value;
         importance = source.getImportance().value;

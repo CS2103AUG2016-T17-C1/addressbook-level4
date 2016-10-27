@@ -25,14 +25,14 @@ public class CheckTaskAttributes {
     }
 
     public boolean endDateExists() {
-        if (!this.task.getDeadLine().getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING))
+        if (!this.task.getDeadline().getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING))
             return true;
 
         return false;
     }
 
     public boolean endTimeExists() {
-        if (!this.task.getDeadLine().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING))
+        if (!this.task.getDeadline().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING))
             return true;
 
         return false;

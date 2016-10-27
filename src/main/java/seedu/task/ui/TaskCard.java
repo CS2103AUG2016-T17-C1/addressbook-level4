@@ -53,11 +53,11 @@ public class TaskCard extends UiPart {
         if (checkTask.startDateExists() && checkTask.endDateExists()) {
             dueDate.setManaged(true);
             dueDate.setText("Starts on " + task.getEventStart().getStartDate().toString() + " and to be completed by "
-                    + task.getDeadLine().getDueDate().toString());
+                    + task.getDeadline().getDueDate().toString());
 
         } else if (checkTask.endDateExists()) {
             dueDate.setManaged(true);
-            dueDate.setText("Task to be completed by Date: " + task.getDeadLine().getDueDate().toString());
+            dueDate.setText("Task to be completed by Date: " + task.getDeadline().getDueDate().toString());
 
         } else if (checkTask.startDateExists()){
             dueDate.setManaged(true);
@@ -70,12 +70,12 @@ public class TaskCard extends UiPart {
         if (checkTask.startTimeExists() && checkTask.endTimeExists()) {
             dueTime.setManaged(true);
             dueTime.setText("Starts at time " + task.getEventStart().getStartTime().value + " and ends at time "
-                    + task.getDeadLine().getDueTime().value + "hours");
+                    + task.getDeadline().getDueTime().value + "hours");
         }
 
         else if (checkTask.endTimeExists()) {
             dueTime.setManaged(true);
-            dueTime.setText("Ends at time " + task.getDeadLine().getDueTime().value + "hours");
+            dueTime.setText("Ends at time " + task.getDeadline().getDueTime().value + "hours");
         }
 
         else if (checkTask.startTimeExists()) {
