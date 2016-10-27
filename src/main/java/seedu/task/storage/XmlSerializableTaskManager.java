@@ -8,6 +8,7 @@ import seedu.task.model.ReadOnlyTaskManager;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
 import seedu.task.model.task.ReadOnlyTask;
+import seedu.task.model.task.UniqueMarkedTaskList;
 import seedu.task.model.task.UniqueTaskList;
 
 import java.util.ArrayList;
@@ -24,11 +25,14 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
     @XmlElement
     private List<XmlAdaptedTask> tasks;
     @XmlElement
+    private List<XmlAdaptedTask> markedTasks;
+    @XmlElement
     private List<Tag> tags;
 
     {
         tasks = new ArrayList<>();
         tags = new ArrayList<>();
+        markedTasks = new ArrayList<>();
     }
 
     /**
@@ -41,6 +45,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
      */
     public XmlSerializableTaskManager(ReadOnlyTaskManager src) {
         tasks.addAll(src.getTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
+        markedTasks.addAll(src.getMarkedTaskList().stream().map(XmlAdaptedTask::new).collect(Collectors.toList()));
         tags = src.getTagList();
     }
 
@@ -85,5 +90,32 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
     public List<Tag> getTagList() {
         return Collections.unmodifiableList(tags);
     }
+
+  //@@author A0127720M
+	@Override
+	public UniqueMarkedTaskList getUniqueMarkedList() {
+        UniqueMarkedTaskList lists = new UniqueMarkedTaskList();
+        for (XmlAdaptedTask p : markedTasks) {
+            try {
+                lists.add(p.toModelType());
+            } catch (IllegalValueException e) {
+                //TODO: better error handling
+            }
+        }
+        return lists;
+	}
+
+	@Override
+	public List<ReadOnlyTask> getMarkedTaskList() {
+        return markedTasks.stream().map(p -> {
+            try {
+                return p.toModelType();
+            } catch (IllegalValueException e) {
+                e.printStackTrace();
+                //TODO: better error handling
+                return null;
+            }
+        }).collect(Collectors.toCollection(ArrayList::new));
+	}
 
 }
