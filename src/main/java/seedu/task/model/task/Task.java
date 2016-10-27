@@ -33,7 +33,7 @@ public class Task implements ReadOnlyTask {
      * Copy constructor.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getName(),source.getEventStart(), source.getDeadLine(), source.getImportance(), source.getTags());
+        this(source.getName(),source.getEventStart(), source.getDeadline(), source.getImportance(), source.getTags());
     }
 
     public Task(EventStart eventStart, Deadline deadline, Importance importance, UniqueTagList tags) {
@@ -71,11 +71,11 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setDueDate(Date date) {
-        this.getDeadLine().setDueDate(date);
+        this.getDeadline().setDueDate(date);
     }
 
     public void setDueTime(Time time) {
-        this.getDeadLine().setDueTime(time);
+        this.getDeadline().setDueTime(time);
     }
 
     public void setImportance(Importance importance) {
@@ -104,7 +104,7 @@ public class Task implements ReadOnlyTask {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(taskName, getDeadLine(), importance, tags);
+        return Objects.hash(taskName, getDeadline(), importance, tags);
     }
 
     @Override
@@ -112,7 +112,7 @@ public class Task implements ReadOnlyTask {
         return getAsText();
     }
 
-    public Deadline getDeadLine() {
+    public Deadline getDeadline() {
         return deadline;
     }
 
