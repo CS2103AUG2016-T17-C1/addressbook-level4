@@ -17,7 +17,7 @@ import seedu.task.model.task.ReadOnlyTask;
 import java.util.logging.Logger;
 
 
-//@@Shen Jiahui A0127720M
+//@@author A0127720M
 
 /**
  * Panel containing the list of marked tasks.

@@ -48,11 +48,11 @@ public class Task implements ReadOnlyTask {
         // TODO Auto-generated constructor stub
     }
     
-    //@@Shen Jiahui A0127720M
+    //@@author A0127720M
     public void markAsCompleted() {
     	this.isTaskCompleted = true;
     }
-    //@@Shen Jiahui
+    //@@author
     
     
     @Override

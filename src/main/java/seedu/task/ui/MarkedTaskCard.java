@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import seedu.task.model.task.ReadOnlyTask;
 
-//@@Shen Jiahui A0127720M
+//@@author A0127720M
 
 public class MarkedTaskCard extends UiPart{
 

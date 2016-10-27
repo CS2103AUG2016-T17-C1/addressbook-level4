@@ -6,7 +6,7 @@ import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
-//@@Shen Jiahui A0127720M
+//@@author A0127720M
 
 public class MarkCommand extends Command{
 

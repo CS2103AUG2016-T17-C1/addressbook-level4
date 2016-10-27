@@ -45,11 +45,11 @@ public interface Model {
     /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
 
-  //@@Shen Jiahui A0127720M
+  //@@author A0127720M
     /** Marks the given task 
      * @throws DuplicateTaskException */
 	void markTask(ReadOnlyTask taskToMark) throws TaskNotFoundException, DuplicateTaskException;
-  //@@Shen Jiahui	
+  //@@author	
 	
 
 
