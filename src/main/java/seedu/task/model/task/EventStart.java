@@ -2,6 +2,7 @@ package seedu.task.model.task;
 
 import seedu.task.commons.exceptions.IllegalValueException;
 
+//@@author A0142360U
 public class EventStart {
 
     public static final String MESSAGE_EVENT_START_CONSTRAINTS = "Event must have a start date";

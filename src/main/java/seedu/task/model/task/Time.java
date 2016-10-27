@@ -1,16 +1,17 @@
 package seedu.task.model.task;
 
-
 import seedu.task.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Task's phone number in the task manager.
- * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
+ * Represents a Task's phone number in the task manager. Guarantees: immutable;
+ * is valid as declared in {@link #isValidEmail(String)}
  */
+
+// @@author A0142360U
 public class Time {
 
-    public static final String MESSAGE_TIME_CONSTRAINTS =
-            "Task's time should be in 24H format HHMM";
+    // @@author A0139284X
+    public static final String MESSAGE_TIME_CONSTRAINTS = "Task's time should be in 24H format HHMM";
     public static final String TIME_VALIDATION_REGEX = "(([0-1]?[0-9]|2[0-3])[0-5][0-9]$){0,1}";
 
     public final String value;
@@ -18,11 +19,12 @@ public class Time {
     /**
      * Validates given time.
      *
-     * @throws IllegalValueException if given time string is invalid.
+     * @throws IllegalValueException
+     *             if given time string is invalid.
      */
     public Time(String time) throws IllegalValueException {
         if (time == null)
-        	time = "";
+            time = "";
         time = time.trim();
         if (!isValidEmail(time)) {
             throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
@@ -46,7 +48,8 @@ public class Time {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Time // instanceof handles nulls
-                && this.value.equals(((Time) other).value)); // state check
+                        && this.value.equals(((Time) other).value)); // state
+                                                                     // check
     }
 
     @Override

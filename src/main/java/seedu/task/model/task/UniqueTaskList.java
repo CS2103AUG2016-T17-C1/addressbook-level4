@@ -16,6 +16,7 @@ import java.util.*;
  * @see Task#equals(Object)
  * @see CollectionUtil#elementsAreUnique(Collection)
  */
+//@@author A0142360U
 public class UniqueTaskList implements Iterable<Task> {
 
     /**
@@ -113,6 +114,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * Undo the previous edit made to the task list.
      * Returns false if restoredList is empty
      */
+    
     public boolean undo() {
 
         if (savedUndoList.size() >= 1) {

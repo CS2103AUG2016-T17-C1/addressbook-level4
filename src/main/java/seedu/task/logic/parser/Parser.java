@@ -77,7 +77,12 @@ public class Parser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
+        
+          //@@author A0127720M
+        case MarkCommand.COMMAND_WORD:
+            return prepareMark(arguments);
+          //@@author
+            
         case FindCommand.COMMAND_WORD:
             return prepareFind(arguments);
 
@@ -101,7 +106,9 @@ public class Parser {
         }
     }
 
-    /**
+    
+
+	/**
      * Parses arguments in the context of the add task command.
      *
      * @param args full command args string
@@ -216,8 +223,17 @@ public class Parser {
 
         return new SelectCommand(index.get());
     }
+  //@@author A0127720M
+    private Command prepareMark(String arguments) {
+    	Optional<Integer> index = parseIndex(arguments);
+        if(!index.isPresent()){
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
+        }
 
-
+        return new MarkCommand(index.get());
+	}
+  //@@author
 
     /**
      * Returns the specified index in the {@code command} IF a positive unsigned integer is given as the index.

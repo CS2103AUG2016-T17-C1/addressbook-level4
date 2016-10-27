@@ -8,6 +8,7 @@ import javafx.scene.control.Alert.AlertType;
 import seedu.task.logic.commands.CommandResult;
 import seedu.task.model.TaskManager;
 
+//@@author A0142360U
 public class Alerts extends Alert {
 
     public static final String CLEAR_COMMAND_TITLE = "Clear all tasks";

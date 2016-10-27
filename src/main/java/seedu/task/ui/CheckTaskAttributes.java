@@ -2,6 +2,7 @@ package seedu.task.ui;
 
 import seedu.task.model.task.ReadOnlyTask;
 
+//@@author A0142360U
 public class CheckTaskAttributes {
     private ReadOnlyTask task;
     public static final String EMPTY_TASK_OBJECT_STRING = "";
