@@ -39,7 +39,10 @@ public class Time {
 
     @Override
     public String toString() {
-        return value;
+        if (!isValidTime(value)) {
+            return "";
+        }
+        return value + "Hrs ";
     }
 
     @Override

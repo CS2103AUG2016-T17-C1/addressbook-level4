@@ -423,7 +423,7 @@ public class LogicManagerTest {
             TaskName taskName = new TaskName("Floater");
             Date date = new Date("");
             Time time = new Time("");
-            EventStart eventStart = new EventStart(new Date(""),new Time(""));
+            EventStart eventStart = new EventStart(date,time);
             Deadline deadline = new Deadline(date, time);
             Importance importance = new Importance("");
             UniqueTagList tags = new UniqueTagList();
@@ -456,8 +456,6 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getName().toString());
-            cmd.append(" sd/").append(p.getEventStart().getStartDate().toString());
-            cmd.append(" st/").append(p.getEventStart().getStartTime().toString());
             cmd.append(" d/").append(p.getDeadline().getDueDate().toString());
             cmd.append(" e/").append(p.getDeadline().getDueTime().toString());
             cmd.append(" i/").append(p.getImportance());
