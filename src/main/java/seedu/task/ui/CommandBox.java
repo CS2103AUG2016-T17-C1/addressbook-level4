@@ -111,4 +111,12 @@ public class CommandBox extends UiPart {
         commandTextField.getStyleClass().add("error");
     }
 
+    public void requestFocus() {
+        commandTextField.requestFocus();
+    }
+
+    public Node getCommandTextField() {
+        return commandTextField;
+    }
+
 }
