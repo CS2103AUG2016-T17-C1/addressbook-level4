@@ -7,24 +7,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 import java.util.logging.Logger;
-
 import seedu.task.MainApp;
-import seedu.task.alerts.ClearCommandAlert;
 import seedu.task.commons.core.Config;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.util.ConfigUtil;
 import seedu.task.commons.util.StringUtil;
-import seedu.task.model.TaskManager;
-import javafx.application.Application;
-import javafx.application.Platform;
 import seedu.task.alerts.ChangeDirectoryCommandAlert;
 
 public class ChangeDirectoryCommand extends Command {
 
     public static final String COMMAND_WORD = "cd";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Changes the location where the tasks in the Task Manager are saved. "
             + "Paramaters: cd {file location}/" + "Example: " + COMMAND_WORD + "  cd data/";
@@ -33,6 +26,7 @@ public class ChangeDirectoryCommand extends Command {
     public static final String MESSAGE_FAILURE = "Illegal directory name given, please use a different directory name and try again";
     public static final String MESSAGE_ERROR = "Error in creating new directory, please try again with another directory";
     private final String newDirectory;
+    private Config config;
     private Config newConfig = new Config();
     private String configFilePathUsed;
     private static final String DEFAULT_TASK_MANAGER_XML_FILE_NAME = "taskmanager.xml";
@@ -42,13 +36,16 @@ public class ChangeDirectoryCommand extends Command {
     /**
      * Convenience constructor using raw values.
      */
-    public ChangeDirectoryCommand(String newDirectory) {
+    public ChangeDirectoryCommand(String newDirectory, Config config) {
         newDirectory = newDirectory.trim();
+        this.config = config;
         this.newDirectory = newDirectory;
+        System.out.println(config+"config");
     }
 
     @Override
     public CommandResult execute() {
+
 
         if (isValidDirectory(newDirectory)) {
             xmlDataTransferSuccess = transferXmlDataToNewFile(newDirectory);
@@ -104,12 +101,13 @@ public class ChangeDirectoryCommand extends Command {
 
     }
 
+
     public boolean transferXmlDataToNewFile(String newDirectory) {
         try {
             String line;
             File createNewDirectory = new File(newDirectory);
             File createNewXmlFile = new File(newDirectory + DEFAULT_TASK_MANAGER_XML_FILE_NAME);
-            BufferedReader reader = new BufferedReader(new FileReader("data/taskmanager.xml"));
+            BufferedReader reader = new BufferedReader(new FileReader(config.getTaskManagerFilePath()));
             createNewDirectory.mkdir();
             createNewXmlFile.createNewFile();
             BufferedWriter writer = new BufferedWriter(
@@ -121,7 +119,7 @@ public class ChangeDirectoryCommand extends Command {
             writer.close();
             return true;
         } catch (IllegalStateException | IOException e) {
-            System.out.println("The file could not be found");
+            logger.warning("The file could not be found");
             return false;
         }
 

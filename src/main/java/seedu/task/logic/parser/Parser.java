@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.task.commons.core.Config;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.commons.util.StringUtil;
 import seedu.task.logic.commands.*;
@@ -52,7 +53,13 @@ public class Parser {
                                                                                             // tags
     private static final String EMPTY_STRING = "";
 
+    private Config config;
+
     public Parser() {
+    }
+
+    public Parser(Config config) {
+       this.config = config;
     }
 
     /**
@@ -110,7 +117,7 @@ public class Parser {
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
         case ChangeDirectoryCommand.COMMAND_WORD:
-            return prepareChangeDirectory(arguments);
+            return prepareChangeDirectory(arguments,config);
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -193,12 +200,12 @@ public class Parser {
     }
 
     // @@author A0142360U
-    private Command prepareChangeDirectory(String args) {
+    private Command prepareChangeDirectory(String args, Config config) {
         if (args.equals(EMPTY_STRING)) {
             return new IncorrectCommand(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ChangeDirectoryCommand.MESSAGE_USAGE));
         }
-        return new ChangeDirectoryCommand(args);
+        return new ChangeDirectoryCommand(args,config);
     }
 
     /**

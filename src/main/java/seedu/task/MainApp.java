@@ -14,6 +14,7 @@ import seedu.task.commons.util.ConfigUtil;
 import seedu.task.commons.util.StringUtil;
 import seedu.task.logic.Logic;
 import seedu.task.logic.LogicManager;
+import seedu.task.logic.parser.Parser;
 import seedu.task.model.*;
 import seedu.task.storage.Storage;
 import seedu.task.storage.StorageManager;
@@ -28,7 +29,7 @@ import java.util.logging.Logger;
 
 /**
  * The main entry point to the application.
- */ 	
+ */
 public class MainApp extends Application {
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -40,6 +41,7 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
     protected UserPrefs userPrefs;
+    protected Parser parser;
 
     public MainApp() {}
 
@@ -57,10 +59,9 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(model, storage, config);
 
         ui = new UiManager(logic, config, userPrefs);
-
         initEventsCenter();
     }
 
