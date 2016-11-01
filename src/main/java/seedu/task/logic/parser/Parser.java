@@ -77,12 +77,12 @@ public class Parser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-        
+
           //@@author A0127720M
         case MarkCommand.COMMAND_WORD:
             return prepareMark(arguments);
           //@@author
-            
+
         case FindCommand.COMMAND_WORD:
             return prepareFind(arguments);
 
@@ -100,13 +100,14 @@ public class Parser {
 
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
-
+        case ChangeDirectoryCommand.COMMAND_WORD:
+            return new ChangeDirectoryCommand(arguments);
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
-    
+
 
 	/**
      * Parses arguments in the context of the add task command.
