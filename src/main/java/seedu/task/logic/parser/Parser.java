@@ -199,7 +199,12 @@ public class Parser {
         }
     }
 
+
     // @@author A0142360U
+    /*
+     * Check if argument is empty and execute changeDirectoryCommand if not
+     *
+     */
     private Command prepareChangeDirectory(String args, Config config) {
         if (args.equals(EMPTY_STRING)) {
             return new IncorrectCommand(
@@ -207,6 +212,8 @@ public class Parser {
         }
         return new ChangeDirectoryCommand(args,config);
     }
+
+    //@@author
 
     /**
      * Parses arguments in the context of the select task command.

@@ -3,7 +3,6 @@ package seedu.task.logic.commands;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,6 +14,7 @@ import seedu.task.commons.util.ConfigUtil;
 import seedu.task.commons.util.StringUtil;
 import seedu.task.alerts.ChangeDirectoryCommandAlert;
 
+//@@author A0142360U
 public class ChangeDirectoryCommand extends Command {
 
     public static final String COMMAND_WORD = "cd";
@@ -43,6 +43,10 @@ public class ChangeDirectoryCommand extends Command {
         System.out.println(config+"config");
     }
 
+    /*
+     * Attempt to change the directory of the taskmanager.xml
+     * and display an Alert that the application has to be restarted if directory is successfully changed
+     */
     @Override
     public CommandResult execute() {
 
@@ -58,7 +62,6 @@ public class ChangeDirectoryCommand extends Command {
             configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
             try {
                 ConfigUtil.saveConfig(newConfig, configFilePathUsed);
-
                 displayRestartAlert();
                 return new CommandResult(MESSAGE_SUCCESS);
 
@@ -86,12 +89,15 @@ public class ChangeDirectoryCommand extends Command {
     }
 
     /*
-     * append a "taskmanager.xml" string to the directory name
+     * Append a "taskmanager.xml" string to the directory name
      */
     public String directoryAddXmlExtension(String directory) {
         return directory + DEFAULT_TASK_MANAGER_XML_FILE_NAME;
     }
 
+    /*
+     * Terminates the application as long as the alert is dismissed.
+     */
     public void displayRestartAlert() {
         if (ChangeDirectoryCommandAlert.changeDirectoryCommand()) {
             System.exit(0);
@@ -101,7 +107,10 @@ public class ChangeDirectoryCommand extends Command {
 
     }
 
-
+    /*
+     * Copy all the tasks from the current taskmanager.xml and pastes them in the new taskmanager.xml file
+     * created in the new directory
+     */
     public boolean transferXmlDataToNewFile(String newDirectory) {
         try {
             String line;

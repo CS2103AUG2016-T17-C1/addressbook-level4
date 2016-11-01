@@ -1,11 +1,10 @@
 package seedu.task.alerts;
 
 import java.util.Optional;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
-
+//@@author A0142360U
 public class ChangeDirectoryCommandAlert extends Alert{
 
     public static final String CHANGE_DIRECTORY_COMMAND_TITLE = "Change task directory";
@@ -15,7 +14,7 @@ public class ChangeDirectoryCommandAlert extends Alert{
         super(alertType);
     }
 
-    public static boolean changeDirectoryCommand(){
+    public static boolean changeDirectoryCommand() {
 
         try {
             Alert alert = new Alert(AlertType.WARNING);

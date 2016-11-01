@@ -6,7 +6,6 @@ import seedu.task.commons.exceptions.IllegalValueException;
  * Represents a Task's phone number in the task manager. Guarantees: immutable;
  * is valid as declared in {@link #isValidDate(String)}
  */
-// @@author A0142360U
 public class Date {
 
     // @@author A0139284X

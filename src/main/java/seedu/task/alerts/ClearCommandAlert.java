@@ -18,7 +18,7 @@ public class ClearCommandAlert extends Alert {
         super(alertType);
     }
 
-    public static boolean clearCommand(){
+    public static boolean clearCommand() {
 
         try {
             Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -35,7 +35,5 @@ public class ClearCommandAlert extends Alert {
         }
 
     }
-
-
 
 }
