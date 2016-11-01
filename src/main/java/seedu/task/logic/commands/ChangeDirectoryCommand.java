@@ -114,7 +114,6 @@ public class ChangeDirectoryCommand extends Command {
             createNewXmlFile.createNewFile();
             BufferedWriter writer = new BufferedWriter(
                     new FileWriter(newDirectory + DEFAULT_TASK_MANAGER_XML_FILE_NAME));
-            System.out.println(reader.toString() + "readers" + newDirectory + "newDir");
             while ((line = reader.readLine()) != null) {
                 writer.write(line);
             }
