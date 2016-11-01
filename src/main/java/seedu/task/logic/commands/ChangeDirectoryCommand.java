@@ -30,6 +30,7 @@ public class ChangeDirectoryCommand extends Command {
      * Convenience constructor using raw values.
      */
     public ChangeDirectoryCommand(String newDirectory) {
+        newDirectory = newDirectory.trim();
         this.newDirectory = newDirectory;
     }
 
@@ -37,7 +38,8 @@ public class ChangeDirectoryCommand extends Command {
     public CommandResult execute() {
 
         if (isValidDirectory(newDirectory)) {
-            newConfig.setTaskManagerFilePath(newDirectory);
+
+            newConfig.setTaskManagerFilePath(directoryAddXmlExtension(newDirectory));
             configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
             try {
                 ConfigUtil.saveConfig(newConfig, configFilePathUsed);
@@ -52,22 +54,24 @@ public class ChangeDirectoryCommand extends Command {
 
     }
 
+    /*
+     * Returns false if directory name contains any illegal characters
+     */
     public static boolean isValidDirectory(String directory) {
         if (directory.contains("?")) {
             return false;
         }
-        if (!String.valueOf(directory.charAt(directory.length()-1)).equals("/")) {
+        if (!String.valueOf(directory.charAt(directory.length() - 1)).equals("/")) {
             return false;
         }
         return true;
     }
 
-
-    public String directoryContainsXmlExtension(String directory) {
-        if (!directory.contains(DEFAULT_TASK_MANAGER_XML_FILE_NAME)) {
-            return directory + DEFAULT_TASK_MANAGER_XML_FILE_NAME;
-        }
-        return directory;
+    /*
+     * append a "taskmanager.xml" string to the directory name
+     */
+    public String directoryAddXmlExtension(String directory) {
+        return directory + DEFAULT_TASK_MANAGER_XML_FILE_NAME;
     }
 
 }
