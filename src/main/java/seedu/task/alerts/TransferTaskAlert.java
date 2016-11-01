@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+
 //@@author A0142360U
 public class TransferTaskAlert extends Alert {
 
@@ -26,18 +27,16 @@ public class TransferTaskAlert extends Alert {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle(CHANGE_DIRECTORY_COMMAND_TITLE);
             alert.setHeaderText(CHANGE_DIRECTORY_HEADER_TEXT);
-            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo,buttonTypeCancel);
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo, buttonTypeCancel);
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTypeYes) {
                 return yes;
-            } else if (result.get() == buttonTypeNo){
+            } else if (result.get() == buttonTypeNo) {
                 return no;
-            }
-            else {
+            } else {
                 return noAction;
             }
-
 
         } catch (ExceptionInInitializerError | IllegalStateException e) {
             return noAction;
