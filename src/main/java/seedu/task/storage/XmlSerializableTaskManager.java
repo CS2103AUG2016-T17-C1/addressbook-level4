@@ -38,7 +38,8 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
     /**
      * Empty constructor required for marshalling
      */
-    public XmlSerializableTaskManager() {}
+    public XmlSerializableTaskManager() {
+    }
 
     /**
      * Conversion
@@ -54,7 +55,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
         try {
             return new UniqueTagList(tags);
         } catch (UniqueTagList.DuplicateTagException e) {
-            //TODO: better error handling
+            // TODO: better error handling
             e.printStackTrace();
             return null;
         }
@@ -67,7 +68,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
             try {
                 lists.add(p.toModelType());
             } catch (IllegalValueException e) {
-                //TODO: better error handling
+                // TODO: better error handling
             }
         }
         return lists;
@@ -80,7 +81,7 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
                 return p.toModelType();
             } catch (IllegalValueException e) {
                 e.printStackTrace();
-                //TODO: better error handling
+                // TODO: better error handling
                 return null;
             }
         }).collect(Collectors.toCollection(ArrayList::new));
@@ -91,31 +92,31 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
         return Collections.unmodifiableList(tags);
     }
 
-  //@@author A0127720M
-	@Override
-	public UniqueMarkedTaskList getUniqueMarkedList() {
+    // @@author A0127720M
+    @Override
+    public UniqueMarkedTaskList getUniqueMarkedList() {
         UniqueMarkedTaskList lists = new UniqueMarkedTaskList();
         for (XmlAdaptedTask p : markedTasks) {
             try {
                 lists.add(p.toModelType());
             } catch (IllegalValueException e) {
-                //TODO: better error handling
+                // TODO: better error handling
             }
         }
         return lists;
-	}
+    }
 
-	@Override
-	public List<ReadOnlyTask> getMarkedTaskList() {
+    @Override
+    public List<ReadOnlyTask> getMarkedTaskList() {
         return markedTasks.stream().map(p -> {
             try {
                 return p.toModelType();
             } catch (IllegalValueException e) {
                 e.printStackTrace();
-                //TODO: better error handling
+                // TODO: better error handling
                 return null;
             }
         }).collect(Collectors.toCollection(ArrayList::new));
-	}
+    }
 
 }
