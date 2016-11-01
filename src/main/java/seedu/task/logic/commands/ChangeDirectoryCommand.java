@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import seedu.task.MainApp;
+import seedu.task.alerts.ClearCommandAlert;
 import seedu.task.commons.core.Config;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.util.ConfigUtil;
 import seedu.task.commons.util.StringUtil;
+import seedu.task.model.TaskManager;
+import seedu.task.alerts.ChangeDirectoryCommandAlert;
 
 public class ChangeDirectoryCommand extends Command {
 
@@ -43,7 +46,9 @@ public class ChangeDirectoryCommand extends Command {
             configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
             try {
                 ConfigUtil.saveConfig(newConfig, configFilePathUsed);
+                displayRestartAlert();
                 return new CommandResult(MESSAGE_SUCCESS);
+
             } catch (IOException e) {
                 logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
                 return new CommandResult(MESSAGE_FAILURE);
@@ -72,6 +77,15 @@ public class ChangeDirectoryCommand extends Command {
      */
     public String directoryAddXmlExtension(String directory) {
         return directory + DEFAULT_TASK_MANAGER_XML_FILE_NAME;
+    }
+
+    public void displayRestartAlert() {
+        if (ChangeDirectoryCommandAlert.changeDirectoryCommand()) {
+            System.exit(0);
+        } else {
+            System.exit(0);
+        }
+
     }
 
 }
