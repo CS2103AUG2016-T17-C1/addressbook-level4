@@ -16,6 +16,7 @@ public class Time {
 
     public final String value;
 
+    // @@author A0142360U
     /**
      * Validates given time.
      *

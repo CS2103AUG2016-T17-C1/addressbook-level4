@@ -6,7 +6,7 @@ import seedu.task.commons.exceptions.IllegalValueException;
  * Represents a Task's phone number in the task manager. Guarantees: immutable;
  * is valid as declared in {@link #isValidDate(String)}
  */
-//@@author A0142360U
+// @@author A0142360U
 public class Date {
 
     // @@author A0139284X
@@ -17,10 +17,9 @@ public class Date {
     public static final String DATE_FEB_NONLEAPYEAR_VALIDATION_REGEX = "((0[1-9]|(1[0-9])|2[0-8])(0[1-9]|1[0-2])([2-9]\\d{3})$){0,1}";
     public static final String DATE_FEB_LEAPYEAR_VALIDATION_REGEX = "((0[1-9]|(1[0-9])|2[0-9])(0[1-9]|1[0-2])([2-9]\\d{3})$){0,1}";
 
-    // @@author
-
     private final String date;
 
+    // @@author A0142360U
     /**
      * Validates given date number.
      *
@@ -43,8 +42,7 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         if (test.matches(INTEGER)) {
-            return test.matches(DATE_31DAYS_VALIDATION_REGEX)
-                    || test.matches(DATE_30DAYS_VALIDATION_REGEX)
+            return test.matches(DATE_31DAYS_VALIDATION_REGEX) || test.matches(DATE_30DAYS_VALIDATION_REGEX)
                     || isValidFebDate(test);
         } else
             return false;
@@ -58,7 +56,7 @@ public class Date {
     }
 
     /**
-     * 
+     *
      * @param test
      * @return true if is leap year
      */
@@ -68,7 +66,6 @@ public class Date {
         return ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0));
     }
 
-    // @@author
     @Override
     public String toString() {
         return getDate();
@@ -78,8 +75,7 @@ public class Date {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Date // instanceof handles nulls
-                        && this.getDate().equals(((Date) other).getDate())); // state
-        // check
+                        && this.getDate().equals(((Date) other).getDate())); // state // check
     }
 
     @Override
