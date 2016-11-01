@@ -21,7 +21,7 @@ public class ChangeDirectoryCommandAlert extends Alert{
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle(CHANGE_DIRECTORY_COMMAND_TITLE);
             alert.setHeaderText(CHANGE_DIRECTORY_COMMAND_HEADER_TEXT);
-            Optional<ButtonType> result = alert.showAndWait();
+            alert.showAndWait();
             if (!alert.isShowing()) {
                 return true;
             }
