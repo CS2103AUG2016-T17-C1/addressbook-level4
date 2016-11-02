@@ -30,14 +30,13 @@
 
 > <img src="images/add.png" width="600">
 
-4. Type an action in the command box and press <kbd>Enter</kbd> (or, as an alternative, click on the "+" icon) to execute it. <br>
+4. Type an action in the command box and press <kbd>Enter</kbd> to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> or clicking on the help button will open the help window.
 5. Some example commands you can try:
    * **`list`** : lists all tasks
    * **`add`**` Buy a cup of coffee` : Add a task to buy a cup of coffee without setting any deadlines for it to the to-do list.
 
-   * **`list`** : lists today's tasks
-   * **`add`**` add Grocery Shopping d/01012016 e/1800 i/* t/NTUC` :
+   * **`add`**` Grocery Shopping d/01012016 e/1800 i/* t/NTUC` :
      adds a task `Grocery Shopping` with specified time, importance and tag to Never Forget.
 
    * **`delete`**` 3` : deletes the 3rd task shown in the current list
