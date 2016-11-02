@@ -6,7 +6,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 
 #### [MIHNEA ARION](https://github.com/Sevreus) 
 <img src="images/MA.jpg" width="150"><br>
-**Role**: Develo <br>
+**Role**: Developer <br>
 * Components in charge of: [Storage](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#storage-component)
 * Also in charge of: [Testing](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#testing), [Git](https://github.com/CS2103AUG2016-T17-C1), [Documentation](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs)
 * Contributions:
