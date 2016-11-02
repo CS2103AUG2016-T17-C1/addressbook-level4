@@ -92,7 +92,8 @@ public class UniqueMarkedTaskList implements Iterable<Task> {
             for (Task t : restoredList) {
                 internalList.add(t);
             }
-            savedList.remove(savedList.size() - 1);
+            if (restoredList.size() != 0)
+                savedList.remove(savedList.size() - 1);
             return true;
         }
 
@@ -119,8 +120,7 @@ public class UniqueMarkedTaskList implements Iterable<Task> {
     }
 
     public void addEmptyListInRedo() {
-        ArrayList<Task> emptyArrayList = new ArrayList<Task>();
-        savedRedoList.add(emptyArrayList);
+        saveCurrentTaskList();
     }
 
     public void addExistingMarkedTaskstInUndoArrayList() {
