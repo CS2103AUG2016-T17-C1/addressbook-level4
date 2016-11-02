@@ -123,14 +123,8 @@ public class UniqueMarkedTaskList implements Iterable<Task> {
         savedRedoList.add(emptyArrayList);
     }
 
-    public void addEmptyListInUndo() {
-        System.out.println(savedList.size());
-        System.out.println(savedList);
+    public void addExistingMarkedTaskstInUndoArrayList() {
         saveCurrentTaskList();
-        //savedList.add(savedList.get(savedList.size()-1));
-       /* System.out.println(savedList.size());
-        System.out.println(savedList);
-        System.out.println(savedList.get(savedList.size() - 1)+"lol");*/
     }
 
     private void saveMarkedTaskListForRedo() {
