@@ -17,8 +17,8 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 /**
- * Represents the in-memory model of the task manager data.
- * All changes to any model should be synchronized.
+ * Represents the in-memory model of the task manager data. All changes to any
+ * model should be synchronized.
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -28,8 +28,8 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<Task> filteredMarkedTasks;
 
     /**
-     * Initializes a ModelManager with the given TaskManager
-     * TaskManager and its variables should not be null
+     * Initializes a ModelManager with the given TaskManager TaskManager and its
+     * variables should not be null
      */
     public ModelManager(TaskManager src, UserPrefs userPrefs) {
         super();
@@ -59,20 +59,22 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
+    // @@author A0142360U
     @Override
     public boolean undoTask() {
-
-        boolean success = taskManager.undo();
+     boolean success = taskManager.undo();
         indicateTaskManagerChanged();
         return success;
     }
-    
+
     @Override
     public boolean redoTask() {
         boolean success = taskManager.redo();
         indicateTaskManagerChanged();
         return success;
     }
+
+    // @@author
 
     @Override
     public ReadOnlyTaskManager getTaskManager() {
@@ -97,45 +99,43 @@ public class ModelManager extends ComponentManager implements Model {
         indicateTaskManagerChanged();
     }
 
-
     @Override
     public synchronized void editTask(ReadOnlyTask target, Task newTask) throws UniqueTaskList.TaskNotFoundException {
-        //TODO: EDIT TASK
         taskManager.editTask(target, newTask);
         indicateTaskManagerChanged();
     }
-    
-    //@@author A0127720M
-    
+
+    // @@author A0127720M
+
     @Override
-	public void markTask(ReadOnlyTask taskToMark) throws TaskNotFoundException, DuplicateTaskException {
-		//mark a task 
-    	taskManager.mark(taskToMark);
-    	indicateTaskManagerChanged();
-	}
-    //@@author
-    //=========== Filtered Task List Accessors ===============================================================
+    public void markTask(ReadOnlyTask taskToMark) throws TaskNotFoundException, DuplicateTaskException {
+        // mark a task
+        taskManager.mark(taskToMark);
+        indicateTaskManagerChanged();
+    }
+    // @@author
+    // =========== Filtered Task List Accessors
+    // ===============================================================
 
     @Override
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
-    
-    //@@author A0127720M
-	@Override
-	public ObservableList<ReadOnlyTask> getFilteredMarkedTaskList() {
-		return new UnmodifiableObservableList<>(filteredMarkedTasks);
-	}
-	//@@author
-	
-	
+
+    // @@author A0127720M
+    @Override
+    public ObservableList<ReadOnlyTask> getFilteredMarkedTaskList() {
+        return new UnmodifiableObservableList<>(filteredMarkedTasks);
+    }
+    // @@author
+
     @Override
     public void updateFilteredListToShowAll() {
         filteredTasks.setPredicate(null);
     }
 
     @Override
-    public void updateFilteredTaskList(Set<String> keywords){
+    public void updateFilteredTaskList(Set<String> keywords) {
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
@@ -143,10 +143,12 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(expression::satisfies);
     }
 
-    //========== Inner classes/interfaces used for filtering ==================================================
+    // ========== Inner classes/interfaces used for filtering
+    // ==================================================
 
     interface Expression {
         boolean satisfies(ReadOnlyTask task);
+
         String toString();
     }
 
@@ -171,6 +173,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     interface Qualifier {
         boolean run(ReadOnlyTask task);
+
         String toString();
     }
 
@@ -184,8 +187,7 @@ public class ModelManager extends ComponentManager implements Model {
         @Override
         public boolean run(ReadOnlyTask task) {
             return nameKeyWords.stream()
-                    .filter(keyword -> StringUtil.containsIgnoreCase(task.getName().fullName, keyword))
-                    .findAny()
+                    .filter(keyword -> StringUtil.containsIgnoreCase(task.getName().fullName, keyword)).findAny()
                     .isPresent();
         }
 
@@ -194,10 +196,5 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
-
-
-	
-
-
 
 }
