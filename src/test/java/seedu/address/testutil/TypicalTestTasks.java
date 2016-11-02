@@ -14,24 +14,29 @@ public class TypicalTestTasks {
 
     public TypicalTestTasks() {
         try {
-            alice = new TaskBuilder().withName("Alice Pauline").withEventStart("11112222", "0000")
+            alice = new TaskBuilder().withName("Call Alice").withEventStart("11112222", "0000")
                     .withDeadLine("11112111", "1107").withImportance("*").withTags("friends").build();
-            benson = new TaskBuilder().withName("Benson Meier").withEventStart("11112000", "0900")
-                    .withDeadLine("26122000", "1000").withImportance("**").withTags("owesMoney", "friends").build();
-            carl = new TaskBuilder().withName("Carl Kurzs").withEventStart("11112200", "0900")
+            benson = new TaskBuilder().withName("Buy Bread").withEventStart("11112000", "0900")
+                    .withDeadLine("26122000", "1000").withImportance("**").withTags("wholeGrain", "toast").build();
+            carl = new TaskBuilder().withName("Call Mom").withEventStart("11112200", "0900")
                     .withDeadLine("11102016", "2300").withImportance("**").build();
-            daniel = new TaskBuilder().withName("Daniel Meier").withEventStart("11112200", "1000")
-                    .withDeadLine("11102016", "0019").withImportance("*").build();
-            elle = new TaskBuilder().withName("Elle Meyer").withEventStart("11112200", "1000")
+            
+            daniel = new TaskBuilder().withName("Buy gifts").withEventStart("11112200", "2000")
+                    .withDeadLine("11102016", "0000").withImportance("*").build();
+            elle = new TaskBuilder().withName("Join Barbecue").withEventStart("11112200", "1000")
                     .withDeadLine("11102016", "0900").withImportance("**").build();
-            fiona = new TaskBuilder().withName("Fiona Kunz").withEventStart("11112200", "1000")
+//            daniel = new TaskBuilder().withName("Join Barbecue").withEventStart("11112200", "2000")
+//                    .withDeadLine("11102016", "0000").withImportance("*").build();
+//            elle = new TaskBuilder().withName("Buy gifts").withEventStart("11112200", "1000")
+//                    .withDeadLine("11102016", "0900").withImportance("**").build();
+            fiona = new TaskBuilder().withName("Reply to emails").withEventStart("11112200", "1000")
                     .withDeadLine("11102016", "1000").withImportance("***").build();
-            george = new TaskBuilder().withName("George Best").withEventStart("12102016", "0000")
+            george = new TaskBuilder().withName("Send best wishes to George").withEventStart("12102016", "0000")
                     .withDeadLine("11102016", "2359").withImportance("**").build();
 
             //Manually added
-            hoon = new TaskBuilder().withName("Hoon Meier").withEventStart("11112100","0100").withDeadLine("11102016", "1100").withImportance("*").build();
-            ida = new TaskBuilder().withName("Ida Mueller").withEventStart("11112015","1000").withDeadLine("11102016", "1200").withImportance("**").build();
+            hoon = new TaskBuilder().withName("Meet supervisor").withEventStart("11112100","1000").withDeadLine("11102016", "1100").withImportance("*").build();
+            ida = new TaskBuilder().withName("Reserve seats").withEventStart("11112015","1000").withDeadLine("11102016", "1400").withImportance("**").build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";
