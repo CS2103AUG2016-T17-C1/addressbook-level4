@@ -30,15 +30,15 @@
 
 > <img src="images/add.png" width="600">
 
-4. Type an action in the command box and press <kbd>Enter</kbd> or click on the "+" icon to execute it. <br>
+4. Type an action in the command box and press <kbd>Enter</kbd> (or, as an alternative, click on the "+" icon) to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> or clicking on the help button will open the help window.
 5. Some example commands you can try:
    * **`list`** : lists all tasks
    * **`add`**` Buy a cup of coffee` : Add a task to buy a cup of coffee without setting any deadlines for it to the to-do list.
 
    * **`list`** : lists today's tasks
-   * **`add`**` Grocery Shopping d/01012016 t/1800 i/* NTUC` :
-     adds a task `Grocery Shopping` to Never Forget.
+   * **`add`**` add Grocery Shopping d/01012016 e/1800 i/* t/NTUC` :
+     adds a task `Grocery Shopping` with specified time, importance and tag to Never Forget.
 
    * **`delete`**` 3` : deletes the 3rd task shown in the current list
    * **`exit`** : exits the app
@@ -72,13 +72,13 @@ Examples:
 
 #### Adding a task: `add`
 Adds a task to Never Forget<br>
-Format: `add TASK d/SCHEDULED_DATE t/SCHEDULED_TIME v/SCHEDULED_PLACE [t/TAG]...`
+Format: `add TASK_NAME d/SCHEDULED_DATE e/SCHEDULED_END_TIME i/IMPORTANCE [t/TAG]...`
 
 > Tasks can have any number of tags (including 0)
 
 Examples:
-* `add Grocery Shopping d/01012016 t/1800 v/*`
-* `add Dinner with JC Friends d/07102016 t/1930 i/** t/Budget Meal t/buddies`
+* `add Grocery Shopping d/01012016 e/1800 i/*`
+* `add Dinner with JC Friends d/07102016 e/1930 i/** t/Budget t/Meal t/Buddies`
 
 
 
