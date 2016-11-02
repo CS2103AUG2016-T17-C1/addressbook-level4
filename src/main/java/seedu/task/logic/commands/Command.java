@@ -1,20 +1,24 @@
 package seedu.task.logic.commands;
 
+
 import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.events.ui.IncorrectCommandAttemptedEvent;
 import seedu.task.model.Model;
 
 /**
- * Represents a command with hidden internal logic and the ability to be executed.
+ * Represents a command with hidden internal logic and the ability to be
+ * executed.
  */
 public abstract class Command {
     protected Model model;
 
     /**
-     * Constructs a feedback message to summarise an operation that displayed a listing of tasks.
+     * Constructs a feedback message to summarise an operation that displayed a
+     * listing of tasks.
      *
-     * @param displaySize used to generate summary
+     * @param displaySize
+     *            used to generate summary
      * @return summary message for tasks displayed
      */
     public static String getMessageForTaskListShownSummary(int displaySize) {
@@ -29,9 +33,9 @@ public abstract class Command {
     public abstract CommandResult execute();
 
     /**
-     * Provides any needed dependencies to the command.
-     * Commands making use of any of these should override this method to gain
-     * access to the dependencies.
+     * Provides any needed dependencies to the command. Commands making use of
+     * any of these should override this method to gain access to the
+     * dependencies.
      */
     public void setData(Model model) {
         this.model = model;

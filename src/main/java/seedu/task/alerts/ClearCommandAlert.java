@@ -9,16 +9,16 @@ import seedu.task.logic.commands.CommandResult;
 import seedu.task.model.TaskManager;
 
 //@@author A0142360U
-public class Alerts extends Alert {
+public class ClearCommandAlert extends Alert {
 
     public static final String CLEAR_COMMAND_TITLE = "Clear all tasks";
     public static final String CLEAR_COMMAND_HEADER_TEXT = "Are you sure you want to clear all tasks in the task manager?";
 
-    public Alerts(AlertType alertType) {
+    public ClearCommandAlert(AlertType alertType) {
         super(alertType);
     }
 
-    public static boolean ClearCommandAlert(){
+    public static boolean clearCommand() {
 
         try {
             Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -35,7 +35,5 @@ public class Alerts extends Alert {
         }
 
     }
-
-
 
 }

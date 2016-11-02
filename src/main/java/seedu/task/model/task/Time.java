@@ -7,7 +7,6 @@ import seedu.task.commons.exceptions.IllegalValueException;
  * is valid as declared in {@link #isValidEmail(String)}
  */
 
-// @@author A0142360U
 public class Time {
 
     // @@author A0139284X
@@ -16,6 +15,7 @@ public class Time {
 
     public final String value;
 
+    // @@author A0142360U
     /**
      * Validates given time.
      *

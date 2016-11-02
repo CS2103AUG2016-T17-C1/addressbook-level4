@@ -33,7 +33,6 @@ public class EditCommand extends Command {
     public final int targetIndex;
     private final Task toEdit;
 
-    // @@author A0142360U
     public EditCommand(String string, String taskName, String startDate, String startTime, String dueDate,
             String dueTime, String importance, Set<String> tags) throws IllegalValueException {
         System.out.println("Target index" + string);
@@ -66,7 +65,6 @@ public class EditCommand extends Command {
     }
 
     @Override
-    // @@author A0142360U
     public CommandResult execute() {
 
         UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();

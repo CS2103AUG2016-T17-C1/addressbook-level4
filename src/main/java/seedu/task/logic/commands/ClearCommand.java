@@ -1,11 +1,12 @@
 package seedu.task.logic.commands;
 
-import seedu.task.alerts.Alerts;
+import seedu.task.alerts.ClearCommandAlert;
 import seedu.task.model.TaskManager;
 
 /**
  * Clears the task manager.
  */
+
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
@@ -19,7 +20,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute() {
         assert model != null;
-        if (Alerts.ClearCommandAlert()) {
+        if (ClearCommandAlert.clearCommand()) {
             model.resetData(TaskManager.getEmptyTaskManager());
             return new CommandResult(MESSAGE_SUCCESS);
         }

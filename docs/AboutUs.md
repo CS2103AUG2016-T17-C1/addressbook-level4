@@ -1,6 +1,6 @@
 # About Us
 
-We are a team of students taking a module CS2103 based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a team of students taking the module CS2103 based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## Project Team
 
