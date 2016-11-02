@@ -14,7 +14,7 @@
 1. Download the latest `neverforgetagain.jar` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your to-do list.
 3. Double-click the file to start the app. The GUI should appear in a few seconds.
-   <img src="images/UI.png" width="600">
+   <img src="images/newUI2.png" width="728">
 
 
 
@@ -28,20 +28,20 @@
 
 
 
-> <img src="images/add.png" width="600">
+> <img src="images/newUIadd2.png" width="728">
 
-4. Type an action in the command box and press <kbd>Enter</kbd> (or, as an alternative, click on the "+" icon) to execute it. <br>
+4. Type an action in the command box and press <kbd>Enter</kbd> to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> or clicking on the help button will open the help window.
 5. Some example commands you can try:
    * **`list`** : lists all tasks
    * **`add`**` Buy a cup of coffee` : Add a task to buy a cup of coffee without setting any deadlines for it to the to-do list.
 
-   * **`list`** : lists today's tasks
-   * **`add`**` add Grocery Shopping d/01012016 e/1800 i/* t/NTUC` :
+   * **`add`**` Grocery Shopping d/01012016 e/1800 i/* t/NTUC` :
      adds a task `Grocery Shopping` with specified time, importance and tag to Never Forget.
 
    * **`delete`**` 3` : deletes the 3rd task shown in the current list
    * **`exit`** : exits the app
+   
 6. Refer to the [Features](#features) section below for details of each command.<br>
 
 
@@ -49,7 +49,6 @@
 View help for commands, including hotkeys.<br>
 Format: `help`
 
-> Help is also shown if you enter an incorrect command e.g. `abcd`
 
 #### Finding all tasks containing any keyword in their name: `find`
 Finds tasks whose names contain any of the given keywords.<br>
@@ -107,18 +106,21 @@ Examples:
 
 
 #### Clearing all entries : `clear`
-Clears all entries from the to-do list.<br>
+Clears all entries from the to-do list. The user is asked to confirm before proceeding.<br>
 Format: `clear`
 
-
-#### Checking an entry : `mark`
-Marks an entry as completed. <br>
-Format: `mark INDEX`
 
 
 #### Exiting the program : `exit`
 Exits the program.<br>
 Format: `exit`
+
+
+
+#### Marking an entry : `mark`
+Marks an entry as completed. <br>
+Format: `mark INDEX`
+
 
 
 #### Undo : `undo`
@@ -159,12 +161,12 @@ Displays the task listing for that desired time frame.<br>
 Command | Format
 -------- | :--------
 Add | `add TASK d/DDMMYYYY t/HHMM i/*[*]... [t/TAG]...`
-Mark | `mark INDEX`
 Clear | `clear`
 Delete | `delete INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Help | `help`
 List | `list`
+Mark | `mark INDEX`
 Select | `select INDEX`
 Redo | `redo`
 Undo | `undo`
