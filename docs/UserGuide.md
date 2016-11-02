@@ -41,6 +41,7 @@
 
    * **`delete`**` 3` : deletes the 3rd task shown in the current list
    * **`exit`** : exits the app
+   
 6. Refer to the [Features](#features) section below for details of each command.<br>
 
 
