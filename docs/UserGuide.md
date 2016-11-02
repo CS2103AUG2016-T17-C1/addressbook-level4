@@ -50,18 +50,17 @@ View help for commands, including hotkeys.<br>
 Format: `help`
 
 > Help is also shown if you enter an incorrect command e.g. `abcd`
-<<<<<<< HEAD
 
 #### Finding all tasks containing any keyword in their name: `find`
 Finds tasks whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-> * The search is not case sensitive. e.g `hans` will match `Hans`
-> * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+> * The search is not case sensitive. e.g `buy` will match `Buy`
+> * The order of the keywords does not matter. e.g. `Buy Bread` will match `Bread Buy`
 > * Only the name is searched.
-> * Non full words will still be matched e.g. `Han` WILL match `Hans`
+> * Non full words will still be matched e.g. `brea` WILL match `bread`
 > * tasks matching at least one keyword will be returned (i.e. `OR` search).
-    e.g. `Hans` will match `Hans Bo`
+    e.g. `buy` will match `buy bread`
 
 
 Examples:
@@ -92,15 +91,10 @@ Format: `delete INDEX`
   The index **must be a positive integer** 1, 2, 3, ...
 
 
-#### Completing a task : `complete`
-Strikes off the specified task from the to-do list. Reversible.<br>
-Format: `complete INDEX`
-
-
-
 #### Listing all of today's tasks : `list`
 Shows a list of all tasks today in Never Forget.<br>
 Format: `list`
+
 
 #### Selecting tasks : `select`
 Examples:
@@ -117,9 +111,10 @@ Clears all entries from the to-do list.<br>
 Format: `clear`
 
 
-#### Checking an entry : `check`
-Checks and marks an entry as completed. <br>
-Format: `check INDEX`
+#### Checking an entry : `mark`
+Marks an entry as completed. <br>
+Format: `mark INDEX`
+
 
 #### Exiting the program : `exit`
 Exits the program.<br>
@@ -141,13 +136,13 @@ Never Forget data are saved in the hard disk automatically after any command tha
 There is no need to save manually.
 
 
-#### Sorting the displayed task list : `select any one of: Home(which displays everything), Today, Next 7 Days or Month`
+#### Sorting the displayed task list : `select any one of: Home(which displays everything), Daily, Weekly or Monthly`
 Displays the task listing for that desired time frame.<br>
 
 
 > Displays the task listing for that desired time frame.
   Tasks with no deadlines are only displayed in the Home listing where all tasks are displayed.<br>
-  User must select any one of the tabs, HOME, TODAY, Next 7 Days or Month.
+  User must select any one of the tabs, Home, Daily, Weekly or Monthly.
   
  
 
@@ -164,9 +159,8 @@ Displays the task listing for that desired time frame.<br>
 Command | Format
 -------- | :--------
 Add | `add TASK d/DDMMYYYY t/HHMM i/*[*]... [t/TAG]...`
-Check | `check INDEX`
+Mark | `mark INDEX`
 Clear | `clear`
-Done | `done INDEX`
 Delete | `delete INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Help | `help`
@@ -174,3 +168,4 @@ List | `list`
 Select | `select INDEX`
 Redo | `redo`
 Undo | `undo`
+Exit | `exit`
