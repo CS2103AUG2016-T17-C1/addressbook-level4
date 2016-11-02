@@ -105,6 +105,9 @@ public class EditCommand extends Command {
             }
             if (this.toEdit.getTags().getInternalList().toString().equals(EMPTY_TAG_OBJECT_STRING)) {
                 this.toEdit.setTags(taskToEdit.getTags());
+            } else {
+                taskToEdit.getTags().mergeFrom(toEdit.getTags());
+                this.toEdit.setTags(taskToEdit.getTags());
             }
             if (this.toEdit.getImportance().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setImportance(taskToEdit.getImportance());

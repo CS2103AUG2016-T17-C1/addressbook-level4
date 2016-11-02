@@ -23,8 +23,9 @@ import java.util.*;
 public class UniqueMarkedTaskList implements Iterable<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
-    private final ArrayList<ArrayList<Task>> savedList = new ArrayList<ArrayList<Task>>();
-
+    private final ArrayList<ArrayList<Task>> savedUndoList = new ArrayList<ArrayList<Task>>();
+    private final ArrayList<ArrayList<Task>> savedRedoList = new ArrayList<ArrayList<Task>>();
+    
     /**
      * Constructs empty TaskList.
      */
@@ -76,20 +77,19 @@ public class UniqueMarkedTaskList implements Iterable<Task> {
     }
 
     /**
-     * Undo the previous edit made to the task list.
-     *
-     * @throws TaskNotFoundException
-     *             if no such task could be found in the list.
+     * Undo the previous edit made to the marked task list.
+     * Returns false if restoredList is empty
      */
     public boolean undo() {
 
-        if (savedList.size() >= 1) {
+        if (savedUndoList.size() >= 1) {
+            saveTaskListForRedo();
             internalList.clear();
-            ArrayList<Task> restoredList = savedList.get(savedList.size() - 1);
+            ArrayList<Task> restoredList = savedUndoList.get(savedUndoList.size() - 1);
             for (Task t : restoredList) {
                 internalList.add(t);
             }
-            savedList.remove(savedList.size() - 1);
+            savedUndoList.remove(savedUndoList.size() - 1);
             return true;
         }
 
@@ -101,7 +101,7 @@ public class UniqueMarkedTaskList implements Iterable<Task> {
         for (Task t : internalList) {
             tempArrayList.add(t);
         }
-        savedList.add(tempArrayList);
+        savedUndoList.add(tempArrayList);
 
     }
 
@@ -124,5 +124,29 @@ public class UniqueMarkedTaskList implements Iterable<Task> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    public boolean redo() {
+        if (savedRedoList.size() >= 1) {
+            saveCurrentTaskList();
+            internalList.clear();
+            ArrayList<Task> restoredList = savedRedoList.get(savedRedoList.size() - 1);
+            for (Task t : restoredList) {
+                internalList.add(t);
+            }
+            savedRedoList.remove(savedRedoList.size() - 1);
+            return true;
+        }
+
+        return false;
+    }
+    
+
+    private void saveTaskListForRedo() {
+        ArrayList<Task> tempArrayList = new ArrayList<Task>();
+        for (Task t : internalList) {
+            tempArrayList.add(t);
+        }
+        savedRedoList.add(tempArrayList);
     }
 }

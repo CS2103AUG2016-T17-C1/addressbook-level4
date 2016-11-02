@@ -42,8 +42,8 @@ public class TaskManager implements ReadOnlyTaskManager {
     /**
      * Tasks and Tags are copied into this task manager
      */
-    public TaskManager(UniqueTaskList persons, UniqueTagList tags, UniqueMarkedTaskList incompletedTasks) {
-        resetData(persons.getInternalList(), tags.getInternalList(), incompletedTasks.getInternalList());
+    public TaskManager(UniqueTaskList persons, UniqueTagList tags, UniqueMarkedTaskList completedTasks) {
+        resetData(persons.getInternalList(), tags.getInternalList(), completedTasks.getInternalList());
     }
 
     public static ReadOnlyTaskManager getEmptyTaskManager() {
@@ -79,16 +79,32 @@ public class TaskManager implements ReadOnlyTaskManager {
         this.markedTasks.getInternalList().setAll(markedTasks);
     }
 
-    public boolean undo() {
-        return this.tasks.undo() && this.markedTasks.undo();
+    //@@author A0139284X
+    public boolean undo(boolean needToUndoMark) {
+        boolean isUndone;
+        isUndone = this.tasks.undo();
+        
+        if (needToUndoMark)
+            isUndone = this.markedTasks.undo() || isUndone;
+        
+        return isUndone;
     }
 
-    public boolean redo() {
-        return this.tasks.redo();
+    public boolean redo(boolean needToRedoMark) {
+        boolean isRedone;
+        isRedone = this.tasks.redo();
+        
+        if (needToRedoMark)
+            isRedone = this.markedTasks.redo() || isRedone;
+        
+        return isRedone;
     }
 
+    //@@author
+    
     public void resetData(ReadOnlyTaskManager newData) {
         this.tasks.saveCurrentTaskList();
+        this.markedTasks.saveCurrentTaskList();
         resetData(newData.getTaskList(), newData.getTagList(), newData.getMarkedTaskList());
 
     }
@@ -104,7 +120,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      *             if an equivalent task already exists.
      */
     public void addTask(Task p) throws UniqueTaskList.DuplicateTaskException {
-        syncTagsWithMasterList(p);
+        //syncTagsWithMasterList(p);
         tasks.add(p);
     }
 
@@ -114,11 +130,11 @@ public class TaskManager implements ReadOnlyTaskManager {
         markedTasks.add((Task) taskToMark);
     }
     // @@author
-
+/*
     /**
      * Ensures that every tag in this task: - exists in the master list
      * {@link #tags} - points to a Tag object in the master list
-     */
+     *//*
     private void syncTagsWithMasterList(Task task) {
         final UniqueTagList taskTags = task.getTags();
         tags.mergeFrom(taskTags);
@@ -136,7 +152,7 @@ public class TaskManager implements ReadOnlyTaskManager {
         }
         task.setTags(new UniqueTagList(commonTagReferences));
     }
-
+*/
     public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.remove(key)) {
             return true;
@@ -213,4 +229,10 @@ public class TaskManager implements ReadOnlyTaskManager {
         // your own
         return Objects.hash(tasks, tags);
     }
+
+    //@@author A0139284X
+    public static ReadOnlyTaskManager getEmptyMarkedTaskManager(ReadOnlyTaskManager readOnlyTaskManager) {
+        return new TaskManager(readOnlyTaskManager.getUniqueTaskList(), readOnlyTaskManager.getUniqueTagList(), new UniqueMarkedTaskList());
+    }
+    
 }

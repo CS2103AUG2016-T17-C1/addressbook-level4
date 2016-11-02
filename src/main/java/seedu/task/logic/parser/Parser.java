@@ -59,7 +59,7 @@ public class Parser {
     }
 
     public Parser(Config config) {
-       this.config = config;
+        this.config = config;
     }
 
     /**
@@ -90,6 +90,9 @@ public class Parser {
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
+            
+        case ClearMarkedCommand.COMMAND_WORD:
+            return new ClearMarkedCommand();
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -117,7 +120,7 @@ public class Parser {
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
         case ChangeDirectoryCommand.COMMAND_WORD:
-            return prepareChangeDirectory(arguments,config);
+            return prepareChangeDirectory(arguments, config);
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -199,7 +202,6 @@ public class Parser {
         }
     }
 
-
     // @@author A0142360U
     /*
      * Check if argument is empty and execute changeDirectoryCommand if not
@@ -210,10 +212,10 @@ public class Parser {
             return new IncorrectCommand(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ChangeDirectoryCommand.MESSAGE_USAGE));
         }
-        return new ChangeDirectoryCommand(args,config);
+        return new ChangeDirectoryCommand(args, config);
     }
 
-    //@@author
+    // @@author
 
     /**
      * Parses arguments in the context of the select task command.
