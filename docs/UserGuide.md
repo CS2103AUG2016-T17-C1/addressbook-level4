@@ -110,14 +110,17 @@ Clears all entries from the to-do list.<br>
 Format: `clear`
 
 
-#### Checking an entry : `mark`
-Marks an entry as completed. <br>
-Format: `mark INDEX`
-
 
 #### Exiting the program : `exit`
 Exits the program.<br>
 Format: `exit`
+
+
+
+#### Marking an entry : `mark`
+Marks an entry as completed. <br>
+Format: `mark INDEX`
+
 
 
 #### Undo : `undo`
@@ -158,12 +161,12 @@ Displays the task listing for that desired time frame.<br>
 Command | Format
 -------- | :--------
 Add | `add TASK d/DDMMYYYY t/HHMM i/*[*]... [t/TAG]...`
-Mark | `mark INDEX`
 Clear | `clear`
 Delete | `delete INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Help | `help`
 List | `list`
+Mark | `mark INDEX`
 Select | `select INDEX`
 Redo | `redo`
 Undo | `undo`
