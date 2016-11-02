@@ -62,10 +62,12 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     public void setTasks(List<Task> tasks) {
         this.tasks.getInternalList().setAll(tasks);
+        clearRedoArrayList();
     }
 
     public void setTags(Collection<Tag> tags) {
         this.tags.getInternalList().setAll(tags);
+        clearRedoArrayList();
     }
 
     public void resetData(Collection<? extends ReadOnlyTask> newTasks, Collection<Tag> newTags,
@@ -79,19 +81,44 @@ public class TaskManager implements ReadOnlyTaskManager {
         this.markedTasks.getInternalList().setAll(markedTasks);
     }
 
+    // @@author A0142360U
+    /*
+     * Undo the previous action made by user. If there are no marked tasks to Undo, create an empty list of Tasks in the Marked Tasks Redo list.
+     * This is to prevent a premature Redo action of the marked tasks.
+     */
     public boolean undo() {
-        return this.tasks.undo() && this.markedTasks.undo();
+        boolean markedTasksUndo = this.markedTasks.undo();
+        boolean tasksUndo = this.tasks.undo();
+        if (tasksUndo && !markedTasksUndo) {
+            markedTasks.addEmptyListInRedo();
+        }
+
+        return tasksUndo;
     }
 
     public boolean redo() {
+        this.markedTasks.redo();
         return this.tasks.redo();
     }
 
     public void resetData(ReadOnlyTaskManager newData) {
         this.tasks.saveCurrentTaskList();
+        this.markedTasks.saveCurrentTaskList();
         resetData(newData.getTaskList(), newData.getTagList(), newData.getMarkedTaskList());
 
     }
+
+    public void clearRedoArrayList() {
+        this.markedTasks.clearMarkedRedoList();
+    }
+
+    /*
+     * Save Current marked tasks in the Undo ArrayList.
+     */
+    public void addDuplicateListInUndo() {
+        this.markedTasks.addExistingMarkedTaskstInUndoArrayList();
+    }
+    // @@author
 
     //// person-level operations
 
@@ -106,12 +133,15 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void addTask(Task p) throws UniqueTaskList.DuplicateTaskException {
         syncTagsWithMasterList(p);
         tasks.add(p);
+        clearRedoArrayList();
+        addDuplicateListInUndo();
     }
 
     // @@author A0127720M
     public void mark(ReadOnlyTask taskToMark) throws DuplicateTaskException, TaskNotFoundException {
         tasks.remove(taskToMark);
         markedTasks.add((Task) taskToMark);
+        clearRedoArrayList();
     }
     // @@author
 
@@ -139,6 +169,8 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     public boolean removeTask(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.remove(key)) {
+            clearRedoArrayList();
+            addDuplicateListInUndo();
             return true;
         } else {
             throw new UniqueTaskList.TaskNotFoundException();
@@ -147,6 +179,8 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     public boolean editTask(ReadOnlyTask key, Task newTask) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.edit(key, newTask)) {
+            clearRedoArrayList();
+            addDuplicateListInUndo();
             return true;
         } else {
             throw new UniqueTaskList.TaskNotFoundException();
@@ -156,6 +190,8 @@ public class TaskManager implements ReadOnlyTaskManager {
     //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {
+        clearRedoArrayList();
+        addDuplicateListInUndo();
         tags.add(t);
     }
 
