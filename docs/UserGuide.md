@@ -14,7 +14,7 @@
 1. Download the latest `neverforgetagain.jar` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your to-do list.
 3. Double-click the file to start the app. The GUI should appear in a few seconds.
-   <img src="images/UI.png" width="600">
+   <img src="images/newUI.png" width="728">
 
 
 
@@ -28,7 +28,7 @@
 
 
 
-> <img src="images/add.png" width="600">
+> <img src="images/newUIadd.png" width="728">
 
 4. Type an action in the command box and press <kbd>Enter</kbd> to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> or clicking on the help button will open the help window.
@@ -48,7 +48,6 @@
 View help for commands, including hotkeys.<br>
 Format: `help`
 
-> Help is also shown if you enter an incorrect command e.g. `abcd`
 
 #### Finding all tasks containing any keyword in their name: `find`
 Finds tasks whose names contain any of the given keywords.<br>
@@ -106,7 +105,7 @@ Examples:
 
 
 #### Clearing all entries : `clear`
-Clears all entries from the to-do list.<br>
+Clears all entries from the to-do list. The user is asked to confirm before proceeding.<br>
 Format: `clear`
 
 
