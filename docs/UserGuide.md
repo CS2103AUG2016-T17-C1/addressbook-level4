@@ -196,6 +196,7 @@ Change Directory | `cd {STORAGE LOCATION}/`
 Clear | `clear`
 Delete | `delete INDEX`
 Edit | `edit TASK d/DDMMYYYY t/HHMM i/*[*]... [t/TAG]...`
+Exit | `exit`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Help | `help`
 List | `list`
@@ -203,4 +204,3 @@ Mark | `mark INDEX`
 Select | `select INDEX`
 Redo | `redo`
 Undo | `undo`
-Exit | `exit`
