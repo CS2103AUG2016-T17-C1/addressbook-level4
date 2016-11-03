@@ -14,7 +14,7 @@ public class UndoCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void undo() {
-        //add one person
+        //add one task
         TestTask[] currentList = td.getTypicalTasks();
         TestTask taskToAdd = td.hoon;
         assertAddSuccess(taskToAdd, currentList);
@@ -22,12 +22,12 @@ public class UndoCommandTest extends TaskManagerGuiTest {
         
         //commandBox.runCommand("undo");
 
-        //add another person
+        //add another task
         taskToAdd = td.ida;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
-        //add duplicate person
+        //add duplicate task
         commandBox.runCommand(td.hoon.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
         
@@ -52,7 +52,7 @@ public class UndoCommandTest extends TaskManagerGuiTest {
         TaskCardHandle addedCard = taskListPanel.navigateToTask(taskToAdd.getName().fullName);
         assertMatching(taskToAdd, addedCard);
 
-        //confirm the list now contains all previous persons plus the new person
+        //confirm the list now contains all previous tasks plus the new task
         TestTask[] expectedList = TestUtil.addTasksToList(currentList, taskToAdd);
         assertTrue(taskListPanel.isListMatching(expectedList));
     }
