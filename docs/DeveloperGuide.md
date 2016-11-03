@@ -331,6 +331,90 @@ Use case resumes at step 1<br>
 <br>
 
 
+### Use Case: Select task
+
+**MSS**
+
+1. User enters index of task to be selected
+2. To-Do-List selects task
+3. To-Do-List highlights the selected task<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. Given index is invalid<br>
+1a1. To-Do-List shows an error message<br>
+Use case resumes at step 1<br>
+
+
+### Use Case: Mark task
+
+**MSS**
+
+1. User enters index of task to be marked
+2. To-Do-List marks task
+3. To-Do-List shows the updated task list and marked task list<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. Given index is invalid<br>
+1a1. To-Do-List shows an error message<br>
+Use case resumes at step 1<br>
+
+1b. Task has already been marked<br>
+1b1. To-Do-List reports that task is already marked<br>
+<br>
+
+
+### Use Case: Undo command
+
+**MSS**
+
+1. User enters undo command
+2. To-Do-List reverts to previous state
+3. To-Do-List no longer shows last change<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. No more possible undo steps<br>
+1a1. To-Do-List shows an error message<br>
+<br>
+
+1b. To-do-List has not been changed at all<br>
+1b1. To-Do-List reports that no changes have been made<br>
+<br>
+
+
+### Use Case: Redo command
+
+**MSS**
+
+1. User enters redo command
+2. To-Do-List reverts to state prior to last undo command
+3. To-Do-List no longer shows updated state<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. No more possible redo steps<br>
+1a1. To-Do-List shows an error message<br>
+Use case resumes at step 1<br>
+
+1b. Another command has been issued after last undo<br>
+1b1. To-Do-List reports that redo command is not available<br>
+<br>
+
+
 ### Use Case: Delete task
 
 **MSS**
@@ -350,6 +434,65 @@ Use case resumes at step 1<br>
 
 1b. Task has not been added before<br>
 1b1. To-Do-List reports that task is not present<br>
+<br>
+
+
+### Use Case: Clear To-Do-List
+
+**MSS**
+
+1. User enters clear command
+2. To-Do-List asks user for confirmation
+3. To-Do-List clears all tasks
+4. To-Do-List no longer shows any tasks<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. User does not give confirmation<br>
+1a1. To-Do-List does not erase tasks<br>
+<br>
+
+1b. There are no tasks present<br>
+1b1. To-Do-List reports that no tasks are present<br>
+<br>
+
+
+### Use Case: List command
+
+**MSS**
+
+1. User enters list command
+2. To-Do-List lists all tasks<br>
+<br>
+-----Use case ends-----
+
+
+### Use Case: Find command
+
+**MSS**
+
+1. User enters find command and search string(s)
+2. To-Do-List find all entries containing search string(s)
+3. To-Do-List displays only these tasks (with updated indexes)<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. User does not offer a search string<br>
+1a1. To-Do-List shows an error message<br>
+<br>
+
+1b. There are no tasks present<br>
+1b1. To-Do-List reports that no tasks are present<br>
+<br>
+
+1c. There are no tasks present containing the search string(s)<br>
+1c1. To-Do-List reports that no such tasks are present<br>
 <br>
 
 
