@@ -37,7 +37,7 @@ public class AddCommand extends Command {
             tagSet.add(new Tag(tagName));
         }
         
-        //@@author A0139824X
+        //@@author A0139284X
         //Data preprocessing
         if (taskName == EditCommand.DELETE_TASK_OBJECT_STRING) {
             taskName = "";
