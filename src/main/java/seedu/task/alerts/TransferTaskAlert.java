@@ -9,7 +9,7 @@ import javafx.scene.control.ButtonType;
 public class TransferTaskAlert extends Alert {
 
     public static final String CHANGE_DIRECTORY_COMMAND_TITLE = "Change of Task Storage Directory";
-    public static final String CHANGE_DIRECTORY_HEADER_TEXT = "Would you like your existing tasks to be transferred over to the new directory?";
+    public static final String CHANGE_DIRECTORY_HEADER_TEXT = "Would you like your existing tasks to be transferred over to the new directory?\nNOTE: Never Forget will need to be relaunched.";
     public static final ButtonType buttonTypeYes = new ButtonType("Yes");
     public static final ButtonType buttonTypeNo = new ButtonType("No");
     public static final ButtonType buttonTypeCancel = new ButtonType("Cancel");

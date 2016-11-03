@@ -9,6 +9,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 **Role**: Developer <br>
 * Components in charge of: [Storage](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#storage-component)
 * Also in charge of: [Testing](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#testing), [Git](https://github.com/CS2103AUG2016-T17-C1), [Documentation](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs)
+* Code written: [[test code](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/collated/test/A0152952A.md)][[docs](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/collated/docs/A0152952A.md)]
 * Contributions:
  * Initial set up of the organization on Git
  * Contributed to UI and a few bug fixes 
@@ -19,6 +20,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 <img src="images/SJH.jpg" width="150"><br>
 **Role**: Developer <br>
 * Components in charge of: [GUI](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#ui-component)
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/collated/main/A0127720M.md)]
 * Contributions:
  * Implementation of mark/complete feature
  * Contributed to testing
@@ -29,6 +31,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 <img src="images/SYF.jpg" width="150"><br>
 **Role**: Team Leader <br>
 * Components in charge of: [Logic](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#logic-component)
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/collated/main/A0139284X.md)]
 * Contributions:
  * Implementation of major features: delete task, find, tabs
  * Setup Travis and Coveralls
@@ -39,6 +42,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 <img src="images/TML.jpg" width="150"><br>
 **Role**: Developer <br>
 * Components in charge of: [Model](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#model-component)
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/collated/main/A0142360U.md)][[docs](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/collated/docs/A0142360U.md)]
 * Contributions:
  * Initial refactoring of Application 
  * Initial base documentation
