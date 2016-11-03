@@ -1,4 +1,4 @@
-package seedu.address;
+/*package seedu.address;
 
 import static org.junit.Assert.*;
 
@@ -37,3 +37,4 @@ public class TestAppTest {
     }
 
 }
+*/
