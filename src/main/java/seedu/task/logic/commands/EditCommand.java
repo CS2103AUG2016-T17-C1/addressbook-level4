@@ -45,10 +45,14 @@ public class EditCommand extends Command {
 
         if ((dueDate == null || dueDate.isEmpty()) && dueTime != null) {
             dueDate = DEFAULT_DATE_STRING;
+        } else if (dueDate != null && dueDate.equals(DELETE_TASK_OBJECT_STRING)) {
+            dueTime = DELETE_TASK_OBJECT_STRING;
         }
 
         if ((startDate == null || startDate.isEmpty()) && startTime != null) {
             startDate = DEFAULT_DATE_STRING;
+        } else if (startDate != null && startDate.equals(DELETE_TASK_OBJECT_STRING)) {
+            startTime = DELETE_TASK_OBJECT_STRING;
         }
 
         if (taskName == null) {
@@ -89,27 +93,27 @@ public class EditCommand extends Command {
             if (this.toEdit.getName() == null) {
                 this.toEdit.setName(taskToEdit.getName());
             }
-            if (this.toEdit.getDeadline().getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
+            if (this.toEdit.getDeadline().getDueDate().toString().equals(DELETE_TASK_OBJECT_STRING)) {
+                this.toEdit.setDueDate(new Date(""));
+            } else if (this.toEdit.getDeadline().getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
                     || this.toEdit.getDeadline().getDueDate().toString().equals(DEFAULT_DATE_STRING)) {
                 this.toEdit.setDueDate(taskToEdit.getDeadline().getDueDate());
-            } else if (this.toEdit.getDeadline().getDueDate().toString().equals(DELETE_TASK_OBJECT_STRING)) {
-                this.toEdit.setDueDate(new Date(""));
             }
-            if (this.toEdit.getDeadline().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
-                this.toEdit.setDueTime(taskToEdit.getDeadline().getDueTime());
-            } else if (this.toEdit.getDeadline().getDueTime().toString().equals(DELETE_TASK_OBJECT_STRING)) {
+            if (this.toEdit.getDeadline().getDueTime().toString().equals(DELETE_TASK_OBJECT_STRING)) {
                 this.toEdit.setDueTime(new Time(""));
+            } else if (this.toEdit.getDeadline().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
+                this.toEdit.setDueTime(taskToEdit.getDeadline().getDueTime());
             }
-            if (this.toEdit.getEventStart().getStartDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
+            if (this.toEdit.getEventStart().getStartDate().toString().equals(DELETE_TASK_OBJECT_STRING)) {
+                this.toEdit.setStartDate(new Date(""));
+            } else if (this.toEdit.getEventStart().getStartDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
                     || this.toEdit.getEventStart().getStartDate().toString().equals(DEFAULT_DATE_STRING)) {
                 this.toEdit.setStartDate(taskToEdit.getEventStart().getStartDate());
-            }  else if (this.toEdit.getEventStart().getStartDate().toString().equals(DELETE_TASK_OBJECT_STRING)) {
-                this.toEdit.setStartDate(new Date(""));
             }
-            if (this.toEdit.getEventStart().getStartTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
-                this.toEdit.setStartTime(taskToEdit.getEventStart().getStartTime());
-            } else if (this.toEdit.getEventStart().getStartTime().toString().equals(DELETE_TASK_OBJECT_STRING)) {
+            if (this.toEdit.getEventStart().getStartTime().toString().equals(DELETE_TASK_OBJECT_STRING)) {
                 this.toEdit.setStartTime(new Time(""));
+            } else if (this.toEdit.getEventStart().getStartTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
+                this.toEdit.setStartTime(taskToEdit.getEventStart().getStartTime());
             }
             if (this.toEdit.getTags().getInternalList().toString().equals(EMPTY_TAG_OBJECT_STRING)) {
                 this.toEdit.setTags(taskToEdit.getTags());
@@ -117,10 +121,10 @@ public class EditCommand extends Command {
                 taskToEdit.getTags().mergeFrom(toEdit.getTags());
                 this.toEdit.setTags(taskToEdit.getTags());
             }
-            if (this.toEdit.getImportance().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
-                this.toEdit.setImportance(taskToEdit.getImportance());
-            } else if (this.toEdit.getImportance().toString().equals(DELETE_TASK_OBJECT_STRING)) {
+            if (this.toEdit.getImportance().toString().equals(DELETE_TASK_OBJECT_STRING)) {
                 this.toEdit.setImportance(new Importance(""));
+            } else if (this.toEdit.getImportance().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
+                this.toEdit.setImportance(taskToEdit.getImportance());
             }
             model.editTask(taskToEdit, this.toEdit);
 
