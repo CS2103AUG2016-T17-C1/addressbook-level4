@@ -80,6 +80,17 @@ Examples:
 * `add Dinner with JC Friends d/07102016 e/1930 i/** t/Budget t/Meal t/Buddies`
 
 
+#### Editing a task: `edit`
+Edits a task currently held in Never Forget<br>
+Format: `edit INDEX d/SCHEDULED_DATE e/SCHEDULED_END_TIME i/IMPORTANCE [t/TAG]...`
+
+> Tasks can have any number of tags (including 0)
+
+Examples:
+* `edit 2 d/01012016 e/1700 i/***`
+* `edit 3 d/07102016 e/2030 i/* t/Budget t/Meal t/Friends`
+
+
 
 #### Deleting a task : `delete`
 Deletes the specified task from the to-do list. Can be reversed with `undo` command.<br>
