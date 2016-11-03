@@ -2,7 +2,6 @@ package seedu.task.model.task;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.task.commons.exceptions.DuplicateDataException;
 import seedu.task.commons.util.CollectionUtil;
 import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
@@ -23,9 +22,9 @@ import java.util.*;
 public class UniqueMarkedTaskList implements Iterable<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
-    private final ArrayList<ArrayList<Task>> savedUndoList = new ArrayList<ArrayList<Task>>();
+    private final ArrayList<ArrayList<Task>> savedList = new ArrayList<ArrayList<Task>>();
     private final ArrayList<ArrayList<Task>> savedRedoList = new ArrayList<ArrayList<Task>>();
-    
+
     /**
      * Constructs empty TaskList.
      */
@@ -55,6 +54,7 @@ public class UniqueMarkedTaskList implements Iterable<Task> {
         }
 
         saveCurrentTaskList();
+        clearMarkedRedoList();
         internalList.add(toAdd);
 
     }
@@ -68,6 +68,7 @@ public class UniqueMarkedTaskList implements Iterable<Task> {
     public boolean remove(ReadOnlyTask toRemove) throws TaskNotFoundException {
         assert toRemove != null;
         saveCurrentTaskList();
+        clearMarkedRedoList();
         final boolean taskFoundAndDeleted = internalList.remove(toRemove);
 
         if (!taskFoundAndDeleted) {
@@ -76,56 +77,32 @@ public class UniqueMarkedTaskList implements Iterable<Task> {
         return taskFoundAndDeleted;
     }
 
-    /**
-     * Undo the previous edit made to the marked task list.
-     * Returns false if restoredList is empty
+    // @@ author A0142360U
+    /*
+     * Undo the previous edit made to the marked task list. Saves current Tasks
+     * in an ArrayList for redo function
      */
     public boolean undo() {
 
-        if (savedUndoList.size() >= 1) {
-            saveTaskListForRedo();
+        if (savedList.size() >= 1) {
+            saveMarkedTaskListForRedo();
             internalList.clear();
-            ArrayList<Task> restoredList = savedUndoList.get(savedUndoList.size() - 1);
+            ArrayList<Task> restoredList = savedList.get(savedList.size() - 1);
             for (Task t : restoredList) {
                 internalList.add(t);
             }
-            savedUndoList.remove(savedUndoList.size() - 1);
+            if (restoredList.size() != 0)
+                savedList.remove(savedList.size() - 1);
             return true;
         }
 
         return false;
     }
 
-    public void saveCurrentTaskList() {
-        ArrayList<Task> tempArrayList = new ArrayList<Task>();
-        for (Task t : internalList) {
-            tempArrayList.add(t);
-        }
-        savedUndoList.add(tempArrayList);
-
-    }
-
-    public ObservableList<Task> getInternalList() {
-        return internalList;
-    }
-
-    @Override
-    public Iterator<Task> iterator() {
-        return internalList.iterator();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueMarkedTaskList // instanceof handles nulls
-                        && this.internalList.equals(((UniqueMarkedTaskList) other).internalList));
-    }
-
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
-    }
-
+    /*
+     * Redo the previous undo action made to the marked task list. Clears redo
+     * history if any other action other than undo is made
+     */
     public boolean redo() {
         if (savedRedoList.size() >= 1) {
             saveCurrentTaskList();
@@ -140,13 +117,57 @@ public class UniqueMarkedTaskList implements Iterable<Task> {
 
         return false;
     }
-    
 
-    private void saveTaskListForRedo() {
+    public void addEmptyListInRedo() {
+        saveCurrentTaskList();
+    }
+
+    public void addExistingMarkedTaskstInUndoArrayList() {
+        saveCurrentTaskList();
+    }
+
+    private void saveMarkedTaskListForRedo() {
         ArrayList<Task> tempArrayList = new ArrayList<Task>();
         for (Task t : internalList) {
             tempArrayList.add(t);
         }
         savedRedoList.add(tempArrayList);
+    }
+
+    public void saveCurrentTaskList() {
+        ArrayList<Task> tempArrayList = new ArrayList<Task>();
+        for (Task t : internalList) {
+            tempArrayList.add(t);
+        }
+        savedList.add(tempArrayList);
+
+    }
+
+    public void clearMarkedRedoList() {
+        savedRedoList.clear();
+    }
+
+    // @@ author
+
+    public ObservableList<Task> getInternalList() {
+        return internalList;
+    }
+
+    @Override
+    public Iterator<Task> iterator() {
+        return internalList.iterator();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UniqueMarkedTaskList // instanceof handles
+                                                          // nulls
+                        && this.internalList.equals(((UniqueMarkedTaskList) other).internalList));
+    }
+
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
     }
 }
