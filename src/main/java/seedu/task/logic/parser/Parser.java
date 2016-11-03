@@ -91,8 +91,8 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
             
-        case ClearMarkedCommand.COMMAND_WORD:
-            return new ClearMarkedCommand();
+//        case ClearMarkedCommand.COMMAND_WORD:
+//            return new ClearMarkedCommand();
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

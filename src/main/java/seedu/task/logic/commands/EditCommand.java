@@ -35,7 +35,6 @@ public class EditCommand extends Command {
 
     public EditCommand(String string, String taskName, String startDate, String startTime, String dueDate,
             String dueTime, String importance, Set<String> tags) throws IllegalValueException {
-        System.out.println("Target index" + string);
         this.targetIndex = Integer.parseInt(string);
 
         final Set<Tag> tagSet = new HashSet<>();
@@ -118,7 +117,7 @@ public class EditCommand extends Command {
             assert false : "The target task cannot be missing";
         }
 
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, toEdit));
     }
 
 }
