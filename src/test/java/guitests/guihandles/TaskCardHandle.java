@@ -16,7 +16,7 @@ public class TaskCardHandle extends GuiHandle {
 
     private Node node;
 
-    public TaskCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node) {
+    public TaskCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node){
         super(guiRobot, primaryStage, null);
         this.node = node;
     }
@@ -41,21 +41,17 @@ public class TaskCardHandle extends GuiHandle {
         return getTextFromLabel(IMPORTANCE_FIELD_ID);
     }
 
-    public boolean isSameTask(ReadOnlyTask task) {
-        return getFullName().equals(task.getName().fullName)
-                && getDueTime().equals(task.getDeadline().getDueTime().getTime())
-                && getImportance().equals(task.getImportance().value)
-                && getDueDate().equals(task.getDeadline().getDueDate().toString());
+    public boolean isSameTask(ReadOnlyTask task){
+        return getFullName().equals(task.getName().fullName) && getDueTime().equals(task.getDeadline().getDueTime().getTime())
+                && getImportance().equals(task.getImportance().value) && getDueDate().equals(task.getDeadline().getDueDate().toString());
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof TaskCardHandle) {
+        if(obj instanceof TaskCardHandle) {
             TaskCardHandle handle = (TaskCardHandle) obj;
-            return getFullName().equals(handle.getFullName()) && getDueDate().equals(handle.getDueDate()); // TODO:
-                                                                                                           // compare
-                                                                                                           // the
-                                                                                                           // rest
+            return getFullName().equals(handle.getFullName())
+                    && getDueDate().equals(handle.getDueDate()); //TODO: compare the rest
         }
         return super.equals(obj);
     }
