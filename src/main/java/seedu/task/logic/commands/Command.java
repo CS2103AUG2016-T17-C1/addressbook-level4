@@ -4,6 +4,7 @@ package seedu.task.logic.commands;
 import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.events.ui.IncorrectCommandAttemptedEvent;
+import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.Model;
 
 /**
@@ -29,8 +30,9 @@ public abstract class Command {
      * Executes the command and returns the result message.
      *
      * @return feedback message of the operation result for display
+     * @throws IllegalValueException 
      */
-    public abstract CommandResult execute();
+    public abstract CommandResult execute() throws IllegalValueException;
 
     /**
      * Provides any needed dependencies to the command. Commands making use of

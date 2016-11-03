@@ -74,18 +74,18 @@ public class TaskCard extends UiPart {
         // appropriate text output on the card
         if (checkTask.startTimeExists() && checkTask.endTimeExists()) {
             dueTime.setManaged(true);
-            dueTime.setText("Starts at time " + task.getEventStart().getStartTime().value + " and ends at time "
-                    + task.getDeadline().getDueTime().value + "hours");
+            dueTime.setText("Starts at time " + task.getEventStart().getStartTime().getTime() + " and ends at time "
+                    + task.getDeadline().getDueTime().getTime() + "hours");
         }
 
         else if (checkTask.endTimeExists()) {
             dueTime.setManaged(true);
-            dueTime.setText("Ends at time " + task.getDeadline().getDueTime().value + "hours");
+            dueTime.setText("Ends at time " + task.getDeadline().getDueTime().getTime() + "hours");
         }
 
         else if (checkTask.startTimeExists()) {
             dueTime.setManaged(true);
-            dueTime.setText("Starts at time " + task.getEventStart().getStartTime().value + "hours");
+            dueTime.setText("Starts at time " + task.getEventStart().getStartTime().getTime() + "hours");
         }
 
         else

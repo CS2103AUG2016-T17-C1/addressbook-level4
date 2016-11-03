@@ -249,4 +249,10 @@ public class TaskManager implements ReadOnlyTaskManager {
         // your own
         return Objects.hash(tasks, tags);
     }
+
+    //@@author A0139284X
+    
+    public static ReadOnlyTaskManager getEmptyMarkedTaskManager(ReadOnlyTaskManager taskManager) {
+        return new TaskManager(taskManager.getUniqueTaskList(), taskManager.getUniqueTagList(), new UniqueMarkedTaskList());
+    }
 }

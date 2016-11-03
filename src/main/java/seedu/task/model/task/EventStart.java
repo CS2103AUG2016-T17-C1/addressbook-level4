@@ -12,7 +12,7 @@ public class EventStart {
 
 
     public EventStart(Date startDate, Time startTime) throws IllegalValueException {
-        if (startDate.getDate().isEmpty() && !(startTime.toString().isEmpty())) {
+        if (!startDate.isProvided() && startTime.isProvided()) {
             throw new IllegalValueException(MESSAGE_EVENT_START_CONSTRAINTS);
         }
         this.startDate = startDate;

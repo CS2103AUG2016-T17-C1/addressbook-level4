@@ -2,7 +2,6 @@ package seedu.task.model.task;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.task.commons.exceptions.DuplicateDataException;
 import seedu.task.commons.util.CollectionUtil;
 import seedu.task.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;

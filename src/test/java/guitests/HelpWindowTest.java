@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 public class HelpWindowTest extends TaskManagerGuiTest {
 
-    @Test
+/*    @Test
     public void openHelpWindow() {
 
         taskListPanel.clickOnListView();
@@ -18,7 +18,7 @@ public class HelpWindowTest extends TaskManagerGuiTest {
 
         assertHelpWindowOpen(commandBox.runHelpCommand());
 
-    }
+    }*/
 
     private void assertHelpWindowOpen(HelpWindowHandle helpWindowHandle) {
         assertTrue(helpWindowHandle.isWindowOpen());

@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.events.ui.IncorrectCommandAttemptedEvent;
+import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.commons.util.FxViewUtil;
 import seedu.task.logic.Logic;
 import seedu.task.logic.commands.*;
@@ -77,7 +78,11 @@ public class CommandBox extends UiPart {
          * #handleIncorrectCommandAttempted}
          */
         setStyleToIndicateCorrectCommand();
-        mostRecentResult = logic.execute(previousCommandTest);
+        try {
+            mostRecentResult = logic.execute(previousCommandTest);
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
+        }
         resultDisplay.postMessage(mostRecentResult.feedbackToUser);
         logger.info("Result: " + mostRecentResult.feedbackToUser);
     }

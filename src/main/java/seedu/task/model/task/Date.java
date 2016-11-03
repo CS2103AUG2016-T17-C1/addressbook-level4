@@ -9,12 +9,14 @@ import seedu.task.commons.exceptions.IllegalValueException;
 public class Date {
 
     // @@author A0139284X
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Invalid date, please provide date in DDMMYYYY format";
-    public static final String INTEGER = "\\d*";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Invalid date format, please provide date in DDMMYYYY format";
+    public static final String MESSAGE_INVALID_DATE = "Date provided is invalid";
+    public static final String INTEGER = "(\\d{8}){0,1}";
     public static final String DATE_31DAYS_VALIDATION_REGEX = "((0[1-9]|([1-2][0-9])|3[01])(0[13578]|1[02])([2-9]\\d{3})$){0,1}";
     public static final String DATE_30DAYS_VALIDATION_REGEX = "((0[1-9]|([1-2][0-9])|30)(0[469]|11)([2-9]\\d{3})$){0,1}";
     public static final String DATE_FEB_NONLEAPYEAR_VALIDATION_REGEX = "((0[1-9]|(1[0-9])|2[0-8])(0[1-9]|1[0-2])([2-9]\\d{3})$){0,1}";
     public static final String DATE_FEB_LEAPYEAR_VALIDATION_REGEX = "((0[1-9]|(1[0-9])|2[0-9])(0[1-9]|1[0-2])([2-9]\\d{3})$){0,1}";
+    public static final String DELETE_TASK_OBJECT_STRING = "-";
 
     private final String date;
 
@@ -29,41 +31,56 @@ public class Date {
         if (date == null)
             date = "";
         date = date.trim();
-        if (!isValidDate(date)) {
-            throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
+        if (!date.equals(DELETE_TASK_OBJECT_STRING)) {
+            if (!isValidDateFormat(date)) {
+                throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
+            }
+            if (!isValidDate(date)) {
+                throw new IllegalValueException(MESSAGE_INVALID_DATE);
+            }
         }
         this.date = date;
     }
 
     // @@author A0139284X
     /**
-     * Returns true if a given string is a valid task date.
+     * 
+     * @param date
+     * @return true if date is in DDMMYYYY format
      */
-    public static boolean isValidDate(String test) {
-        if (test.matches(INTEGER)) {
-            return test.matches(DATE_31DAYS_VALIDATION_REGEX) || test.matches(DATE_30DAYS_VALIDATION_REGEX)
-                    || isValidFebDate(test);
-        } else
-            return false;
+    
+    
+    private boolean isValidDateFormat(String date) {
+        return date.matches(INTEGER);
     }
 
-    private static boolean isValidFebDate(String test) {
-        if (isLeapYear(test)) {
-            return test.matches(DATE_FEB_LEAPYEAR_VALIDATION_REGEX);
+    /**
+     * Returns true if a given string is a valid task date.
+     */
+    public static boolean isValidDate(String date) {
+        return date.matches(DATE_31DAYS_VALIDATION_REGEX) || date.matches(DATE_30DAYS_VALIDATION_REGEX)
+                || isValidFebDate(date);
+    }
+
+    private static boolean isValidFebDate(String date) {
+        if (isLeapYear(date)) {
+            return date.matches(DATE_FEB_LEAPYEAR_VALIDATION_REGEX);
         } else
-            return test.matches(DATE_FEB_NONLEAPYEAR_VALIDATION_REGEX);
+            return date.matches(DATE_FEB_NONLEAPYEAR_VALIDATION_REGEX);
     }
 
     /**
      *
-     * @param test
+     * @param date
      * @return true if is leap year
      */
 
-    private static boolean isLeapYear(String test) {
-        int year = Integer.parseInt(test);
+    private static boolean isLeapYear(String date) {
+        int year = Integer.parseInt(date);
         return ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0));
     }
+    
+    //@@author
 
     @Override
     public String toString() {
@@ -84,6 +101,16 @@ public class Date {
 
     public String getDate() {
         return date;
+    }
+    
+    //@@author A0139284X
+    /**
+     * 
+     * @return true if Date is null or empty
+     */
+    
+    public boolean isProvided() {
+        return !(this.getDate().isEmpty());
     }
 
 }
