@@ -12,7 +12,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 * Code written: [[test code](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/collated/test/A0152952A.md)][[docs](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/collated/docs/A0152952A.md)]
 * Contributions:
  * Initial set up of the organization on Git
- * Contributed to UI and a few bug fixes 
+ * Contributed to [UI](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#ui-component) and a few bug fixes 
 
 -----
 
@@ -22,7 +22,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 * Components in charge of: [GUI](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#ui-component)
 * Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/collated/main/A0127720M.md)]
 * Contributions:
- * Implementation of mark/complete feature
+ * Implementation of [mark/complete feature](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/docs/UserGuide.md#marking-an-entry--mark)
  * Contributed to testing
 
 -----
@@ -33,7 +33,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 * Components in charge of: [Logic](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#logic-component)
 * Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/collated/main/A0139284X.md)]
 * Contributions:
- * Implementation of major features: delete task, find, tabs
+ * Implementation of major features: [delete task](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/docs/UserGuide.md#deleting-a-task--delete), [find task](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/docs/UserGuide.md#finding-all-tasks-containing-any-keyword-in-their-name-find), tabs
  * Setup Travis and Coveralls
 
 -----
@@ -46,7 +46,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 * Contributions:
  * Initial refactoring of Application 
  * Initial base documentation
- * Implementation of major features: add task, undo, edit task
+ * Implementation of major features: [add task](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/docs/UserGuide.md#adding-a-task-add), [undo](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/docs/UserGuide.md#undo--undo), [edit task](https://github.com/CS2103AUG2016-T17-C1/main/blob/v0.5-rc_1/docs/UserGuide.md#editing-a-task-edit)
  
 -----
 
