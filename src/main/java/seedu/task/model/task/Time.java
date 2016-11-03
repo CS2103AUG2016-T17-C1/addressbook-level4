@@ -14,6 +14,7 @@ public class Time {
     public static final String MESSAGE_INVALID_TIME = "Time provided is invalid";
     public static final String TIME_VALIDATION_REGEX = "(([0-1]?[0-9]|2[0-3])[0-5][0-9]$){0,1}";
     public static final String INTEGER = "(\\d{4}){0,1}";
+    public static final String DELETE_TASK_OBJECT_STRING = "-";
 
     private final String time;
 
@@ -28,11 +29,13 @@ public class Time {
         if (time == null)
             time = "";
         time = time.trim();
-        if (!isValidTimeFormat(time)) {
-            throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
-        }
-        if (!isValidTime(time)) {
-            throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
+        if (!(time.equals(DELETE_TASK_OBJECT_STRING))) {
+            if (!isValidTimeFormat(time)) {
+                throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
+            }
+            if (!isValidTime(time)) {
+                throw new IllegalValueException(MESSAGE_TIME_CONSTRAINTS);
+            }
         }
         this.time = time;
     }

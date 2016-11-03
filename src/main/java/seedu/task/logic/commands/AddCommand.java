@@ -30,12 +30,36 @@ public class AddCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    public AddCommand(String taskName, String startDate,String startTime,String dueDate, String dueTime, String importance, Set<String> tags)
-            throws IllegalValueException {
+    public AddCommand(String taskName, String startDate, String startTime, String dueDate, String dueTime,
+            String importance, Set<String> tags) throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+        
+        //@@author A0139824X
+        //Data preprocessing
+        if (taskName == EditCommand.DELETE_TASK_OBJECT_STRING) {
+            taskName = "";
+        }
+        if (startDate == EditCommand.DELETE_TASK_OBJECT_STRING) {
+            startDate = "";
+        }
+        if (startTime == EditCommand.DELETE_TASK_OBJECT_STRING) {
+            startTime = "";
+        }
+        if (dueDate == EditCommand.DELETE_TASK_OBJECT_STRING) {
+            dueDate = "";
+        }
+        if (dueTime == EditCommand.DELETE_TASK_OBJECT_STRING) {
+            dueTime = "";
+        }
+        if (importance == EditCommand.DELETE_TASK_OBJECT_STRING) {
+            importance = "";
+        }
+        
+        //@@author
+        
         this.toAdd = new Task(
                 new TaskName(taskName),
                 new EventStart(new Date(startDate), new Time(startTime)),

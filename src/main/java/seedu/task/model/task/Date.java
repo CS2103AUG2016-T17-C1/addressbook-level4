@@ -16,6 +16,7 @@ public class Date {
     public static final String DATE_30DAYS_VALIDATION_REGEX = "((0[1-9]|([1-2][0-9])|30)(0[469]|11)([2-9]\\d{3})$){0,1}";
     public static final String DATE_FEB_NONLEAPYEAR_VALIDATION_REGEX = "((0[1-9]|(1[0-9])|2[0-8])(0[1-9]|1[0-2])([2-9]\\d{3})$){0,1}";
     public static final String DATE_FEB_LEAPYEAR_VALIDATION_REGEX = "((0[1-9]|(1[0-9])|2[0-9])(0[1-9]|1[0-2])([2-9]\\d{3})$){0,1}";
+    public static final String DELETE_TASK_OBJECT_STRING = "-";
 
     private final String date;
 
@@ -30,11 +31,13 @@ public class Date {
         if (date == null)
             date = "";
         date = date.trim();
-        if (!isValidDateFormat(date)) {
-            throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
-        }
-        if (!isValidDate(date)) {
-            throw new IllegalValueException(MESSAGE_INVALID_DATE);
+        if (!date.equals(DELETE_TASK_OBJECT_STRING)) {
+            if (!isValidDateFormat(date)) {
+                throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
+            }
+            if (!isValidDate(date)) {
+                throw new IllegalValueException(MESSAGE_INVALID_DATE);
+            }
         }
         this.date = date;
     }

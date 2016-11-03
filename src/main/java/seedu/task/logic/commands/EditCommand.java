@@ -29,6 +29,7 @@ public class EditCommand extends Command {
             + ": edits the task identified by the index number used in the last task listing.\n"
             + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
+    public static final String DELETE_TASK_OBJECT_STRING = "-";
 
     public final int targetIndex;
     private final Task toEdit;
@@ -64,7 +65,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute() {
+    public CommandResult execute() throws IllegalValueException {
 
         UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
 
@@ -91,16 +92,24 @@ public class EditCommand extends Command {
             if (this.toEdit.getDeadline().getDueDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
                     || this.toEdit.getDeadline().getDueDate().toString().equals(DEFAULT_DATE_STRING)) {
                 this.toEdit.setDueDate(taskToEdit.getDeadline().getDueDate());
+            } else if (this.toEdit.getDeadline().getDueDate().toString().equals(DELETE_TASK_OBJECT_STRING)) {
+                this.toEdit.setDueDate(new Date(""));
             }
             if (this.toEdit.getDeadline().getDueTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setDueTime(taskToEdit.getDeadline().getDueTime());
+            } else if (this.toEdit.getDeadline().getDueTime().toString().equals(DELETE_TASK_OBJECT_STRING)) {
+                this.toEdit.setDueTime(new Time(""));
             }
             if (this.toEdit.getEventStart().getStartDate().toString().equals(EMPTY_TASK_OBJECT_STRING)
                     || this.toEdit.getEventStart().getStartDate().toString().equals(DEFAULT_DATE_STRING)) {
                 this.toEdit.setStartDate(taskToEdit.getEventStart().getStartDate());
+            }  else if (this.toEdit.getEventStart().getStartDate().toString().equals(DELETE_TASK_OBJECT_STRING)) {
+                this.toEdit.setStartDate(new Date(""));
             }
             if (this.toEdit.getEventStart().getStartTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setStartTime(taskToEdit.getEventStart().getStartTime());
+            } else if (this.toEdit.getEventStart().getStartTime().toString().equals(DELETE_TASK_OBJECT_STRING)) {
+                this.toEdit.setStartTime(new Time(""));
             }
             if (this.toEdit.getTags().getInternalList().toString().equals(EMPTY_TAG_OBJECT_STRING)) {
                 this.toEdit.setTags(taskToEdit.getTags());
@@ -110,6 +119,8 @@ public class EditCommand extends Command {
             }
             if (this.toEdit.getImportance().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setImportance(taskToEdit.getImportance());
+            } else if (this.toEdit.getImportance().toString().equals(DELETE_TASK_OBJECT_STRING)) {
+                this.toEdit.setImportance(new Importance(""));
             }
             model.editTask(taskToEdit, this.toEdit);
 
