@@ -11,6 +11,8 @@ public class TaskCard extends UiPart {
 
     private static final String FXML = "TaskListCard.fxml";
     public static final String EMPTY_TASK_OBJECT_STRING = "";
+    public static final String HIGHEST_IMPORTANCE_LEVEL = "***";
+    public static final String MEDIUM_IMPORTANCE_LEVEL = "**";
 
     @FXML
     private HBox cardPane;
@@ -41,7 +43,7 @@ public class TaskCard extends UiPart {
         return UiPartLoader.loadUiPart(card);
     }
 
-    //@@author A0142360U
+    // @@author A0142360U
     @FXML
     public void initialize() {
 
@@ -50,7 +52,8 @@ public class TaskCard extends UiPart {
         name.setText("Task: " + task.getName().fullName);
         id.setText(displayedIndex + ". ");
 
-        //Checks if task has a start date or an end date and displays the appropriate text output on the card
+        // Checks if task has a start date or an end date and displays the
+        // appropriate text output on the card
         if (checkTask.startDateExists() && checkTask.endDateExists()) {
             dueDate.setManaged(true);
             dueDate.setText("Starts on " + task.getEventStart().getStartDate().toString() + " and to be completed by "
@@ -60,14 +63,15 @@ public class TaskCard extends UiPart {
             dueDate.setManaged(true);
             dueDate.setText("Task to be completed by Date: " + task.getDeadline().getDueDate().toString());
 
-        } else if (checkTask.startDateExists()){
+        } else if (checkTask.startDateExists()) {
             dueDate.setManaged(true);
             dueDate.setText("Task to start on Date: " + task.getEventStart().getStartDate().toString());
 
         } else
             dueDate.setManaged(false);
 
-        //Checks if task has a start or an end time and displays the appropriate text output on the card
+        // Checks if task has a start or an end time and displays the
+        // appropriate text output on the card
         if (checkTask.startTimeExists() && checkTask.endTimeExists()) {
             dueTime.setManaged(true);
             dueTime.setText("Starts at time " + task.getEventStart().getStartTime().value + " and ends at time "
@@ -87,23 +91,38 @@ public class TaskCard extends UiPart {
         else
             dueTime.setManaged(false);
 
-        //Checks if the task's importance level has been set and displays the appropriate text output on the card
+        // Checks if the task's importance level has been set and displays the
+        // appropriate text output on the card
         if (!task.getImportance().value.toString().equals(EMPTY_TASK_OBJECT_STRING)) {
             importance.setManaged(true);
             importance.setText("Importance: " + task.getImportance().value);
-
+            checkImportanceLevel();
         } else
             importance.setManaged(false);
-
-
 
         tags.setText(task.tagsString());
 
     }
 
+    /*
+     * Check importance level of the task and assigns the color of the HBox to
+     * distinguish between the most important tasks and the least important
+     * tasks;
+     */
+    public void checkImportanceLevel() {
+        if (task.getImportance().value.toString().equals(HIGHEST_IMPORTANCE_LEVEL)) {
+            cardPane.setStyle("-fx-background-color: #FF5722;");
+        } else if (task.getImportance().value.toString().equals(MEDIUM_IMPORTANCE_LEVEL)) {
+            cardPane.setStyle("-fx-background-color: #FFAB91;");
+        } else {
+            cardPane.setStyle("-fx-background-color: #fff;");
+        }
+    }
+
     public HBox getLayout() {
         return cardPane;
     }
+
 
     @Override
     public void setNode(Node node) {
