@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import com.google.common.eventbus.Subscribe;
 
+import seedu.task.commons.core.Config;
 import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.events.model.TaskManagerChangedEvent;
 import seedu.task.commons.events.ui.JumpToListRequestEvent;
@@ -43,6 +44,7 @@ public class LogicManagerTest {
 
     private Model model;
     private Logic logic;
+    private Config config;
 
     //These are for checking the correctness of the events raised
     private ReadOnlyTaskManager latestSavedTaskManager;
@@ -69,7 +71,7 @@ public class LogicManagerTest {
         model = new ModelManager();
         String tempTaskManagerFile = saveFolder.getRoot().getPath() + "TempTaskManager.xml";
         String tempPreferencesFile = saveFolder.getRoot().getPath() + "TempPreferences.json";
-        logic = new LogicManager(model, new StorageManager(tempTaskManagerFile, tempPreferencesFile));
+        logic = new LogicManager(model, new StorageManager(tempTaskManagerFile, tempPreferencesFile), config);
         EventsCenter.getInstance().registerHandler(this);
 
         latestSavedTaskManager = new TaskManager(model.getTaskManager()); // last saved assumed to be up to date before.
@@ -456,8 +458,8 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getName().toString());
-            cmd.append(" d/").append(p.getDeadLine().getDueDate().toString());
-            cmd.append(" e/").append(p.getDeadLine().getDueTime().toString());
+            cmd.append(" d/").append(p.getDeadline().getDueDate().toString());
+            cmd.append(" e/").append(p.getDeadline().getDueTime().toString());
             cmd.append(" i/").append(p.getImportance());
 
             UniqueTagList tags = p.getTags();
