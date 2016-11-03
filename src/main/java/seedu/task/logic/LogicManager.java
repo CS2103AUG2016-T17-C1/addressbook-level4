@@ -2,7 +2,9 @@ package seedu.task.logic;
 
 import javafx.collections.ObservableList;
 import seedu.task.commons.core.ComponentManager;
+import seedu.task.commons.core.Config;
 import seedu.task.commons.core.LogsCenter;
+import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.logic.commands.Command;
 import seedu.task.logic.commands.CommandResult;
 import seedu.task.logic.parser.Parser;
@@ -20,14 +22,17 @@ public class LogicManager extends ComponentManager implements Logic {
 
     private final Model model;
     private final Parser parser;
+    private final Config config;
 
-    public LogicManager(Model model, Storage storage) {
+    public LogicManager(Model model, Storage storage, Config config) {
         this.model = model;
-        this.parser = new Parser();
+        this.config = config;
+        this.parser = new Parser(this.config);
     }
 
+
     @Override
-    public CommandResult execute(String commandText) {
+    public CommandResult execute(String commandText) throws IllegalValueException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         Command command = parser.parseCommand(commandText);
         command.setData(model);

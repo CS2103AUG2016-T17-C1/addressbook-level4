@@ -41,7 +41,7 @@
 
    * **`delete`**` 3` : deletes the 3rd task shown in the current list
    * **`exit`** : exits the app
-   
+
 6. Refer to the [Features](#features) section below for details of each command.<br>
 
 
@@ -78,6 +78,17 @@ Format: `add TASK_NAME d/SCHEDULED_DATE e/SCHEDULED_END_TIME i/IMPORTANCE [t/TAG
 Examples:
 * `add Grocery Shopping d/01012016 e/1800 i/*`
 * `add Dinner with JC Friends d/07102016 e/1930 i/** t/Budget t/Meal t/Buddies`
+
+
+#### Editing a task: `edit`
+Edits a task currently held in Never Forget<br>
+Format: `edit INDEX d/SCHEDULED_DATE e/SCHEDULED_END_TIME i/IMPORTANCE [t/TAG]...`
+
+> Tasks can have any number of tags (including 0)
+
+Examples:
+* `edit 2 d/01012016 e/1700 i/***`
+* `edit 3 d/07102016 e/2030 i/* t/Budget t/Meal t/Friends`
 
 
 
@@ -125,12 +136,28 @@ Format: `mark INDEX`
 
 #### Undo : `undo`
 Undo previous command. <br>
+The Undo command can be executed as many times as needed to the point of application launch.
 Format: `undo`
 
 
 #### Redo : `redo`
 Reverse undo command. <br>
+The Redo command can only be executed immediately after one or more Undo commands.
+If any command other than Undo makes changes to the task list, the Redo command is no longer available until Undo is executed again.
 Format: `redo`
+
+
+#### Change tasks storage directory : `cd`
+Changes the storage location of the Task list for Never Forget <br>
+> *Users are given an option whether they would like to import their tasks to the new storage location. <br><br>
+> *If they would not like to do so, the task manager will start from an empty task list in the new storage location.<br><br>
+> *The default location is at the 'data/' folder of where the Never Forget.jar is located.<br>
+
+Note: Storage location has to be declared relative to the position of Never Forget.jar. If users would like to navigate to a higher directory,
+	  they can use '../'<br>
+Note: This action will cause Never Forget to terminate. Users will have to re-launch their application again.<br>
+Format: `cd {STORAGE LOCATION}/`<br>
+		 `cd data/`
 
 
 #### Saving the data
@@ -145,15 +172,19 @@ Displays the task listing for that desired time frame.<br>
 > Displays the task listing for that desired time frame.
   Tasks with no deadlines are only displayed in the Home listing where all tasks are displayed.<br>
   User must select any one of the tabs, Home, Daily, Weekly or Monthly.
-  
- 
+
+
 
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with
-       the file that contains the data of your previous to-do list folder.
+**A1**: Install the app in the other computer and overwrite the empty data file it creates with
+       the file that contains the data of your previous to-do list folder.<br><br>
+**A2**: An alternate way would be to use the inbuilt storage transfer command `cd` and File Hosting services such as dropbox.<br>
+		Using the `cd` command, change the working directory of Never Forget & also select the option to transfer the tasks to a folder on dropbox.<br>
+		From the other computer,use `cd` to change **_only_** the working directory of Never Forget to the same folder on dropbox.<br>
+		Lastly, if needed, change the working directory of Never Forget & also select the option to transfer the tasks to a _**local**_ folder.
 
 ## Command Summary
 
@@ -161,8 +192,10 @@ Displays the task listing for that desired time frame.<br>
 Command | Format
 -------- | :--------
 Add | `add TASK d/DDMMYYYY t/HHMM i/*[*]... [t/TAG]...`
+Change Directory | `cd {STORAGE LOCATION}/`
 Clear | `clear`
 Delete | `delete INDEX`
+Edit | `edit TASK d/DDMMYYYY t/HHMM i/*[*]... [t/TAG]...`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Help | `help`
 List | `list`

@@ -10,15 +10,17 @@ import seedu.task.logic.commands.AddCommand;
 
 import static org.junit.Assert.assertTrue;
 
-public class AddCommandTest extends TaskManagerGuiTest {
+public class UndoCommandTest extends TaskManagerGuiTest {
 
     @Test
-    public void add() {
+    public void undo() {
         //add one task
         TestTask[] currentList = td.getTypicalTasks();
         TestTask taskToAdd = td.hoon;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
+        
+        //commandBox.runCommand("undo");
 
         //add another task
         taskToAdd = td.ida;
@@ -28,14 +30,18 @@ public class AddCommandTest extends TaskManagerGuiTest {
         //add duplicate task
         commandBox.runCommand(td.hoon.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
+        
         assertTrue(taskListPanel.isListMatching(currentList));
 
         //add to empty list
         commandBox.runCommand("clear");
+        //commandBox.runCommand("undo");
         assertAddSuccess(td.alice);
+        
+        commandBox.runCommand("undo");
 
         //invalid command
-        commandBox.runCommand("adds Yoga class");
+        commandBox.runCommand("adds Festival");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
@@ -46,7 +52,7 @@ public class AddCommandTest extends TaskManagerGuiTest {
         TaskCardHandle addedCard = taskListPanel.navigateToTask(taskToAdd.getName().fullName);
         assertMatching(taskToAdd, addedCard);
 
-        //confirm the list now contains all previous persons plus the new person
+        //confirm the list now contains all previous tasks plus the new task
         TestTask[] expectedList = TestUtil.addTasksToList(currentList, taskToAdd);
         assertTrue(taskListPanel.isListMatching(expectedList));
     }

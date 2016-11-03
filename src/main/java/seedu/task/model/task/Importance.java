@@ -11,6 +11,7 @@ public class Importance {
 
     public static final String MESSAGE_IMPORTANCE_CONSTRAINTS = "Task importance is denoted by number of *";
     public static final String IMPORTANCE_VALIDATION_REGEX = "[*]{0,3}";
+    public static final String DELETE_TASK_OBJECT_STRING = "-";
 
     public final String value;
 
@@ -20,15 +21,15 @@ public class Importance {
      * @throws IllegalValueException if given address string is invalid.
      */
     public Importance(String importance) throws IllegalValueException {
-    	 if (importance == null)
-         	importance = "";
-         this.value = importance;
+        if (importance == null)
+            importance = "";
 
-        if (!isValidImportance(importance)) {
-            throw new IllegalValueException(MESSAGE_IMPORTANCE_CONSTRAINTS);
-        }
+        if (!importance.equals(DELETE_TASK_OBJECT_STRING))
+            if (!isValidImportance(importance)) {
+                throw new IllegalValueException(MESSAGE_IMPORTANCE_CONSTRAINTS);
+            }
 
-
+        this.value = importance;
     }
 
     /**

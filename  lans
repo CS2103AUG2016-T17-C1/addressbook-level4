@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskmanager>
+    <tasks>
+        <taskName>lol</taskName>
+        <dueDate></dueDate>
+        <dueTime></dueTime>
+        <startDate></startDate>
+        <startTime></startTime>
+        <importance></importance>
+    </tasks>
+</taskmanager>
