@@ -47,7 +47,6 @@ public class ChangeDirectoryCommand extends Command {
         newDirectory = newDirectory.trim();
         this.config = config;
         this.newDirectory = newDirectory;
-        System.out.println(config + "config");
     }
 
     /*
@@ -147,7 +146,7 @@ public class ChangeDirectoryCommand extends Command {
             writer.close();
             return true;
         } catch (IllegalStateException | IOException e) {
-            logger.warning("The file could not be found");
+            logger.warning("The file could not be found or task manager xml files could not be created in the new directory.");
             return false;
         }
 
