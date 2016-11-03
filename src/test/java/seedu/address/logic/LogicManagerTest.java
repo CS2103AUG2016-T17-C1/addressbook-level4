@@ -394,7 +394,7 @@ public class LogicManagerTest {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
         Task toBeAdded = helper.adam();
-        Task afterEdit = helper.adamModified();
+        Task afterEdit = helper.adamChangeTaskName();
         TaskManager expectedAB = new TaskManager();
         expectedAB.addTask(afterEdit);
 
@@ -409,7 +409,48 @@ public class LogicManagerTest {
                 expectedAB.getTaskList());
 
     }
+    
+    @Test
+    public void execute_edit_changeDeadlineTaskToFloating() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        Task toBeAdded = helper.deadlineTask();
+        Task afterEdit = helper.floating();
+        TaskManager expectedAB = new TaskManager();
+        expectedAB.addTask(afterEdit);
 
+        // set AB state to 1 person
+        model.resetData(new TaskManager());
+        model.addTask(toBeAdded);
+        
+        model.editTask(toBeAdded, afterEdit);
+
+        // execute command and verify result
+        assertCommandBehavior("edit 1 sd/- d/- i/-", String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, afterEdit), expectedAB,
+                expectedAB.getTaskList());
+
+    }
+
+    @Test
+    public void execute_edit_changeStartAndEndTime() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        Task toBeAdded = helper.adam();
+        Task afterEdit = helper.adamChangeTime();
+        TaskManager expectedAB = new TaskManager();
+        expectedAB.addTask(afterEdit);
+
+        // set AB state to 1 person
+        model.resetData(new TaskManager());
+        model.addTask(toBeAdded);
+        
+        model.editTask(toBeAdded, afterEdit);
+
+        // execute command and verify result
+        assertCommandBehavior("edit 1 st/0900 e/1000", String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, afterEdit), expectedAB,
+                expectedAB.getTaskList());
+
+    }
     
     @Test
     public void execute_undo_addCommandToEmptyList() throws Exception {
@@ -498,7 +539,7 @@ public class LogicManagerTest {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
         Task toBeEdited = helper.adam();
-        Task afterEdit = helper.adamModified();
+        Task afterEdit = helper.adamChangeTaskName();
         TaskManager expectedAB = new TaskManager();
         expectedAB.addTask(toBeEdited);
 
@@ -513,6 +554,28 @@ public class LogicManagerTest {
                 expectedAB.getTaskList());
         
     }
+
+    @Test
+    public void execute_mark_markFirstTask() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        TaskManager expectedAB = new TaskManager();
+        List<Task> personList = helper.generateTaskList(2);
+        Task toBeMarked = personList.get(0);
+
+        expectedAB.addTask(personList.get(1));
+
+        // set AB state to 2 persons
+        model.resetData(new TaskManager());
+        for (Task p : personList) {
+            model.addTask(p);
+        }
+
+        // execute command and verify result
+        assertCommandBehavior(MarkCommand.COMMAND_WORD + " 1", String.format(MarkCommand.MESSAGE_SUCCESS, personList.get(0)), expectedAB,
+                expectedAB.getTaskList());
+        
+    }
     
     //@@author
 
@@ -524,8 +587,8 @@ public class LogicManagerTest {
         Task adam() throws Exception {
             TaskName taskName = new TaskName("Adam Brown");
             Date date = new Date("11112111");
-            Time time = new Time("2359");
-            EventStart eventStart = new EventStart(new Date(""), new Time(""));
+            Time time = new Time("0900");
+            EventStart eventStart = new EventStart(new Date("11112111"), new Time("0800"));
             Deadline deadline = new Deadline(date, time);
             Importance importance = new Importance("**");
             Tag tag1 = new Tag("tag1");
@@ -534,7 +597,20 @@ public class LogicManagerTest {
             return new Task(taskName, eventStart, deadline, importance, tags);
         }
         
-        Task adamModified() throws Exception {
+        Task adamChangeTime() throws Exception {
+            TaskName taskName = new TaskName("Adam Brown");
+            Date date = new Date("11112111");
+            Time time = new Time("1000");
+            EventStart eventStart = new EventStart(new Date("11112111"), new Time("0900"));
+            Deadline deadline = new Deadline(date, time);
+            Importance importance = new Importance("**");
+            Tag tag1 = new Tag("tag1");
+            Tag tag2 = new Tag("tag2");
+            UniqueTagList tags = new UniqueTagList(tag1, tag2);
+            return new Task(taskName, eventStart, deadline, importance, tags);
+        }
+        
+        Task adamChangeTaskName() throws Exception {
             TaskName taskName = new TaskName("Not Adam Brown");
             Date date = new Date("11112111");
             Time time = new Time("2359");
@@ -563,6 +639,21 @@ public class LogicManagerTest {
         }
 
         /**
+         * @return a floating task.
+         */
+
+        Task deadlineTask() throws Exception {
+            TaskName taskName = new TaskName("Floater");
+            Date date = new Date("03112016");
+            Time time = new Time("1700");
+            EventStart eventStart = new EventStart(new Date(""), new Time(""));
+            Deadline deadline = new Deadline(date, time);
+            Importance importance = new Importance("");
+            UniqueTagList tags = new UniqueTagList();
+            return new Task(taskName, eventStart, deadline, importance, tags);
+        }
+        
+        /**
          * Generates a valid person using the given seed. Running this function
          * with the same parameter values guarantees the returned person will
          * have the same state. Each unique seed will generate a unique Task
@@ -586,6 +677,8 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getName().toString());
+            cmd.append(" sd/").append(p.getEventStart().getStartDate().toString());
+            cmd.append(" st/").append(p.getEventStart().getStartTime().toString());
             cmd.append(" d/").append(p.getDeadline().getDueDate().toString());
             cmd.append(" e/").append(p.getDeadline().getDueTime().toString());
             cmd.append(" i/").append(p.getImportance());
