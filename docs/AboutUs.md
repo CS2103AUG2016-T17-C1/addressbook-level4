@@ -4,14 +4,14 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 
 ## Project Team
 
-#### [MIHNEA ARION](https://github.com/Sevreus) 
+#### [MIHNEA ARION](https://github.com/Sevreus)
 <img src="images/MA.jpg" width="150"><br>
 **Role**: Developer <br>
 * Components in charge of: [Storage](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#storage-component)
 * Also in charge of: [Testing](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#testing), [Git](https://github.com/CS2103AUG2016-T17-C1), [Documentation](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs)
 * Contributions:
  * Initial set up of the organization on Git
- * Contributed to UI and a few bug fixes 
+ * Contributed to UI and a few bug fixes
 
 -----
 
@@ -40,10 +40,10 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 **Role**: Developer <br>
 * Components in charge of: [Model](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#model-component)
 * Contributions:
- * Initial refactoring of Application 
+ * Initial refactoring of Application
  * Initial base documentation
- * Implementation of major features: add task, undo, edit task
- 
+ * Implementation of major features: add task, edit task , undo , redo, change of task mamager storage directory, creation of event tasks
+
 -----
 
 #### [Joel Tan](https://github.com/JoelT-92)
