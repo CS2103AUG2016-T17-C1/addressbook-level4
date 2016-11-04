@@ -3,6 +3,7 @@ package seedu.task.logic.commands;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.task.commons.core.Messages;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
@@ -22,6 +23,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task is already Never Forgetten";
+    public static final String MESSAGE_IMPOSSIBLE_SCHEDULE = "The schedule is wrong; please check the deadline of the task";
 
     private final Task toAdd;
 
@@ -71,6 +73,15 @@ public class AddCommand extends Command {
 
     @Override
     public CommandResult execute() {
+    	
+    	if(toAdd.getDeadline().getDueDate().getDate()!="" && toAdd.getEventStart().getStartDate().getDate().compareTo(toAdd.getDeadline().getDueDate().getDate()) > 0)
+    		return new CommandResult(MESSAGE_IMPOSSIBLE_SCHEDULE);
+    	
+    	else if(toAdd.getDeadline().getDueDate().getDate()!="" && toAdd.getEventStart().getStartDate().getDate().compareTo(toAdd.getDeadline().getDueDate().getDate()) == 0 )
+    		if(toAdd.getDeadline().getDueTime().getTime()!="" && toAdd.getEventStart().getStartTime().getTime().compareTo(toAdd.getDeadline().getDueTime().getTime()) >=0)
+        		return new CommandResult(MESSAGE_IMPOSSIBLE_SCHEDULE);
+    		
+    	
         assert model != null;
         try {
             model.addTask(toAdd);
@@ -80,5 +91,7 @@ public class AddCommand extends Command {
         }
 
     }
+    
+    
 
 }

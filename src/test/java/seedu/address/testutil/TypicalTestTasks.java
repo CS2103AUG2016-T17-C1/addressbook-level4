@@ -15,7 +15,7 @@ public class TypicalTestTasks {
     public TypicalTestTasks() {
         try {
             alice = new TaskBuilder().withName("Call Alice").withEventStart("11112222", "0000")
-                    .withDeadLine("11112111", "1107").withImportance("*").withTags("friends").build();
+                    .withDeadLine("11112222", "1107").withImportance("*").withTags("friends").build();
             benson = new TaskBuilder().withName("Buy Bread").withEventStart("11112000", "0900")
                     .withDeadLine("26122000", "1000").withImportance("**").withTags("wholeGrain", "toast").build();
             carl = new TaskBuilder().withName("Call Mom").withEventStart("11112200", "0900")
@@ -35,8 +35,8 @@ public class TypicalTestTasks {
                     .withDeadLine("11102016", "2359").withImportance("**").build();
 
             //Manually added
-            hoon = new TaskBuilder().withName("Meet supervisor").withEventStart("11112100","1000").withDeadLine("11102016", "1100").withImportance("*").build();
-            ida = new TaskBuilder().withName("Reserve seats").withEventStart("11112015","1000").withDeadLine("11102016", "1400").withImportance("**").build();
+            hoon = new TaskBuilder().withName("Meet supervisor").withEventStart("11102016","1000").withDeadLine("11102016", "1100").withImportance("*").build();
+            ida = new TaskBuilder().withName("Reserve seats").withEventStart("11102016","1000").withDeadLine("11102016", "1400").withImportance("**").build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";
