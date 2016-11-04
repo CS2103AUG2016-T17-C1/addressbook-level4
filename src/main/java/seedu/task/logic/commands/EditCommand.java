@@ -73,6 +73,13 @@ public class EditCommand extends Command {
             indicateAttemptToExecuteIncorrectCommand();
             return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
+        
+    	if(toEdit.getDeadline().getDueDate().getDate()!="" && toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) > 0)
+    		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
+    	
+    	else if(toEdit.getDeadline().getDueDate().getDate()!="" && toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) == 0 )
+    		if(toEdit.getDeadline().getDueTime().getTime()!="" && toEdit.getEventStart().getStartTime().getTime().compareTo(toEdit.getDeadline().getDueTime().getTime()) >0)
+        		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
 
         ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
 

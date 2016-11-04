@@ -23,7 +23,6 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task is already Never Forgetten";
-    public static final String MESSAGE_IMPOSSIBLE_SCHEDULE = "The schedule is wrong; please check the deadline of the task";
 
     private final Task toAdd;
 
@@ -75,11 +74,11 @@ public class AddCommand extends Command {
     public CommandResult execute() {
     	
     	if(toAdd.getDeadline().getDueDate().getDate()!="" && toAdd.getEventStart().getStartDate().getDate().compareTo(toAdd.getDeadline().getDueDate().getDate()) > 0)
-    		return new CommandResult(MESSAGE_IMPOSSIBLE_SCHEDULE);
+    		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
     	
     	else if(toAdd.getDeadline().getDueDate().getDate()!="" && toAdd.getEventStart().getStartDate().getDate().compareTo(toAdd.getDeadline().getDueDate().getDate()) == 0 )
-    		if(toAdd.getDeadline().getDueTime().getTime()!="" && toAdd.getEventStart().getStartTime().getTime().compareTo(toAdd.getDeadline().getDueTime().getTime()) >=0)
-        		return new CommandResult(MESSAGE_IMPOSSIBLE_SCHEDULE);
+    		if(toAdd.getDeadline().getDueTime().getTime()!="" && toAdd.getEventStart().getStartTime().getTime().compareTo(toAdd.getDeadline().getDueTime().getTime()) >0)
+        		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
     		
     	
         assert model != null;
