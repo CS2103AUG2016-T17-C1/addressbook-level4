@@ -91,6 +91,9 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
             
+        case DeleteMarkedCommand.COMMAND_WORD:
+            return prepareDeleteMarked(arguments);
+            
         case ClearMarkedCommand.COMMAND_WORD:
             return new ClearMarkedCommand();
 
@@ -112,7 +115,7 @@ public class Parser {
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommand(arguments);
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
@@ -126,7 +129,16 @@ public class Parser {
         }
     }
 
-    /**
+    private Command prepareDeleteMarked(String args) {
+        Optional<Integer> index = parseIndex(args);
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+
+        return new DeleteMarkedCommand(index.get());
+	}
+
+	/**
      * Parses arguments in the context of the add task command.
      *
      * @param args

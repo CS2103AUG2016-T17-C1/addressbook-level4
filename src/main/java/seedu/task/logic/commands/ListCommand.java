@@ -8,6 +8,13 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
+    //@@author A0127720M
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Displays all the tasks.\n"
+            + "Parameters: not required.\n"
+            + "Example: " + COMMAND_WORD;
+    //@@author
+    
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
     public ListCommand() {}

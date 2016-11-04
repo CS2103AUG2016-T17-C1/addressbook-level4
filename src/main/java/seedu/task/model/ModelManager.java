@@ -91,6 +91,14 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.removeTask(target);
         indicateTaskManagerChanged();
     }
+   
+ // @@author A0127720M
+    @Override
+	public void deleteMarkedTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException {
+    	taskManager.removeMarkedTask(target);
+        indicateTaskManagerChanged();
+    }
+ // @@author
 
     @Override
     public synchronized void addTask(Task task) throws UniqueTaskList.DuplicateTaskException {
@@ -124,7 +132,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     // @@author A0127720M
     @Override
-    public ObservableList<ReadOnlyTask> getFilteredMarkedTaskList() {
+    public UnmodifiableObservableList<ReadOnlyTask> getFilteredMarkedTaskList() {
         return new UnmodifiableObservableList<>(filteredMarkedTasks);
     }
     // @@author
@@ -196,5 +204,8 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
+
+
+
 
 }
