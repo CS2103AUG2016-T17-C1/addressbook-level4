@@ -3,7 +3,9 @@ package seedu.task.logic.commands;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.Messages;
+import seedu.task.commons.events.ui.JumpToListRequestEvent;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
@@ -86,6 +88,9 @@ public class AddCommand extends Command {
         assert model != null;
         try {
             model.addTask(toAdd);
+            
+            int targetIndex=model.getFilteredTaskList().size();
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex - 1));
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             return new CommandResult(MESSAGE_DUPLICATE_TASK);
