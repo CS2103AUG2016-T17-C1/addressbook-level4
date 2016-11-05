@@ -105,11 +105,13 @@ public class TaskManager implements ReadOnlyTaskManager {
         this.tasks.saveCurrentTaskList();
         this.markedTasks.saveCurrentTaskList();
         resetData(newData.getTaskList(), newData.getTagList(), newData.getMarkedTaskList());
+        clearRedoArrayList();
 
     }
 
     public void clearRedoArrayList() {
         this.markedTasks.clearMarkedRedoList();
+        this.tasks.clearRedoList();
     }
 
     /*
@@ -251,7 +253,7 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     //@@author A0139284X
-    
+
     public static ReadOnlyTaskManager getEmptyMarkedTaskManager(ReadOnlyTaskManager taskManager) {
         return new TaskManager(taskManager.getUniqueTaskList(), taskManager.getUniqueTagList(), new UniqueMarkedTaskList());
     }
