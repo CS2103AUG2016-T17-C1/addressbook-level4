@@ -79,20 +79,23 @@ public class Parser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
         case AddCommand.SHORTCUT:
+        case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
 
-        case EditCommand.COMMAND_WORD:
+
         case EditCommand.SHORTCUT:
+        case EditCommand.COMMAND_WORD:
             return prepareEdit(arguments);
 
-        case SelectCommand.COMMAND_WORD:
+
         case SelectCommand.SHORTCUT:
+        case SelectCommand.COMMAND_WORD:
             return prepareSelect(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+
         case DeleteCommand.SHORTCUT:
+        case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
             
         case ClearMarkedCommand.COMMAND_WORD:
@@ -107,34 +110,37 @@ public class Parser {
             return prepareMark(arguments);
         // @@author
 
-        case FindCommand.COMMAND_WORD:
+
         case FindCommand.SHORTCUT:
+        case FindCommand.COMMAND_WORD:
             return prepareFind(arguments);
 
-        case ListCommand.COMMAND_WORD:
+
         case ListCommand.SHORTCUT:
+        case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
+
         case HelpCommand.SHORTCUT:
+        case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case UndoCommand.COMMAND_WORD:
+
         case UndoCommand.SHORTCUT:
+        case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
 
-        case RedoCommand.COMMAND_WORD:
+
         case RedoCommand.SHORTCUT:
+        case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
+            
         case ChangeDirectoryCommand.COMMAND_WORD:
             return prepareChangeDirectory(arguments, config);
             
-//        default:
-//        	return parseCommand("add "+userInput);
-        	//return prepareAdd(arguments);
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
