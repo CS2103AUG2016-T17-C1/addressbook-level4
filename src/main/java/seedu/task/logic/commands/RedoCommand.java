@@ -9,8 +9,8 @@ public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
     public static final String SHORTCUT = "r";
-    public static final String MESSAGE_SUCCESS = "Redo Successful";
-    public static final String MESSAGE_FAIL = "Redo Unsuccessful";
+    public static final String MESSAGE_SUCCESS = "Your Undo command has been reversed.";
+    public static final String MESSAGE_FAIL = "No more Undo command can be reversed.";
 
 
     public RedoCommand() {}
