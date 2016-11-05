@@ -9,9 +9,10 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 **Role**: Developer <br>
 * Components in charge of: [Storage](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#storage-component)
 * Also in charge of: [Testing](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#testing), [Git](https://github.com/CS2103AUG2016-T17-C1), [Documentation](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs)
-* Code written: [[test code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/test/A0152952A.md)][[docs](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/docs/A0152952A.md)]
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/main/A0152952A.md)][[test code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/test/A0152952A.md)][[docs](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/docs/A0152952A.md)]
 * Contributions:
  * Initial set up of the organization on Git
+ * Implemented shorthand commands
  * Contributed to [UI](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#ui-component) and a few bug fixes 
 
 -----
