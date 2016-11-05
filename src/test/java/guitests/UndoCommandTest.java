@@ -16,19 +16,19 @@ public class UndoCommandTest extends TaskManagerGuiTest {
     public void undo() {
         //add one task
         TestTask[] currentList = td.getTypicalTasks();
-        TestTask taskToAdd = td.hoon;
+        TestTask taskToAdd = td.supervisor;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
         
         //commandBox.runCommand("undo");
 
         //add another task
-        taskToAdd = td.ida;
+        taskToAdd = td.reserve;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
         //add duplicate task
-        commandBox.runCommand(td.hoon.getAddCommand());
+        commandBox.runCommand(td.supervisor.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
         
         assertTrue(taskListPanel.isListMatching(currentList));

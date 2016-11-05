@@ -15,6 +15,7 @@ import seedu.task.model.task.*;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final String SHORTCUT = "a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
             + "Parameters: TASK_NAME [sd/START_DATE] [st/START_TIME] [d/END_DATE] [e/END_TIME] [*] [t/TAG]...\n"
@@ -73,13 +74,14 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute() {
     	
+    	// @@author A0152952A
     	if(toAdd.getDeadline().getDueDate().getDate()!="" && toAdd.getEventStart().getStartDate().getDate().compareTo(toAdd.getDeadline().getDueDate().getDate()) > 0)
     		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
     	
     	else if(toAdd.getDeadline().getDueDate().getDate()!="" && toAdd.getEventStart().getStartDate().getDate().compareTo(toAdd.getDeadline().getDueDate().getDate()) == 0 )
     		if(toAdd.getDeadline().getDueTime().getTime()!="" && toAdd.getEventStart().getStartTime().getTime().compareTo(toAdd.getDeadline().getDueTime().getTime()) >0)
         		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
-    		
+    	// @@author
     	
         assert model != null;
         try {

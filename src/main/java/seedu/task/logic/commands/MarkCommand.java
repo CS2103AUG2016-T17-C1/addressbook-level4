@@ -11,6 +11,7 @@ import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 public class MarkCommand extends Command{
 
     public static final String COMMAND_WORD = "mark";
+    public static final String SHORTCUT = "m";
     public static final String MESSAGE_SUCCESS = "Marks a given task: %1$s ";
 	public static final Object MESSAGE_USAGE = " ";
 	private int targetIndex;

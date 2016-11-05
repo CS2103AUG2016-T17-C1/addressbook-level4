@@ -142,6 +142,7 @@ public class TestUtil {
         return new XmlSerializableTaskManager(generateEmptyTaskManager());
     }
 
+
     /**
      * Tweaks the {@code keyCodeCombination} to resolve the {@code KeyCode.SHORTCUT} to their
      * respective platform-specific keycodes

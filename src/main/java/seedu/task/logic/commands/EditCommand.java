@@ -1,5 +1,7 @@
 package seedu.task.logic.commands;
 
+import static seedu.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +24,7 @@ import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
+    public static final String SHORTCUT = "e";
     public static final String EMPTY_TASK_OBJECT_STRING = "";
     public static final String EMPTY_TAG_OBJECT_STRING = "[]";
     public static final String DEFAULT_DATE_STRING = "01012000";
@@ -74,12 +77,18 @@ public class EditCommand extends Command {
             return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         
-    	if(toEdit.getDeadline().getDueDate().getDate()!="" && toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) > 0)
+        // @@author A0152952A
+    	if(toEdit.getDeadline().getDueDate().getDate()!="" 
+    			&& toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) > 0)
     		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
     	
-    	else if(toEdit.getDeadline().getDueDate().getDate()!="" && toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) == 0 )
-    		if(toEdit.getDeadline().getDueTime().getTime()!="" && toEdit.getEventStart().getStartTime().getTime().compareTo(toEdit.getDeadline().getDueTime().getTime()) >0)
+    	else if(toEdit.getDeadline().getDueDate().getDate()!="" 
+    			&& toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) == 0)
+    		if(toEdit.getDeadline().getDueTime().getTime()!="" 
+    		    && toEdit.getEventStart().getStartTime().getTime().compareTo(toEdit.getDeadline().getDueTime().getTime()) > 0)
         		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
+    	        //return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
+    	// @@author
 
         ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
 

@@ -9,34 +9,32 @@ import seedu.task.model.task.*;
  */
 public class TypicalTestTasks {
 
-    public static TestTask alice, benson, carl, daniel, elle, fiona, george, hoon;
-    public static TestTask ida;
+    public static TestTask alice, bread, mom, gifts, barbecue, reply, george, supervisor;
+    public static TestTask reserve;
 
     public TypicalTestTasks() {
         try {
+        	// @@author A0152952A
             alice = new TaskBuilder().withName("Call Alice").withEventStart("11112222", "0000")
                     .withDeadLine("11112222", "1107").withImportance("*").withTags("friends").build();
-            benson = new TaskBuilder().withName("Buy Bread").withEventStart("11112000", "0900")
+            bread = new TaskBuilder().withName("Buy Bread").withEventStart("11112000", "0900")
                     .withDeadLine("26122000", "1000").withImportance("**").withTags("wholeGrain", "toast").build();
-            carl = new TaskBuilder().withName("Call Mom").withEventStart("11112200", "0900")
+            mom = new TaskBuilder().withName("Call Mom").withEventStart("11112200", "0900")
                     .withDeadLine("11102016", "2300").withImportance("**").build();
             
-            daniel = new TaskBuilder().withName("Buy gifts").withEventStart("11112200", "2000")
+            gifts = new TaskBuilder().withName("Buy gifts").withEventStart("11112200", "2000")
                     .withDeadLine("11102016", "0000").withImportance("*").build();
-            elle = new TaskBuilder().withName("Join Barbecue").withEventStart("11112200", "1000")
+            barbecue = new TaskBuilder().withName("Join Barbecue").withEventStart("11112200", "1000")
                     .withDeadLine("11102016", "0900").withImportance("**").build();
-//            daniel = new TaskBuilder().withName("Join Barbecue").withEventStart("11112200", "2000")
-//                    .withDeadLine("11102016", "0000").withImportance("*").build();
-//            elle = new TaskBuilder().withName("Buy gifts").withEventStart("11112200", "1000")
-//                    .withDeadLine("11102016", "0900").withImportance("**").build();
-            fiona = new TaskBuilder().withName("Reply to emails").withEventStart("11112200", "1000")
+            reply = new TaskBuilder().withName("Reply to emails").withEventStart("11112200", "1000")
                     .withDeadLine("11102016", "1000").withImportance("***").build();
             george = new TaskBuilder().withName("Send best wishes to George").withEventStart("12102016", "0000")
                     .withDeadLine("11102016", "2359").withImportance("**").build();
+            // @@author
 
             //Manually added
-            hoon = new TaskBuilder().withName("Meet supervisor").withEventStart("11102016","1000").withDeadLine("11102016", "1100").withImportance("*").build();
-            ida = new TaskBuilder().withName("Reserve seats").withEventStart("11102016","1000").withDeadLine("11102016", "1400").withImportance("**").build();
+            supervisor = new TaskBuilder().withName("Meet supervisor").withEventStart("11102016","1000").withDeadLine("11102016", "1100").withImportance("*").build();
+            reserve = new TaskBuilder().withName("Reserve seats").withEventStart("11102016","1000").withDeadLine("11102016", "1400").withImportance("**").build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";
@@ -47,11 +45,11 @@ public class TypicalTestTasks {
 
         try {
             ab.addTask(new Task(alice));
-            ab.addTask(new Task(benson));
-            ab.addTask(new Task(carl));
-            ab.addTask(new Task(daniel));
-            ab.addTask(new Task(elle));
-            ab.addTask(new Task(fiona));
+            ab.addTask(new Task(bread));
+            ab.addTask(new Task(mom));
+            ab.addTask(new Task(gifts));
+            ab.addTask(new Task(barbecue));
+            ab.addTask(new Task(reply));
             ab.addTask(new Task(george));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             assert false : "not possible";
@@ -59,7 +57,7 @@ public class TypicalTestTasks {
     }
 
     public TestTask[] getTypicalTasks() {
-        return new TestTask[]{alice, benson, carl, daniel, elle, fiona, george};
+        return new TestTask[]{alice, bread, mom, gifts, barbecue, reply, george};
     }
 
     public TaskManager getTypicalAddressBook(){

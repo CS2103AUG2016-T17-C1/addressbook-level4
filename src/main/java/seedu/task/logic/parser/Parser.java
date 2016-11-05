@@ -80,15 +80,19 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
+        case AddCommand.SHORTCUT:
             return prepareAdd(arguments);
 
         case EditCommand.COMMAND_WORD:
+        case EditCommand.SHORTCUT:
             return prepareEdit(arguments);
 
         case SelectCommand.COMMAND_WORD:
+        case SelectCommand.SHORTCUT:
             return prepareSelect(arguments);
 
         case DeleteCommand.COMMAND_WORD:
+        case DeleteCommand.SHORTCUT:
             return prepareDelete(arguments);
             
         case ClearMarkedCommand.COMMAND_WORD:
@@ -97,30 +101,40 @@ public class Parser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case MarkCommand.SHORTCUT:
         // @@author A0127720M
         case MarkCommand.COMMAND_WORD:
             return prepareMark(arguments);
         // @@author
 
         case FindCommand.COMMAND_WORD:
+        case FindCommand.SHORTCUT:
             return prepareFind(arguments);
 
         case ListCommand.COMMAND_WORD:
+        case ListCommand.SHORTCUT:
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+        case HelpCommand.SHORTCUT:
             return new HelpCommand();
 
         case UndoCommand.COMMAND_WORD:
+        case UndoCommand.SHORTCUT:
             return new UndoCommand();
 
         case RedoCommand.COMMAND_WORD:
+        case RedoCommand.SHORTCUT:
             return new RedoCommand();
         case ChangeDirectoryCommand.COMMAND_WORD:
             return prepareChangeDirectory(arguments, config);
+            
+//        default:
+//        	return parseCommand("add "+userInput);
+        	//return prepareAdd(arguments);
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
