@@ -19,7 +19,7 @@ public class UndoCommandTest extends TaskManagerGuiTest {
         TestTask taskToAdd = td.supervisor;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
-        
+
         //commandBox.runCommand("undo");
 
         //add another task
@@ -30,14 +30,14 @@ public class UndoCommandTest extends TaskManagerGuiTest {
         //add duplicate task
         commandBox.runCommand(td.supervisor.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
-        
+
         assertTrue(taskListPanel.isListMatching(currentList));
 
         //add to empty list
         commandBox.runCommand("clear");
         //commandBox.runCommand("undo");
         assertAddSuccess(td.alice);
-        
+
         commandBox.runCommand("undo");
 
         //invalid command
