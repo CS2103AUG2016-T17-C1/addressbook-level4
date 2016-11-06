@@ -15,7 +15,6 @@ import seedu.task.commons.util.ConfigUtil;
 import seedu.task.commons.util.StringUtil;
 import seedu.task.alerts.ChangeDirectoryCommandAlert;
 
-
 public class ChangeDirectoryCommand extends Command {
 
     public static final String COMMAND_WORD = "cd";
@@ -154,6 +153,10 @@ public class ChangeDirectoryCommand extends Command {
      * transferring existing tasks over
      */
     public CommandResult changeDirectoryOnly(String newDirectory) {
+        if (!isValidDirectory(newDirectory)) {
+            return new CommandResult(MESSAGE_FAILURE);
+        }
+
         newConfig.setTaskManagerFilePath(directoryAddXmlExtension(newDirectory));
         configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
         try {
