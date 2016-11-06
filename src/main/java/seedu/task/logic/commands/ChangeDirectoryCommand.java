@@ -2,6 +2,7 @@ package seedu.task.logic.commands;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+//@@author A0142360U
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -13,12 +14,12 @@ import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.util.ConfigUtil;
 import seedu.task.commons.util.StringUtil;
 import seedu.task.alerts.ChangeDirectoryCommandAlert;
-import seedu.task.alerts.TransferTaskAlert;
 
-//@@author A0142360U
+
 public class ChangeDirectoryCommand extends Command {
 
     public static final String COMMAND_WORD = "cd";
+    public static final String COMMAND_WORD_SAVE = "cdsave";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Changes the location where the tasks in the Task Manager are saved. "
             + "Paramaters: cd {file location}/" + "Example: " + COMMAND_WORD + " data/";
@@ -34,19 +35,18 @@ public class ChangeDirectoryCommand extends Command {
     private static final String DEFAULT_TASK_MANAGER_XML_FILE_NAME = "taskmanager.xml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     private boolean xmlDataTransferSuccess = false;
-    public static final String yes = "Yes";
-    public static final String no = "No";
-    public static final String noAction = "noAction";
+    private boolean transferTasks;
     private static CharSequence[] illegalChars = { "?", "<", ">", ":", "\\", "*", "\0", "|", "=", ";", "[", "]", "{",
             "}" };
 
     /**
      * Convenience constructor using raw values.
      */
-    public ChangeDirectoryCommand(String newDirectory, Config config) {
+    public ChangeDirectoryCommand(String newDirectory, Config config, boolean transferTasks) {
         newDirectory = newDirectory.trim();
         this.config = config;
         this.newDirectory = newDirectory;
+        this.transferTasks = transferTasks;
     }
 
     /*
@@ -55,15 +55,11 @@ public class ChangeDirectoryCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        String result = TransferTaskAlert.transferTaskOptionAlert();
-        if (result.equals(yes)) {
+        if (transferTasks) {
             return changeDirectoryAndTransferXmlData(newDirectory);
-        } else if (result.equals(no)) {
-            return changeDirectoryOnly(newDirectory);
         } else {
-            return new CommandResult(MESSAGE_CANCELLED);
+            return changeDirectoryOnly(newDirectory);
         }
-
     }
 
     /*
@@ -146,7 +142,8 @@ public class ChangeDirectoryCommand extends Command {
             writer.close();
             return true;
         } catch (IllegalStateException | IOException e) {
-            logger.warning("The file could not be found or task manager xml files could not be created in the new directory.");
+            logger.warning(
+                    "The file could not be found or task manager xml files could not be created in the new directory.");
             return false;
         }
 

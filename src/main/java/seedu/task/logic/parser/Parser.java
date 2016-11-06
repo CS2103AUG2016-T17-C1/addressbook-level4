@@ -82,31 +82,28 @@ public class Parser {
         case AddCommand.SHORTCUT:
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
-            
-        // @@author A0152952A    
+
+        // @@author A0152952A
         case BareCommand.SHORTCUT:
         case BareCommand.COMMAND_WORD:
             return prepareBare(arguments);
 
-
         case EditCommand.SHORTCUT:
-        // @@author
+            // @@author
         case EditCommand.COMMAND_WORD:
             return prepareEdit(arguments);
-
 
         case SelectCommand.SHORTCUT:
         case SelectCommand.COMMAND_WORD:
             return prepareSelect(arguments);
 
-
         case DeleteCommand.SHORTCUT:
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
-            
+
         case DeleteMarkedCommand.COMMAND_WORD:
             return prepareDeleteMarked(arguments);
-            
+
         case ClearMarkedCommand.COMMAND_WORD:
             return new ClearMarkedCommand();
 
@@ -114,16 +111,14 @@ public class Parser {
             return new ClearCommand();
 
         case MarkCommand.SHORTCUT:
-        // @@author A0127720M
+            // @@author A0127720M
         case MarkCommand.COMMAND_WORD:
             return prepareMark(arguments);
         // @@author
 
-
         case FindCommand.SHORTCUT:
         case FindCommand.COMMAND_WORD:
             return prepareFind(arguments);
-
 
         case ListCommand.SHORTCUT:
         case ListCommand.COMMAND_WORD:
@@ -132,24 +127,22 @@ public class Parser {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
-
         case HelpCommand.SHORTCUT:
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand(arguments);
-
 
         case UndoCommand.SHORTCUT:
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
 
-
         case RedoCommand.SHORTCUT:
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
-            
+
         case ChangeDirectoryCommand.COMMAND_WORD:
-            return prepareChangeDirectory(arguments, config);
-            
+            return prepareChangeDirectory(arguments, config, false);
+        case ChangeDirectoryCommand.COMMAND_WORD_SAVE:
+            return prepareChangeDirectory(arguments, config , true);
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -162,9 +155,9 @@ public class Parser {
         }
 
         return new DeleteMarkedCommand(index.get());
-	}
+    }
 
-	/**
+    /**
      * Parses arguments in the context of the add task command.
      *
      * @param args
@@ -216,7 +209,7 @@ public class Parser {
 
         return new DeleteCommand(index.get());
     }
-    
+
     // @@author A0152952A - reused
     private Command prepareBare(String args) {
         final Matcher matcher = EDIT_TASK_DATA_ARGS_FORMAT.matcher(args.trim());
@@ -262,12 +255,12 @@ public class Parser {
      * Check if argument is empty and execute changeDirectoryCommand if not
      *
      */
-    private Command prepareChangeDirectory(String args, Config config) {
+    private Command prepareChangeDirectory(String args, Config config, boolean transferTasks) {
         if (args.equals(EMPTY_STRING)) {
             return new IncorrectCommand(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ChangeDirectoryCommand.MESSAGE_USAGE));
         }
-        return new ChangeDirectoryCommand(args, config);
+        return new ChangeDirectoryCommand(args, config, transferTasks);
     }
 
     // @@author
