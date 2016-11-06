@@ -4,7 +4,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 
 ## Project Team
 
-#### [MIHNEA ARION](https://github.com/Sevreus) 
+#### [MIHNEA ARION](https://github.com/Sevreus)
 <img src="images/MA.jpg" width="150"><br>
 **Role**: Developer <br>
 * Components in charge of: [Storage](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#storage-component)
@@ -13,7 +13,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 * Contributions:
  * Initial set up of the organization on Git
  * Implemented shorthand commands
- * Contributed to [UI](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#ui-component) and a few bug fixes 
+ * Contributed to [UI](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#ui-component) and a few bug fixes
 
 -----
 
@@ -45,10 +45,10 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 * Components in charge of: [Model](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#model-component)
 * Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/main/A0142360U.md)][[docs](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/docs/A0142360U.md)]
 * Contributions:
- * Initial refactoring of Application 
+ * Initial refactoring of Application
  * Initial base documentation
- * Implementation of major features: [add task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#adding-a-task-add), [undo](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#undo--undo), [edit task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#editing-a-task-edit)
- 
+ * Implementation of major features: [add task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#adding-a-task-add), [undo](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#undo--undo), [redo task](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/UserGuide.md#redo--redo), [edit task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#editing-a-task-edit), [change directory](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/UserGuide.md#change-tasks-storage-directory--cd)
+ * UI: Task Card
 -----
 
 #### [Joel Tan](https://github.com/JoelT-92)
