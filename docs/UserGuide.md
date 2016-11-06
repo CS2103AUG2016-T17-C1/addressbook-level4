@@ -47,12 +47,14 @@
 
 #### Viewing help : `help`
 View help for commands, including hotkeys.<br>
-Format: `help`
+Format: `help`<br>
+Shorthand: `h` 
 
 
 #### Finding all tasks containing any keyword in their name: `find`
 Finds tasks whose names contain any of the given keywords.<br>
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]`<br>
+Shorthand: `f` 
 
 > * The search is not case sensitive. e.g `buy` will match `Buy`
 > * The order of the keywords does not matter. e.g. `Buy Bread` will match `Bread Buy`
@@ -66,12 +68,13 @@ Examples:
 * `find meeting`<br>
   Returns `meetings` and `Meetings` but not `meet`
 * `find coffee complete homework`<br>
-  Returns Any tasks containing names `coffee`, `complete`, or `homework`
+  Returns any tasks containing names `coffee`, `complete`, or `homework`
 
 
 #### Adding a task: `add`
 Adds a task to Never Forget<br>
-Format: `add TASK_NAME d/SCHEDULED_DATE e/SCHEDULED_END_TIME i/IMPORTANCE [t/TAG]...`
+Format: `add TASK_NAME d/SCHEDULED_DATE e/SCHEDULED_END_TIME i/IMPORTANCE [t/TAG]...`<br>
+Shorthand: `a` 
 
 > Tasks can have any number of tags (including 0)
 
@@ -80,9 +83,23 @@ Examples:
 * `add Dinner with JC Friends d/07102016 e/1930 i/** t/Budget t/Meal t/Buddies`
 
 
+
+#### Baring a task: `add`
+Bares an existing task of its date(s) and time(s)<br>
+Format: `bare INDEX`<br>
+Shorthand: `b` 
+
+> Tasks retain all the other details
+
+Example:
+* `bare 3`
+
+
+
 #### Editing a task: `edit`
 Edits a task currently held in Never Forget<br>
-Format: `edit INDEX d/SCHEDULED_DATE e/SCHEDULED_END_TIME i/IMPORTANCE [t/TAG]...`
+Format: `edit INDEX d/SCHEDULED_DATE e/SCHEDULED_END_TIME i/IMPORTANCE [t/TAG]...`<br>
+Shorthand: `e` 
 
 > Tasks can have any number of tags (including 0)
 
@@ -94,7 +111,8 @@ Examples:
 
 #### Deleting a task : `delete`
 Deletes the specified task from the to-do list. Can be reversed with `undo` command.<br>
-Format: `delete INDEX`
+Format: `delete INDEX`<br>
+Shorthand: `d` 
 
 > Deletes the task at the specified `INDEX`.
   The index refers to the index number shown in the most recent listing.<br>
@@ -103,17 +121,23 @@ Format: `delete INDEX`
 
 #### Listing all of today's tasks : `list`
 Shows a list of all tasks today in Never Forget.<br>
-Format: `list`
+Format: `list`<br>
+Shorthand: `l` 
 
 
 #### Selecting tasks : `select`
+Selects the specified task (by index) in the to-do list.
+Format: `select INDEX`<br>
+Shorthand: `s` <br>
+
 Examples:
 * `list`<br>
   `select 2`<br>
   Selects the 2nd task in the to-do list.
 * `find Buy bread` <br>
   `select 1`<br>
-  Selects the 1st task in the results of the `find` command.
+  Selects the 1st task in the results of the `find` command.<br>
+  
 
 
 #### Clearing all entries : `clear`
@@ -130,21 +154,24 @@ Format: `exit`
 
 #### Marking an entry : `mark`
 Marks an entry as completed. <br>
-Format: `mark INDEX`
+Format: `mark INDEX`<br>
+Shorthand: `m` 
 
 
 
 #### Undo : `undo`
 Undo previous command. <br>
 The Undo command can be executed as many times as needed to the point of application launch.
-Format: `undo`
+Format: `undo`<br>
+Shorthand: `u` 
 
 
 #### Redo : `redo`
 Reverse undo command. <br>
 The Redo command can only be executed immediately after one or more Undo commands.
 If any command other than Undo makes changes to the task list, the Redo command is no longer available until Undo is executed again.
-Format: `redo`
+Format: `redo`<br>
+Shorthand: `r` 
 
 
 #### Change tasks storage directory : `cd`
@@ -192,6 +219,7 @@ Displays the task listing for that desired time frame.<br>
 Command | Format
 -------- | :--------
 Add | `add TASK d/DDMMYYYY t/HHMM i/*[*]... [t/TAG]...`
+Bare | `delete INDEX`
 Change Directory | `cd {STORAGE LOCATION}/`
 Clear | `clear`
 Delete | `delete INDEX`
