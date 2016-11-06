@@ -14,47 +14,65 @@ public class UndoCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void undo() {
-        //add one task
+        // add one task
         TestTask[] currentList = td.getTypicalTasks();
         TestTask taskToAdd = td.supervisor;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
-        //commandBox.runCommand("undo");
-
-        //add another task
+        // add another task
         taskToAdd = td.reserve;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
 
-        //add duplicate task
+        // add duplicate task
         commandBox.runCommand(td.supervisor.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_TASK);
 
         assertTrue(taskListPanel.isListMatching(currentList));
 
-        //add to empty list
+        // add to empty list
         commandBox.runCommand("clear");
-        //commandBox.runCommand("undo");
+
         assertAddSuccess(td.alice);
 
-        commandBox.runCommand("undo");
+        // undo add alice
+        assertUndoSuccess();
 
-        //invalid command
-        commandBox.runCommand("adds Festival");
-        assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
+        // undo clear
+        assertUndoSuccess();
+
+        // undo add td.reserve
+        assertUndoSuccess();
+
+        // undo add td.supervisor
+        assertUndoSuccess();
+
+        // no more commands to undo
+        assertUndoFailure();
+
     }
 
     private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
         commandBox.runCommand(taskToAdd.getAddCommand());
 
-        //confirm the new card contains the right data
+        // confirm the new card contains the right data
         TaskCardHandle addedCard = taskListPanel.navigateToTask(taskToAdd.getName().fullName);
         assertMatching(taskToAdd, addedCard);
 
-        //confirm the list now contains all previous tasks plus the new task
+        // confirm the list now contains all previous tasks plus the new task
         TestTask[] expectedList = TestUtil.addTasksToList(currentList, taskToAdd);
         assertTrue(taskListPanel.isListMatching(expectedList));
+    }
+
+    private void assertUndoSuccess() {
+        commandBox.runCommand("undo");
+        assertResultMessage("Your changes are undone.");
+    }
+
+    private void assertUndoFailure() {
+        commandBox.runCommand("undo");
+        assertResultMessage("No more changes can be undone.");
     }
 
 }

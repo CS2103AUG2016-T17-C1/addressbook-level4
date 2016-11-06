@@ -10,6 +10,15 @@ import seedu.task.model.TaskManager;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
+    
+    //@@author A0127720M
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Clears all entries from the to-do list.\n"
+            + "Parameters: not required.\n"
+            + "Example: " + COMMAND_WORD + "\n"
+    		+ "User will be asked to confirm 'clear' action before proceeding.";
+    //@@author
+    
     public static final String MESSAGE_SUCCESS = "Task Manager has been cleared!";
     public static final String MESSAGE_FAILURE = "Task Manager has not been cleared";
     public static final String MESSAGE_NO_TASKS = "0 tasks listed!";

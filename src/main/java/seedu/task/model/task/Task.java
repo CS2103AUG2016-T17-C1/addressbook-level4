@@ -18,7 +18,9 @@ public class Task implements ReadOnlyTask {
 
     private boolean isTaskCompleted;
 
-    private UniqueTagList tags;
+    
+
+	private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
@@ -53,6 +55,11 @@ public class Task implements ReadOnlyTask {
     public void markAsCompleted() {
     	this.isTaskCompleted = true;
     }
+    
+    public boolean isTaskCompleted() {
+		return isTaskCompleted;
+	}
+
     //@@author
     
     

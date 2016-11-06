@@ -23,6 +23,8 @@ public interface Model {
     /** Deletes the given task. */
     void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
 
+    void deleteMarkedTask(ReadOnlyTask taskToDelete) throws TaskNotFoundException;
+    
     /** Adds the given task */
     void addTask(Task task) throws UniqueTaskList.DuplicateTaskException;
 
@@ -42,7 +44,7 @@ public interface Model {
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
     
-    ObservableList<ReadOnlyTask> getFilteredMarkedTaskList();
+    UnmodifiableObservableList<ReadOnlyTask> getFilteredMarkedTaskList();
 
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAll();
@@ -55,6 +57,8 @@ public interface Model {
      * @throws DuplicateTaskException */
 	void markTask(ReadOnlyTask taskToMark) throws TaskNotFoundException, DuplicateTaskException;
   //@@author	
+
+	
 	
 
 

@@ -178,8 +178,31 @@ public class TaskManager implements ReadOnlyTaskManager {
             throw new UniqueTaskList.TaskNotFoundException();
         }
     }
+    
+    //@@author A0127720M
+    
+    public boolean removeMarkedTask(ReadOnlyTask target) throws TaskNotFoundException {
+    	if (markedTasks.remove(target)) {
+            clearRedoMarkedArrayList();
+            addDuplicateMarkedListInUndo();
+            return true;
+        } else {
+            throw new UniqueTaskList.TaskNotFoundException();
+        }
+	}
+    //@@author
 
-    public boolean editTask(ReadOnlyTask key, Task newTask) throws UniqueTaskList.TaskNotFoundException {
+    private void addDuplicateMarkedListInUndo() {
+    	this.tasks.saveCurrentTaskList();
+		
+	}
+
+	private void clearRedoMarkedArrayList() {
+		this.tasks.clearRedoList();
+		
+	}
+
+	public boolean editTask(ReadOnlyTask key, Task newTask) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.edit(key, newTask)) {
             clearRedoArrayList();
             addDuplicateListInUndo();
@@ -257,4 +280,6 @@ public class TaskManager implements ReadOnlyTaskManager {
     public static ReadOnlyTaskManager getEmptyMarkedTaskManager(ReadOnlyTaskManager taskManager) {
         return new TaskManager(taskManager.getUniqueTaskList(), taskManager.getUniqueTagList(), new UniqueMarkedTaskList());
     }
+
+	
 }
