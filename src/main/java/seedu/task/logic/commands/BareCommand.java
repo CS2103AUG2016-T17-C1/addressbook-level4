@@ -22,7 +22,7 @@ import seedu.task.model.task.Task;
 import seedu.task.model.task.TaskName;
 import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
-//@@author A0142360U
+//@@author A0142360U - reused
 public class BareCommand extends Command {
 
     public static final String COMMAND_WORD = "bare";
@@ -87,8 +87,6 @@ public class BareCommand extends Command {
                 this.toBare.setImportance(taskToBare.getImportance());
             }
             
-            //@@author
-      
             model.editTask(taskToBare, this.toBare);
 
         } catch (TaskNotFoundException pnfe) {
