@@ -15,7 +15,8 @@ public class FindCommand extends Command {
             + "the specified keywords and displays them as a list with index numbers. "
             + "Cannot contain punctuations.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " buy dim sum";
+            + "Example: " + COMMAND_WORD + " buy dim sum\n"
+            + "Hotkey: " + SHORTCUT;
 
     private final Set<String> keywords;
 

@@ -32,7 +32,8 @@ public class EditCommand extends Command {
     public static final String DEFAULT_DATE_STRING = "01012000";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": edits the task identified by the index number used in the last task listing.\n"
-            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n"
+            + "Hotkey: " + SHORTCUT;
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String DELETE_TASK_OBJECT_STRING = "-";
 

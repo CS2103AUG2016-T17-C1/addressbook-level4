@@ -30,10 +30,14 @@ import seedu.task.commons.events.ui.ShowHelpRequestEvent;
 public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
+    // @@author A0152952A
     public static final String SHORTCUT = "h";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
-            + "Example: " + COMMAND_WORD;
+			+ "With no parametres help will open the entire dialog box, otherwise it will give specific details of one command (i.e. add, edit).\n"
+            + "Example: " + COMMAND_WORD + "     OR     " + COMMAND_WORD + " " + AddCommand.COMMAND_WORD  + "\n" 
+            + "Hotkey: " + SHORTCUT;
+    // @@author
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
     private static final Pattern HELP_ARGS_FORMAT = Pattern.compile("(?<arguments>.*)");
@@ -67,6 +71,10 @@ public class HelpCommand extends Command {
 		case FindCommand.SHORTCUT:
 		case FindCommand.COMMAND_WORD:
 			return new CommandResult(FindCommand.MESSAGE_USAGE);
+			
+		case HelpCommand.SHORTCUT:
+		case HelpCommand.COMMAND_WORD:
+			return new CommandResult(HelpCommand.MESSAGE_USAGE);
 			
 		case ListCommand.SHORTCUT:
 		case ListCommand.COMMAND_WORD:

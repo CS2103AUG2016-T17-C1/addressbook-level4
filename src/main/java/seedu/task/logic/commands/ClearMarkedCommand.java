@@ -16,7 +16,9 @@ public class ClearMarkedCommand extends Command {
             + ": Clears all entries from the marked-tasks list.\n"
             + "Parameters: not required.\n"
             + "Example: " + COMMAND_WORD + "\n"
-    		+ "User will be asked to confirm 'clear' action before proceeding.";
+    		+ "User will be asked to confirm 'clear' action before proceeding. "
+    //@@author A0152952A
+    		+ "Can be reversed with undo command.\n";
     //@@author
     
     public static final String MESSAGE_SUCCESS = "Marked Tasks has been cleared!";

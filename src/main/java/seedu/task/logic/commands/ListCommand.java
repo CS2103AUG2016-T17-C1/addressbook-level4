@@ -13,8 +13,9 @@ public class ListCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays all the tasks.\n"
             + "Parameters: not required.\n"
-            + "Example: " + COMMAND_WORD;
+            + "Example: " + COMMAND_WORD
     //@@author
+    		+ "Hotkey:  " + SHORTCUT;
     
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 

@@ -14,7 +14,8 @@ public class MarkCommand extends Command {
     public static final String SHORTCUT = "m";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the selected task as completed and display the task in the 'completed task panel'.\n"
-            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n"
+            + "Hotkey: " + SHORTCUT;
     public static final String MESSAGE_SUCCESS = "Marks a given task: %1$s ";
 
     private int targetIndex;
