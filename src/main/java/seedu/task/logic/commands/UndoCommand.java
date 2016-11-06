@@ -14,6 +14,7 @@ public class UndoCommand extends Command {
     // @@author A0127720M
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reverts previous command. \n"
             + "Parameters: not required.\n" + "Example: " + COMMAND_WORD + "\n"
+    // @@author A0152952A 
             + "The Undo command can be executed as many times as needed to the point of application launch. "+ "Hotkey: " + SHORTCUT;
 
     // @@author A0142360U

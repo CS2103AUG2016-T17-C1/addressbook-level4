@@ -82,6 +82,11 @@ public class Parser {
         case AddCommand.SHORTCUT:
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
+            
+            
+        case BareCommand.SHORTCUT:
+        case BareCommand.COMMAND_WORD:
+            return prepareBare(arguments);
 
 
         case EditCommand.SHORTCUT:
@@ -210,6 +215,45 @@ public class Parser {
 
         return new DeleteCommand(index.get());
     }
+    
+    
+//    private Command prepareBare(String args) {
+//        Optional<Integer> index = parseIndex(args);
+//        if (!index.isPresent()) {
+//            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BareCommand.MESSAGE_USAGE));
+//        }
+//
+//        return new BareCommand(index.get());
+//    }
+    
+    private Command prepareBare(String args) {
+        final Matcher matcher = EDIT_TASK_DATA_ARGS_FORMAT.matcher(args.trim());
+        // Validate arg string format
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BareCommand.MESSAGE_USAGE));
+        }
+        try {
+            return new BareCommand(matcher.group("targetIndex"), matcher.group("taskName"), matcher.group("startDate"),
+                    matcher.group("startTime"), matcher.group("dueDate"), matcher.group("dueTime"),
+                    matcher.group("importance"), getTagsFromArgs(matcher.group("tagArguments")));
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
+        }
+    }
+    
+//    private Command prepareBare(String args) {
+//        Optional<Integer> index = parseIndex(args);
+//        if (!index.isPresent()) {
+//            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BareCommand.MESSAGE_USAGE));
+//        }
+//        try{
+//        return new BareCommand(index.get());
+//        }
+//        
+//        catch ( IllegalValueException ive){
+//        return new IncorrectCommand(ive.getMessage());
+//        }
+//    }
 
     /**
      * Parses arguments in the context of the delete task command.

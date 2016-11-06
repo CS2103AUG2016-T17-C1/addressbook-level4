@@ -14,6 +14,7 @@ public class RedoCommand extends Command {
     // @@author A0127720M
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reverse undo command. \n"
             + "Parameters: not required.\n"   + "Example: " + COMMAND_WORD + "\n"
+     // @@author A0152952A      
             + "The Redo command can only be executed after Undo. If any other command makes changes, Redo is no longer available."+ "Hotkey: " + SHORTCUT;
 
     // @@author A0142360U
