@@ -91,7 +91,7 @@ public class ModelManager extends ComponentManager implements Model {
         taskManager.removeTask(target);
         indicateTaskManagerChanged();
     }
-   
+
  // @@author A0127720M
     @Override
 	public void deleteMarkedTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException {
