@@ -83,7 +83,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     // @@author A0142360U
     /*
-     * Undo the previous action made by user. If there are no marked tasks to Undo, create an empty list of Tasks in the Marked Tasks Redo list.
+     * Undo the previous action made by user. If there are no marked tasks to Undo, create a duplicate of the current Marked Tasks in the Marked Tasks Redo list.
      * This is to prevent a premature Redo action of the marked tasks.
      */
     public boolean undo() {
@@ -178,9 +178,9 @@ public class TaskManager implements ReadOnlyTaskManager {
             throw new UniqueTaskList.TaskNotFoundException();
         }
     }
-    
+
     //@@author A0127720M
-    
+
     public boolean removeMarkedTask(ReadOnlyTask target) throws TaskNotFoundException {
     	if (markedTasks.remove(target)) {
             clearRedoMarkedArrayList();
@@ -194,12 +194,12 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     private void addDuplicateMarkedListInUndo() {
     	this.tasks.saveCurrentTaskList();
-		
+
 	}
 
 	private void clearRedoMarkedArrayList() {
 		this.tasks.clearRedoList();
-		
+
 	}
 
 	public boolean editTask(ReadOnlyTask key, Task newTask) throws UniqueTaskList.TaskNotFoundException {
@@ -281,5 +281,5 @@ public class TaskManager implements ReadOnlyTaskManager {
         return new TaskManager(taskManager.getUniqueTaskList(), taskManager.getUniqueTagList(), new UniqueMarkedTaskList());
     }
 
-	
+
 }
