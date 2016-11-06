@@ -43,7 +43,17 @@
                         <Label fx:id="dueTime" styleClass="cell_small_label" text="\$dueTime" />
                     </children>
                 </VBox>
-            <ImageView fitHeight="150.0" fitWidth="32.0" layoutX="100.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" translateX="65.0" translateY="-35.0" x="100.0" y="10.0" GridPane.columnIndex="1">
+            <ImageView fx:id="firstStar" fitHeight="23.0" fitWidth="24.0" layoutX="100.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" translateX="65.0" translateY="-35.0" x="100.0" y="10.0" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../images/importance.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="secondStar" fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="45.0" translateY="-35.0" x="100.0" y="10.0" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../images/importance.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="thirdStar" fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="25.0" translateY="-35.0" x="100.0" y="10.0" GridPane.columnIndex="1">
                <image>
                   <Image url="@../images/importance.png" />
                </image>

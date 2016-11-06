@@ -51,14 +51,12 @@ public class CheckTaskAttributes {
 
     public boolean checkIfDateHasPassed(String date) {
         LocalDate currentDate = LocalDateTime.now().toLocalDate();
-        System.out.println(currentDate + "date" + date);
         if (date.equals("")) {
             return false;
         }
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
             LocalDate dateToCompare = LocalDate.parse(date, formatter);
-            System.out.printf("%s%s%n", dateToCompare, "datetocompare");
 
             if (currentDate.isBefore(dateToCompare)) {
                 return false;
@@ -73,14 +71,12 @@ public class CheckTaskAttributes {
 
     public boolean checkIfDateTimeHasPassed(String dateTime) {
         LocalDateTime currentDateTime = LocalDateTime.now();
-        System.out.println(currentDateTime + "date" + dateTime);
         if (dateTime.equals("")) {
             return false;
         }
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
             LocalDateTime dateTimeToCompare = LocalDateTime.parse(dateTime, formatter);
-            System.out.printf("%s%s%n", dateTimeToCompare, "datetocompare");
 
             if (currentDateTime.isBefore(dateTimeToCompare)) {
                 return false;
