@@ -83,19 +83,6 @@ public class EditCommand extends Command {
             return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         
-        // @@author A0152952A
-    	if(toEdit.getDeadline().getDueDate().getDate()!="" 
-    			&& toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) > 0)
-    		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
-    	
-    	else if(toEdit.getDeadline().getDueDate().getDate()!="" 
-    			&& toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) == 0)
-    		if(toEdit.getDeadline().getDueTime().getTime()!="" 
-    		    && toEdit.getEventStart().getStartTime().getTime().compareTo(toEdit.getDeadline().getDueTime().getTime()) > 0)
-        		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
-    	        //return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
-    	// @@author
-
         ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
 
         if (taskToEdit.getDeadline().getDueDate().toString().isEmpty()
@@ -144,6 +131,19 @@ public class EditCommand extends Command {
             } else if (this.toEdit.getImportance().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setImportance(taskToEdit.getImportance());
             }
+            
+         // @@author A0152952A
+        	if(toEdit.getDeadline().getDueDate().getDate()!="" 
+        			&& toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) > 0)
+        		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
+        	
+        	else if(toEdit.getDeadline().getDueDate().getDate()!="" 
+        			&& toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) == 0)
+        		if(toEdit.getDeadline().getDueTime().getTime()!="" 
+        		    && toEdit.getEventStart().getStartTime().getTime().compareTo(toEdit.getDeadline().getDueTime().getTime()) > 0)
+            		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
+        	// @@author
+            
             model.editTask(taskToEdit, this.toEdit);
 
         } catch (TaskNotFoundException pnfe) {
