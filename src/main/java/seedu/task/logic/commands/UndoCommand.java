@@ -1,10 +1,9 @@
 package seedu.task.logic.commands;
 
-
 /**
  * Lists all tasks in the task manager to the user.
  */
-//@@author A0142360U
+// @@author A0142360U
 public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
@@ -12,8 +11,15 @@ public class UndoCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Your changes are undone.";
     public static final String MESSAGE_FAIL = "No more changes can be undone.";
 
+    // @@author A0127720M
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undoes previous command. \n"
+            + "Parameters: not required.\n" + "Example: " + COMMAND_WORD + "\n"
+            + "The Undo command can be executed as many times as needed to the point of application launch.";
 
-    public UndoCommand() {}
+    // @@author A0142360U
+
+    public UndoCommand() {
+    }
 
     @Override
     public CommandResult execute() {
