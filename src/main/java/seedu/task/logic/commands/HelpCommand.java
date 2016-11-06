@@ -51,32 +51,55 @@ public class HelpCommand extends Command {
 		}
 		
 		switch (matcher.group("arguments")) {
+		
+		case AddCommand.SHORTCUT:
 		case AddCommand.COMMAND_WORD:
 			return new CommandResult(AddCommand.MESSAGE_USAGE);
+			
+		case EditCommand.SHORTCUT:
 		case EditCommand.COMMAND_WORD:
 			return new CommandResult(EditCommand.MESSAGE_USAGE);
+			
+		case DeleteCommand.SHORTCUT:
 		case DeleteCommand.COMMAND_WORD:
 			return new CommandResult(DeleteCommand.MESSAGE_USAGE);
+			
+		case FindCommand.SHORTCUT:
 		case FindCommand.COMMAND_WORD:
 			return new CommandResult(FindCommand.MESSAGE_USAGE);
+			
+		case ListCommand.SHORTCUT:
 		case ListCommand.COMMAND_WORD:
 			return new CommandResult(ListCommand.MESSAGE_USAGE);
+			
+		case SelectCommand.SHORTCUT:
 		case SelectCommand.COMMAND_WORD:
 			return new CommandResult(SelectCommand.MESSAGE_USAGE);
+			
+		case MarkCommand.SHORTCUT:
 		case MarkCommand.COMMAND_WORD:
 			return new CommandResult(MarkCommand.MESSAGE_USAGE);
+			
 		case ClearMarkedCommand.COMMAND_WORD:
 			return new CommandResult(ClearMarkedCommand.MESSAGE_USAGE);
+			
+		case UndoCommand.SHORTCUT:
 		case UndoCommand.COMMAND_WORD:
 			return new CommandResult(UndoCommand.MESSAGE_USAGE);
+			
+		case RedoCommand.SHORTCUT:
 		case RedoCommand.COMMAND_WORD:
 			return new CommandResult(RedoCommand.MESSAGE_USAGE);
+			
 		case ChangeDirectoryCommand.COMMAND_WORD:
 			return new CommandResult(ChangeDirectoryCommand.MESSAGE_USAGE);
+			
 		case ClearCommand.COMMAND_WORD:
 			return new CommandResult(ClearCommand.MESSAGE_USAGE);
+			
 		case ExitCommand.COMMAND_WORD:
 			return new CommandResult(ExitCommand.MESSAGE_USAGE);
+			
 		default:
 			EventsCenter.getInstance().post(new ShowHelpRequestEvent());
 			return new CommandResult(SHOWING_HELP_MESSAGE);
