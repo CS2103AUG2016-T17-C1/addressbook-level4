@@ -33,7 +33,7 @@ public class BareCommand extends Command {
             + ": bares the task (identified by the index number) of its date(s) and time(s).\n"
             + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n"
             + "Hotkey: " + SHORTCUT;
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Bared Task: %1$s";
+    public static final String MESSAGE_BARED_TASK_SUCCESS = "Bared Task: %1$s";
     public static final String DELETE_TASK_OBJECT_STRING = "-";
 
     public final int targetIndex;
@@ -41,6 +41,9 @@ public class BareCommand extends Command {
 
   public BareCommand(String string, String taskName, String startDate, String startTime, String dueDate,
           String dueTime, String importance, Set<String> tags) throws IllegalValueException {
+	  
+	  //@@author A0152952A
+	  
       this.targetIndex = Integer.parseInt(string);
 
       final Set<Tag> tagSet = new HashSet<>();
@@ -62,15 +65,6 @@ public class BareCommand extends Command {
         
         ReadOnlyTask taskToBare = lastShownList.get(targetIndex - 1);
 
-//        if (taskToEdit.getDeadline().getDueDate().toString().isEmpty()
-//                && this.toEdit.getDeadline().getDueDate().toString().equals(DEFAULT_DATE_STRING)) {
-//            return new CommandResult(Deadline.MESSAGE_DEADLINE_CONSTRAINTS);
-//        }
-//
-//        if (taskToEdit.getEventStart().getStartDate().toString().isEmpty()
-//                && this.toEdit.getEventStart().getStartDate().toString().equals(DEFAULT_DATE_STRING)) {
-//            return new CommandResult(EventStart.MESSAGE_EVENT_START_CONSTRAINTS);
-//        }
         try {
             if (this.toBare.getName() == null) {
                 this.toBare.setName(taskToBare.getName());
@@ -92,6 +86,8 @@ public class BareCommand extends Command {
             } else if (this.toBare.getImportance().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toBare.setImportance(taskToBare.getImportance());
             }
+            
+            //@@author
       
             model.editTask(taskToBare, this.toBare);
 
@@ -100,7 +96,7 @@ public class BareCommand extends Command {
         }
         
         EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex - 1));
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, toBare));
+        return new CommandResult(String.format(MESSAGE_BARED_TASK_SUCCESS, toBare));
     }
 
 }

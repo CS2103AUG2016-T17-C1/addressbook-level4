@@ -60,7 +60,13 @@ public class HelpCommand extends Command {
 		case AddCommand.COMMAND_WORD:
 			return new CommandResult(AddCommand.MESSAGE_USAGE);
 			
+        // @@author A0152952A    
+        case BareCommand.SHORTCUT:
+        case BareCommand.COMMAND_WORD:
+            return new CommandResult(BareCommand.MESSAGE_USAGE);
+			
 		case EditCommand.SHORTCUT:
+		// @@author
 		case EditCommand.COMMAND_WORD:
 			return new CommandResult(EditCommand.MESSAGE_USAGE);
 			

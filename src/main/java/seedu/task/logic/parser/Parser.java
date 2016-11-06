@@ -83,13 +83,14 @@ public class Parser {
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
             
-            
+        // @@author A0152952A    
         case BareCommand.SHORTCUT:
         case BareCommand.COMMAND_WORD:
             return prepareBare(arguments);
 
 
         case EditCommand.SHORTCUT:
+        // @@author
         case EditCommand.COMMAND_WORD:
             return prepareEdit(arguments);
 
@@ -216,16 +217,7 @@ public class Parser {
         return new DeleteCommand(index.get());
     }
     
-    
-//    private Command prepareBare(String args) {
-//        Optional<Integer> index = parseIndex(args);
-//        if (!index.isPresent()) {
-//            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BareCommand.MESSAGE_USAGE));
-//        }
-//
-//        return new BareCommand(index.get());
-//    }
-    
+    // @@author A0152952A - reused
     private Command prepareBare(String args) {
         final Matcher matcher = EDIT_TASK_DATA_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
@@ -240,20 +232,7 @@ public class Parser {
             return new IncorrectCommand(ive.getMessage());
         }
     }
-    
-//    private Command prepareBare(String args) {
-//        Optional<Integer> index = parseIndex(args);
-//        if (!index.isPresent()) {
-//            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BareCommand.MESSAGE_USAGE));
-//        }
-//        try{
-//        return new BareCommand(index.get());
-//        }
-//        
-//        catch ( IllegalValueException ive){
-//        return new IncorrectCommand(ive.getMessage());
-//        }
-//    }
+    // @@author
 
     /**
      * Parses arguments in the context of the delete task command.
