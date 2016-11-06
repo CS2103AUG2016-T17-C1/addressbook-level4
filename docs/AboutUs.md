@@ -43,7 +43,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 <img src="images/TML.jpg" width="150"><br>
 **Role**: Developer <br>
 * Components in charge of: [Model](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#model-component)
-* Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/main/A0142360U.md)][[docs](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/docs/A0142360U.md)]
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/main/A0142360U.md)][[test code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/test/A0142360U.md)][[docs](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/docs/A0142360U.md)]
 * Contributions:
  * Initial refactoring of Application
  * Initial base documentation
