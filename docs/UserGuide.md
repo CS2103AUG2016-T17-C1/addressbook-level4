@@ -84,7 +84,7 @@ Examples:
 
 
 
-#### Baring a task: `add`
+#### Baring a task: `bare`
 Bares an existing task of its date(s) and time(s)<br>
 Format: `bare INDEX`<br>
 Shorthand: `b` 
