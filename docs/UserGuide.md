@@ -51,6 +51,7 @@ View help page for commands, including hotkeys. Or check how to use a specific c
 List of available [command word] for help: 
 - add 
 - delete
+- deleteM
 - bare
 - find
 - edit
