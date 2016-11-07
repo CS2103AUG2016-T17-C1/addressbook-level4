@@ -44,12 +44,29 @@
 
 6. Refer to the [Features](#features) section below for details of each command.<br>
 
-
+<!-- @@author A0127720M -->
 #### Viewing help : `help`
-View help for commands, including hotkeys.<br>
-Format: `help`<br>
-Shorthand: `h` 
+View help page for commands, including hotkeys. Or check how to use a specific command by typing the particular command word after 'help'.<br>
 
+List of available [command word] for help: 
+- add 
+- delete
+- bare
+- find
+- edit
+- list 
+- select
+- mark
+- undo
+- redo
+- cd
+- clear
+- clearM
+- exit
+
+Format: 1)`help` 2)`help [command word]`<br>
+Shorthand: `h` 
+<!-- @@author  -->
 
 #### Finding all tasks containing any keyword in their name: `find`
 Finds tasks whose names contain any of the given keywords.<br>
