@@ -4,6 +4,8 @@ package seedu.task.logic.commands;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.task.alerts.ClearCommandAlert;
+import seedu.task.alerts.HelpCommandAlert;
 import seedu.task.logic.commands.AddCommand;
 import seedu.task.logic.commands.ClearCommand;
 import seedu.task.logic.commands.Command;
@@ -120,7 +122,8 @@ public class HelpCommand extends Command {
 			return new CommandResult(DeleteMarkedCommand.MESSAGE_USAGE);
 			
 		default:
-			EventsCenter.getInstance().post(new ShowHelpRequestEvent());
+			//EventsCenter.getInstance().post(new ShowHelpRequestEvent());
+			HelpCommandAlert.helpCommand();
 			return new CommandResult(SHOWING_HELP_MESSAGE);
     }
    }

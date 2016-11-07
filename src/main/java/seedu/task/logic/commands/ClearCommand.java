@@ -18,7 +18,7 @@ public class ClearCommand extends Command {
             + "Example: " + COMMAND_WORD + "\n"
     		+ "User will be asked to confirm 'clear' action before proceeding. "
     //@@author A0152952A
-    		+ "Can be reversed with undo command.\n";
+    		+ "Can be reversed with undo command.";
     //@@author
     
     public static final String MESSAGE_SUCCESS = "Pending tasks have been cleared!";

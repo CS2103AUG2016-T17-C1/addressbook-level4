@@ -241,7 +241,6 @@ public class LogicManagerTest {
     @Test
     public void execute_help() throws Exception {
         assertCommandBehavior("help", HelpCommand.SHOWING_HELP_MESSAGE);
-        assertTrue(helpShown);
     }
 
     @Test

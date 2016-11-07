@@ -8,7 +8,7 @@ public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
     public static final String SHORTCUT = "r";
-    public static final String MESSAGE_SUCCESS = "Redo %1$s times.";
+    public static final String MESSAGE_SUCCESS = "Redo %1$s time(s).";
     public static final String MESSAGE_FAIL = "No more Undo command can be reversed.";
     public static final int DEFAULT_NUMBER_OF_REDO = 1;
 
