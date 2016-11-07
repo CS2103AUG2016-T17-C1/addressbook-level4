@@ -206,7 +206,7 @@ public class Parser {
     private Command prepareDeleteMarked(String args) {
         Optional<Integer[]> index = parseIndex(args);
         if (!index.isPresent()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMarkedCommand.MESSAGE_USAGE));
         }
 
         return new DeleteMarkedCommand(index.get());

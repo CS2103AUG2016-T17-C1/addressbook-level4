@@ -72,7 +72,7 @@ public class ShorthandRedoCommandTest extends TaskManagerGuiTest {
     //@@author A0152952A
     private void assertUndoSuccess() {
         commandBox.runCommand("u");
-        assertResultMessage("Your changes are undone.");
+        assertResultMessage("Undo 1 times.");
     }
 
     private void assertUndoFailure() {
@@ -82,7 +82,7 @@ public class ShorthandRedoCommandTest extends TaskManagerGuiTest {
 
     private void assertRedoSuccess() {
         commandBox.runCommand("r");
-        assertResultMessage("Your Undo command has been reversed.");
+        assertResultMessage("Redo 1 times.");
     }
 
     private void assertRedoFailure() {
