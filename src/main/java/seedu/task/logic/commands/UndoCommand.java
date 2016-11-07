@@ -15,11 +15,11 @@ public class UndoCommand extends Command {
     // @@author A0127720M
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reverts previous command. \n"
             + "Parameters: not required.\n" + "Example: " + COMMAND_WORD + "\n"
-    // @@author A0152952A 
+    // @@author A0152952A
             + "The Undo command can be executed as many times as needed to the point of application launch. "+ "Hotkey: " + SHORTCUT;
 
-    // @@author A0142360U
-    
+
+
     // @@author A0139284X
     public static int numberOfUndo;
 
@@ -30,11 +30,11 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute() {
         int numberOfUndoDone = 0;
-        
+
         for (int i=0; i<numberOfUndo; i++) {
             if (model.undoTask()) {
                 numberOfUndoDone++;
-            } else break;            
+            } else break;
         }
 
         if (numberOfUndoDone > 0)
