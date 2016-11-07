@@ -18,8 +18,6 @@ public class Task implements ReadOnlyTask {
 
     private boolean isTaskCompleted;
 
-    
-
 	private UniqueTagList tags;
 
     /**

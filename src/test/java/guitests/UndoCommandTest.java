@@ -7,6 +7,7 @@ import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 import seedu.task.commons.core.Messages;
 import seedu.task.logic.commands.AddCommand;
+import seedu.task.logic.commands.UndoCommand;
 
 import static org.junit.Assert.assertTrue;
 
@@ -67,12 +68,12 @@ public class UndoCommandTest extends TaskManagerGuiTest {
 
     private void assertUndoSuccess() {
         commandBox.runCommand("undo");
-        assertResultMessage("Your changes are undone.");
+        assertResultMessage(String.format(UndoCommand.MESSAGE_SUCCESS, 1));
     }
 
     private void assertUndoFailure() {
         commandBox.runCommand("undo");
-        assertResultMessage("No more changes can be undone.");
+        assertResultMessage(UndoCommand.MESSAGE_FAIL);
     }
 
 }
