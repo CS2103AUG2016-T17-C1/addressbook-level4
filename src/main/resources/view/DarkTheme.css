@@ -1,5 +1,5 @@
 .background {
-    -fx-background-color: derive(#44749D, 30%);		/* 1 */
+    -fx-background-color: derive(#0D7FE2, 10%);		/* 1 */
 }
 
 .label {
@@ -117,7 +117,7 @@
 }
 
 .status-bar {
-    -fx-background-color: derive(#C6D4E1, 20%);     /* bottom status bar */
+    -fx-background-color: derive(#FA9600, 15%);     /* bottom status bar */
     -fx-text-fill: black;
 }
 
@@ -162,7 +162,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#C6D4E1, 20%);     /* 2 menu */
+    -fx-background-color: derive(#0D7FE2, 20%);     /* 2 menu */
 }
 
 .menu-bar .label {
