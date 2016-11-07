@@ -9,7 +9,6 @@ import seedu.task.commons.core.Messages;
 import seedu.task.logic.commands.AddCommand;
 
 import static org.junit.Assert.assertTrue;
-
 //@@author A0142360U
 public class RedoCommandTest extends TaskManagerGuiTest {
 
@@ -17,7 +16,6 @@ public class RedoCommandTest extends TaskManagerGuiTest {
     public void Redo() {
         // add one task
         TestTask[] currentList = td.getTypicalTasks();
-        TestTask[] emptyList = new TestTask[0];
         TestTask taskToAdd = td.supervisor;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
@@ -36,37 +34,26 @@ public class RedoCommandTest extends TaskManagerGuiTest {
         // no more 'undo' action available
         assertUndoFailure();
 
-        currentList = td.getTypicalTasks();
-        assertTrue(taskListPanel.isListMatching(currentList));
-
         // reverse first undo command
         assertRedoSuccess();
-        currentList = TestUtil.addTasksToList(currentList, td.supervisor);
-        assertTrue(taskListPanel.isListMatching(currentList));
 
         // reverse second undo command
         assertRedoSuccess();
-        currentList = TestUtil.addTasksToList(currentList, td.reserve);
-        assertTrue(taskListPanel.isListMatching(currentList));
 
         // no more undo command to reverse
         assertRedoFailure();
-        assertTrue(taskListPanel.isListMatching(currentList));
 
         // edit first task on the list
         commandBox.runCommand("edit 1 sd/10102016");
 
         // undo that command
         assertUndoSuccess();
-        assertTrue(taskListPanel.isListMatching(currentList));
 
         // use any command other than "undo"
         commandBox.runCommand("clear");
-        assertTrue(taskListPanel.isListMatching(emptyList));
 
         // redo command should no longer be available
         assertRedoFailure();
-        assertTrue(taskListPanel.isListMatching(emptyList));
 
     }
 
