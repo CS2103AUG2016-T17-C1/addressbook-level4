@@ -7,6 +7,8 @@ import seedu.address.testutil.TestTask;
 import seedu.address.testutil.TestUtil;
 import seedu.task.commons.core.Messages;
 import seedu.task.logic.commands.AddCommand;
+import seedu.task.logic.commands.RedoCommand;
+import seedu.task.logic.commands.UndoCommand;
 
 import static org.junit.Assert.assertTrue;
 //@@author A0142360U - reused
@@ -72,22 +74,22 @@ public class ShorthandRedoCommandTest extends TaskManagerGuiTest {
     //@@author A0152952A
     private void assertUndoSuccess() {
         commandBox.runCommand("u");
-        assertResultMessage("Undo 1 times.");
+        assertResultMessage(String.format(UndoCommand.MESSAGE_SUCCESS, 1));
     }
 
     private void assertUndoFailure() {
         commandBox.runCommand("u");
-        assertResultMessage("No more changes can be undone.");
+        assertResultMessage(UndoCommand.MESSAGE_FAIL);
     }
 
     private void assertRedoSuccess() {
         commandBox.runCommand("r");
-        assertResultMessage("Redo 1 times.");
+        assertResultMessage(String.format(RedoCommand.MESSAGE_SUCCESS, 1));
     }
 
     private void assertRedoFailure() {
         commandBox.runCommand("r");
-        assertResultMessage("No more Undo command can be reversed.");
+        assertResultMessage(RedoCommand.MESSAGE_FAIL);
     }
     //@@author
 

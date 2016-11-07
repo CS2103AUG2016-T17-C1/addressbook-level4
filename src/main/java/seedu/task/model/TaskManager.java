@@ -42,12 +42,17 @@ public class TaskManager implements ReadOnlyTaskManager {
     /**
      * Tasks and Tags are copied into this task manager
      */
-    public TaskManager(UniqueTaskList persons, UniqueTagList tags, UniqueMarkedTaskList incompletedTasks) {
-        resetData(persons.getInternalList(), tags.getInternalList(), incompletedTasks.getInternalList());
+    public TaskManager(UniqueTaskList persons, UniqueTagList tags, UniqueMarkedTaskList completedTasks) {
+        resetData(persons.getInternalList(), tags.getInternalList(), completedTasks.getInternalList());
     }
 
-    public static ReadOnlyTaskManager getEmptyTaskManager() {
-        return new TaskManager();
+    //@@author A0139284X
+    /**
+     * Clear pending tasks
+     * Return task manager with completed tasks.
+     */
+    public static ReadOnlyTaskManager getEmptyTaskManager(ReadOnlyTaskManager TaskManager) {
+        return new TaskManager(new UniqueTaskList(), new UniqueTagList(), TaskManager.getUniqueMarkedList());
     }
 
     //// list overwrite operations

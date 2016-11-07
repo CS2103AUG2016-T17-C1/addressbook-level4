@@ -281,6 +281,7 @@ Priority | As a ... | I want to ... | So that I can...
 `*` | user | time myself when doing tasks | keep track of time taken for a task
 
 
+<!-- @@author A0139824X -->
 
 ## Appendix B : Use Cases
 
@@ -352,6 +353,7 @@ Use case resumes at step 1<br>
 1b1. To-Do-List reports that task is not present<br>
 <br>
 
+<!-- @@author -->
 ### Use Case: Mark task
 
 **MSS**
