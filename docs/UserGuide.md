@@ -238,10 +238,12 @@ Displays the task listing for that desired time frame.<br>
 Command | Format
 -------- | :--------
 Add | `add TASK d/DDMMYYYY t/HHMM i/*[*]... [t/TAG]...`
-Bare | `delete INDEX`
+Bare | `bare INDEX`
 Change Directory | `cd {STORAGE LOCATION}/`
 Clear | `clear`
+ClearM | `ClearM`
 Delete | `delete INDEX`
+DeleteM | `deleteM INDEX`
 Edit | `edit TASK d/DDMMYYYY t/HHMM i/*[*]... [t/TAG]...`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Help | `help`
