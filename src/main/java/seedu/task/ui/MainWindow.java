@@ -72,11 +72,11 @@ public class MainWindow extends UiPart {
     @FXML
     private AnchorPane statusbarPlaceholder;
     
-/*    
+    
 
     @FXML
     private TabPane tabPane;
-*/
+
     public MainWindow() {
         super();
     }
@@ -116,50 +116,7 @@ public class MainWindow extends UiPart {
 
         setAccelerators();
     }
-/*
-    // @@author A0139284X
-    *//**
-     * Cycle forward and backward through tabs using CTRL+TAB or CTRL+SHIFT+TAB
-     * 
-     *//*
 
-    public void changeTabs() {
-        KeyCombination combination = new KeyCodeCombination(KeyCode.TAB, KeyCodeCombination.CONTROL_DOWN,
-                KeyCodeCombination.SHIFT_ANY);
-
-        commandBox.getCommandTextField().setOnKeyPressed(event -> {
-            
-            int size = tabPane.getTabs().size();
-            
-            BehaviorSkinBase skin = (BehaviorSkinBase) tabPane.getSkin();
-            TabPaneBehavior tabPaneBehavior = (TabPaneBehavior) skin.getBehavior();
-
-            int selectedIndex = tabPane.getSelectionModel().getSelectedIndex();
-
-            if (combination.match(event)) {
-
-                if (!event.isShiftDown()) {
-                    if (selectedIndex < size - 1) {
-                        tabPaneBehavior.selectNextTab();
-                    } else {
-                        tabPaneBehavior.selectTab(tabPane.getTabs().get(0));
-                    }
-                } else {
-                    if (selectedIndex > 0) {
-                        tabPaneBehavior.selectPreviousTab();
-                    } else {
-                        tabPaneBehavior.selectTab(tabPane.getTabs().get(size - 1));
-                    }
-                }
-            }
-
-        });
-
-        scene.setOnKeyReleased(event -> {
-                commandBox.requestFocus();
-        });
-    }
-*/
     // @@author
     private void setAccelerators() {
         helpMenuItem.setAccelerator(KeyCombination.valueOf("F1"));
@@ -172,7 +129,6 @@ public class MainWindow extends UiPart {
         statusBarFooter = StatusBarFooter.load(primaryStage, getStatusbarPlaceholder(),
                 config.getTaskManagerFilePath());
         commandBox = CommandBox.load(primaryStage, getCommandBoxPlaceholder(), resultDisplay, logic);
-//        this.changeTabs();
     }
 
   //@@Shen Jiahui A0127720M
