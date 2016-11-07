@@ -1,76 +1,218 @@
-<?xml version="1.0" encoding="UTF-8"?>
+package seedu.task.ui;
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+import com.sun.javafx.scene.control.behavior.TabPaneBehavior;
+import com.sun.javafx.scene.control.skin.BehaviorSkinBase;
+import com.sun.javafx.scene.control.skin.TabPaneSkin;
 
-<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seedu.task.ui.MainWindow">
-   <stylesheets>
-      <URL value="@DarkTheme.css" />
-      <URL value="@Extensions.css" />
-   </stylesheets>
-   <children>
-      <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="65.0" prefWidth="692.0" styleClass="background">
-         <items>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" never forget" wrappingWidth="393.89601135253906">
-               <font>
-                  <Font name="Ikaros-Light" size="36.0" />
-               </font>
-            </Text>
-         </items>
-         <effect>
-            <ColorAdjust brightness="0.05" />
-         </effect>
-      </ToolBar>
-      <MenuBar VBox.vgrow="NEVER">
-         <menus>
-            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
-      <AnchorPane fx:id="commandBoxPlaceholder" styleClass="anchor-pane-with-border" VBox.vgrow="NEVER">
-         <padding>
-            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-         </padding>
-      </AnchorPane>
-       <AnchorPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="anchor-pane-with-border" VBox.vgrow="NEVER">
-           <padding>
-               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-           </padding>
-       </AnchorPane>
-      <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.4" maxHeight="1.7976931348623157E308" prefHeight="653.0" prefWidth="691.0">
-         <items>
-            <VBox fx:id="taskList" minWidth="340" prefWidth="340">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <children>
-                  <AnchorPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                  <AnchorPane fx:id="statusbarPlaceholder" />
-               </children>
-            </VBox>
-            <VBox fx:id="markedTaskList" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <AnchorPane fx:id="markedTaskListPanelPlaceholder" VBox.vgrow="ALWAYS">
-                     <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
-                     </padding>
-                  </AnchorPane>
-               </children>
-            </VBox>
-         </items>
-      </SplitPane>
-   </children>
-</VBox>
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import seedu.task.commons.core.Config;
+import seedu.task.commons.core.GuiSettings;
+import seedu.task.commons.events.ui.ExitAppRequestEvent;
+import seedu.task.logic.Logic;
+import seedu.task.model.UserPrefs;
+import seedu.task.model.task.ReadOnlyTask;
+
+/**
+ * The Main Window. Provides the basic application layout containing a menu bar
+ * and space where other JavaFX elements can be placed.
+ */
+public class MainWindow extends UiPart {
+
+    private static final String ICON = "/images/task_manager.png";
+    private static final String FXML = "MainWindow.fxml";
+    public static final int MIN_HEIGHT = 600;
+    public static final int MIN_WIDTH = 450;
+
+    private Logic logic;
+
+    // Independent Ui parts residing in this Ui container
+//    private BrowserPanel browserPanel;
+    private TaskListPanel taskListPanel;
+    private MarkedTaskListPanel markedTaskListPanel;
+    private ResultDisplay resultDisplay;
+    private StatusBarFooter statusBarFooter;
+    private CommandBox commandBox;
+    private Config config;
+    private UserPrefs userPrefs;
+
+    // Handles to elements of this Ui container
+    private VBox rootLayout;
+    private Scene scene;
+
+    private String taskManagerName;
+
+    @FXML
+    private AnchorPane markedTaskListPlaceholder;
+
+    @FXML
+    private AnchorPane commandBoxPlaceholder;
+
+    @FXML
+    private MenuItem helpMenuItem;
+
+    @FXML
+    private AnchorPane taskListPanelPlaceholder;
+    
+    @FXML
+    private AnchorPane markedTaskListPanelPlaceholder;
+
+    @FXML
+    private AnchorPane resultDisplayPlaceholder;
+
+    @FXML
+    private AnchorPane statusbarPlaceholder;
+    
+    
+
+    @FXML
+    private TabPane tabPane;
+
+    public MainWindow() {
+        super();
+    }
+
+    @Override
+    public void setNode(Node node) {
+        rootLayout = (VBox) node;
+    }
+
+    @Override
+    public String getFxmlPath() {
+        return FXML;
+    }
+
+    public static MainWindow load(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
+
+        MainWindow mainWindow = UiPartLoader.loadUiPart(primaryStage, new MainWindow());
+        mainWindow.configure(config.getAppTitle(), config.getTaskManagerName(), config, prefs, logic);
+        return mainWindow;
+    }
+
+    private void configure(String appTitle, String taskManagerName, Config config, UserPrefs prefs, Logic logic) {
+
+        // Set dependencies
+        this.logic = logic;
+        this.taskManagerName = taskManagerName;
+        this.config = config;
+        this.userPrefs = prefs;
+
+        // Configure the UI
+        setTitle(appTitle);
+        setIcon(ICON);
+        setWindowMinSize();
+        setWindowDefaultSize(prefs);
+        scene = new Scene(rootLayout);
+        primaryStage.setScene(scene);
+
+        setAccelerators();
+    }
+
+    // @@author
+    private void setAccelerators() {
+        helpMenuItem.setAccelerator(KeyCombination.valueOf("F1"));
+    }
+
+    void fillInnerParts() {
+        markedTaskListPanel = MarkedTaskListPanel.load(primaryStage, getMarkedTaskListPlaceholder(), logic.getFilteredMarkedTaskList());
+        taskListPanel = TaskListPanel.load(primaryStage, getTaskListPlaceholder(), logic.getFilteredTaskList());
+        resultDisplay = ResultDisplay.load(primaryStage, getResultDisplayPlaceholder());
+        statusBarFooter = StatusBarFooter.load(primaryStage, getStatusbarPlaceholder(),
+                config.getTaskManagerFilePath());
+        commandBox = CommandBox.load(primaryStage, getCommandBoxPlaceholder(), resultDisplay, logic);
+    }
+
+  //@@Shen Jiahui A0127720M
+    private AnchorPane getMarkedTaskListPlaceholder() {
+    	return this.markedTaskListPanelPlaceholder;
+	}
+  //@@Shen Jiahui
+	private AnchorPane getCommandBoxPlaceholder() {
+        return commandBoxPlaceholder;
+    }
+
+    private AnchorPane getStatusbarPlaceholder() {
+        return statusbarPlaceholder;
+    }
+
+    private AnchorPane getResultDisplayPlaceholder() {
+        return resultDisplayPlaceholder;
+    }
+
+    public AnchorPane getTaskListPlaceholder() {
+        return taskListPanelPlaceholder;
+    }
+
+    public void hide() {
+        primaryStage.hide();
+    }
+
+    private void setTitle(String appTitle) {
+        primaryStage.setTitle(appTitle);
+    }
+
+    /**
+     * Sets the default size based on user preferences.
+     */
+    protected void setWindowDefaultSize(UserPrefs prefs) {
+        primaryStage.setHeight(prefs.getGuiSettings().getWindowHeight());
+        primaryStage.setWidth(prefs.getGuiSettings().getWindowWidth());
+        if (prefs.getGuiSettings().getWindowCoordinates() != null) {
+            primaryStage.setX(prefs.getGuiSettings().getWindowCoordinates().getX());
+            primaryStage.setY(prefs.getGuiSettings().getWindowCoordinates().getY());
+        }
+    }
+
+    private void setWindowMinSize() {
+        primaryStage.setMinHeight(MIN_HEIGHT);
+        primaryStage.setMinWidth(MIN_WIDTH);
+    }
+
+    /**
+     * Returns the current size and the position of the main Window.
+     */
+    public GuiSettings getCurrentGuiSetting() {
+        return new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(), (int) primaryStage.getX(),
+                (int) primaryStage.getY());
+    }
+
+    @FXML
+    public void handleHelp() {
+        HelpWindow helpWindow = HelpWindow.load(primaryStage);
+        helpWindow.show();
+    }
+
+    public void show() {
+        primaryStage.show();
+    }
+
+    /**
+     * Closes the application.
+     */
+    @FXML
+    private void handleExit() {
+        raise(new ExitAppRequestEvent());
+    }
+
+    public TaskListPanel getTaskListPanel() {
+        return this.taskListPanel;
+    }
+
+//    public void loadTaskPage(ReadOnlyTask task) {
+//        browserPanel.loadTaskPage(task);
+//    }
+//
+//    public void releaseResources() {
+//        browserPanel.freeResources();
+//    }
+
+}
