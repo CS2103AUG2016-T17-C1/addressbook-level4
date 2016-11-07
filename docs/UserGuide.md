@@ -48,14 +48,14 @@
 #### Viewing help : `help`
 View help page for commands, including hotkeys. Or check how to use a specific command by typing the particular command word after 'help'.<br>
 
-List of available [command word] for help: 
-- add 
+List of available [command word] for help:
+- add
 - delete
 - deleteM
 - bare
 - find
 - edit
-- list 
+- list
 - select
 - mark
 - undo
@@ -66,13 +66,13 @@ List of available [command word] for help:
 - exit
 
 Format: 1)`help` 2)`help [command word]`<br>
-Shorthand: `h` 
+Shorthand: `h`
 <!-- @@author  -->
 
 #### Finding all tasks containing any keyword in their name: `find`
 Finds tasks whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`<br>
-Shorthand: `f` 
+Shorthand: `f`
 
 > * The search is not case sensitive. e.g `buy` will match `Buy`
 > * The order of the keywords does not matter. e.g. `Buy Bread` will match `Bread Buy`
@@ -92,7 +92,7 @@ Examples:
 #### Adding a task: `add`
 Adds a task to Never Forget<br>
 Format: `add TASK_NAME d/SCHEDULED_DATE e/SCHEDULED_END_TIME i/IMPORTANCE [t/TAG]...`<br>
-Shorthand: `a` 
+Shorthand: `a`
 
 > Tasks can have any number of tags (including 0)
 
@@ -105,7 +105,7 @@ Examples:
 #### Baring a task: `bare`
 Bares an existing task of its date(s) and time(s)<br>
 Format: `bare INDEX`<br>
-Shorthand: `b` 
+Shorthand: `b`
 
 > Tasks retain all the other details
 
@@ -117,12 +117,12 @@ Example:
 #### Editing a task: `edit`
 Edits a task currently held in Never Forget<br>
 Format: `edit INDEX d/SCHEDULED_DATE e/SCHEDULED_END_TIME i/IMPORTANCE [t/TAG]...`<br>
-Shorthand: `e` 
+Shorthand: `e`
 
 > Tasks can have any number of tags (including 0).<br>
 > Edit will remove an already existing tag if it specified again:`edit INDEX t/EXISTING_TAG` <br>
-> All tags of a specific entry can be cleared with the command format: `edit INDEX t/NONE`
-
+> All tags of a specific entry can be cleared with the command format: `edit INDEX t/NONE` <br> <br>
+> For tags, note that but editing the same tag name in the same task removes the tag itself (eg : first task contains tag [friends] and if "edit 1 t/friends" is entered, the 'friends' tag is removed. ) <br>
 Examples:
 * `edit 2 d/01012016 e/1700 i/***`
 * `edit 3 d/07102016 e/2030 i/* t/Budget t/Meal t/Friends`
@@ -132,7 +132,7 @@ Examples:
 #### Deleting a task : `delete`
 Deletes the specified task from the to-do list. Can be reversed with `undo` command.<br>
 Format: `delete INDEX`<br>
-Shorthand: `d` 
+Shorthand: `d`
 
 > Deletes the task at the specified `INDEX`.
   The index refers to the index number shown in the most recent listing.<br>
@@ -142,7 +142,7 @@ Shorthand: `d`
 #### Listing all of today's tasks : `list`
 Shows a list of all tasks today in Never Forget.<br>
 Format: `list`<br>
-Shorthand: `l` 
+Shorthand: `l`
 
 
 #### Selecting tasks : `select`
@@ -157,7 +157,7 @@ Examples:
 * `find Buy bread` <br>
   `select 1`<br>
   Selects the 1st task in the results of the `find` command.<br>
-  
+
 
 
 #### Clearing all entries : `clear`
@@ -175,28 +175,33 @@ Format: `exit`
 #### Marking an entry : `mark`
 Marks an entry as completed. <br>
 Format: `mark INDEX`<br>
-Shorthand: `m` 
+Shorthand: `m`
 
 
 
 #### Undo : `undo`
 Undo previous command. <br>
-The Undo command can be executed as many times as needed to the point of application launch.
+The Undo command can be executed as many times as needed to the point of application launch. Multiple Undo commands can also be done by keying in `undo [number of times]`. <br>
 Format: `undo`<br>
-Shorthand: `u` 
+Shorthand: `u` <br>
+Format: `undo 2` <br>
+Shorthand: `u 2`
 
 
 #### Redo : `redo`
 Reverse undo command. <br>
 The Redo command can only be executed immediately after one or more Undo commands.
-If any command other than Undo makes changes to the task list, the Redo command is no longer available until Undo is executed again.
+If any command other than Undo makes changes to the task list, the Redo command is no longer available until Undo is executed again. Multiple Undo commands can also be done by keying in `redo [number of times]`. <br>
 Format: `redo`<br>
-Shorthand: `r` 
+Shorthand: `r` <br>
+Format: `redo 2` <br>
+Shorthand: `r 2` <br>
 
 
-#### Change tasks storage directory : `cd`
+
+#### Change tasks storage directory : `cd` or `cdsave`
 Changes the storage location of the Task list for Never Forget <br>
-> *Users are given an option whether they would like to import their tasks to the new storage location. <br><br>
+> *Users are given an option whether they would like to import their tasks to the new storage location.<br> Use `cdsave` if they would like to import their tasks to the new storage location or use `cd` if not. <br><br>
 > *If they would not like to do so, the task manager will start from an empty task list in the new storage location.<br><br>
 > *The default location is at the 'data/' folder of where the Never Forget.jar is located.<br>
 
@@ -205,6 +210,9 @@ Note: Storage location has to be declared relative to the position of Never Forg
 Note: This action will cause Never Forget to terminate. Users will have to re-launch their application again.<br>
 Format: `cd {STORAGE LOCATION}/`<br>
 		 `cd data/`
+		 `cdsave {STORAGE LOCATION}/`<br>
+		 `cd data/data/`
+
 
 
 #### Saving the data
@@ -228,10 +236,11 @@ Displays the task listing for that desired time frame.<br>
 **Q**: How do I transfer my data to another Computer?<br>
 **A1**: Install the app in the other computer and overwrite the empty data file it creates with
        the file that contains the data of your previous to-do list folder.<br><br>
-**A2**: An alternate way would be to use the inbuilt storage transfer command `cd` and File Hosting services such as dropbox.<br>
-		Using the `cd` command, change the working directory of Never Forget & also select the option to transfer the tasks to a folder on dropbox.<br>
+**A2**: An alternate way would be to use the inbuilt storage transfer command `cd`,`cdsave` and File Hosting services such as dropbox.<br>
+		Using the `cdsave` command, change the working directory of Never Forget & also select the option to transfer the tasks to a folder on dropbox.<br>
 		From the other computer,use `cd` to change **_only_** the working directory of Never Forget to the same folder on dropbox.<br>
-		Lastly, if needed, change the working directory of Never Forget & also select the option to transfer the tasks to a _**local**_ folder.
+		Lastly, if needed, use the `cdsave` to change the working directory of Never Forget & import the tasks to a _**local**_ folder.
+
 
 ## Command Summary
 
