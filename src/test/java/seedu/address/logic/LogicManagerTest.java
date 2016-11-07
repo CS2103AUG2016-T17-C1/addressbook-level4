@@ -463,7 +463,7 @@ public class LogicManagerTest {
         model.addTask(toBeAdded);
 
         // execute command and verify result
-        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS), new TaskManager(),
+        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS, 1), new TaskManager(),
                 Collections.emptyList());
 
     }
@@ -489,7 +489,7 @@ public class LogicManagerTest {
         model.addTask(toBeAdded);
 
         // execute command and verify result
-        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS), expectedAB,
+        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS, 1), expectedAB,
                 expectedAB.getTaskList());
 
     }
@@ -509,7 +509,7 @@ public class LogicManagerTest {
         model.deleteTask(toBeDeleted);
 
         // execute command and verify result
-        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS), expectedAB,
+        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS, 1), expectedAB,
                 expectedAB.getTaskList());
 
     }
@@ -529,7 +529,7 @@ public class LogicManagerTest {
         model.resetData(new TaskManager());
 
         // execute command and verify result
-        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS), expectedAB,
+        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS, 1), expectedAB,
                 expectedAB.getTaskList());
 
     }
@@ -550,7 +550,7 @@ public class LogicManagerTest {
         model.editTask(toBeEdited, afterEdit);
 
         // execute command and verify result
-        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS), expectedAB,
+        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS, 1), expectedAB,
                 expectedAB.getTaskList());
         
     }

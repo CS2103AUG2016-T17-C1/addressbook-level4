@@ -31,28 +31,28 @@ public class BareCommand extends Command {
     public static final String EMPTY_TAG_OBJECT_STRING = "[]";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": bares the task (identified by the index number) of its date(s) and time(s).\n"
-            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n"
-            + "Hotkey: " + SHORTCUT;
+            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n" + "Hotkey: "
+            + SHORTCUT;
     public static final String MESSAGE_BARED_TASK_SUCCESS = "Bared Task: %1$s";
     public static final String DELETE_TASK_OBJECT_STRING = "-";
 
     public final int targetIndex;
     private final Task toBare;
 
-  public BareCommand(String string, String taskName, String startDate, String startTime, String dueDate,
-          String dueTime, String importance, Set<String> tags) throws IllegalValueException {
-	  
-	  //@@author A0152952A
-	  
-      this.targetIndex = Integer.parseInt(string);
+    public BareCommand(String string, String taskName, String startDate, String startTime, String dueDate,
+            String dueTime, String importance, Set<String> tags) throws IllegalValueException {
 
-      final Set<Tag> tagSet = new HashSet<>();
+        // @@author A0152952A
 
-      this.toBare = new Task(new EventStart(new Date(startDate), new Time(startTime)),
-              new Deadline(new Date(dueDate), new Time(dueTime)), new Importance(importance),
-              new UniqueTagList(tagSet));
-  }
-    
+        this.targetIndex = Integer.parseInt(string);
+
+        final Set<Tag> tagSet = new HashSet<>();
+
+        this.toBare = new Task(new EventStart(new Date(startDate), new Time(startTime)),
+                new Deadline(new Date(dueDate), new Time(dueTime)), new Importance(importance),
+                new UniqueTagList(tagSet));
+    }
+
     @Override
     public CommandResult execute() throws IllegalValueException {
 
@@ -62,23 +62,23 @@ public class BareCommand extends Command {
             indicateAttemptToExecuteIncorrectCommand();
             return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-        
+
         ReadOnlyTask taskToBare = lastShownList.get(targetIndex - 1);
 
         try {
             if (this.toBare.getName() == null) {
                 this.toBare.setName(taskToBare.getName());
             }
-            
+
             this.toBare.setDueDate(new Date(""));
             this.toBare.setDueTime(new Time(""));
             this.toBare.setStartDate(new Date(""));
             this.toBare.setStartTime(new Time(""));
-            
+
             if (this.toBare.getTags().getInternalList().toString().equals(EMPTY_TAG_OBJECT_STRING)) {
                 this.toBare.setTags(taskToBare.getTags());
             } else {
-            	taskToBare.getTags().mergeFrom(toBare.getTags());
+                taskToBare.getTags().mergeFrom(toBare.getTags());
                 this.toBare.setTags(taskToBare.getTags());
             }
             if (this.toBare.getImportance().toString().equals(DELETE_TASK_OBJECT_STRING)) {
@@ -86,13 +86,13 @@ public class BareCommand extends Command {
             } else if (this.toBare.getImportance().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toBare.setImportance(taskToBare.getImportance());
             }
-            
+
             model.editTask(taskToBare, this.toBare);
 
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target task cannot be missing";
         }
-        
+
         EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex - 1));
         return new CommandResult(String.format(MESSAGE_BARED_TASK_SUCCESS, toBare));
     }
