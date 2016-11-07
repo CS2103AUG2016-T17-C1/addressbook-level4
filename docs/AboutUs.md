@@ -21,9 +21,9 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 <img src="images/SJH.jpg" width="150"><br>
 **Role**: Developer <br>
 * Components in charge of: [GUI](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#ui-component)
-* Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/main/A0127720M.md)]
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/main/A0127720M.md)][[test code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/test/A0127720M.md)][[docs](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/docs/A0127720M.md)]
 * Contributions:
- * Implementation of [mark/complete feature](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#marking-an-entry--mark)
+ * Implementation of [mark/complete feature](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#marking-an-entry--mark)[delete marked task][display specific command usage]
  * Contributed to testing
 
 -----
