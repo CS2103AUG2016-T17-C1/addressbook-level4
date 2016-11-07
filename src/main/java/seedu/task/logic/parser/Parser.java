@@ -169,7 +169,7 @@ public class Parser {
         if (!index.isPresent()) {
             return new RedoCommand(RedoCommand.DEFAULT_NUMBER_OF_REDO);
         } else {
-            targetIndex = Integer.parseInt(index.get().toString());
+            targetIndex = Integer.parseInt(index.get()[FIRST_INDEX].toString());
             return new RedoCommand(targetIndex);
         }
     }
