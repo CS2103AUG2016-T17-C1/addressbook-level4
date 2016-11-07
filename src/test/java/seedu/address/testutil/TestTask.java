@@ -57,7 +57,19 @@ public class TestTask implements ReadOnlyTask {
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
-
+    
+    public String getShortAddCommand() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("a " + this.getName().fullName + " ");
+        sb.append("sd/" + this.getEventStart().getStartDate().toString() + " ");
+        sb.append("st/" + this.getEventStart().getStartTime().getTime() + " ");
+        sb.append("d/" + this.getDeadline().getDueDate().toString() + " ");
+        sb.append("e/" + this.getDeadline().getDueTime().getTime() + " ");
+        sb.append("i/" + this.getImportance().value + " ");
+        this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
+        return sb.toString();
+    }
+    
     @Override
     public Deadline getDeadline() {
         return this.deadline;

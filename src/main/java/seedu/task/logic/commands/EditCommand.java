@@ -128,6 +128,7 @@ public class EditCommand extends Command {
                 this.toEdit.setStartTime(taskToEdit.getEventStart().getStartTime());
             }
             
+            // @@author A0152952A
             final Set<Tag> noTagSet = new HashSet<>();
             noTagSet.add(new Tag("NONE"));
             
@@ -138,6 +139,7 @@ public class EditCommand extends Command {
                 taskToEdit.getTags().mergeFrom(toEdit.getTags());
                 this.toEdit.setTags(taskToEdit.getTags());
             }
+            // @@author
             
             
             if (this.toEdit.getImportance().toString().equals(DELETE_TASK_OBJECT_STRING)) {
