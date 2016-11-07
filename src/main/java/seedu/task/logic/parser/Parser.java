@@ -53,6 +53,10 @@ public class Parser {
                                                                                             // tags
     private static final String EMPTY_STRING = "";
 
+    private static final String TARGET_INDEX_SPLIT = " ";
+
+    private static final int FIRST_INDEX = 0;
+
     private Config config;
 
     public Parser() {
@@ -133,31 +137,80 @@ public class Parser {
 
         case UndoCommand.SHORTCUT:
         case UndoCommand.COMMAND_WORD:
-            return new UndoCommand();
+            return prepareUndo(arguments);
 
         case RedoCommand.SHORTCUT:
         case RedoCommand.COMMAND_WORD:
-            return new RedoCommand();
+            return prepareRedo(arguments);
 
         case ChangeDirectoryCommand.COMMAND_WORD:
             return prepareChangeDirectory(arguments, config, false);
         case ChangeDirectoryCommand.COMMAND_WORD_SAVE:
-            return prepareChangeDirectory(arguments, config , true);
+            return prepareChangeDirectory(arguments, config, true);
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-//@@author A0127720M
-    private Command prepareDeleteMarked(String args) {
-        Optional<Integer> index = parseIndex(args);
+
+    // @@author A0139284X
+
+    /**
+     * Parses arguments in the context of the redo task command.
+     *
+     * @param args
+     *            full command args string
+     * @return the prepared command
+     */
+
+    private Command prepareRedo(String args) {
+        Optional<Integer[]> index = parseIndex(args);
+        int targetIndex;
+        
         if (!index.isPresent()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMarkedCommand.MESSAGE_USAGE));
+            return new RedoCommand(RedoCommand.DEFAULT_NUMBER_OF_REDO);
+        } else {
+            targetIndex = Integer.parseInt(index.get().toString());
+            return new RedoCommand(targetIndex);
+        }
+    }
+
+    /**
+     * Parses arguments in the context of the undo command.
+     *
+     * @param args
+     *            full command args string
+     * @return the prepared command
+     */
+
+    private Command prepareUndo(String args) {
+        Optional<Integer[]> index = parseIndex(args);
+        int targetIndex;
+        
+        if (!index.isPresent()) {
+            return new UndoCommand(UndoCommand.DEFAULT_NUMBER_OF_UNDO);
+        } else {
+            targetIndex = Integer.parseInt(index.get()[FIRST_INDEX].toString());
+            return new UndoCommand(targetIndex);
+        }
+    }
+
+    // @@author A0127720M
+
+    /**
+     * Parses arguments in the context of the delete marked task command.
+     *
+     * @param args
+     *            full command args string
+     * @return the prepared command
+     */
+    private Command prepareDeleteMarked(String args) {
+        Optional<Integer[]> index = parseIndex(args);
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         return new DeleteMarkedCommand(index.get());
     }
-    
-//@@author
 
     /**
      * Parses arguments in the context of the add task command.
@@ -204,7 +257,7 @@ public class Parser {
      */
     private Command prepareDelete(String args) {
 
-        Optional<Integer> index = parseIndex(args);
+        Optional<Integer[]> index = parseIndex(args);
         if (!index.isPresent()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
@@ -275,43 +328,62 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareSelect(String args) {
-        Optional<Integer> index = parseIndex(args);
+        Optional<Integer[]> index = parseIndex(args);
+        int targetIndex;
+        
         if (!index.isPresent()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
         }
 
-        return new SelectCommand(index.get());
+        targetIndex = Integer.parseInt(index.get()[FIRST_INDEX].toString());
+        return new SelectCommand(targetIndex);
     }
 
     // @@author A0127720M
     private Command prepareMark(String arguments) {
-        Optional<Integer> index = parseIndex(arguments);
+        Optional<Integer[]> index = parseIndex(arguments);
         if (!index.isPresent()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
 
         return new MarkCommand(index.get());
     }
-    // @@author
+    
+    // @@author A0139284X
 
     /**
      * Returns the specified index in the {@code command} IF a positive unsigned
      * integer is given as the index. Returns an {@code Optional.empty()}
      * otherwise.
      */
-    private Optional<Integer> parseIndex(String command) {
+    private Optional<Integer[]> parseIndex(String command) {
         final Matcher matcher = TASK_INDEX_ARGS_FORMAT.matcher(command.trim());
+        String[] indexes;
+        Integer[] targetIndexes = null;
+        int counter = 0;
+        
         if (!matcher.matches()) {
             return Optional.empty();
         }
 
         String index = matcher.group("targetIndex");
-        if (!StringUtil.isUnsignedInteger(index)) {
-            return Optional.empty();
+        indexes = index.split(TARGET_INDEX_SPLIT);
+        
+        targetIndexes = new Integer[indexes.length];
+
+        for (String s : indexes) {
+            if (!StringUtil.isUnsignedInteger(s)) {
+                return Optional.empty();
+            }
+            targetIndexes[counter] = Integer.parseInt(s);
+            counter++;
         }
-        return Optional.of(Integer.parseInt(index));
+        
+        return Optional.of(targetIndexes);
 
     }
+    
+    // @@author
 
     /**
      * Parses arguments in the context of the find task command.
