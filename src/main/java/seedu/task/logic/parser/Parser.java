@@ -147,15 +147,17 @@ public class Parser {
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
+//@@author A0127720M
     private Command prepareDeleteMarked(String args) {
         Optional<Integer> index = parseIndex(args);
         if (!index.isPresent()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMarkedCommand.MESSAGE_USAGE));
         }
 
         return new DeleteMarkedCommand(index.get());
     }
+    
+//@@author
 
     /**
      * Parses arguments in the context of the add task command.
