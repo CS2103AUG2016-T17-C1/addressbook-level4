@@ -119,7 +119,7 @@ Format: `edit INDEX d/SCHEDULED_DATE e/SCHEDULED_END_TIME i/IMPORTANCE [t/TAG]..
 Shorthand: `e` 
 
 > Tasks can have any number of tags (including 0).<br>
-> Edit will remove an already existing tag if it specified again.<br>
+> Edit will remove an already existing tag if it specified again:`edit INDEX t/EXISTING_TAG` <br>
 > All tags of a specific entry can be cleared with the command format: `edit INDEX t/NONE`
 
 Examples:
