@@ -114,7 +114,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * Undo the previous edit made to the task list.
      * Returns false if restoredList is empty
      */
-    
+
     public boolean undo() {
 
         if (savedUndoList.size() >= 1) {

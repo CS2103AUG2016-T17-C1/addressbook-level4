@@ -9,12 +9,14 @@ import java.util.Set;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
+    public static final String SHORTCUT = "f";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
             + "the specified keywords and displays them as a list with index numbers. "
             + "Cannot contain punctuations.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " buy dim sum\n"
+            + "Hotkey: " + SHORTCUT;
 
     private final Set<String> keywords;
 

@@ -3,6 +3,9 @@ package seedu.task.logic.commands;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.task.commons.core.EventsCenter;
+import seedu.task.commons.core.Messages;
+import seedu.task.commons.events.ui.JumpToListRequestEvent;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
@@ -14,11 +17,13 @@ import seedu.task.model.task.*;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final String SHORTCUT = "a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
             + "Parameters: TASK_NAME [sd/START_DATE] [st/START_TIME] [d/END_DATE] [e/END_TIME] [*] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD
-            + " Buy milk d/15102016 e/1500 *";
+            + " Buy milk d/15102016 e/1500 *\n"
+    		+ "Hotkey: " + SHORTCUT;
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task is already Never Forgetten";
@@ -36,7 +41,7 @@ public class AddCommand extends Command {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        
+
         //@@author A0139284X
         //Data preprocessing
         if (taskName == EditCommand.DELETE_TASK_OBJECT_STRING) {
@@ -57,9 +62,9 @@ public class AddCommand extends Command {
         if (importance == EditCommand.DELETE_TASK_OBJECT_STRING) {
             importance = "";
         }
-        
+
         //@@author
-        
+
         this.toAdd = new Task(
                 new TaskName(taskName),
                 new EventStart(new Date(startDate), new Time(startTime)),
@@ -71,14 +76,29 @@ public class AddCommand extends Command {
 
     @Override
     public CommandResult execute() {
+
+    	// @@author A0152952A
+    	if(toAdd.getDeadline().getDueDate().getDate()!="" && toAdd.getEventStart().getStartDate().getDate().compareTo(toAdd.getDeadline().getDueDate().getDate()) > 0)
+    		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
+
+    	else if(toAdd.getDeadline().getDueDate().getDate()!="" && toAdd.getEventStart().getStartDate().getDate().compareTo(toAdd.getDeadline().getDueDate().getDate()) == 0 )
+    		if(toAdd.getDeadline().getDueTime().getTime()!="" && toAdd.getEventStart().getStartTime().getTime().compareTo(toAdd.getDeadline().getDueTime().getTime()) >0)
+        		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
+    	// @@author
+
         assert model != null;
         try {
             model.addTask(toAdd);
+
+            int targetIndex=model.getFilteredTaskList().size();
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex - 1));
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             return new CommandResult(MESSAGE_DUPLICATE_TASK);
         }
 
     }
+
+
 
 }

@@ -35,8 +35,16 @@ public class CommandBoxHandle extends GuiHandle{
         } // Give time for the command to take effect
     }
 
+
+    public boolean runCommandEnter() {
+        pressEnter();
+        guiRobot.sleep(100);
+        return true;
+    }
+
     public HelpWindowHandle runHelpCommand() {
         enterCommand("help");
+        pressEnter();
         pressEnter();
         return new HelpWindowHandle(guiRobot, primaryStage);
     }

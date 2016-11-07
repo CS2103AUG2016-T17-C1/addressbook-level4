@@ -92,6 +92,105 @@ public class LogicManagerTest {
         EventsCenter.clearSubscribers();
     }
 
+    //@@author A0139284X
+    
+    @Test
+    public void execute_undoAtStartOfApplication() throws Exception {
+        assertCommandBehavior(UndoCommand.COMMAND_WORD, UndoCommand.MESSAGE_FAIL);
+    }
+    
+    @Test
+    public void execute_undo_multipleUndoAtStartOfApplication() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        model.addTask(helper.generateTask(1));
+        model.addTask(helper.generateTask(2));
+        model.addTask(helper.generateTask(3));
+        
+        assertCommandBehavior(UndoCommand.COMMAND_WORD + " 4", String.format(UndoCommand.MESSAGE_SUCCESS, 3));
+    }
+    
+    @Test
+    public void execute_help_addCommand() throws Exception {
+        assertCommandBehavior("help " + AddCommand.COMMAND_WORD, AddCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_editCommand() throws Exception {
+        assertCommandBehavior("help " + EditCommand.COMMAND_WORD, EditCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_deleteCommand() throws Exception {
+        assertCommandBehavior("help " + DeleteCommand.COMMAND_WORD, DeleteCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_deleteMarkedCommand() throws Exception {
+        assertCommandBehavior("help " + DeleteMarkedCommand.COMMAND_WORD, DeleteMarkedCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_markCommand() throws Exception {
+        assertCommandBehavior("help " + MarkCommand.COMMAND_WORD, MarkCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_undoCommand() throws Exception {
+        assertCommandBehavior("help " + UndoCommand.COMMAND_WORD, UndoCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_redoCommand() throws Exception {
+        assertCommandBehavior("help " + RedoCommand.COMMAND_WORD, RedoCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_selectCommand() throws Exception {
+        assertCommandBehavior("help " + SelectCommand.COMMAND_WORD, SelectCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_clearCommand() throws Exception {
+        assertCommandBehavior("help " + ClearCommand.COMMAND_WORD, ClearCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_clearMarkedCommand() throws Exception {
+        assertCommandBehavior("help " + ClearMarkedCommand.COMMAND_WORD, ClearMarkedCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_findCommand() throws Exception {
+        assertCommandBehavior("help " + FindCommand.COMMAND_WORD, FindCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_listCommand() throws Exception {
+        assertCommandBehavior("help " + ListCommand.COMMAND_WORD, ListCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_exitCommand() throws Exception {
+        assertCommandBehavior("help " + ExitCommand.COMMAND_WORD, ExitCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_helpCommand() throws Exception {
+        assertCommandBehavior("help " + HelpCommand.COMMAND_WORD, HelpCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_bareCommand() throws Exception {
+        assertCommandBehavior("help " + BareCommand.COMMAND_WORD, BareCommand.MESSAGE_USAGE);
+    }
+    
+    @Test
+    public void execute_help_changeDirectoryCommand() throws Exception {
+        assertCommandBehavior("help " + ChangeDirectoryCommand.COMMAND_WORD, ChangeDirectoryCommand.MESSAGE_USAGE);
+    }
+    
+    //@@author
+    
     @Test
     public void execute_invalid() throws Exception {
         String invalidCommand = "       ";
@@ -142,7 +241,6 @@ public class LogicManagerTest {
     @Test
     public void execute_help() throws Exception {
         assertCommandBehavior("help", HelpCommand.SHOWING_HELP_MESSAGE);
-        assertTrue(helpShown);
     }
 
     @Test
@@ -463,7 +561,7 @@ public class LogicManagerTest {
         model.addTask(toBeAdded);
 
         // execute command and verify result
-        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS), new TaskManager(),
+        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS, 1), new TaskManager(),
                 Collections.emptyList());
 
     }
@@ -489,7 +587,7 @@ public class LogicManagerTest {
         model.addTask(toBeAdded);
 
         // execute command and verify result
-        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS), expectedAB,
+        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS, 1), expectedAB,
                 expectedAB.getTaskList());
 
     }
@@ -509,7 +607,7 @@ public class LogicManagerTest {
         model.deleteTask(toBeDeleted);
 
         // execute command and verify result
-        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS), expectedAB,
+        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS, 1), expectedAB,
                 expectedAB.getTaskList());
 
     }
@@ -529,7 +627,7 @@ public class LogicManagerTest {
         model.resetData(new TaskManager());
 
         // execute command and verify result
-        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS), expectedAB,
+        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS, 1), expectedAB,
                 expectedAB.getTaskList());
 
     }
@@ -550,7 +648,7 @@ public class LogicManagerTest {
         model.editTask(toBeEdited, afterEdit);
 
         // execute command and verify result
-        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS), expectedAB,
+        assertCommandBehavior(UndoCommand.COMMAND_WORD, String.format(UndoCommand.MESSAGE_SUCCESS, 1), expectedAB,
                 expectedAB.getTaskList());
         
     }

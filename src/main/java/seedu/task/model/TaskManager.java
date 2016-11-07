@@ -42,12 +42,17 @@ public class TaskManager implements ReadOnlyTaskManager {
     /**
      * Tasks and Tags are copied into this task manager
      */
-    public TaskManager(UniqueTaskList persons, UniqueTagList tags, UniqueMarkedTaskList incompletedTasks) {
-        resetData(persons.getInternalList(), tags.getInternalList(), incompletedTasks.getInternalList());
+    public TaskManager(UniqueTaskList persons, UniqueTagList tags, UniqueMarkedTaskList completedTasks) {
+        resetData(persons.getInternalList(), tags.getInternalList(), completedTasks.getInternalList());
     }
 
-    public static ReadOnlyTaskManager getEmptyTaskManager() {
-        return new TaskManager();
+    //@@author A0139284X
+    /**
+     * Clear pending tasks
+     * Return task manager with completed tasks.
+     */
+    public static ReadOnlyTaskManager getEmptyTaskManager(ReadOnlyTaskManager TaskManager) {
+        return new TaskManager(new UniqueTaskList(), new UniqueTagList(), TaskManager.getUniqueMarkedList());
     }
 
     //// list overwrite operations
@@ -83,7 +88,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     // @@author A0142360U
     /*
-     * Undo the previous action made by user. If there are no marked tasks to Undo, create an empty list of Tasks in the Marked Tasks Redo list.
+     * Undo the previous action made by user. If there are no marked tasks to Undo, create a duplicate of the current Marked Tasks in the Marked Tasks Redo list.
      * This is to prevent a premature Redo action of the marked tasks.
      */
     public boolean undo() {
@@ -105,11 +110,13 @@ public class TaskManager implements ReadOnlyTaskManager {
         this.tasks.saveCurrentTaskList();
         this.markedTasks.saveCurrentTaskList();
         resetData(newData.getTaskList(), newData.getTagList(), newData.getMarkedTaskList());
+        clearRedoArrayList();
 
     }
 
     public void clearRedoArrayList() {
         this.markedTasks.clearMarkedRedoList();
+        this.tasks.clearRedoList();
     }
 
     /*
@@ -177,7 +184,30 @@ public class TaskManager implements ReadOnlyTaskManager {
         }
     }
 
-    public boolean editTask(ReadOnlyTask key, Task newTask) throws UniqueTaskList.TaskNotFoundException {
+    //@@author A0127720M
+
+    public boolean removeMarkedTask(ReadOnlyTask target) throws TaskNotFoundException {
+    	if (markedTasks.remove(target)) {
+            clearRedoMarkedArrayList();
+            addDuplicateMarkedListInUndo();
+            return true;
+        } else {
+            throw new UniqueTaskList.TaskNotFoundException();
+        }
+	}
+    //@@author
+
+    private void addDuplicateMarkedListInUndo() {
+    	this.tasks.saveCurrentTaskList();
+
+	}
+
+	private void clearRedoMarkedArrayList() {
+		this.tasks.clearRedoList();
+
+	}
+
+	public boolean editTask(ReadOnlyTask key, Task newTask) throws UniqueTaskList.TaskNotFoundException {
         if (tasks.edit(key, newTask)) {
             clearRedoArrayList();
             addDuplicateListInUndo();
@@ -251,8 +281,10 @@ public class TaskManager implements ReadOnlyTaskManager {
     }
 
     //@@author A0139284X
-    
+
     public static ReadOnlyTaskManager getEmptyMarkedTaskManager(ReadOnlyTaskManager taskManager) {
         return new TaskManager(taskManager.getUniqueTaskList(), taskManager.getUniqueTagList(), new UniqueMarkedTaskList());
     }
+
+
 }

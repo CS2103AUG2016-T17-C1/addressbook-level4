@@ -1,10 +1,14 @@
 package seedu.task.logic.commands;
 
+import static seedu.task.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.task.commons.core.EventsCenter;
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.UnmodifiableObservableList;
+import seedu.task.commons.events.ui.JumpToListRequestEvent;
 import seedu.task.commons.exceptions.IllegalValueException;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.tag.UniqueTagList;
@@ -20,16 +24,21 @@ import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 //@@author A0142360U
 public class EditCommand extends Command {
-
+	
     public static final String COMMAND_WORD = "edit";
+    public static final String SHORTCUT = "e";
     public static final String EMPTY_TASK_OBJECT_STRING = "";
     public static final String EMPTY_TAG_OBJECT_STRING = "[]";
     public static final String DEFAULT_DATE_STRING = "01012000";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": edits the task identified by the index number used in the last task listing.\n"
-            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n"
+            + "Hotkey: " + SHORTCUT;
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String DELETE_TASK_OBJECT_STRING = "-";
+    public static final String DELETE_TASK_TAGS = "no";
+    
+    
 
     public final int targetIndex;
     private final Task toEdit;
@@ -54,6 +63,7 @@ public class EditCommand extends Command {
         } else if (startDate != null && startDate.equals(DELETE_TASK_OBJECT_STRING)) {
             startTime = DELETE_TASK_OBJECT_STRING;
         }
+        
 
         if (taskName == null) {
             this.toEdit = new Task(new EventStart(new Date(startDate), new Time(startTime)),
@@ -67,6 +77,8 @@ public class EditCommand extends Command {
                     new UniqueTagList(tagSet));
         }
     }
+    
+
 
     @Override
     public CommandResult execute() throws IllegalValueException {
@@ -77,7 +89,7 @@ public class EditCommand extends Command {
             indicateAttemptToExecuteIncorrectCommand();
             return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-
+        
         ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
 
         if (taskToEdit.getDeadline().getDueDate().toString().isEmpty()
@@ -115,23 +127,44 @@ public class EditCommand extends Command {
             } else if (this.toEdit.getEventStart().getStartTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setStartTime(taskToEdit.getEventStart().getStartTime());
             }
-            if (this.toEdit.getTags().getInternalList().toString().equals(EMPTY_TAG_OBJECT_STRING)) {
-                this.toEdit.setTags(taskToEdit.getTags());
+            
+            // @@author A0152952A
+            // check for NONE keyword (used to delete tags)
+            final Set<Tag> noTagSet = new HashSet<>();
+            noTagSet.add(new Tag("NONE"));
+            
+            if (this.toEdit.getTags().toSet().containsAll(noTagSet)) {
+            	this.toEdit.getTags().getInternalList().clear();
+                this.toEdit.setTags(toEdit.getTags());
             } else {
-                taskToEdit.getTags().mergeFrom(toEdit.getTags());
-                this.toEdit.setTags(taskToEdit.getTags());
+            	this.toEdit.getTags().mergeFrom(taskToEdit.getTags());
             }
+            // @@author
+            
+            
             if (this.toEdit.getImportance().toString().equals(DELETE_TASK_OBJECT_STRING)) {
                 this.toEdit.setImportance(new Importance(""));
             } else if (this.toEdit.getImportance().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setImportance(taskToEdit.getImportance());
             }
+            
+            // @@author A0152952A
+            // check if the end date & time is/are earlier than the start date & time
+        	if(toEdit.getDeadline().getDueDate().getDate().isEmpty()==false && toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) > 0)
+        		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
+
+        	else if(toEdit.getDeadline().getDueDate().getDate().isEmpty()==false && toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) == 0 )
+        		if(toEdit.getDeadline().getDueTime().getTime()!="" && toEdit.getEventStart().getStartTime().getTime().compareTo(toEdit.getDeadline().getDueTime().getTime()) > 0)
+            		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
+        	// @@author
+        	
             model.editTask(taskToEdit, this.toEdit);
 
         } catch (TaskNotFoundException pnfe) {
             assert false : "The target task cannot be missing";
         }
-
+        
+        EventsCenter.getInstance().post(new JumpToListRequestEvent(targetIndex - 1));
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, toEdit));
     }
 

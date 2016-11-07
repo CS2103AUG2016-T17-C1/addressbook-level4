@@ -2,6 +2,8 @@ package guitests;
 
 import org.junit.Test;
 
+import seedu.task.logic.commands.ClearCommand;
+
 import static org.junit.Assert.assertTrue;
 
 public class ClearCommandTest extends TaskManagerGuiTest {
@@ -14,8 +16,8 @@ public class ClearCommandTest extends TaskManagerGuiTest {
         assertClearCommandSuccess();
 
         //verify other commands can work after a clear command
-        commandBox.runCommand(td.hoon.getAddCommand());
-        assertTrue(taskListPanel.isListMatching(td.hoon));
+        commandBox.runCommand(td.supervisor.getAddCommand());
+        assertTrue(taskListPanel.isListMatching(td.supervisor));
         commandBox.runCommand("delete 1");
         assertListSize(0);
 
@@ -26,6 +28,6 @@ public class ClearCommandTest extends TaskManagerGuiTest {
     private void assertClearCommandSuccess() {
         commandBox.runCommand("clear");
         assertListSize(0);
-        assertResultMessage("Task Manager has been cleared!");
+        assertResultMessage(ClearCommand.MESSAGE_SUCCESS);
     }
 }

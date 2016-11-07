@@ -1,7 +1,6 @@
 package seedu.task.model.task;
 
 import seedu.task.commons.exceptions.IllegalValueException;
-
 /**
  * Represents a Task's phone number in the task manager. Guarantees: immutable;
  * is valid as declared in {@link #isValidDate(String)}
@@ -44,12 +43,12 @@ public class Date {
 
     // @@author A0139284X
     /**
-     * 
+     *
      * @param date
      * @return true if date is in DDMMYYYY format
      */
-    
-    
+
+
     private boolean isValidDateFormat(String date) {
         return date.matches(INTEGER);
     }
@@ -79,7 +78,7 @@ public class Date {
         int year = Integer.parseInt(date);
         return ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0));
     }
-    
+
     //@@author
 
     @Override
@@ -102,13 +101,13 @@ public class Date {
     public String getDate() {
         return date;
     }
-    
+
     //@@author A0139284X
     /**
-     * 
+     *
      * @return true if Date is null or empty
      */
-    
+
     public boolean isProvided() {
         return !(this.getDate().isEmpty());
     }

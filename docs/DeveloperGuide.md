@@ -281,6 +281,7 @@ Priority | As a ... | I want to ... | So that I can...
 `*` | user | time myself when doing tasks | keep track of time taken for a task
 
 
+<!-- @@author A0139824X -->
 
 ## Appendix B : Use Cases
 
@@ -352,75 +353,7 @@ Use case resumes at step 1<br>
 1b1. To-Do-List reports that task is not present<br>
 <br>
 
-
-### Use Case: Help command
-
-**MSSS**
-
-1. User enters help command
-2. To-Do-List displays the required help<br>
-<br>
------Use case ends-----
-
-
-**Extensions**
-
-1a. Given input is invalid<br>
-1a1. To-Do-List shows an error message and an input example<br>
-Use case resumes at step 1<br>
-<br>
-
-Note: all subsequent add task use cases are subsets of the first add task use case
-
-
-<br>
-### Use Case: Add task with deadline
-
-**MSS**
-
-1. User enters task to be added and specifies the deadline
-2. To-Do-List adds task with deadline
-3. To-Do-List shows task is added<br>
-<br>
------Use case ends-----
-
-
-**Extensions**
-
-1a. Given date input is invalid<br>
-1a1. To-Do-List shows an error message and an input example<br>
-1a2. User enters deadline<br>
-Use case repeats 1a until user enters a valid deadline or chooses to add task without deadline<br>
-Use case resumes at step 2<br>
-<br>
-
-
-### Use Case: Add task with time allocated
-
-**MSS**
-
-1. User enters task to be added and specifies its given time
-2. To-Do-List adds task with allocated time
-
-
-### Use Case: Select task
-
-**MSS**
-
-1. User enters index of task to be selected
-2. To-Do-List selects task
-3. To-Do-List highlights the selected task<br>
-<br>
------Use case ends-----
-
-
-**Extensions**
-
-1a. Given index is invalid<br>
-1a1. To-Do-List shows an error message<br>
-Use case resumes at step 1<br>
-
-
+<!-- @@author -->
 ### Use Case: Mark task
 
 **MSS**
@@ -441,6 +374,106 @@ Use case resumes at step 1<br>
 1b. Task has already been marked<br>
 1b1. To-Do-List reports that task is already marked<br>
 <br>
+
+
+<!-- @@author A0127720M -->
+### Use Case: Help command
+
+**MSSS**
+
+1. User enters help command
+2. To-Do-List displays the help web page<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. Given input is invalid<br>
+1a1. To-Do-List shows an error message<br>
+Use case resumes at step 1<br>
+<br>
+
+
+### Use Case: Help command with a specific command word
+
+**MSSS**
+
+1. User enters help command followed by a specific command word
+2. To-Do-List displays the help web page<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. Given input is invalid<br>
+1a1. To-Do-List does not display the help details for the required command word<br>
+Use case resumes at step 2<br>
+<br>
+
+
+### Use Case: Clear marked tasks
+
+**MSS**
+
+1. User enters clear tasks command
+2. To-Do-List asks user for confirmation
+3. To-Do-List clears all marked tasks
+4. To-Do-List no longer shows any marked tasks<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. User does not give confirmation<br>
+1a1. To-Do-List does not erase tasks<br>
+<br>
+
+1b. There are no tasks present<br>
+1b1. To-Do-List reports that no tasks are present<br>
+<br>
+
+### Use Case: Delete marked task
+
+**MSS**
+
+1. User enters marked task to be deleted
+2. To-Do-List deletes task
+3. To-Do-List no longer shows the specific marked task<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. Given input is invalid<br>
+1a1. To-Do-List shows an error message and an input example<br>
+Use case resumes at step 1<br>
+
+1b. Task has not been marked before<br>
+1b1. To-Do-List reports that the marked task is not present<br>
+<br>
+<!-- @@author  -->
+
+
+### Use Case: Select task
+
+**MSS**
+
+1. User enters index of task to be selected
+2. To-Do-List selects task
+3. To-Do-List highlights the selected task<br>
+<br>
+-----Use case ends-----
+
+
+**Extensions**
+
+1a. Given index is invalid<br>
+1a1. To-Do-List shows an error message<br>
+Use case resumes at step 1<br>
 
 
 ### Use Case: Undo command
@@ -484,28 +517,6 @@ Use case resumes at step 1<br>
 
 1b. Another command has been issued after last undo<br>
 1b1. To-Do-List reports that redo command is not available<br>
-<br>
-
-
-### Use Case: Delete task
-
-**MSS**
-
-1. User enters task to be deleted
-2. To-Do-List deletes task
-3. To-Do-List no longer shows task<br>
-<br>
------Use case ends-----
-
-
-**Extensions**
-
-1a. Given input is invalid<br>
-1a1. To-Do-List shows an error message and an input example<br>
-Use case resumes at step 1<br>
-
-1b. Task has not been added before<br>
-1b1. To-Do-List reports that task is not present<br>
 <br>
 
 
@@ -565,24 +576,6 @@ Use case resumes at step 1<br>
 
 1c. There are no tasks present containing the search string(s)<br>
 1c1. To-Do-List reports that no such tasks are present<br>
-<br>
-
-
-### Use Case: Help command
-
-**MSSS**
-
-1. User enters help command
-2. To-Do-List displays the required help<br>
-<br>
------Use case ends-----
-
-
-**Extensions**
-
-1a. Given input is invalid<br>
-1a1. To-Do-List shows an error message and an input example<br>
-Use case resumes at step 1<br>
 <br>
 
 Note: all subsequent add task use cases are subsets of the first add task use case

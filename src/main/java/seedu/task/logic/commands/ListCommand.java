@@ -7,7 +7,16 @@ package seedu.task.logic.commands;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
+    public static final String SHORTCUT = "l";
 
+    //@@author A0127720M
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Displays all the tasks.\n"
+            + "Parameters: not required.\n"
+            + "Example: " + COMMAND_WORD
+    //@@author
+    		+ "Hotkey:  " + SHORTCUT;
+    
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
     public ListCommand() {}
