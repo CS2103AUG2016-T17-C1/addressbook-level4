@@ -42,10 +42,10 @@ public class CommandBoxHandle extends GuiHandle{
         return true;
     }
 
-    public HelpWindowHandle runHelpCommand() {
+    public void runHelpCommand() {
         enterCommand("help");
         pressEnter();
         pressEnter();
-        return new HelpWindowHandle(guiRobot, primaryStage);
+//        return new HelpWindowHandle(guiRobot, primaryStage);
     }
 }
