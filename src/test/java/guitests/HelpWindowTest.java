@@ -45,10 +45,6 @@ public class HelpWindowTest extends TaskManagerGuiTest {
         commandBox.runCommand("help delete");
         assertResultMessage(DeleteCommand.MESSAGE_USAGE);
         
-        //check the usage for 'deleteM' command
-        commandBox.runCommand("help deleteM");
-        assertResultMessage(DeleteMarkedCommand.MESSAGE_USAGE);
-        
         //check the usage for 'bare' command
         commandBox.runCommand("help bare");
         assertResultMessage(BareCommand.MESSAGE_USAGE);
