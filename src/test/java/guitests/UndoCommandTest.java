@@ -72,7 +72,6 @@ public class UndoCommandTest extends TaskManagerGuiTest {
 
         //current TaskList should remain the same
         assertTrue(taskListPanel.isListMatching(currentList));
-
     }
 
     private void assertAddSuccess(TestTask taskToAdd, TestTask... currentList) {
