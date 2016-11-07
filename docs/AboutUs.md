@@ -32,9 +32,10 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 <img src="images/SYF.jpg" width="150"><br>
 **Role**: Team Leader <br>
 * Components in charge of: [Logic](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#logic-component)
-* Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/main/A0139284X.md)]
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/main/A0139284X.md)][[test code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/test/A0139284X.md)][[docs(https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/docs/A0139284X.md)]
 * Contributions:
- * Implementation of major features: [delete task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#deleting-a-task--delete), [find task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#finding-all-tasks-containing-any-keyword-in-their-name-find), tabs
+ * Major refactoring of address book to task manager application
+ * Implementation of major features: [delete task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#deleting-a-task--delete), [find task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#finding-all-tasks-containing-any-keyword-in-their-name-find)
  * Setup Travis and Coveralls
 
 -----
@@ -45,7 +46,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 * Components in charge of: [Model](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#model-component)
 * Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/main/A0142360U.md)][[test code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/test/A0142360U.md)][[docs](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/docs/A0142360U.md)]
 * Contributions:
- * Initial refactoring of Application
+ * Initial refactoring of address book to task manager application
  * Initial base documentation
  * Creation of Sample data and script,
  * Implementation of major features: UI: Task Card,  [add task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#adding-a-task-add), [undo](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#undo--undo), [redo task](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/UserGuide.md#redo--redo), [edit task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#editing-a-task-edit), [change directory](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/UserGuide.md#change-tasks-storage-directory--cd), creation of event tasks
