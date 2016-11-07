@@ -95,6 +95,9 @@ public class UniqueTagList implements Iterable<Tag> {
             if (!alreadyInside.contains(tag)) {
                 internalList.add(tag);
             }
+            else if (alreadyInside.contains(tag)) {
+                internalList.remove(tag);
+            }
         }
     }
 
