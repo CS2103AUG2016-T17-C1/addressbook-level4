@@ -10,12 +10,15 @@ import seedu.task.logic.commands.AddCommand;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+//@@author A0142360U
 public class UndoCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void undo() {
         // add one task
         TestTask[] currentList = td.getTypicalTasks();
+        TestTask[] emptyList = new TestTask[0];
         TestTask taskToAdd = td.supervisor;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
@@ -39,17 +42,35 @@ public class UndoCommandTest extends TaskManagerGuiTest {
         // undo add alice
         assertUndoSuccess();
 
+        // task list should now be empty
+        assertTrue(taskListPanel.isListMatching(emptyList));
+
         // undo clear
         assertUndoSuccess();
+
+        // all previous tasks should be restored except for td.alice
+        assertTrue(taskListPanel.isListMatching(currentList));
 
         // undo add td.reserve
         assertUndoSuccess();
 
+        // cuurentList should have typicaltasks and td.supervisor
+        currentList = td.getTypicalTasks();
+        currentList = TestUtil.addTasksToList(currentList, td.supervisor);
+
+        assertTrue(taskListPanel.isListMatching(currentList));
+
         // undo add td.supervisor
         assertUndoSuccess();
 
+        currentList = td.getTypicalTasks();
+        assertTrue(taskListPanel.isListMatching(currentList));
+
         // no more commands to undo
         assertUndoFailure();
+
+        //current TaskList should remain the same
+        assertTrue(taskListPanel.isListMatching(currentList));
 
     }
 
