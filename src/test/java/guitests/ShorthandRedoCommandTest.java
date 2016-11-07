@@ -9,8 +9,8 @@ import seedu.task.commons.core.Messages;
 import seedu.task.logic.commands.AddCommand;
 
 import static org.junit.Assert.assertTrue;
-//@@author A0142360U
-public class RedoCommandTest extends TaskManagerGuiTest {
+//@@author A0142360U - reused
+public class ShorthandRedoCommandTest extends TaskManagerGuiTest {
 
     @Test
     public void Redo() {
@@ -34,10 +34,10 @@ public class RedoCommandTest extends TaskManagerGuiTest {
         // no more 'undo' action available
         assertUndoFailure();
 
-        // reverse first undo command
+        // reverse first redo command
         assertRedoSuccess();
 
-        // reverse second undo command
+        // reverse second redo command
         assertRedoSuccess();
 
         // no more undo command to reverse
@@ -68,25 +68,27 @@ public class RedoCommandTest extends TaskManagerGuiTest {
         TestTask[] expectedList = TestUtil.addTasksToList(currentList, taskToAdd);
         assertTrue(taskListPanel.isListMatching(expectedList));
     }
-
+    
+    //@@author A0152952A
     private void assertUndoSuccess() {
-        commandBox.runCommand("undo");
+        commandBox.runCommand("u");
         assertResultMessage("Your changes are undone.");
     }
 
     private void assertUndoFailure() {
-        commandBox.runCommand("undo");
+        commandBox.runCommand("u");
         assertResultMessage("No more changes can be undone.");
     }
 
     private void assertRedoSuccess() {
-        commandBox.runCommand("redo");
+        commandBox.runCommand("r");
         assertResultMessage("Your Undo command has been reversed.");
     }
 
     private void assertRedoFailure() {
-        commandBox.runCommand("redo");
+        commandBox.runCommand("r");
         assertResultMessage("No more Undo command can be reversed.");
     }
+    //@@author
 
 }

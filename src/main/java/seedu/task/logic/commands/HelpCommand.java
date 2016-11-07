@@ -39,6 +39,7 @@ public class HelpCommand extends Command {
             + "Hotkey: " + SHORTCUT;
     // @@author
 
+    //@@author A0127720M
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
     private static final Pattern HELP_ARGS_FORMAT = Pattern.compile("(?<arguments>.*)");
     private String args;
@@ -67,6 +68,7 @@ public class HelpCommand extends Command {
 			
 		case EditCommand.SHORTCUT:
 		// @@author
+		//@@author A0127720M
 		case EditCommand.COMMAND_WORD:
 			return new CommandResult(EditCommand.MESSAGE_USAGE);
 			
@@ -113,6 +115,9 @@ public class HelpCommand extends Command {
 			
 		case ExitCommand.COMMAND_WORD:
 			return new CommandResult(ExitCommand.MESSAGE_USAGE);
+			
+		case DeleteMarkedCommand.COMMAND_WORD:
+			return new CommandResult(DeleteMarkedCommand.MESSAGE_USAGE);
 			
 		default:
 			EventsCenter.getInstance().post(new ShowHelpRequestEvent());

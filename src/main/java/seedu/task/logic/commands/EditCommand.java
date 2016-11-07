@@ -24,7 +24,7 @@ import seedu.task.model.task.UniqueTaskList.TaskNotFoundException;
 
 //@@author A0142360U
 public class EditCommand extends Command {
-
+	
     public static final String COMMAND_WORD = "edit";
     public static final String SHORTCUT = "e";
     public static final String EMPTY_TASK_OBJECT_STRING = "";
@@ -36,6 +36,9 @@ public class EditCommand extends Command {
             + "Hotkey: " + SHORTCUT;
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String DELETE_TASK_OBJECT_STRING = "-";
+    public static final String DELETE_TASK_TAGS = "no";
+    
+    
 
     public final int targetIndex;
     private final Task toEdit;
@@ -60,6 +63,7 @@ public class EditCommand extends Command {
         } else if (startDate != null && startDate.equals(DELETE_TASK_OBJECT_STRING)) {
             startTime = DELETE_TASK_OBJECT_STRING;
         }
+        
 
         if (taskName == null) {
             this.toEdit = new Task(new EventStart(new Date(startDate), new Time(startTime)),
@@ -73,6 +77,8 @@ public class EditCommand extends Command {
                     new UniqueTagList(tagSet));
         }
     }
+    
+
 
     @Override
     public CommandResult execute() throws IllegalValueException {
@@ -121,30 +127,36 @@ public class EditCommand extends Command {
             } else if (this.toEdit.getEventStart().getStartTime().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setStartTime(taskToEdit.getEventStart().getStartTime());
             }
-            if (this.toEdit.getTags().getInternalList().toString().equals(EMPTY_TAG_OBJECT_STRING)) {
-                this.toEdit.setTags(taskToEdit.getTags());
+            
+            // @@author A0152952A
+            final Set<Tag> noTagSet = new HashSet<>();
+            noTagSet.add(new Tag("NONE"));
+            
+            if (this.toEdit.getTags().toSet().containsAll(noTagSet)) {
+            	this.toEdit.getTags().getInternalList().clear();
+                this.toEdit.setTags(toEdit.getTags());
             } else {
                 taskToEdit.getTags().mergeFrom(toEdit.getTags());
                 this.toEdit.setTags(taskToEdit.getTags());
             }
+            // @@author
+            
+            
             if (this.toEdit.getImportance().toString().equals(DELETE_TASK_OBJECT_STRING)) {
                 this.toEdit.setImportance(new Importance(""));
             } else if (this.toEdit.getImportance().toString().equals(EMPTY_TASK_OBJECT_STRING)) {
                 this.toEdit.setImportance(taskToEdit.getImportance());
             }
             
-         // @@author A0152952A
-        	if(toEdit.getDeadline().getDueDate().getDate()!="" 
-        			&& toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) > 0)
+            // @@author A0152952A
+        	if(toEdit.getDeadline().getDueDate().getDate().isEmpty()==false && toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) > 0)
         		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
-        	
-        	else if(toEdit.getDeadline().getDueDate().getDate()!="" 
-        			&& toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) == 0)
-        		if(toEdit.getDeadline().getDueTime().getTime()!="" 
-        		    && toEdit.getEventStart().getStartTime().getTime().compareTo(toEdit.getDeadline().getDueTime().getTime()) > 0)
+
+        	else if(toEdit.getDeadline().getDueDate().getDate().isEmpty()==false && toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) == 0 )
+        		if(toEdit.getDeadline().getDueTime().getTime()!="" && toEdit.getEventStart().getStartTime().getTime().compareTo(toEdit.getDeadline().getDueTime().getTime()) > 0)
             		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
         	// @@author
-            
+        	
             model.editTask(taskToEdit, this.toEdit);
 
         } catch (TaskNotFoundException pnfe) {

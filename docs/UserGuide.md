@@ -118,7 +118,9 @@ Edits a task currently held in Never Forget<br>
 Format: `edit INDEX d/SCHEDULED_DATE e/SCHEDULED_END_TIME i/IMPORTANCE [t/TAG]...`<br>
 Shorthand: `e` 
 
-> Tasks can have any number of tags (including 0)
+> Tasks can have any number of tags (including 0).<br>
+> Edit will remove an already existing tag if it specified again:`edit INDEX t/EXISTING_TAG` <br>
+> All tags of a specific entry can be cleared with the command format: `edit INDEX t/NONE`
 
 Examples:
 * `edit 2 d/01012016 e/1700 i/***`
