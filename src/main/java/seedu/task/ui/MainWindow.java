@@ -72,11 +72,11 @@ public class MainWindow extends UiPart {
     @FXML
     private AnchorPane statusbarPlaceholder;
     
-    
+/*    
 
     @FXML
     private TabPane tabPane;
-
+*/
     public MainWindow() {
         super();
     }
@@ -116,12 +116,12 @@ public class MainWindow extends UiPart {
 
         setAccelerators();
     }
-
+/*
     // @@author A0139284X
-    /**
+    *//**
      * Cycle forward and backward through tabs using CTRL+TAB or CTRL+SHIFT+TAB
      * 
-     */
+     *//*
 
     public void changeTabs() {
         KeyCombination combination = new KeyCodeCombination(KeyCode.TAB, KeyCodeCombination.CONTROL_DOWN,
@@ -159,7 +159,7 @@ public class MainWindow extends UiPart {
                 commandBox.requestFocus();
         });
     }
-
+*/
     // @@author
     private void setAccelerators() {
         helpMenuItem.setAccelerator(KeyCombination.valueOf("F1"));
@@ -172,7 +172,7 @@ public class MainWindow extends UiPart {
         statusBarFooter = StatusBarFooter.load(primaryStage, getStatusbarPlaceholder(),
                 config.getTaskManagerFilePath());
         commandBox = CommandBox.load(primaryStage, getCommandBoxPlaceholder(), resultDisplay, logic);
-        this.changeTabs();
+//        this.changeTabs();
     }
 
   //@@Shen Jiahui A0127720M
