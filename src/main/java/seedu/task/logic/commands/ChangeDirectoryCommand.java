@@ -20,8 +20,8 @@ public class ChangeDirectoryCommand extends Command {
     public static final String COMMAND_WORD = "cd";
     public static final String COMMAND_WORD_SAVE = "cdsave";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Changes the location where the tasks in the Task Manager are saved. "
-            + "Paramaters: cd {file location}/" + "Example: " + COMMAND_WORD + " data/";
+            + ": Changes the location where the tasks in the Task Manager are saved.\n"
+            + "Paramaters: cd {file location}/\n" + "Example: " + COMMAND_WORD + " data/";
 
     public static final String MESSAGE_SUCCESS = "Directory Changed";
     public static final String MESSAGE_FAILURE = "Illegal directory name given, please use a different directory name and try again";

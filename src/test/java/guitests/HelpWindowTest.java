@@ -2,6 +2,8 @@ package guitests;
 
 import guitests.guihandles.HelpWindowHandle;
 import org.junit.Test;
+import guitests.GuiRobot;
+import guitests.guihandles.GuiHandle;
 
 import static org.junit.Assert.assertTrue;
 
@@ -33,7 +35,7 @@ public class HelpWindowTest extends TaskManagerGuiTest {
 
         assertHelpWindowOpen(mainMenu.openHelpWindowUsingMenu());
 
-        assertHelpWindowOpen(commandBox.runHelpCommand());
+        commandBox.runHelpCommand();
         
         //check the usage for 'add' command
         commandBox.runCommand("help add");
