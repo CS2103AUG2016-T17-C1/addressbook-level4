@@ -129,6 +129,7 @@ public class EditCommand extends Command {
             }
             
             // @@author A0152952A
+            // check for NONE keyword (used to delete tags)
             final Set<Tag> noTagSet = new HashSet<>();
             noTagSet.add(new Tag("NONE"));
             
@@ -136,8 +137,7 @@ public class EditCommand extends Command {
             	this.toEdit.getTags().getInternalList().clear();
                 this.toEdit.setTags(toEdit.getTags());
             } else {
-                taskToEdit.getTags().mergeFrom(toEdit.getTags());
-                this.toEdit.setTags(taskToEdit.getTags());
+            	this.toEdit.getTags().mergeFrom(taskToEdit.getTags());
             }
             // @@author
             
@@ -149,6 +149,7 @@ public class EditCommand extends Command {
             }
             
             // @@author A0152952A
+            // check if the end date & time is/are earlier than the start date & time
         	if(toEdit.getDeadline().getDueDate().getDate().isEmpty()==false && toEdit.getEventStart().getStartDate().getDate().compareTo(toEdit.getDeadline().getDueDate().getDate()) > 0)
         		return new CommandResult(Messages.MESSAGE_IMPOSSIBLE_SCHEDULE);
 
