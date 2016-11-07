@@ -18,10 +18,6 @@ public class ChangeDirectoryCommandTest extends TaskManagerGuiTest {
         // illegal characters in directory
         commandBox.runCommand("cd src/test/*data/XmlAddressBook?StorageTest/data");
         assertChangeDirectoryCommandFailure();
-
-        // verify change directory command works when the directory is valid
-//        commandBox.runCommand("cd src/test/data/XmlAddressBookStorageTest/data/");
-
     }
 
     private void assertChangeDirectoryCommandFailure() {

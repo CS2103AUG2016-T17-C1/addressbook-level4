@@ -48,7 +48,6 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 * Contributions:
  * Initial refactoring of address book to task manager application
  * Initial base documentation
- * Creation of Sample data and script,
  * Implementation of major features: UI: Task Card,  [add task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#adding-a-task-add), [undo](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#undo--undo), [redo task](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/UserGuide.md#redo--redo), [edit task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#editing-a-task-edit), [change directory](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/UserGuide.md#change-tasks-storage-directory--cd), creation of event tasks
 
 -----
