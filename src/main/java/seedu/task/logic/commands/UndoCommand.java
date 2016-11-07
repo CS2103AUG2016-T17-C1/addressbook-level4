@@ -8,7 +8,7 @@ public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
     public static final String SHORTCUT = "u";
-    public static final String MESSAGE_SUCCESS = "Undo %1$s times.";
+    public static final String MESSAGE_SUCCESS = "Undo %1$s time(s).";
     public static final String MESSAGE_FAIL = "No more changes can be undone.";
     public static final int DEFAULT_NUMBER_OF_UNDO = 1;
 
