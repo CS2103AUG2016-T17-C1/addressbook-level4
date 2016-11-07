@@ -32,7 +32,7 @@ We are a team of students taking the module CS2103 based in the [School of Compu
 <img src="images/SYF.jpg" width="150"><br>
 **Role**: Team Leader <br>
 * Components in charge of: [Logic](https://github.com/CS2103AUG2016-T17-C1/main/blob/master/docs/DeveloperGuide.md#logic-component)
-* Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/main/A0139284X.md)][[test code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/test/A0139284X.md)][[docs(https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/docs/A0139284X.md)]
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/main/A0139284X.md)][[test code](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/test/A0139284X.md)][[docs](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/collated/docs/A0139284X.md)]
 * Contributions:
  * Major refactoring of address book to task manager application
  * Implementation of major features: [delete task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#deleting-a-task--delete), [find task](https://github.com/CS2103AUG2016-T17-C1/main/tree/master/docs/UserGuide.md#finding-all-tasks-containing-any-keyword-in-their-name-find)
