@@ -220,16 +220,6 @@ Never Forget data are saved in the hard disk automatically after any command tha
 There is no need to save manually.
 
 
-#### Sorting the displayed task list : `select any one of: Home(which displays everything), Daily, Weekly or Monthly`
-Displays the task listing for that desired time frame.<br>
-
-
-> Displays the task listing for that desired time frame.
-  Tasks with no deadlines are only displayed in the Home listing where all tasks are displayed.<br>
-  User must select any one of the tabs, Home, Daily, Weekly or Monthly.
-
-
-
 
 ## FAQ
 
